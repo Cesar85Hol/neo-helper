@@ -17,7 +17,10 @@
 - Installato e autenticato GitHub CLI (`gh`, account Cesar85Hol).
 - `git init`, `.gitignore` (esclude dati, pesi, PDF, segreti), licenze MIT (codice) + CC BY 4.0 (docs), `refs.bib`, cartella `docs/papers/`.
 
+- Creato il repo pubblico https://github.com/Cesar85Hol/neo-helper
+- Label per area (letteratura, dati, ml, agenti-mcp, web, mobile, setup, scrittura, da-verificare), milestone M1–M7, 30 issues dalla roadmap.
+
 ### Prossimi passi
-1. Creare repo GitHub pubblico, milestone M1–M7 e issues dalla roadmap.
+1. (Opzionale) Board GitHub Projects sopra le issues.
 2. Iniziare la lettura: Esteva 2017 → Tschandl 2019 → Tschandl 2020 → Daneshjou 2022 → MONET 2024.
 3. Scaricare HAM10000 ed eseguire la prima EDA.
