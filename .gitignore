@@ -1,0 +1,61 @@
+# --- Dati e modelli (non vanno su git: troppo grandi / licenze) ---
+data/
+datasets/
+*.zip
+*.tar
+*.tar.gz
+*.h5
+*.hdf5
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.mlmodel
+*.mlpackage/
+*.tflite
+*.safetensors
+checkpoints/
+outputs/
+runs/
+wandb/
+mlruns/
+lightning_logs/
+
+# --- Immagini mediche (mai immagini di pazienti) ---
+*.dcm
+
+# --- PDF dei paper (copyright: tenere solo DOI/link e schede) ---
+docs/papers/**/*.pdf
+papers_pdf/
+
+# --- Segreti ---
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# --- Node / web / mobile ---
+node_modules/
+.next/
+dist/
+build/
+.expo/
+*.log
+
+# --- Sistema / editor ---
+.DS_Store
+.idea/
+.vscode/
