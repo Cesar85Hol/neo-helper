@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Genera i documenti Word di letteratura (uno per sezione) dalle schede MD in docs/papers/.
-# Uso: tools/build_word.sh   → output in outputs/letteratura/
+# Build the literature Word documents (one per section) from the Markdown notes in docs/papers/.
+# Usage: tools/build_word.sh   → output in outputs/letteratura/
+# Document titles stay in Italian: they are content, not code.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -8,6 +9,7 @@ OUT=outputs/letteratura
 mkdir -p "$OUT"
 P=docs/papers
 
+# build <output-file> <document-title> <markdown-files...>
 build() {
   local out="$1" title="$2"; shift 2
   pandoc "$@" \

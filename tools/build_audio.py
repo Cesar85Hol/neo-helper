@@ -1,15 +1,16 @@
-"""Genera gli MP3 degli episodi audio dai copioni in docs/audio/ con edge-tts.
+"""Generate the audio episode MP3s from the spoken scripts in docs/audio/ using edge-tts.
 
-Gli MP3 vanno in ~/Music/Neo Helper (cartella aggiunta ai "File locali" di Spotify),
-con tag ID3 (titolo, album, numero traccia) così la playlist è ordinata e leggibile.
+MP3s are written to ~/Music/Neo Helper (the folder added to Spotify "Local files"),
+with ID3 tags (title, album, track number) so the playlist is ordered and readable.
+The episodes themselves are in Italian; tag values come from the script titles.
 
-Uso:
-    .venv/bin/python tools/build_audio.py                 # tutti gli episodi
-    .venv/bin/python tools/build_audio.py S2_ep05         # solo quelli che iniziano così
+Usage:
+    .venv/bin/python tools/build_audio.py                 # all episodes
+    .venv/bin/python tools/build_audio.py S2_ep05         # only scripts starting with this prefix
     .venv/bin/python tools/build_audio.py --voice it-IT-DiegoNeural --rate=-5%
     .venv/bin/python tools/build_audio.py --out outputs/audio
 
-Voci italiane: it-IT-IsabellaNeural, it-IT-ElsaNeural, it-IT-DiegoNeural,
+Italian voices: it-IT-IsabellaNeural, it-IT-ElsaNeural, it-IT-DiegoNeural,
 it-IT-GiuseppeMultilingualNeural.
 """
 
@@ -29,7 +30,7 @@ ALBUM = "Neo Helper – Letteratura"
 
 
 def to_speech_text(md: str) -> str:
-    """Il titolo (# …) diventa la frase d'apertura; il resto è testo parlato."""
+    """Turn the Markdown heading into the opening sentence; keep the rest as spoken text."""
     lines = []
     for line in md.splitlines():
         line = line.strip()
@@ -70,15 +71,15 @@ async def synth(path: Path, out_dir: Path, voice: str, rate: str, track: int, to
 
 
 async def main() -> None:
-    p = argparse.ArgumentParser()
-    p.add_argument("prefix", nargs="?", default="")
-    p.add_argument("--voice", default="it-IT-IsabellaNeural")
-    p.add_argument("--rate", default="+0%")
-    p.add_argument("--out", type=Path, default=DEFAULT_OUT)
+    p = argparse.ArgumentParser(description="Generate tagged MP3 episodes from docs/audio/ scripts.")
+    p.add_argument("prefix", nargs="?", default="", help="only build scripts whose name starts with this")
+    p.add_argument("--voice", default="it-IT-IsabellaNeural", help="edge-tts voice name")
+    p.add_argument("--rate", default="+0%", help="speech rate, e.g. -5%% or +10%%")
+    p.add_argument("--out", type=Path, default=DEFAULT_OUT, help="output folder")
     args = p.parse_args()
 
     args.out.mkdir(parents=True, exist_ok=True)
-    # Numero traccia sempre calcolato su tutti i copioni, anche se ne rigeneri solo uno.
+    # Track numbers are always computed over all scripts, even when rebuilding just one.
     all_scripts = sorted(SCRIPTS.glob("*.md"))
     for track, path in enumerate(all_scripts, start=1):
         if path.name.startswith(args.prefix):
