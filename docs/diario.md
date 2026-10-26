@@ -30,6 +30,5 @@
 1. Ascoltare gli episodi; caricare i Word su NotebookLM.
 2. Recuperare il testo completo di Tschandl 2020 (verificare i numeri ⚠️).
 3. Pacchetto 2: §3 foundation model + §4 bias e fairness (issue #4, #5).
-4. (Opzionale) Board GitHub Projects sopra le issues.
-2. Iniziare la lettura: Esteva 2017 → Tschandl 2019 → Tschandl 2020 → Daneshjou 2022 → MONET 2024.
-3. Scaricare HAM10000 ed eseguire la prima EDA.
+4. Scaricare HAM10000 ed eseguire la prima EDA.
+5. (Opzionale) Board GitHub Projects sopra le issues.
