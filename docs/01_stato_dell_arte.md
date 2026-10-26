@@ -13,17 +13,18 @@
 - Segno del "brutto anatroccolo" (ugly duckling): confronto tra nevi dello stesso paziente → rilevante per **total body photography** (ISIC 2024).
 - Classi tipiche nei dataset: nevo melanocitico (NV), melanoma (MEL), cheratosi seborroica (BKL), carcinoma basocellulare (BCC), cheratosi attinica (AK), carcinoma squamocellulare (SCC), dermatofibroma (DF), lesioni vascolari (VASC).
 
-📖 Fonte consigliata per iniziare: Argenziano G. et al., *Dermoscopy of pigmented skin lesions* (JAAD 2003, consensus net meeting) ⚠️; un manuale di dermatoscopia (es. Marghoob / Kittler).
+✅ Sintesi: [papers/00_background_clinico.md](papers/00_background_clinico.md) (include Argenziano 1998 e 2003).
+📖 Fonte consigliata per approfondire: Argenziano G. et al., *Dermoscopy of pigmented skin lesions* (JAAD 2003, consensus net meeting) ⚠️; un manuale di dermatoscopia (es. Marghoob / Kittler).
 
 ## 2. Paper fondativi di Deep Learning in dermatologia
 | Paper | Perché è importante | Stato |
 |-------|---------------------|-------|
-| Esteva A. et al., *Dermatologist-level classification of skin cancer with deep neural networks*, **Nature 2017** | Il paper "big bang": Inception-v3, livello dermatologo | 📖 |
-| Haenssle H.A. et al., *Man against machine…*, **Annals of Oncology 2018** | CNN vs 58 dermatologi su dermatoscopia | 📖 |
-| Brinker T.J. et al., *Deep learning outperformed 136 of 157 dermatologists…*, **Eur J Cancer 2019** | Confronto su larga scala | 📖 |
-| Tschandl P. et al., *The HAM10000 dataset*, **Scientific Data 2018** | Dataset di riferimento | 📖 |
-| Tschandl P. et al., *Comparison of the accuracy of human readers versus machine-learning algorithms…*, **Lancet Oncology 2019** | Benchmark open (ISIC 2018) uomo vs macchina | 📖 |
-| Tschandl P. et al., *Human–computer collaboration for skin cancer recognition*, **Nature Medicine 2020** | **Fondamentale per il tuo progetto**: come l'AI aiuta (o danneggia) il medico a seconda di come viene presentata | 📖 |
+| Esteva A. et al., *Dermatologist-level classification of skin cancer with deep neural networks*, **Nature 2017** | Il paper "big bang": Inception-v3, livello dermatologo | ✅ [scheda](papers/2017_esteva_dermatologist-level.md) |
+| Haenssle H.A. et al., *Man against machine…*, **Annals of Oncology 2018** | CNN vs 58 dermatologi su dermatoscopia | ✅ [scheda](papers/2018_haenssle_man-against-machine.md) |
+| Brinker T.J. et al., *Deep learning outperformed 136 of 157 dermatologists…*, **Eur J Cancer 2019** | Confronto su larga scala | ✅ [scheda](papers/2019_brinker_136-of-157.md) |
+| Tschandl P. et al., *The HAM10000 dataset*, **Scientific Data 2018** | Dataset di riferimento | ✅ [scheda](papers/2018_tschandl_ham10000.md) |
+| Tschandl P. et al., *Comparison of the accuracy of human readers versus machine-learning algorithms…*, **Lancet Oncology 2019** | Benchmark open (ISIC 2018) uomo vs macchina | ✅ [scheda](papers/2019_tschandl_human-vs-machine-isic2018.md) |
+| Tschandl P. et al., *Human–computer collaboration for skin cancer recognition*, **Nature Medicine 2020** | **Fondamentale per il tuo progetto**: come l'AI aiuta (o danneggia) il medico a seconda di come viene presentata | ✅ [scheda](papers/2020_tschandl_human-computer-collaboration.md) |
 | Codella N. et al., report ISIC Challenge 2017/2018 (arXiv) | Descrizione task: segmentazione, attributi, classificazione | 📖 |
 | Combalia M. et al., *BCN20000: Dermoscopic lesions in the wild*, 2019 (arXiv) ⚠️ | Dataset "difficile", base di ISIC 2019 | 📖 |
 | Rotemberg V. et al., *A patient-centric dataset of images and metadata…* (ISIC 2020), **Scientific Data 2021** | Dataset con contesto paziente | 📖 |

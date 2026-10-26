@@ -20,7 +20,16 @@
 - Creato il repo pubblico https://github.com/Cesar85Hol/neo-helper
 - Label per area (letteratura, dati, ml, agenti-mcp, web, mobile, setup, scrittura, da-verificare), milestone M1–M7, 30 issues dalla roadmap.
 
+## 2026-10-26 — Pacchetto letteratura 1 (§1 clinica + §2 paper fondativi)
+- Connettori MCP attivati: **PubMed** e **alphaXiv**.
+- Pipeline: PubMed (metadati + testo completo da PMC quando disponibile) → schede MD in `docs/papers/` → Word con `tools/build_word.sh` (pandoc) → copioni parlati in `docs/audio/` → MP3 con `tools/build_audio.py` (edge-tts, voce it-IT-IsabellaNeural).
+- Testo completo letto: Esteva 2017, HAM10000 2018, Tschandl 2019. Solo abstract: Haenssle 2018, Brinker 2019, Tschandl 2020 (paywall). I numeri non verificati sono segnati con ⚠️.
+- Output (non in git): `outputs/letteratura/*.docx` per NotebookLM, `outputs/audio/*.mp3` (7 episodi, circa 30 min).
+
 ### Prossimi passi
-1. (Opzionale) Board GitHub Projects sopra le issues.
+1. Ascoltare gli episodi; caricare i Word su NotebookLM.
+2. Recuperare il testo completo di Tschandl 2020 (verificare i numeri ⚠️).
+3. Pacchetto 2: §3 foundation model + §4 bias e fairness (issue #4, #5).
+4. (Opzionale) Board GitHub Projects sopra le issues.
 2. Iniziare la lettura: Esteva 2017 → Tschandl 2019 → Tschandl 2020 → Daneshjou 2022 → MONET 2024.
 3. Scaricare HAM10000 ed eseguire la prima EDA.
