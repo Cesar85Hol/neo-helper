@@ -26,6 +26,11 @@
 - Testo completo letto: Esteva 2017, HAM10000 2018, Tschandl 2019. Solo abstract: Haenssle 2018, Brinker 2019, Tschandl 2020 (paywall). I numeri non verificati sono segnati con ⚠️.
 - Output (non in git): `outputs/letteratura/*.docx` per NotebookLM, `~/Music/Neo Helper/*.mp3` (7 episodi, circa 30 min, con tag ID3; cartella aggiunta ai File locali di Spotify).
 
+## 2026-10-27 — Regola sulla lingua
+- Codice, commit, branch, issue e PR tecniche in **inglese**; documenti, audio e chat in **italiano** (vedi `CLAUDE.md`).
+- Script in `tools/` tradotti; issue tecniche #11–#27 e #30 tradotte in inglese. Le issue di letteratura e scrittura (#1–#10, #28, #29) restano in italiano.
+- MP3 spostati in `~/Music/Neo Helper` con tag ID3, per la playlist Spotify (File locali).
+
 ### Prossimi passi
 1. Ascoltare gli episodi; caricare i Word su NotebookLM.
 2. Recuperare il testo completo di Tschandl 2020 (verificare i numeri ⚠️).
