@@ -24,7 +24,7 @@
 - Connettori MCP attivati: **PubMed** e **alphaXiv**.
 - Pipeline: PubMed (metadati + testo completo da PMC quando disponibile) → schede MD in `docs/papers/` → Word con `tools/build_word.sh` (pandoc) → copioni parlati in `docs/audio/` → MP3 con `tools/build_audio.py` (edge-tts, voce it-IT-IsabellaNeural).
 - Testo completo letto: Esteva 2017, HAM10000 2018, Tschandl 2019. Solo abstract: Haenssle 2018, Brinker 2019, Tschandl 2020 (paywall). I numeri non verificati sono segnati con ⚠️.
-- Output (non in git): `outputs/letteratura/*.docx` per NotebookLM, `outputs/audio/*.mp3` (7 episodi, circa 30 min).
+- Output (non in git): `outputs/letteratura/*.docx` per NotebookLM, `~/Music/Neo Helper/*.mp3` (7 episodi, circa 30 min, con tag ID3; cartella aggiunta ai File locali di Spotify).
 
 ### Prossimi passi
 1. Ascoltare gli episodi; caricare i Word su NotebookLM.
