@@ -29,6 +29,7 @@
 ## 2026-10-27 — Regola sulla lingua
 - Codice, commit, branch, issue e PR tecniche in **inglese**; documenti, audio e chat in **italiano** (vedi `CLAUDE.md`).
 - Script in `tools/` tradotti; issue tecniche #11–#27 e #30 tradotte in inglese. Le issue di letteratura e scrittura (#1–#10, #28, #29) restano in italiano.
+- Label rinominate in inglese: literature, data, ml, agents-mcp, web, mobile, setup, writing, to-verify.
 - MP3 spostati in `~/Music/Neo Helper` con tag ID3, per la playlist Spotify (File locali).
 
 ### Prossimi passi
