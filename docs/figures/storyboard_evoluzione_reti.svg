@@ -1,0 +1,323 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1840" height="1090" viewBox="0 0 1840 1090" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5b6770"/>
+    </marker>
+    <style>
+      .panel { fill: #ffffff; stroke: #d5dade; stroke-width: 1.5; }
+      .preview { stroke-dasharray: 8 6; stroke: #9aa5ad; }
+      .year { font-size: 15px; font-weight: 700; fill: #ffffff; opacity: 0.9; letter-spacing: 1px; }
+      .title { font-size: 19px; font-weight: 700; fill: #ffffff; }
+      .box { fill: #f3f5f7; stroke: #c9d0d6; stroke-width: 1.2; }
+      .hl { fill: #fff6e0; stroke: #e0b44c; }
+      .b1 { font-size: 14px; font-weight: 700; fill: #1f2a33; }
+      .b2 { font-size: 13px; fill: #46525c; }
+      .lbl { font-size: 11.5px; font-weight: 700; fill: #7a868f; letter-spacing: 1.5px; }
+      .txt { font-size: 14px; fill: #2b3640; }
+      .lesson { fill: #eef6f4; stroke: #9cc9bd; }
+      .lessontxt { font-size: 15px; font-weight: 700; fill: #1d5c4f; }
+      .foot { font-size: 13px; font-style: italic; fill: #5b6770; }
+      .arrow { stroke: #5b6770; stroke-width: 1.8; marker-end: url(#arr); }
+      .chip { fill: #1f2a33; }
+      .chiptxt { font-size: 14px; font-weight: 700; fill: #ffffff; }
+    </style>
+  </defs>
+
+  <rect width="1840" height="1090" fill="#fafbfc"/>
+
+  <!-- Header -->
+  <text x="40" y="62" font-size="30" font-weight="700" fill="#1f2a33">Come cambia il modo di costruire le reti per la diagnosi dei nei</text>
+  <text x="40" y="96" font-size="16" fill="#5b6770">Storyboard 2017 → 2026 · dalla rete singola agli agenti che la orchestrano · Neo Helper, letteratura §2 (+ anteprima §3 e progetto)</text>
+  <rect x="1500" y="44" width="34" height="20" rx="4" class="panel"/>
+  <text x="1544" y="59" font-size="14" fill="#2b3640">studiato (§1–§2)</text>
+  <rect x="1500" y="76" width="34" height="20" rx="4" class="panel preview"/>
+  <text x="1544" y="91" font-size="14" fill="#2b3640">anteprima, da studiare</text>
+
+  <!-- ============ Panel 1: 2017 Esteva ============ -->
+  <g transform="translate(40,140)">
+    <rect width="280" height="730" rx="14" class="panel"/>
+    <path d="M14,0 H266 A14,14 0 0 1 280,14 V100 H0 V14 A14,14 0 0 1 14,0 z" fill="#264653"/>
+    <text x="18" y="30" class="year">1 · 2017</text>
+    <text x="18" y="60" class="title">Ricicla una rete</text>
+    <text x="18" y="84" class="title">già esperta</text>
+
+    <rect x="18" y="118" width="244" height="50" rx="8" class="box"/>
+    <text x="30" y="139" class="b1">ImageNet</text>
+    <text x="30" y="157" class="b2">1,28 milioni di foto di oggetti</text>
+    <line x1="140" y1="168" x2="140" y2="186" class="arrow"/>
+    <rect x="18" y="188" width="244" height="50" rx="8" class="box"/>
+    <text x="30" y="209" class="b1">Inception v3 (Google)</text>
+    <text x="30" y="227" class="b2">rete che sa già «vedere»</text>
+    <line x1="140" y1="238" x2="140" y2="256" class="arrow"/>
+    <rect x="18" y="258" width="244" height="50" rx="8" class="box hl"/>
+    <text x="30" y="279" class="b1">+ 129.450 foto cliniche</text>
+    <text x="30" y="297" class="b2">2.032 malattie → 757 classi fini</text>
+    <line x1="140" y1="308" x2="140" y2="326" class="arrow"/>
+    <rect x="18" y="328" width="244" height="50" rx="8" class="box"/>
+    <text x="30" y="349" class="b1">Somma lungo l'albero</text>
+    <text x="30" y="367" class="b2">→ benigno / maligno</text>
+
+    <text x="18" y="418" class="lbl">COME SI COSTRUISCE</text>
+    <text x="18" y="444" class="txt">• Transfer learning: riaddestra</text>
+    <text x="28" y="464" class="txt">tutta la rete sulle foto mediche</text>
+    <text x="18" y="488" class="txt">• Tassonomia ad albero</text>
+    <text x="28" y="508" class="txt">delle malattie</text>
+    <text x="18" y="532" class="txt">• Split per lesione, non per foto</text>
+
+    <rect x="18" y="580" width="244" height="84" rx="10" class="lesson"/>
+    <text x="30" y="602" class="lbl" fill="#1d5c4f">LEZIONE</text>
+    <text x="30" y="626" class="lessontxt">Tanti dati + rete riciclata</text>
+    <text x="30" y="648" class="lessontxt">= livello dermatologo</text>
+    <text x="18" y="702" class="foot">Esteva · Nature 2017</text>
+  </g>
+
+  <!-- ============ Panel 2: 2018–19 Haenssle, Brinker ============ -->
+  <g transform="translate(336,140)">
+    <rect width="280" height="730" rx="14" class="panel"/>
+    <path d="M14,0 H266 A14,14 0 0 1 280,14 V100 H0 V14 A14,14 0 0 1 14,0 z" fill="#2A9D8F"/>
+    <text x="18" y="30" class="year">2 · 2018 – 2019</text>
+    <text x="18" y="60" class="title">Specializzala sul</text>
+    <text x="18" y="84" class="title">dermatoscopio</text>
+
+    <rect x="18" y="118" width="244" height="50" rx="8" class="box"/>
+    <text x="30" y="139" class="b1">Immagini dermatoscopiche</text>
+    <text x="30" y="157" class="b2">Brinker: solo 12.378 pubbliche</text>
+    <line x1="140" y1="168" x2="140" y2="186" class="arrow"/>
+    <rect x="18" y="188" width="244" height="50" rx="8" class="box"/>
+    <text x="30" y="209" class="b1">CNN pre-addestrata</text>
+    <text x="30" y="227" class="b2">es. Inception v4, fine-tuning</text>
+    <line x1="140" y1="238" x2="140" y2="256" class="arrow"/>
+    <rect x="18" y="258" width="244" height="50" rx="8" class="box hl"/>
+    <text x="30" y="279" class="b1">Compito binario</text>
+    <text x="30" y="297" class="b2">melanoma vs nevo</text>
+    <line x1="140" y1="308" x2="140" y2="326" class="arrow"/>
+    <rect x="18" y="328" width="244" height="50" rx="8" class="box"/>
+    <text x="30" y="349" class="b1">Sfida a 58 e 157 dermatologi</text>
+    <text x="30" y="367" class="b2">AUC 0,86 vs 0,79 (Haenssle)</text>
+
+    <text x="18" y="418" class="lbl">COME SI COSTRUISCE</text>
+    <text x="18" y="444" class="txt">• Stessa ricetta, ma sullo</text>
+    <text x="28" y="464" class="txt">strumento dello specialista</text>
+    <text x="18" y="488" class="txt">• Dati aperti → risultati</text>
+    <text x="28" y="508" class="txt">riproducibili</text>
+    <text x="18" y="532" class="txt">• Test con e senza dati clinici</text>
+
+    <rect x="18" y="580" width="244" height="84" rx="10" class="lesson"/>
+    <text x="30" y="602" class="lbl" fill="#1d5c4f">LEZIONE</text>
+    <text x="30" y="626" class="lessontxt">Stessi melanomi trovati,</text>
+    <text x="30" y="648" class="lessontxt">meno falsi allarmi</text>
+    <text x="18" y="696" class="foot">Haenssle · Ann Oncol 2018</text>
+    <text x="18" y="716" class="foot">Brinker · Eur J Cancer 2019</text>
+  </g>
+
+  <!-- ============ Panel 3: HAM10000 + ISIC 2018 ============ -->
+  <g transform="translate(632,140)">
+    <rect width="280" height="730" rx="14" class="panel"/>
+    <path d="M14,0 H266 A14,14 0 0 1 280,14 V100 H0 V14 A14,14 0 0 1 14,0 z" fill="#C9A227"/>
+    <text x="18" y="30" class="year">3 · 2018 – 2019</text>
+    <text x="18" y="60" class="title">Dati aperti e</text>
+    <text x="18" y="84" class="title">gara mondiale</text>
+
+    <rect x="18" y="118" width="244" height="50" rx="8" class="box"/>
+    <text x="30" y="139" class="b1">HAM10000, dati aperti</text>
+    <text x="30" y="157" class="b2">10.015 immagini, 7 classi</text>
+    <line x1="140" y1="168" x2="140" y2="186" class="arrow"/>
+    <rect x="18" y="188" width="244" height="50" rx="8" class="box"/>
+    <text x="30" y="209" class="b1">Challenge ISIC 2018</text>
+    <text x="30" y="227" class="b2">77 laboratori · 139 algoritmi</text>
+    <line x1="140" y1="238" x2="140" y2="256" class="arrow"/>
+    <rect x="18" y="258" width="244" height="50" rx="8" class="box hl"/>
+    <text x="30" y="279" class="b1">Metrica: accuratezza</text>
+    <text x="30" y="297" class="b2">bilanciata sulle 7 classi</text>
+    <line x1="140" y1="308" x2="140" y2="326" class="arrow"/>
+    <rect x="18" y="328" width="244" height="50" rx="8" class="box"/>
+    <text x="30" y="349" class="b1">Test anche su centri esterni</text>
+    <text x="30" y="367" class="b2">Turchia, Svezia, Argentina…</text>
+
+    <text x="18" y="418" class="lbl">COME SI COSTRUISCE</text>
+    <text x="18" y="444" class="txt">• Non una rete: una gara tra</text>
+    <text x="28" y="464" class="txt">centinaia di ricette</text>
+    <text x="18" y="488" class="txt">• Vince chi non risponde</text>
+    <text x="28" y="508" class="txt">sempre «nevo»</text>
+    <text x="18" y="532" class="txt">• 511 medici come confronto</text>
+
+    <rect x="18" y="580" width="244" height="84" rx="10" class="lesson"/>
+    <text x="30" y="602" class="lbl" fill="#1d5c4f">LEZIONE</text>
+    <text x="30" y="626" class="lessontxt">Algoritmi &gt; esperti, ma il</text>
+    <text x="30" y="648" class="lessontxt">vantaggio cala sui dati nuovi</text>
+    <text x="18" y="696" class="foot">Tschandl · Sci Data 2018</text>
+    <text x="18" y="716" class="foot">Tschandl · Lancet Oncol 2019</text>
+  </g>
+
+  <!-- ============ Panel 4: 2020 collaboration ============ -->
+  <g transform="translate(928,140)">
+    <rect width="280" height="730" rx="14" class="panel"/>
+    <path d="M14,0 H266 A14,14 0 0 1 280,14 V100 H0 V14 A14,14 0 0 1 14,0 z" fill="#E07A3F"/>
+    <text x="18" y="30" class="year">4 · 2020</text>
+    <text x="18" y="60" class="title">La rete lavora</text>
+    <text x="18" y="84" class="title">con il medico</text>
+
+    <rect x="18" y="118" width="244" height="50" rx="8" class="box"/>
+    <text x="30" y="139" class="b1">Immagine dermatoscopica</text>
+    <text x="30" y="157" class="b2">+ prima diagnosi del medico</text>
+    <line x1="140" y1="168" x2="140" y2="186" class="arrow"/>
+    <rect x="18" y="188" width="244" height="50" rx="8" class="box"/>
+    <text x="30" y="209" class="b1">La rete propone</text>
+    <text x="30" y="227" class="b2">probabilità per 7 classi</text>
+    <g fill="#E07A3F">
+      <rect x="196" y="222" width="7" height="8"/>
+      <rect x="205" y="200" width="7" height="30"/>
+      <rect x="214" y="216" width="7" height="14"/>
+      <rect x="223" y="225" width="7" height="5"/>
+      <rect x="232" y="211" width="7" height="19"/>
+      <rect x="241" y="226" width="7" height="4"/>
+      <rect x="250" y="224" width="7" height="6"/>
+    </g>
+    <line x1="140" y1="238" x2="140" y2="256" class="arrow"/>
+    <rect x="18" y="258" width="244" height="50" rx="8" class="box hl"/>
+    <text x="30" y="279" class="b1">Il medico rivede e decide</text>
+    <text x="30" y="297" class="b2">può cambiare idea</text>
+    <line x1="140" y1="308" x2="140" y2="326" class="arrow"/>
+    <rect x="18" y="328" width="244" height="50" rx="8" class="box"/>
+    <text x="30" y="349" class="b1">Mappe di attivazione</text>
+    <text x="30" y="367" class="b2">insegnano dove guardare</text>
+
+    <text x="18" y="418" class="lbl">COME SI COSTRUISCE</text>
+    <text x="18" y="444" class="txt">• Si progetta l'output per il</text>
+    <text x="28" y="464" class="txt">medico, non per la gara</text>
+    <text x="18" y="488" class="txt">• Probabilità multiclasse</text>
+    <text x="28" y="508" class="txt">meglio di «immagini simili»</text>
+    <text x="18" y="532" class="txt">• Rischio: un'AI sbagliata</text>
+    <text x="28" y="552" class="txt">inganna anche gli esperti</text>
+
+    <rect x="18" y="580" width="244" height="84" rx="10" class="lesson"/>
+    <text x="30" y="602" class="lbl" fill="#1d5c4f">LEZIONE</text>
+    <text x="30" y="626" class="lessontxt">Uomo + macchina batte</text>
+    <text x="30" y="648" class="lessontxt">entrambi da soli</text>
+    <text x="18" y="702" class="foot">Tschandl · Nat Med 2020</text>
+  </g>
+
+  <!-- ============ Panel 5: foundation models (preview) ============ -->
+  <g transform="translate(1224,140)">
+    <rect width="280" height="730" rx="14" class="panel preview"/>
+    <path d="M14,0 H266 A14,14 0 0 1 280,14 V100 H0 V14 A14,14 0 0 1 14,0 z" fill="#8a97a1"/>
+    <text x="18" y="30" class="year">5 · 2023 – 2025 · ANTEPRIMA</text>
+    <text x="18" y="60" class="title">Prima impara la pelle,</text>
+    <text x="18" y="84" class="title">poi la diagnosi</text>
+
+    <rect x="18" y="118" width="244" height="50" rx="8" class="box"/>
+    <text x="30" y="139" class="b1">Milioni di immagini</text>
+    <text x="30" y="157" class="b2">senza etichette (+ testi medici)</text>
+    <line x1="140" y1="168" x2="140" y2="186" class="arrow"/>
+    <rect x="18" y="188" width="244" height="50" rx="8" class="box"/>
+    <text x="30" y="209" class="b1">Pre-addestramento</text>
+    <text x="30" y="227" class="b2">self-supervised / immagine-testo</text>
+    <line x1="140" y1="238" x2="140" y2="256" class="arrow"/>
+    <rect x="18" y="258" width="244" height="50" rx="8" class="box hl"/>
+    <text x="30" y="279" class="b1">Foundation model</text>
+    <text x="30" y="297" class="b2">rappresentazione della pelle</text>
+    <line x1="140" y1="308" x2="140" y2="326" class="arrow"/>
+    <rect x="18" y="328" width="244" height="50" rx="8" class="box"/>
+    <text x="30" y="349" class="b1">Pochi esempi etichettati</text>
+    <text x="30" y="367" class="b2">→ classificatore leggero</text>
+
+    <text x="18" y="418" class="lbl">COME SI COSTRUISCE</text>
+    <text x="18" y="444" class="txt">• Non si parte più da ImageNet:</text>
+    <text x="28" y="464" class="txt">si parte da un modello «medico»</text>
+    <text x="18" y="488" class="txt">• Concetti leggibili (MONET):</text>
+    <text x="28" y="508" class="txt">«velo blu», «asimmetria»</text>
+
+    <rect x="18" y="580" width="244" height="84" rx="10" class="lesson"/>
+    <text x="30" y="602" class="lbl" fill="#1d5c4f">LEZIONE (DA VERIFICARE)</text>
+    <text x="30" y="626" class="lessontxt">Meno etichette, spiegazioni</text>
+    <text x="30" y="648" class="lessontxt">per concetti</text>
+    <text x="18" y="696" class="foot">MONET · Nat Med 2024, PanDerm</text>
+    <text x="18" y="716" class="foot">Da studiare: issue #4</text>
+  </g>
+
+  <!-- ============ Panel 6: agents + MCP (preview, our project) ============ -->
+  <g transform="translate(1520,140)">
+    <rect width="280" height="730" rx="14" class="panel preview"/>
+    <path d="M14,0 H266 A14,14 0 0 1 280,14 V100 H0 V14 A14,14 0 0 1 14,0 z" fill="#6d5a8a"/>
+    <text x="18" y="30" class="year">6 · 2025 – 2026 · NEO HELPER</text>
+    <text x="18" y="60" class="title">Agenti che orchestrano</text>
+    <text x="18" y="84" class="title">più reti</text>
+
+    <rect x="18" y="118" width="244" height="50" rx="8" class="box hl"/>
+    <text x="30" y="139" class="b1">Orchestratore (LLM)</text>
+    <text x="30" y="157" class="b2">pianifica, controlla, scrive</text>
+    <line x1="140" y1="168" x2="140" y2="184" class="arrow"/>
+    <rect x="70" y="186" width="140" height="26" rx="13" fill="#6d5a8a"/>
+    <text x="140" y="204" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">tool via MCP</text>
+    <line x1="140" y1="212" x2="140" y2="226" class="arrow"/>
+    <rect x="18" y="228" width="119" height="40" rx="8" class="box"/>
+    <text x="77" y="253" text-anchor="middle" class="b1">Qualità</text>
+    <rect x="143" y="228" width="119" height="40" rx="8" class="box"/>
+    <text x="202" y="253" text-anchor="middle" class="b1">Segmentazione</text>
+    <rect x="18" y="274" width="119" height="40" rx="8" class="box"/>
+    <text x="77" y="299" text-anchor="middle" class="b1">Classificazione</text>
+    <rect x="143" y="274" width="119" height="40" rx="8" class="box"/>
+    <text x="202" y="299" text-anchor="middle" class="b1">Criteri ABCD</text>
+    <line x1="140" y1="314" x2="140" y2="326" class="arrow"/>
+    <rect x="18" y="328" width="244" height="50" rx="8" class="box"/>
+    <text x="30" y="349" class="b1">Critic → report al medico</text>
+    <text x="30" y="367" class="b2">con incertezza e disclaimer</text>
+
+    <text x="18" y="418" class="lbl">COME SI COSTRUISCE</text>
+    <text x="18" y="444" class="txt">• Le reti diventano strumenti</text>
+    <text x="28" y="464" class="txt">riusabili (tool MCP)</text>
+    <text x="18" y="488" class="txt">• L'LLM coordina, non fa</text>
+    <text x="28" y="508" class="txt">diagnosi: i numeri arrivano</text>
+    <text x="28" y="528" class="txt">solo dai modelli di visione</text>
+
+    <rect x="18" y="580" width="244" height="84" rx="10" class="lesson"/>
+    <text x="30" y="602" class="lbl" fill="#1d5c4f">OBIETTIVO</text>
+    <text x="30" y="626" class="lessontxt">Affidabilità e trasparenza</text>
+    <text x="30" y="648" class="lessontxt">per costruzione</text>
+    <text x="18" y="696" class="foot">Il nostro progetto</text>
+    <text x="18" y="716" class="foot">Issues #20 – #23</text>
+  </g>
+
+  <!-- ============ Timeline ============ -->
+  <line x1="40" y1="910" x2="1800" y2="910" stroke="#1f2a33" stroke-width="3"/>
+  <line x1="1364" y1="910" x2="1800" y2="910" stroke="#fafbfc" stroke-width="3" stroke-dasharray="10 8"/>
+  <path d="M1800,902 L1816,910 L1800,918 z" fill="#1f2a33"/>
+  <g font-size="16" font-weight="700" fill="#1f2a33" text-anchor="middle">
+    <circle cx="180" cy="910" r="9" fill="#264653"/>
+    <text x="180" y="942">2017</text>
+    <circle cx="476" cy="910" r="9" fill="#2A9D8F"/>
+    <text x="476" y="942">2018 – 2019</text>
+    <circle cx="772" cy="910" r="9" fill="#C9A227"/>
+    <text x="772" y="942">2018 – 2019</text>
+    <circle cx="1068" cy="910" r="9" fill="#E07A3F"/>
+    <text x="1068" y="942">2020</text>
+    <circle cx="1364" cy="910" r="9" fill="#fafbfc" stroke="#8a97a1" stroke-width="3"/>
+    <text x="1364" y="942">2023 – 2025</text>
+    <circle cx="1660" cy="910" r="9" fill="#fafbfc" stroke="#6d5a8a" stroke-width="3"/>
+    <text x="1660" y="942">2025 – 2026</text>
+  </g>
+
+  <!-- ============ Where the key idea lives ============ -->
+  <text x="40" y="992" class="lbl">DOVE STA L'IDEA CHIAVE</text>
+  <g>
+    <rect x="70" y="1008" width="220" height="40" rx="20" class="chip"/>
+    <text x="180" y="1034" text-anchor="middle" class="chiptxt">più dati + riuso della rete</text>
+    <rect x="366" y="1008" width="220" height="40" rx="20" class="chip"/>
+    <text x="476" y="1034" text-anchor="middle" class="chiptxt">lo strumento giusto</text>
+    <rect x="662" y="1008" width="220" height="40" rx="20" class="chip"/>
+    <text x="772" y="1034" text-anchor="middle" class="chiptxt">dati aperti e confronto</text>
+    <rect x="958" y="1008" width="220" height="40" rx="20" class="chip"/>
+    <text x="1068" y="1034" text-anchor="middle" class="chiptxt">collaborazione</text>
+    <rect x="1254" y="1008" width="220" height="40" rx="20" fill="#8a97a1"/>
+    <text x="1364" y="1034" text-anchor="middle" class="chiptxt">pre-addestramento</text>
+    <rect x="1550" y="1008" width="220" height="40" rx="20" fill="#6d5a8a"/>
+    <text x="1660" y="1034" text-anchor="middle" class="chiptxt">orchestrazione</text>
+  </g>
+  <g fill="#9aa5ad" font-size="22" font-weight="700" text-anchor="middle">
+    <text x="328" y="1036">›</text>
+    <text x="624" y="1036">›</text>
+    <text x="920" y="1036">›</text>
+    <text x="1216" y="1036">›</text>
+    <text x="1512" y="1036">›</text>
+  </g>
+</svg>

@@ -4,6 +4,10 @@
 
 I sei lavori di questa sezione raccontano una storia in tre atti, tra il 2017 e il 2020.
 
+![Storyboard: come cambia il modo di costruire le reti, dal 2017 agli agenti](../figures/storyboard_evoluzione_reti.png)
+
+*Storyboard: i riquadri 1–4 riassumono questa sezione; il 5 e il 6 sono un'anteprima (§3 foundation model e l'architettura di Neo Helper), da verificare.*
+
 **Atto 1 — "La macchina vede come il dermatologo" (2017–2019).**
 - **Esteva 2017** dimostra che una rete neurale, addestrata su circa 130.000 foto, eguaglia 21 dermatologi.
 - **Haenssle 2018** e **Brinker 2019** ripetono il confronto sulle immagini **dermatoscopiche**, con 58 e 157 dermatologi: la rete batte la maggioranza.

@@ -19,6 +19,7 @@ build() {
     --metadata date="$(date +%d/%m/%Y)" \
     --metadata lang=it-IT --metadata toc-title="Indice" \
     --toc --toc-depth=2 \
+    --resource-path="$P" \
     -o "$OUT/$out"
   echo "✓ $OUT/$out"
 }

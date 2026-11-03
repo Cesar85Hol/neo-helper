@@ -32,6 +32,10 @@
 - Label rinominate in inglese: literature, data, ml, agents-mcp, web, mobile, setup, writing, to-verify.
 - MP3 spostati in `~/Music/Neo Helper` con tag ID3, per la playlist Spotify (File locali).
 
+## 2026-11-03 — Storyboard
+- Creato lo storyboard `docs/figures/storyboard_evoluzione_reti.svg` (+ PNG): 6 riquadri sulla linea del tempo, da Esteva 2017 agli agenti di Neo Helper. I riquadri 5–6 sono anteprima.
+- Inserito nell'introduzione della §2 e quindi nel Word `S2_paper_fondativi.docx`.
+
 ### Prossimi passi
 1. Ascoltare gli episodi; caricare i Word su NotebookLM.
 2. Recuperare il testo completo di Tschandl 2020 (verificare i numeri ⚠️).

@@ -10,6 +10,7 @@
 - `docs/` — research documentation (Italian). `docs/diario.md` is the project log: update it at the end of each work session.
 - `docs/papers/` — one literature note per paper; `docs/refs.bib` — BibTeX.
 - `docs/audio/` — spoken-style scripts for the audio episodes.
+- `docs/figures/` — figures: the SVG is the source, the PNG is rendered from it with headless Chrome (2x scale).
 - `tools/` — helper scripts (`build_word.sh`, `build_audio.py`).
 - `outputs/` — generated files, not tracked by git. MP3s go to `~/Music/Neo Helper` (Spotify local files).
 
