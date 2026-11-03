@@ -35,3 +35,18 @@ build "S2_paper_fondativi.docx" "§2 — Paper fondativi del deep learning in de
   "$P/2019_brinker_136-of-157.md" \
   "$P/2019_tschandl_human-vs-machine-isic2018.md" \
   "$P/2020_tschandl_human-computer-collaboration.md"
+
+build "S3_foundation_model.docx" "§3 — Foundation model e LLM multimodali in dermatologia" \
+  "$P/S3_introduzione.md" \
+  "$P/2024_kim_monet.md" \
+  "$P/2025_yan_panderm.md" \
+  "$P/2026_anriot_limits-realistic-settings.md" \
+  "$P/2024_zhou_skingpt4.md" \
+  "$P/2026_bhagwat_mllm-fitzpatrick.md"
+
+build "S4_bias_e_fairness.docx" "§4 — Bias, equità e shortcut learning" \
+  "$P/S4_introduzione.md" \
+  "$P/2019_winkler_surgical-markings.md" \
+  "$P/2021_groh_fitzpatrick17k.md" \
+  "$P/2022_daneshjou_ddi.md" \
+  "$P/2022_daneshjou_clear-derm.md"

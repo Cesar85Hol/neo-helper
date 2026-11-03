@@ -30,9 +30,9 @@ Dove scaricare: sito ISIC (challenge.isic-archive.com), Kaggle (mirror ISIC 2019
 |---------|-----------|------|
 | **timm** (Hugging Face) | ResNet, EfficientNet, ConvNeXt, ViT, EVA, DINOv2… | Baseline e backbone |
 | **DINOv2 / DINOv3** (Meta) | Feature self-supervised fortissime | Linear probe molto efficace |
-| **MONET** (GitHub suinleelab) | CLIP dermatologico, concetti | Explainability concept-based |
-| **PanDerm** ⚠️ | Foundation model dermatologico | Verificare disponibilità pesi |
-| **Derm Foundation** (Google, HF) | Embedding dermatologici | Termini d'uso Health AI Developer Foundations |
+| **MONET** (GitHub suinleelab) | CLIP dermatologico, concetti | Explainability concept-based; pesi su HF `chanwkim/monet` |
+| **PanDerm** (GitHub SiyuanYan1) | Foundation model dermatologico multimodale (ViT-L) | Pesi pubblici, licenza **CC-BY-NC-ND 4.0** (solo ricerca non commerciale) |
+| **Derm Foundation** (Google, HF) | Embedding dermatologici (BiT ResNet101x3, vettore da 6.144) | Gated: termini d'uso Health AI Developer Foundations |
 | **BiomedCLIP** (Microsoft) | CLIP biomedico | Zero-shot, retrieval |
 | **MedSAM / SAM 2** | Segmentazione promptable | Segmentazione lesione |
 | Soluzioni vincenti ISIC su Kaggle (2019, 2020, 2024) | Codice + trucchi (ensemble, TTA, metadati) | Ottimo materiale di studio |

@@ -42,8 +42,17 @@
 - Tutte le issue in inglese con prefisso di milestone (`M1.1_…`, `M2.3_…`); regola aggiunta in `CLAUDE.md`.
 - Chiuse **M1.1** (#1) e **M1.2** (#2): Pacchetto 1 completato.
 
+## 2026-11-03 — Pacchetto letteratura 2 (§3 foundation model + §4 bias e fairness)
+- **§3 (issue #4, M1.4):** schede su MONET 2024, PanDerm 2025, SkinGPT-4 2024, Anriot 2026 (PanDerm in condizioni realistiche), Bhagwat 2026 (ChatGPT e Gemini su DDI); introduzione `S3_introduzione.md` con la tabella dei pesi.
+- **§4 (issue #5, M1.5):** schede su Winkler 2019, Fitzpatrick17k 2021, DDI 2022, CLEAR Derm 2022; introduzione `S4_introduzione.md`.
+- Testo completo letto: PanDerm, SkinGPT-4, DDI, CLEAR Derm (PMC), Fitzpatrick17k (arXiv). Solo abstract: MONET, Winkler (abstract strutturato), Anriot 2026, Bhagwat 2026. Punti non verificati segnati con ⚠️.
+- **Pesi verificati:** PanDerm pubblico ma **CC-BY-NC-ND 4.0** (solo ricerca non commerciale); MONET su Hugging Face (`chanwkim/monet`, licenza da leggere); Derm Foundation gated (termini HAI-DEF), senza paper dedicato.
+- Decisioni che emergono: PanDerm come backbone candidato; l'LLM **non** classifica (confermato da SkinGPT-4 e Bhagwat); DDI come test set esterno con risultati per fototipo; agente di controllo qualità per artefatti (Winkler); CLEAR Derm come griglia del capitolo di valutazione.
+- Output: `S3_foundation_model.docx`, `S4_bias_e_fairness.docx`; episodi audio 8–11 (tutti gli MP3 rigenerati per aggiornare il numero di tracce a 11).
+- Aggiornati `01_stato_dell_arte.md`, `02_risorse.md`, `00_roadmap.md`, `refs.bib`, `tools/build_word.sh`.
+
 ### Prossimi passi
-1. (Opzionale) Caricare i Word su NotebookLM.
-2. Pacchetto 2: §3 foundation model + §4 bias e fairness (issue #4, #5).
-3. Scaricare HAM10000 ed eseguire la prima EDA.
-4. (Opzionale) Board GitHub Projects sopra le issues.
+1. (Opzionale) Caricare i nuovi Word su NotebookLM.
+2. Recuperare il testo completo di MONET, Anriot 2026 e Bhagwat 2026 per togliere i ⚠️.
+3. Scaricare HAM10000 ed eseguire la prima EDA (split per `lesion_id`, conteggio artefatti).
+4. Pacchetto 3: explainability e collaborazione uomo-AI, sistemi multi-agente e MCP.

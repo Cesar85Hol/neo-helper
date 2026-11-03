@@ -33,22 +33,23 @@
 ## 3. Foundation model e vision-language in dermatologia
 | Paper / modello | Note | Stato |
 |-----------------|------|-------|
-| Kim C. et al., **MONET** — *Transparent medical image AI via an image–text foundation model grounded in medical literature*, **Nature Medicine 2024** | CLIP-like addestrato su immagini dermatologiche + testo; **annotazione automatica di concetti** → spiegabilità | 📖 |
-| **PanDerm** (Yan S. et al., 2024–2025) ⚠️ | Foundation model multimodale per dermatologia, molti task | 📖 |
-| **Derm Foundation** (Google Health) ⚠️ | Embedding model per immagini dermatologiche (pesi su Hugging Face con termini d'uso) | 📖 |
+| Kim C. et al., **MONET** — *Transparent medical image AI via an image–text foundation model grounded in medical literature*, **Nature Medicine 2024** | CLIP-like addestrato su immagini dermatologiche + testo; **annotazione automatica di concetti** → spiegabilità | ✅ [scheda](papers/2024_kim_monet.md) (solo abstract) |
+| **PanDerm** (Yan S. et al., *Nature Medicine* 2025) | Foundation model multimodale per dermatologia, 28 task; pesi CC-BY-NC-ND | ✅ [scheda](papers/2025_yan_panderm.md) |
+| **Derm Foundation** (Google Health) | Embedding model per immagini dermatologiche (pesi gated su Hugging Face); nessun paper dedicato | ✅ [in §3](papers/S3_introduzione.md) |
 | Liu Y. et al., *A deep learning system for differential diagnosis of skin diseases*, **Nature Medicine 2020** (Google) | Diagnosi differenziale su 26 condizioni, immagini cliniche | 📖 |
-| SkinGPT-4 (Zhou J. et al., Nature Communications 2024) ⚠️ | LLM multimodale per dermatologia | 📖 |
-| Valutazioni di GPT-4V / Gemini / Claude su immagini dermatologiche (vari, 2023–2025) | **Cautela**: LLM generalisti spesso inaffidabili come classificatori → usarli come orchestratori/narratori, non come diagnosti | 📖 |
+| SkinGPT-4 (Zhou J. et al., *Nature Communications* 2024) | LLM multimodale per dermatologia; valutazione debole | ✅ [scheda](papers/2024_zhou_skingpt4.md) |
+| Valutazioni di GPT-4V / Gemini / Claude su immagini dermatologiche (vari, 2023–2025) | **Cautela**: LLM generalisti spesso inaffidabili come classificatori → usarli come orchestratori/narratori, non come diagnosti | ✅ [scheda](papers/2026_bhagwat_mllm-fitzpatrick.md) Bhagwat 2026 (solo abstract) |
+| Anriot et al., *Limits of AI models for skin cancer diagnosis in realistic settings*, **JAMA Dermatology 2026** | PanDerm in condizioni reali: < esperti oltre 10 anni | ✅ [scheda](papers/2026_anriot_limits-realistic-settings.md) (solo abstract) |
 | DINOv2 / DINOv3, MedSAM, SAM 2 | Backbone e segmentazione general-purpose / medical | 📖 |
 
 ## 4. Bias, fairness e generalizzazione
 | Paper | Note | Stato |
 |-------|------|-------|
-| Groh M. et al., *Evaluating deep neural networks trained on clinical images in dermatology with the Fitzpatrick 17k dataset*, CVPR-W 2021 | Annotazioni del fototipo | 📖 |
-| Daneshjou R. et al., *Disparities in dermatology AI performance on a diverse, curated clinical image set* (**DDI**), **Science Advances 2022** | Calo di performance su pelli scure | 📖 |
-| Winkler J.K. et al., *Association between surgical skin markings… and diagnostic performance of a CNN*, **JAMA Dermatology 2019** | Artefatti (inchiostro) → **shortcut learning** | 📖 |
+| Groh M. et al., *Evaluating deep neural networks trained on clinical images in dermatology with the Fitzpatrick 17k dataset*, CVPR-W 2021 | Annotazioni del fototipo | ✅ [scheda](papers/2021_groh_fitzpatrick17k.md) |
+| Daneshjou R. et al., *Disparities in dermatology AI performance on a diverse, curated clinical image set* (**DDI**), **Science Advances 2022** | Calo di performance su pelli scure | ✅ [scheda](papers/2022_daneshjou_ddi.md) |
+| Winkler J.K. et al., *Association between surgical skin markings… and diagnostic performance of a CNN*, **JAMA Dermatology 2019** | Artefatti (inchiostro) → **shortcut learning** | ✅ [scheda](papers/2019_winkler_surgical-markings.md) (abstract) |
 | Bissoto A. et al., studi su bias/artefatti in ISIC (2019–2020) ⚠️ | I modelli imparano "scorciatoie" | 📖 |
-| Daneshjou R. et al., *Checklist for evaluation of image-based AI reports in dermatology* (**CLEAR Derm**), JAMA Dermatology 2022 | **Da usare come checklist per la tua valutazione** | 📖 |
+| Daneshjou R. et al., *Checklist for evaluation of image-based AI reports in dermatology* (**CLEAR Derm**), JAMA Dermatology 2022 | **Da usare come checklist per la tua valutazione** | ✅ [scheda](papers/2022_daneshjou_clear-derm.md) |
 
 ## 5. Explainability, incertezza e collaborazione uomo-AI
 - Grad-CAM (Selvaraju 2017); limiti delle saliency map in medicina.
