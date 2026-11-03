@@ -35,6 +35,7 @@
 ## 2026-11-03 — Storyboard
 - Creato lo storyboard `docs/figures/storyboard_evoluzione_reti.svg` (+ PNG): 6 riquadri sulla linea del tempo, da Esteva 2017 agli agenti di Neo Helper. I riquadri 5–6 sono anteprima.
 - Inserito nell'introduzione della §2 e quindi nel Word `S2_paper_fondativi.docx`.
+- Versione snella `docs/figures/storyboard_snello.svg` (+ PNG): solo linea del tempo, titoli e un'illustrazione per tappa.
 
 ### Prossimi passi
 1. Ascoltare gli episodi; caricare i Word su NotebookLM.
