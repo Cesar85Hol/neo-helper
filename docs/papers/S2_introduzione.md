@@ -32,4 +32,4 @@ I sei lavori di questa sezione raccontano una storia in tre atti, tra il 2017 e 
 | 2018 | Tschandl (*Sci Data*) | 10.015 dermatoscopiche | — | Il dataset HAM10000 |
 | 2019 | Brinker (*Eur J Cancer*) | 12.378 pubbliche, test su 100 | 157 dermatologi | Battuti 136 su 157 |
 | 2019 | Tschandl (*Lancet Oncol*) | 1.511 di test, 7 classi | 511 lettori vs 139 algoritmi | Algoritmi migliori, ma calano sui dati esterni |
-| 2020 | Tschandl (*Nat Med*) | dermatoscopiche, 7 classi | medici con e senza AI | La collaborazione batte entrambi |
+| 2020 | Tschandl (*Nat Med*) | dermatoscopiche, 7 classi | 302 medici con e senza AI | +13 punti con le probabilità multiclasse; la collaborazione batte entrambi |

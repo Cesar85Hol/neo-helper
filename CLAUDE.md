@@ -2,7 +2,8 @@
 
 ## Language rule
 - **Code is always in English**: scripts, source files, identifiers, comments, docstrings, CLI help and log/output messages, config files. Anyone should be able to read the code and understand what to do.
-- **Git and GitHub are in English too**: commit messages, branch names, and the text of technical issues and pull requests (code, data, models, agents, web, mobile, setup).
+- **Git and GitHub are in English too**: commit messages, branch names, and the title and text of every issue and pull request.
+- **Issue titles start with a milestone prefix** `M<milestone>.<n>_`, e.g. `M1.2_Write notes on ...` = 2nd issue of milestone M1. Number new issues after the last one in the same milestone.
 - **Documentation and audio stay in Italian**: `README.md`, everything in `docs/` (roadmap, literature notes in `docs/papers/`, audio scripts in `docs/audio/`, diary), generated Word files and MP3 episodes.
 - Text that is *content* produced by a script (e.g. Word document titles, ID3 tags of Italian episodes) may stay in Italian; the code around it is English.
 

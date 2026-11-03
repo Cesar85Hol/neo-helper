@@ -23,7 +23,7 @@
 ## 2026-10-26 — Pacchetto letteratura 1 (§1 clinica + §2 paper fondativi)
 - Connettori MCP attivati: **PubMed** e **alphaXiv**.
 - Pipeline: PubMed (metadati + testo completo da PMC quando disponibile) → schede MD in `docs/papers/` → Word con `tools/build_word.sh` (pandoc) → copioni parlati in `docs/audio/` → MP3 con `tools/build_audio.py` (edge-tts, voce it-IT-IsabellaNeural).
-- Testo completo letto: Esteva 2017, HAM10000 2018, Tschandl 2019. Solo abstract: Haenssle 2018, Brinker 2019, Tschandl 2020 (paywall). I numeri non verificati sono segnati con ⚠️.
+- Testo completo letto: Esteva 2017, HAM10000 2018, Tschandl 2019. Solo abstract: Haenssle 2018, Brinker 2019 (paywall); Tschandl 2020 letto completo il 2026-11-03. I numeri non verificati sono segnati con ⚠️.
 - Output (non in git): `outputs/letteratura/*.docx` per NotebookLM, `~/Music/Neo Helper/*.mp3` (7 episodi, circa 30 min, con tag ID3; cartella aggiunta ai File locali di Spotify).
 
 ## 2026-10-27 — Regola sulla lingua
@@ -37,9 +37,13 @@
 - Inserito nell'introduzione della §2 e quindi nel Word `S2_paper_fondativi.docx`.
 - Versione snella `docs/figures/storyboard_snello.svg` (+ PNG): solo linea del tempo, titoli e un'illustrazione per tappa.
 
+## 2026-11-03 — Tschandl 2020 completo, issue rinominate
+- Letto il testo completo di **Tschandl 2020** (post-print, archivio ArTS dell'Università di Trieste). Numeri ⚠️ confermati (63,6% → 77,0%; studenti 32,5% → 47,3%); aggiunti la quarta forma di supporto (folla), i dati su AI difettosa, folla + AI, telemedicina, second opinion e la soglia di malignità al 17%. Aggiornati la scheda, l'introduzione della §2, il copione e l'MP3 dell'episodio 7.
+- Tutte le issue in inglese con prefisso di milestone (`M1.1_…`, `M2.3_…`); regola aggiunta in `CLAUDE.md`.
+- Chiuse **M1.1** (#1) e **M1.2** (#2): Pacchetto 1 completato.
+
 ### Prossimi passi
-1. Ascoltare gli episodi; caricare i Word su NotebookLM.
-2. Recuperare il testo completo di Tschandl 2020 (verificare i numeri ⚠️).
-3. Pacchetto 2: §3 foundation model + §4 bias e fairness (issue #4, #5).
-4. Scaricare HAM10000 ed eseguire la prima EDA.
-5. (Opzionale) Board GitHub Projects sopra le issues.
+1. (Opzionale) Caricare i Word su NotebookLM.
+2. Pacchetto 2: §3 foundation model + §4 bias e fairness (issue #4, #5).
+3. Scaricare HAM10000 ed eseguire la prima EDA.
+4. (Opzionale) Board GitHub Projects sopra le issues.
