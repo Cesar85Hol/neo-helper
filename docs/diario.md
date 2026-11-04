@@ -51,8 +51,17 @@
 - Output: `S3_foundation_model.docx`, `S4_bias_e_fairness.docx`; episodi audio 8–11 (tutti gli MP3 rigenerati per aggiornare il numero di tracce a 11).
 - Aggiornati `01_stato_dell_arte.md`, `02_risorse.md`, `00_roadmap.md`, `refs.bib`, `tools/build_word.sh`.
 
+## 2026-11-04 — Scelte di progetto e pipeline preliminare
+- Nuovo documento [`05_scelte_e_pipeline.md`](05_scelte_e_pipeline.md): registro delle scelte, pipeline offline e online, ruolo di MONET, ISIC 2019, spazio per nuovi dati, annotazione manuale.
+- **Confermate:** C1–C5 (PanDerm, l'LLM non classifica, DDI come test esterno, agente di controllo, CLEAR Derm) e P1–P10 (HAM10000 iniziale, 7 classi + punteggio di malignità, soglia bassa, split per `lesion_id`, PanDerm congelato come primo passo e fine-tuning come secondo esperimento, baseline, MONET per i concetti, incertezza, test esterni, supporto al medico).
+- **Licenza di PanDerm (CC BY-NC-ND 4.0):** la tesi è permessa, anche con fine-tuning; non si possono condividere pesi modificati né fare un'app pubblica o un prodotto. Anche HAM10000/ISIC sono NC. DermFM-Zero ha una licenza contraddittoria (GitHub vs Hugging Face).
+- **Decisione backbone:** PanDerm per la tesi + confronto con DINOv2 (Apache 2.0) e Derm Foundation sugli stessi split; `embed_image` rende il backbone sostituibile.
+- **ISIC 2019:** raccomandato **dopo** la baseline su HAM10000, così BCN20000 e MSK restano test esterno.
+- **Nuovi dati:** solo una possibilità da discutere con l'ospedale di contatto, fuori dal piano. Istruzioni per gli annotatori in italiano, inglese e spagnolo in [`annotazione/`](annotazione/).
+
 ### Prossimi passi
-1. (Opzionale) Caricare i nuovi Word su NotebookLM.
-2. Recuperare il testo completo di MONET, Anriot 2026 e Bhagwat 2026 per togliere i ⚠️.
+1. Scrivere agli autori di PanDerm/DermFM-Zero per chiarire la licenza.
+2. Recuperare il testo completo di MONET, Anriot 2026 e Bhagwat 2026 per togliere i ⚠️; leggere la licenza di MONET.
 3. Scaricare HAM10000 ed eseguire la prima EDA (split per `lesion_id`, conteggio artefatti).
 4. Pacchetto 3: explainability e collaborazione uomo-AI, sistemi multi-agente e MCP.
+5. (Opzionale) Caricare i nuovi Word su NotebookLM.
