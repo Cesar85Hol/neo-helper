@@ -33,12 +33,12 @@
 ## 3. Foundation model e vision-language in dermatologia
 | Paper / modello | Note | Stato |
 |-----------------|------|-------|
-| Kim C. et al., **MONET** — *Transparent medical image AI via an image–text foundation model grounded in medical literature*, **Nature Medicine 2024** | CLIP-like addestrato su immagini dermatologiche + testo; **annotazione automatica di concetti** → spiegabilità | ✅ [scheda](papers/2024_kim_monet.md) (solo abstract) |
+| Kim C. et al., **MONET** — *Transparent medical image AI via an image–text foundation model grounded in medical literature*, **Nature Medicine 2024** | CLIP-like addestrato su immagini dermatologiche + testo; **annotazione automatica di concetti** → spiegabilità | ✅ [scheda](papers/2024_kim_monet.md) (preprint completo) |
 | **PanDerm** (Yan S. et al., *Nature Medicine* 2025) | Foundation model multimodale per dermatologia, 28 task; pesi CC-BY-NC-ND | ✅ [scheda](papers/2025_yan_panderm.md) |
 | **Derm Foundation** (Google Health) | Embedding model per immagini dermatologiche (pesi gated su Hugging Face); nessun paper dedicato | ✅ [in §3](papers/S3_introduzione.md) |
 | Liu Y. et al., *A deep learning system for differential diagnosis of skin diseases*, **Nature Medicine 2020** (Google) | Diagnosi differenziale su 26 condizioni, immagini cliniche | 📖 |
 | SkinGPT-4 (Zhou J. et al., *Nature Communications* 2024) | LLM multimodale per dermatologia; valutazione debole | ✅ [scheda](papers/2024_zhou_skingpt4.md) |
-| Valutazioni di GPT-4V / Gemini / Claude su immagini dermatologiche (vari, 2023–2025) | **Cautela**: LLM generalisti spesso inaffidabili come classificatori → usarli come orchestratori/narratori, non come diagnosti | ✅ [scheda](papers/2026_bhagwat_mllm-fitzpatrick.md) Bhagwat 2026 (solo abstract) |
+| Valutazioni di GPT-4V / Gemini / Claude su immagini dermatologiche (vari, 2023–2025) | **Cautela**: LLM generalisti spesso inaffidabili come classificatori → usarli come orchestratori/narratori, non come diagnosti | ✅ [scheda](papers/2026_bhagwat_mllm-fitzpatrick.md) Bhagwat 2026 (testo completo) |
 | Anriot et al., *Limits of AI models for skin cancer diagnosis in realistic settings*, **JAMA Dermatology 2026** | PanDerm in condizioni reali: < esperti oltre 10 anni | ✅ [scheda](papers/2026_anriot_limits-realistic-settings.md) (solo abstract) |
 | DINOv2 / DINOv3, MedSAM, SAM 2 | Backbone e segmentazione general-purpose / medical | 📖 |
 

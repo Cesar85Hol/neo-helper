@@ -37,4 +37,5 @@ Su casi **di tutti i giorni**, compresi quelli rari e atipici, un foundation mod
 - Scenario d'uso realistico: **supporto a medici non esperti** e triage, non sostituzione dello specialista.
 - Valutazione: includere casi **rari e atipici** e confrontare con lettori stratificati per esperienza (CLEAR Derm, item 21–23).
 - Prima di usare i metadati nel modello, verificare con un esperimento che aiutino davvero.
-- ⚠️ Recuperare il testo completo (JAMA Dermatology, open access?) per i dettagli su CNN, metadati e casi rari.
+- ⚠️ Recuperare il testo completo per i dettagli su CNN, metadati e casi rari. Tentativo del 2026-11-04: PMC e la pagina di JAMA Dermatology mostrano solo abstract e Key Points. Strade possibili: il PDF dall'accesso universitario, o chiederlo agli autori insieme alla mail su PanDerm.
+- ⚠️ Nell'abstract, il confronto medici–CNN riporta una differenza di 9,2 punti con IC 95% "da −9,8 a 8,5", che non contiene la differenza stessa: probabile refuso. Non citare quell'intervallo senza il testo completo.

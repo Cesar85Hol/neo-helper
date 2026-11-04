@@ -90,7 +90,7 @@ MONET era nelle schede ma non nel riassunto finale. Il suo posto è questo:
 4. **Più avanti (opzionale):** un modello *concept bottleneck*, che prima prevede i concetti e poi la diagnosi, e quindi si spiega da solo.
 
 **Due cautele:**
-- MONET è validato soprattutto su **immagini cliniche** ⚠️; sulle dermoscopiche va controllato su un campione annotato a mano (vedi §5).
+- MONET è validato su **immagini cliniche** con etichette vere (SkinCon su Fitzpatrick17k e DDI); sulle dermoscopiche ci sono solo esempi qualitativi e l'audit di ISIC. I criteri dermoscopici (reticolo, velo, strie) non sono stati valutati: va controllato su Derm7pt o su un campione annotato a mano (vedi §5). Licenza: repository CC BY-NC-SA 4.0, solo ricerca, come PanDerm.
 - I concetti di SKINCON sono **clinici**, non i criteri **dermoscopici** (reticolo atipico, velo blu-biancastro…). Per questi servono il dataset Derm7pt e l'agente "Criteri".
 
 **Divisione dei compiti tra i modelli:**

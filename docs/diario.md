@@ -59,9 +59,25 @@
 - **ISIC 2019:** raccomandato **dopo** la baseline su HAM10000, così BCN20000 e MSK restano test esterno.
 - **Nuovi dati:** solo una possibilità da discutere con l'ospedale di contatto, fuori dal piano. Istruzioni per gli annotatori in italiano, inglese e spagnolo in [`annotazione/`](annotazione/).
 
+## 2026-11-04 — Mail agli autori, testi completi
+- **Bozza della mail** agli autori di PanDerm/DermFM-Zero in [`corrispondenza/`](corrispondenza/2026-11-04_mail_autori_panderm.md), **non ancora inviata**. Contiene cinque domande sulla licenza e la richiesta del testo completo di Anriot 2026. L'indirizzo email è da prendere dall'articolo.
+- **MONET:** letto il **preprint completo** (medRxiv 2023), perché la versione di Nature Medicine non è in PMC.
+  - Dati: 105.550 coppie immagine-testo (PubMed Central + 55 libri); architettura CLIP ViT-L/14.
+  - Concetti SkinCon: AUROC 0,766, contro 0,692 di CLIP e della ResNet-50.
+  - Audit di ISIC: adesivi arancioni come scorciatoia; "rosso" benigno a Vienna e maligno a Barcellona.
+  - Concept bottleneck: AUROC 0,892 per il melanoma.
+  - **Licenza** del repository: **CC BY-NC-SA 4.0**; la model card esclude qualsiasi uso in produzione.
+  - Limite: i criteri dermoscopici non sono stati valutati.
+- **Bhagwat 2026:** letto il **testo completo** (PMC).
+  - Top-1 23% (ChatGPT) e 32% (Gemini).
+  - Lethal miss 50% e 32%.
+  - Sui tumori dei fototipi V–VI il punteggio è circa un terzo per entrambi i modelli.
+- **Anriot 2026:** resta solo l'abstract (JAMA non accessibile). Segnato un probabile refuso nell'IC dell'abstract.
+- Aggiornati `01_stato_dell_arte.md`, `02_risorse.md`, `S3_introduzione.md` e `05_scelte_e_pipeline.md` (§2); rigenerati i Word e gli episodi 8–9.
+
 ### Prossimi passi
-1. Scrivere agli autori di PanDerm/DermFM-Zero per chiarire la licenza.
-2. Recuperare il testo completo di MONET, Anriot 2026 e Bhagwat 2026 per togliere i ⚠️; leggere la licenza di MONET.
+1. **Inviare** la mail agli autori di PanDerm/DermFM-Zero (Cesar), poi annotare la risposta nel file.
+2. Testo completo di Anriot 2026 (accesso universitario o dagli autori).
 3. Scaricare HAM10000 ed eseguire la prima EDA (split per `lesion_id`, conteggio artefatti).
 4. Pacchetto 3: explainability e collaborazione uomo-AI, sistemi multi-agente e MCP.
 5. (Opzionale) Caricare i nuovi Word su NotebookLM.

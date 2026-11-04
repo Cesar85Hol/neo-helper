@@ -37,7 +37,7 @@ Questa sezione racconta tre filoni.
 | Modello | Dove | Licenza / accesso | Uso in Neo Helper |
 |---------|------|-------------------|-------------------|
 | **PanDerm** (ViT-L/16), PanDerm_Base, DermLIP_PanDerm | GitHub SiyuanYan1/PanDerm (Google Drive, Hugging Face) | **CC-BY-NC-ND 4.0**, solo ricerca non commerciale | Backbone principale per la tesi |
-| **MONET** | Hugging Face `chanwkim/monet` | Pubblici; ⚠️ tipo di licenza da leggere nel file LICENSE | Tool "concetti", audit dei dataset |
+| **MONET** | Hugging Face `chanwkim/monet` | Pubblici; repository **CC BY-NC-SA 4.0**, model card: "uso in produzione fuori ambito" (solo ricerca) | Tool "concetti", audit dei dataset |
 | **Derm Foundation** (Google) | Hugging Face `google/derm-foundation` | **Gated**: accettare i termini Health AI Developer Foundations | Alternativa per foto cliniche |
 | **SkinGPT-4** | Codice indicato nel paper | ⚠️ non verificato | Solo come confronto |
 
