@@ -1,0 +1,313 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1840" height="1100" viewBox="0 0 1840 1100" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5b6770"/>
+    </marker>
+    <style>
+      .panel { fill: #ffffff; stroke: #d5dade; stroke-width: 1.5; }
+      .tag { font-size: 15px; font-weight: 700; fill: #ffffff; opacity: 0.92; letter-spacing: 1px; }
+      .title { font-size: 19px; font-weight: 700; fill: #ffffff; }
+      .box { fill: #f3f5f7; stroke: #c9d0d6; stroke-width: 1.2; }
+      .hl { fill: #fff6e0; stroke: #e0b44c; }
+      .later { fill: #fafbfc; stroke: #9aa5ad; stroke-dasharray: 6 4; }
+      .prop { fill: #eaf2fb; stroke: #8fb3d9; }
+      .open { fill: #fff6e0; stroke: #e0b44c; stroke-dasharray: 6 4; }
+      .b1 { font-size: 14px; font-weight: 700; fill: #1f2a33; }
+      .b2 { font-size: 13px; fill: #46525c; }
+      .muted { fill: #7a868f; }
+      .lbl { font-size: 11.5px; font-weight: 700; fill: #7a868f; letter-spacing: 1.5px; }
+      .txt { font-size: 14px; fill: #2b3640; }
+      .lesson { fill: #eef6f4; stroke: #9cc9bd; }
+      .lessontxt { font-size: 15px; font-weight: 700; fill: #1d5c4f; }
+      .foot { font-size: 13px; font-style: italic; fill: #5b6770; }
+      .arrow { stroke: #5b6770; stroke-width: 1.8; marker-end: url(#arr); }
+      .chip { fill: #ffffff; stroke: #c9d0d6; stroke-width: 1.2; }
+      .c1 { font-size: 13px; font-weight: 700; fill: #1f2a33; }
+      .c2 { font-size: 12.5px; fill: #46525c; }
+      .lchip1 { font-size: 15px; font-weight: 700; fill: #ffffff; }
+      .lchip2 { font-size: 12.5px; fill: #ffffff; opacity: 0.9; }
+    </style>
+  </defs>
+<rect width="1840" height="1100" fill="#fafbfc"/>
+<text x="40" y="62" font-size="30" font-weight="700" fill="#1f2a33">How Neo Helper looks at a lesion: models and pipeline</text>
+<text x="40" y="96" font-size="16" fill="#5b6770">Storyboard part 2 · panels 7–12 · decisions confirmed on 2026-11-04 (C1–C5, P1–P10) · literature packages 1–3, milestone M1</text>
+<rect x="1440" y="40" width="34" height="20" rx="4" class="box hl"/>
+<text x="1484" y="55" font-size="14" fill="#2b3640">key choice</text>
+<rect x="1440" y="68" width="34" height="20" rx="4" class="box "/>
+<text x="1484" y="83" font-size="14" fill="#2b3640">decided step</text>
+<rect x="1440" y="96" width="34" height="20" rx="4" class="box later"/>
+<text x="1484" y="111" font-size="14" fill="#2b3640">later or optional</text>
+<g transform="translate(40,140)">
+<rect width="280" height="730" rx="14" class="panel"/>
+<path d="M14,0 H266 A14,14 0 0 1 280,14 V100 H0 V14 A14,14 0 0 1 14,0 z" fill="#3D5A80"/>
+<text x="18" y="30" class="tag">7 · DATA</text>
+<text x="18" y="60" class="title">Start from clean,</text>
+<text x="18" y="84" class="title">comparable data</text>
+<rect x="18" y="118" width="244" height="50" rx="8" class="box hl"/>
+<text x="30" y="139" class="b1">HAM10000</text>
+<text x="30" y="157" class="b2">10,015 images · 7 classes</text>
+<line x1="140" y1="168" x2="140" y2="186" class="arrow"/>
+<rect x="18" y="188" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="209" class="b1">Split by lesion_id</text>
+<text x="30" y="227" class="b2">70 / 15 / 15 · no leakage</text>
+<line x1="140" y1="238" x2="140" y2="256" class="arrow"/>
+<rect x="18" y="258" width="244" height="50" rx="8" class="box later"/>
+<text x="30" y="279" class="b1">ISIC 2019 — later</text>
+<text x="30" y="297" class="b2">keeps BCN + MSK as external test</text>
+<line x1="140" y1="308" x2="140" y2="326" class="arrow"/>
+<rect x="18" y="328" width="244" height="50" rx="8" class="box later"/>
+<text x="30" y="349" class="b1">Hospital data — maybe</text>
+<text x="30" y="367" class="b2">only an idea · guide in IT/EN/ES</text>
+<text x="18" y="418" class="lbl">WHY</text>
+<text x="18" y="444" class="txt">• Over half confirmed by histology</text>
+<text x="18" y="468" class="txt">• Same data as Tschandl and</text>
+<text x="28" y="488" class="txt">PanDerm → comparable results</text>
+<text x="18" y="512" class="txt">• No lesion in both train and test</text>
+<rect x="18" y="580" width="244" height="84" rx="10" class="lesson"/>
+<text x="30" y="602" class="lbl" fill="#1d5c4f">DECISION</text>
+<text x="30" y="626" class="lessontxt">Clean baseline first,</text>
+<text x="30" y="648" class="lessontxt">more data later</text>
+<text x="18" y="696" class="foot">Tschandl · Sci Data 2018</text>
+<text x="18" y="716" class="foot">CLEAR Derm · JAMA Dermatol 2022</text>
+</g>
+<g transform="translate(336,140)">
+<rect width="280" height="730" rx="14" class="panel"/>
+<path d="M14,0 H266 A14,14 0 0 1 280,14 V100 H0 V14 A14,14 0 0 1 14,0 z" fill="#E07A3F"/>
+<text x="18" y="30" class="tag">8 · QUALITY GATE</text>
+<text x="18" y="60" class="title">Check the photo</text>
+<text x="18" y="84" class="title">before the lesion</text>
+<rect x="18" y="118" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="139" class="b1">Photo in</text>
+<text x="30" y="157" class="b2">dermoscopic? sharp? enough light?</text>
+<line x1="140" y1="168" x2="140" y2="186" class="arrow"/>
+<rect x="18" y="188" width="244" height="50" rx="8" class="box hl"/>
+<text x="30" y="209" class="b1">Artifact flags (MONET)</text>
+<text x="30" y="227" class="b2">ink, ruler, sticker, black border</text>
+<line x1="140" y1="238" x2="140" y2="256" class="arrow"/>
+<rect x="18" y="258" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="279" class="b1">Not usable → stop</text>
+<text x="30" y="297" class="b2">ask for a new photo, say why</text>
+<line x1="140" y1="308" x2="140" y2="326" class="arrow"/>
+<rect x="18" y="328" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="349" class="b1">Usable with warnings</text>
+<text x="30" y="367" class="b2">artifacts told to the doctor</text>
+<text x="18" y="418" class="lbl">WHY</text>
+<text x="18" y="444" class="txt">• Ink marks: specificity 84% → 46%</text>
+<text x="18" y="468" class="txt">• Orange stickers taught ISIC</text>
+<text x="28" y="488" class="txt">models “benign”</text>
+<text x="18" y="512" class="txt">• A bad photo still gets a</text>
+<text x="28" y="532" class="txt">confident answer</text>
+<rect x="18" y="580" width="244" height="84" rx="10" class="lesson"/>
+<text x="30" y="602" class="lbl" fill="#1d5c4f">DECISION</text>
+<text x="30" y="626" class="lessontxt">Stop shortcuts</text>
+<text x="30" y="648" class="lessontxt">at the door</text>
+<text x="18" y="696" class="foot">Winkler · JAMA Dermatol 2019</text>
+<text x="18" y="716" class="foot">Kim (MONET) · Nat Med 2024</text>
+</g>
+<g transform="translate(632,140)">
+<rect width="280" height="730" rx="14" class="panel"/>
+<path d="M14,0 H266 A14,14 0 0 1 280,14 V100 H0 V14 A14,14 0 0 1 14,0 z" fill="#2A9D8F"/>
+<text x="18" y="30" class="tag">9 · BACKBONE</text>
+<text x="18" y="60" class="title">PanDerm sees,</text>
+<text x="18" y="84" class="title">a small head decides</text>
+<rect x="18" y="118" width="244" height="50" rx="8" class="box hl"/>
+<text x="30" y="139" class="b1">PanDerm (ViT-Large)</text>
+<text x="30" y="157" class="b2">pre-trained on 2.15M skin images</text>
+<line x1="140" y1="168" x2="140" y2="186" class="arrow"/>
+<rect x="18" y="188" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="209" class="b1">Frozen → embeddings</text>
+<text x="30" y="227" class="b2">computed once, saved to disk</text>
+<line x1="140" y1="238" x2="140" y2="256" class="arrow"/>
+<rect x="18" y="258" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="279" class="b1">Linear head</text>
+<text x="30" y="297" class="b2">7 classes, trains in minutes</text>
+<line x1="140" y1="308" x2="140" y2="326" class="arrow"/>
+<rect x="18" y="328" width="244" height="50" rx="8" class="box later"/>
+<text x="30" y="349" class="b1">Fine-tuning</text>
+<text x="30" y="367" class="b2">second experiment, not shared</text>
+<text x="18" y="418" class="lbl">WHY</text>
+<text x="18" y="444" class="txt">• Best on 28 tasks, few labels</text>
+<text x="18" y="468" class="txt">• New data → retrain the head only</text>
+<text x="18" y="492" class="txt">• Licence CC BY-NC-ND:</text>
+<text x="28" y="512" class="txt">thesis yes, public app no</text>
+<rect x="18" y="580" width="244" height="84" rx="10" class="lesson"/>
+<text x="30" y="602" class="lbl" fill="#1d5c4f">DECISION</text>
+<text x="30" y="626" class="lessontxt">Best eye for the thesis,</text>
+<text x="30" y="648" class="lessontxt">swappable later</text>
+<text x="18" y="696" class="foot">Yan (PanDerm) · Nat Med 2025</text>
+<text x="18" y="716" class="foot">Anriot · JAMA Dermatol 2026</text>
+</g>
+<g transform="translate(928,140)">
+<rect width="280" height="730" rx="14" class="panel"/>
+<path d="M14,0 H266 A14,14 0 0 1 280,14 V100 H0 V14 A14,14 0 0 1 14,0 z" fill="#5f6f7b"/>
+<text x="18" y="30" class="tag">10 · BASELINES</text>
+<text x="18" y="60" class="title">Measure what</text>
+<text x="18" y="84" class="title">PanDerm adds</text>
+<rect x="18" y="118" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="139" class="b1">ImageNet ResNet / ViT</text>
+<text x="30" y="157" class="b2">the classic starting point</text>
+<line x1="140" y1="168" x2="140" y2="186" class="arrow"/>
+<rect x="18" y="188" width="244" height="50" rx="8" class="box hl"/>
+<text x="30" y="209" class="b1">DINOv2</text>
+<text x="30" y="227" class="b2">Apache 2.0: free to ship</text>
+<line x1="140" y1="238" x2="140" y2="256" class="arrow"/>
+<rect x="18" y="258" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="279" class="b1">Derm Foundation (Google)</text>
+<text x="30" y="297" class="b2">dermatology, clinical photos</text>
+<line x1="140" y1="308" x2="140" y2="326" class="arrow"/>
+<rect x="18" y="328" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="349" class="b1">Same splits, same head</text>
+<text x="30" y="367" class="b2">a fair comparison</text>
+<text x="18" y="418" class="lbl">WHY</text>
+<text x="18" y="444" class="txt">• embed_image hides which</text>
+<text x="28" y="464" class="txt">backbone is underneath</text>
+<text x="18" y="488" class="txt">• If PanDerm's licence blocks a</text>
+<text x="28" y="508" class="txt">product, we know the price</text>
+<text x="28" y="528" class="txt">of switching</text>
+<rect x="18" y="580" width="244" height="84" rx="10" class="lesson"/>
+<text x="30" y="602" class="lbl" fill="#1d5c4f">DECISION</text>
+<text x="30" y="626" class="lessontxt">Compare everything on</text>
+<text x="30" y="648" class="lessontxt">the same splits</text>
+<text x="18" y="696" class="foot">Licences checked 2026-11-04</text>
+<text x="18" y="716" class="foot">Email to PanDerm authors: draft</text>
+</g>
+<g transform="translate(1224,140)">
+<rect width="280" height="730" rx="14" class="panel"/>
+<path d="M14,0 H266 A14,14 0 0 1 280,14 V100 H0 V14 A14,14 0 0 1 14,0 z" fill="#C9A227"/>
+<text x="18" y="30" class="tag">11 · OUTPUT</text>
+<text x="18" y="60" class="title">7 classes plus a</text>
+<text x="18" y="84" class="title">malignancy score</text>
+<rect x="18" y="118" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="139" class="b1">7 probabilities</text>
+<text x="30" y="157" class="b2">MEL NV BCC AKIEC BKL DF VASC</text>
+<line x1="140" y1="168" x2="140" y2="186" class="arrow"/>
+<rect x="18" y="188" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="209" class="b1">Malignancy score</text>
+<text x="30" y="227" class="b2">MEL + BCC + AKIEC</text>
+<line x1="140" y1="238" x2="140" y2="256" class="arrow"/>
+<rect x="18" y="258" width="244" height="50" rx="8" class="box hl"/>
+<text x="30" y="279" class="b1">Low threshold ≈ 17–20%</text>
+<text x="30" y="297" class="b2">re-calibrated on our data</text>
+<line x1="140" y1="308" x2="140" y2="326" class="arrow"/>
+<rect x="18" y="328" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="349" class="b1">For the doctor</text>
+<text x="30" y="367" class="b2">support, not self-diagnosis</text>
+<text x="18" y="418" class="lbl">WHY</text>
+<text x="18" y="444" class="txt">• Multiclass probabilities</text>
+<text x="28" y="464" class="txt">helped doctors most</text>
+<text x="18" y="488" class="txt">• Doctors' own threshold was</text>
+<text x="28" y="508" class="txt">close to optimal</text>
+<text x="18" y="532" class="txt">• False reassurance is the</text>
+<text x="28" y="552" class="txt">worst error</text>
+<rect x="18" y="580" width="244" height="84" rx="10" class="lesson"/>
+<text x="30" y="602" class="lbl" fill="#1d5c4f">DECISION</text>
+<text x="30" y="626" class="lessontxt">Help the doctor,</text>
+<text x="30" y="648" class="lessontxt">never replace</text>
+<text x="18" y="696" class="foot">Tschandl · Nat Med 2020</text>
+<text x="18" y="716" class="foot">CLEAR Derm items 24–25</text>
+</g>
+<g transform="translate(1520,140)">
+<rect width="280" height="730" rx="14" class="panel"/>
+<path d="M14,0 H266 A14,14 0 0 1 280,14 V100 H0 V14 A14,14 0 0 1 14,0 z" fill="#6d5a8a"/>
+<text x="18" y="30" class="tag">12 · WORDS AND TESTS</text>
+<text x="18" y="60" class="title">Tools give numbers,</text>
+<text x="18" y="84" class="title">outside data gives proof</text>
+<rect x="18" y="118" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="139" class="b1">MONET concepts</text>
+<text x="30" y="157" class="b2">what is visible, in words</text>
+<line x1="140" y1="168" x2="140" y2="186" class="arrow"/>
+<rect x="18" y="188" width="244" height="50" rx="8" class="box hl"/>
+<text x="30" y="209" class="b1">LLM writes, never classifies</text>
+<text x="30" y="227" class="b2">numbers only come from tools</text>
+<line x1="140" y1="238" x2="140" y2="256" class="arrow"/>
+<rect x="18" y="258" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="279" class="b1">External tests</text>
+<text x="30" y="297" class="b2">DDI · PAD-UFES-20 · PH2 · Derm7pt</text>
+<line x1="140" y1="308" x2="140" y2="326" class="arrow"/>
+<rect x="18" y="328" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="349" class="b1">Results by skin type</text>
+<text x="30" y="367" class="b2">graded with CLEAR Derm</text>
+<text x="18" y="418" class="lbl">WHY</text>
+<text x="18" y="444" class="txt">• ChatGPT/Gemini on DDI: top-1</text>
+<text x="28" y="464" class="txt">23–32%, miss 1/3–1/2 of cancers</text>
+<text x="18" y="488" class="txt">• Diverse skin: AUC fell to</text>
+<text x="28" y="508" class="txt">0.56–0.67 (DDI)</text>
+<rect x="18" y="580" width="244" height="84" rx="10" class="lesson"/>
+<text x="30" y="602" class="lbl" fill="#1d5c4f">DECISION</text>
+<text x="30" y="626" class="lessontxt">Every number has a</text>
+<text x="30" y="648" class="lessontxt">source and a test</text>
+<text x="18" y="696" class="foot">Bhagwat 2026 · Zhou 2024</text>
+<text x="18" y="716" class="foot">Daneshjou (DDI) · Sci Adv 2022</text>
+</g>
+<text x="40" y="912" class="lbl">THE PIPELINE</text>
+<rect x="40" y="926" width="150" height="54" rx="27" fill="#264653"/>
+<text x="62" y="950" class="lchip1">BUILD</text>
+<text x="62" y="968" class="lchip2">offline, once</text>
+<rect x="206" y="926" width="184" height="54" rx="10" class="chip"/>
+<text x="218" y="949" class="c1">1 · Data audit</text>
+<text x="218" y="967" class="c2">artifacts per class</text>
+<line x1="392" y1="953" x2="402" y2="953" class="arrow"/>
+<rect x="406" y="926" width="184" height="54" rx="10" class="chip"/>
+<text x="418" y="949" class="c1">2 · Split by lesion</text>
+<text x="418" y="967" class="c2">train / val / test</text>
+<line x1="592" y1="953" x2="602" y2="953" class="arrow"/>
+<rect x="606" y="926" width="184" height="54" rx="10" class="chip"/>
+<text x="618" y="949" class="c1">3 · Segment + crop</text>
+<text x="618" y="967" class="c2">focus on the lesion</text>
+<line x1="792" y1="953" x2="802" y2="953" class="arrow"/>
+<rect x="806" y="926" width="184" height="54" rx="10" class="chip"/>
+<text x="818" y="949" class="c1">4 · PanDerm vectors</text>
+<text x="818" y="967" class="c2">frozen, saved once</text>
+<line x1="992" y1="953" x2="1002" y2="953" class="arrow"/>
+<rect x="1006" y="926" width="184" height="54" rx="10" class="chip"/>
+<text x="1018" y="949" class="c1">5 · 7-class head</text>
+<text x="1018" y="967" class="c2">trains in minutes</text>
+<line x1="1192" y1="953" x2="1202" y2="953" class="arrow"/>
+<rect x="1206" y="926" width="184" height="54" rx="10" class="chip"/>
+<text x="1218" y="949" class="c1">6 · Calibrate</text>
+<text x="1218" y="967" class="c2">+ conformal thresholds</text>
+<line x1="1392" y1="953" x2="1402" y2="953" class="arrow"/>
+<rect x="1406" y="926" width="184" height="54" rx="10" class="chip"/>
+<text x="1418" y="949" class="c1">7 · Evaluate</text>
+<text x="1418" y="967" class="c2">external · by skin type</text>
+<line x1="1592" y1="953" x2="1602" y2="953" class="arrow"/>
+<rect x="1606" y="926" width="184" height="54" rx="10" class="chip"/>
+<text x="1618" y="949" class="c1">8 · Model card</text>
+<text x="1618" y="967" class="c2">+ CLEAR Derm table</text>
+<rect x="40" y="996" width="150" height="54" rx="27" fill="#6d5a8a"/>
+<text x="62" y="1020" class="lchip1">USE</text>
+<text x="62" y="1038" class="lchip2">every new case</text>
+<rect x="206" y="996" width="184" height="54" rx="10" class="chip"/>
+<text x="218" y="1019" class="c1">Photo</text>
+<text x="218" y="1037" class="c2">+ declared patient data</text>
+<line x1="392" y1="1023" x2="402" y2="1023" class="arrow"/>
+<rect x="406" y="996" width="184" height="54" rx="10" class="chip"/>
+<text x="418" y="1019" class="c1">Quality gate</text>
+<text x="418" y="1037" class="c2">type, blur, artifacts</text>
+<line x1="592" y1="1023" x2="602" y2="1023" class="arrow"/>
+<rect x="606" y="996" width="184" height="54" rx="10" class="chip"/>
+<text x="618" y="1019" class="c1">Segment + crop</text>
+<text x="618" y="1037" class="c2">lesion only</text>
+<line x1="792" y1="1023" x2="802" y2="1023" class="arrow"/>
+<rect x="806" y="996" width="184" height="54" rx="10" class="chip"/>
+<text x="818" y="1019" class="c1">Embed once</text>
+<text x="818" y="1037" class="c2">PanDerm vector</text>
+<line x1="992" y1="1023" x2="1002" y2="1023" class="arrow"/>
+<rect x="1006" y="996" width="184" height="54" rx="10" class="chip"/>
+<text x="1018" y="1019" class="c1">Classify</text>
+<text x="1018" y="1037" class="c2">7 classes + conformal set</text>
+<line x1="1192" y1="1023" x2="1202" y2="1023" class="arrow"/>
+<rect x="1206" y="996" width="184" height="54" rx="10" class="chip"/>
+<text x="1218" y="1019" class="c1">Explain</text>
+<text x="1218" y="1037" class="c2">concepts, heatmap, cases</text>
+<line x1="1392" y1="1023" x2="1402" y2="1023" class="arrow"/>
+<rect x="1406" y="996" width="184" height="54" rx="10" class="chip"/>
+<text x="1418" y="1019" class="c1">Critic / Safety</text>
+<text x="1418" y="1037" class="c2">conflicts, uncertainty</text>
+<line x1="1592" y1="1023" x2="1602" y2="1023" class="arrow"/>
+<rect x="1606" y="996" width="184" height="54" rx="10" class="chip"/>
+<text x="1618" y="1019" class="c1">Report (LLM)</text>
+<text x="1618" y="1037" class="c2">for the doctor + limits</text>
+<text x="40" y="1080" font-size="14" fill="#5b6770" font-style="italic">The same steps run first as plain Python (v0), then as MCP tools (v1), then driven by an agent (v2–v3).</text>
+</svg>

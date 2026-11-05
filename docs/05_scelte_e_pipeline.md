@@ -2,6 +2,11 @@
 
 > Versione del 2026-11-04, scritta dopo i Pacchetti di letteratura 1 e 2. Raccoglie le scelte fatte, il nodo della licenza del backbone, la pipeline, il ruolo di ISIC 2019 e lo spazio per nuovi dati e annotazioni manuali.
 
+**Storyboard delle decisioni** (in inglese, continuano lo storyboard 1 di [S2](papers/S2_introduzione.md)):
+- [Parte 2 — modelli e pipeline](figures/storyboard_02_models_pipeline.png)
+- [Parte 3 — spiegabilità, incertezza, agenti e MCP](figures/storyboard_03_trust_agents.png)
+- [Parte 4 — i blocchi di Neo Helper e il loro stato](figures/storyboard_04_building_blocks.png)
+
 ## 1. Registro delle scelte
 
 ### Confermate (2026-11-04)

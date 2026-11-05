@@ -90,6 +90,18 @@
 - Output: `S5_spiegabilita_e_incertezza.docx`, `S6_agenti_e_mcp.docx`; episodi audio 12–15 (tutti gli MP3 rigenerati: tracce x/15).
 - Aggiornati `01_stato_dell_arte.md` (§5, §6, §8), `00_roadmap.md` (spuntate anche "Clinica di base" e "Paper fondativi"), `02_risorse.md`, `refs.bib` (15 voci), `tools/build_word.sh`.
 
+## 2026-11-06 — Storyboard delle decisioni, regola sui commit
+- **Nuova regola per i commit** (in `CLAUDE.md`): l'oggetto inizia con milestone, pacchetto e issue chiuse, per esempio `M1-P3 #6 #7: …`. I due commit non ancora pushati sono stati rinominati così.
+- **Tre storyboard in inglese** in `docs/figures/`, che continuano lo storyboard 1:
+  - `storyboard_02_models_pipeline`: pannelli 7–12 (dati, controllo qualità, PanDerm, baseline, output, parole e test) e le due pipeline, di costruzione e d'uso;
+  - `storyboard_03_trust_agents`: pannelli 13–18 (heatmap, concetti, casi simili, "non so", MCP, agenti) e il flusso di un caso secondo l'incertezza;
+  - `storyboard_04_building_blocks`: **41 blocchi in 7 livelli**, con lo stato di ognuno (21 decisi, 12 proposti, 6 domande aperte, 2 opzioni future) e le 8 domande aperte.
+  
+  Collegati in `05_scelte_e_pipeline.md`.
+- Audio: la generazione si era bloccata ed è stata rifatta. Ora le 15 tracce sono complete (1/15 – 15/15).
+- **Push:** per un po' GitHub ha rifiutato ogni push con "fatal error in commit_refs_rules", anche un commit vuoto di prova: era un problema lato GitHub. Al secondo tentativo il push è riuscito.
+- Chiuse **M1.6** (#6) e **M1.7** (#7): Pacchetto 3 completato.
+
 ### Prossimi passi
 1. **Inviare** la mail agli autori di PanDerm/DermFM-Zero (Cesar), poi annotare la risposta nel file.
 2. **Pacchetto 4:** challenge ISIC 2016–2020 e 2024 (#3), prodotti esistenti e regolamentazione (#8).

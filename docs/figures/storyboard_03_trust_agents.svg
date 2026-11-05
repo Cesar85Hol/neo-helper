@@ -1,0 +1,288 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1840" height="1080" viewBox="0 0 1840 1080" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5b6770"/>
+    </marker>
+    <style>
+      .panel { fill: #ffffff; stroke: #d5dade; stroke-width: 1.5; }
+      .tag { font-size: 15px; font-weight: 700; fill: #ffffff; opacity: 0.92; letter-spacing: 1px; }
+      .title { font-size: 19px; font-weight: 700; fill: #ffffff; }
+      .box { fill: #f3f5f7; stroke: #c9d0d6; stroke-width: 1.2; }
+      .hl { fill: #fff6e0; stroke: #e0b44c; }
+      .later { fill: #fafbfc; stroke: #9aa5ad; stroke-dasharray: 6 4; }
+      .prop { fill: #eaf2fb; stroke: #8fb3d9; }
+      .open { fill: #fff6e0; stroke: #e0b44c; stroke-dasharray: 6 4; }
+      .b1 { font-size: 14px; font-weight: 700; fill: #1f2a33; }
+      .b2 { font-size: 13px; fill: #46525c; }
+      .muted { fill: #7a868f; }
+      .lbl { font-size: 11.5px; font-weight: 700; fill: #7a868f; letter-spacing: 1.5px; }
+      .txt { font-size: 14px; fill: #2b3640; }
+      .lesson { fill: #eef6f4; stroke: #9cc9bd; }
+      .lessontxt { font-size: 15px; font-weight: 700; fill: #1d5c4f; }
+      .foot { font-size: 13px; font-style: italic; fill: #5b6770; }
+      .arrow { stroke: #5b6770; stroke-width: 1.8; marker-end: url(#arr); }
+      .chip { fill: #ffffff; stroke: #c9d0d6; stroke-width: 1.2; }
+      .c1 { font-size: 13px; font-weight: 700; fill: #1f2a33; }
+      .c2 { font-size: 12.5px; fill: #46525c; }
+      .lchip1 { font-size: 15px; font-weight: 700; fill: #ffffff; }
+      .lchip2 { font-size: 12.5px; fill: #ffffff; opacity: 0.9; }
+    </style>
+  </defs>
+<rect width="1840" height="1080" fill="#fafbfc"/>
+<text x="40" y="62" font-size="30" font-weight="700" fill="#1f2a33">How Neo Helper explains, doubts and coordinates</text>
+<text x="40" y="96" font-size="16" fill="#5b6770">Storyboard part 3 · panels 13–18 · explainability, uncertainty, agents and MCP · literature package 3 (§5–§6), milestone M1</text>
+<rect x="1440" y="40" width="34" height="20" rx="4" class="box hl"/>
+<text x="1484" y="55" font-size="14" fill="#2b3640">key choice</text>
+<rect x="1440" y="68" width="34" height="20" rx="4" class="box "/>
+<text x="1484" y="83" font-size="14" fill="#2b3640">decided</text>
+<rect x="1440" y="96" width="34" height="20" rx="4" class="box prop"/>
+<text x="1484" y="111" font-size="14" fill="#2b3640">proposed, to confirm</text>
+<g transform="translate(40,140)">
+<rect width="280" height="730" rx="14" class="panel"/>
+<path d="M14,0 H266 A14,14 0 0 1 280,14 V100 H0 V14 A14,14 0 0 1 14,0 z" fill="#264653"/>
+<text x="18" y="30" class="tag">13 · HEATMAP</text>
+<text x="18" y="60" class="title">Where the network</text>
+<text x="18" y="84" class="title">looked — for us first</text>
+<rect x="18" y="118" width="244" height="50" rx="8" class="box prop"/>
+<text x="30" y="139" class="b1">Grad-CAM</text>
+<text x="30" y="157" class="b2">zones that pushed the answer</text>
+<line x1="140" y1="168" x2="140" y2="186" class="arrow"/>
+<rect x="18" y="188" width="244" height="50" rx="8" class="box prop"/>
+<text x="30" y="209" class="b1">Sanity check</text>
+<text x="30" y="227" class="b2">random weights → map must change</text>
+<line x1="140" y1="238" x2="140" y2="256" class="arrow"/>
+<rect x="18" y="258" width="244" height="50" rx="8" class="box prop"/>
+<text x="30" y="279" class="b1">No Guided Grad-CAM</text>
+<text x="30" y="297" class="b2">it fails the sanity checks</text>
+<line x1="140" y1="308" x2="140" y2="326" class="arrow"/>
+<rect x="18" y="328" width="244" height="50" rx="8" class="box prop"/>
+<text x="30" y="349" class="b1">First user: developers</text>
+<text x="30" y="367" class="b2">spot ink, rulers, black borders</text>
+<text x="18" y="418" class="lbl">WHY</text>
+<text x="18" y="444" class="txt">• A map shows where, not why</text>
+<text x="18" y="468" class="txt">• Pretty maps can ignore</text>
+<text x="28" y="488" class="txt">what the model learned</text>
+<text x="18" y="512" class="txt">• Coarse: a streak and a</text>
+<text x="28" y="532" class="txt">network look the same</text>
+<rect x="18" y="580" width="244" height="84" rx="10" class="lesson"/>
+<text x="30" y="602" class="lbl" fill="#1d5c4f">DECISION</text>
+<text x="30" y="626" class="lessontxt">A debugging tool, not</text>
+<text x="30" y="648" class="lessontxt">the main explanation</text>
+<text x="18" y="696" class="foot">Selvaraju · ICCV 2017</text>
+<text x="18" y="716" class="foot">Adebayo · NeurIPS 2018</text>
+</g>
+<g transform="translate(336,140)">
+<rect width="280" height="730" rx="14" class="panel"/>
+<path d="M14,0 H266 A14,14 0 0 1 280,14 V100 H0 V14 A14,14 0 0 1 14,0 z" fill="#2A9D8F"/>
+<text x="18" y="30" class="tag">14 · CONCEPTS</text>
+<text x="18" y="60" class="title">Speak the</text>
+<text x="18" y="84" class="title">dermatologist's language</text>
+<rect x="18" y="118" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="139" class="b1">MONET concept scores</text>
+<text x="30" y="157" class="b2">no hand labels needed</text>
+<line x1="140" y1="168" x2="140" y2="186" class="arrow"/>
+<rect x="18" y="188" width="244" height="50" rx="8" class="box hl"/>
+<text x="30" y="209" class="b1">Dermoscopic criteria</text>
+<text x="30" y="227" class="b2">7-point checklist, ABCD</text>
+<line x1="140" y1="238" x2="140" y2="256" class="arrow"/>
+<rect x="18" y="258" width="244" height="50" rx="8" class="box prop"/>
+<text x="30" y="279" class="b1">Chanda labels on HAM10000</text>
+<text x="30" y="297" class="b2">criteria + location, 14 experts</text>
+<line x1="140" y1="308" x2="140" y2="326" class="arrow"/>
+<rect x="18" y="328" width="244" height="50" rx="8" class="box prop"/>
+<text x="30" y="349" class="b1">Concept bottleneck</text>
+<text x="30" y="367" class="b2">doctor can correct a concept</text>
+<text x="18" y="418" class="lbl">WHY</text>
+<text x="18" y="444" class="txt">• Known criteria: +17.5% trust</text>
+<text x="18" y="468" class="txt">• Trust rose even when</text>
+<text x="28" y="488" class="txt">the AI was wrong</text>
+<text x="18" y="512" class="txt">• MONET not yet tested on</text>
+<text x="28" y="532" class="txt">dermoscopic criteria</text>
+<rect x="18" y="580" width="244" height="84" rx="10" class="lesson"/>
+<text x="30" y="602" class="lbl" fill="#1d5c4f">DECISION</text>
+<text x="30" y="626" class="lessontxt">Explain with criteria,</text>
+<text x="30" y="648" class="lessontxt">verify them first</text>
+<text x="18" y="696" class="foot">Kim (MONET) · Nat Med 2024</text>
+<text x="18" y="716" class="foot">Koh 2020 · Chanda 2024</text>
+</g>
+<g transform="translate(632,140)">
+<rect width="280" height="730" rx="14" class="panel"/>
+<path d="M14,0 H266 A14,14 0 0 1 280,14 V100 H0 V14 A14,14 0 0 1 14,0 z" fill="#C9A227"/>
+<text x="18" y="30" class="tag">15 · SIMILAR CASES</text>
+<text x="18" y="60" class="title">Show cases</text>
+<text x="18" y="84" class="title">like this one</text>
+<rect x="18" y="118" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="139" class="b1">Cached embeddings</text>
+<text x="30" y="157" class="b2">same vectors as the classifier</text>
+<line x1="140" y1="168" x2="140" y2="186" class="arrow"/>
+<rect x="18" y="188" width="244" height="50" rx="8" class="box prop"/>
+<text x="30" y="209" class="b1">Nearest 16 cases</text>
+<text x="30" y="227" class="b2">cosine similarity, training set</text>
+<line x1="140" y1="238" x2="140" y2="256" class="arrow"/>
+<rect x="18" y="258" width="244" height="50" rx="8" class="box prop"/>
+<text x="30" y="279" class="b1">Show 4–8 to the doctor</text>
+<text x="30" y="297" class="b2">with diagnosis + label source</text>
+<line x1="140" y1="308" x2="140" y2="326" class="arrow"/>
+<rect x="18" y="328" width="244" height="50" rx="8" class="box prop"/>
+<text x="30" y="349" class="b1">Low similarity</text>
+<text x="30" y="367" class="b2">→ out-of-distribution warning</text>
+<text x="18" y="418" class="lbl">WHY</text>
+<text x="18" y="444" class="txt">• 16 cases ≈ the network's</text>
+<text x="28" y="464" class="txt">own accuracy</text>
+<text x="18" y="488" class="txt">• Finds classes it never learned</text>
+<text x="18" y="512" class="txt">• The doctor sees when the</text>
+<text x="28" y="532" class="txt">AI cannot help</text>
+<rect x="18" y="580" width="244" height="84" rx="10" class="lesson"/>
+<text x="30" y="602" class="lbl" fill="#1d5c4f">DECISION</text>
+<text x="30" y="626" class="lessontxt">Evidence a doctor</text>
+<text x="30" y="648" class="lessontxt">can judge</text>
+<text x="18" y="702" class="foot">Tschandl · Br J Dermatol 2019</text>
+</g>
+<g transform="translate(928,140)">
+<rect width="280" height="730" rx="14" class="panel"/>
+<path d="M14,0 H266 A14,14 0 0 1 280,14 V100 H0 V14 A14,14 0 0 1 14,0 z" fill="#E07A3F"/>
+<text x="18" y="30" class="tag">16 · I DON'T KNOW</text>
+<text x="18" y="60" class="title">Uncertainty</text>
+<text x="18" y="84" class="title">with a guarantee</text>
+<rect x="18" y="118" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="139" class="b1">Calibration</text>
+<text x="30" y="157" class="b2">temperature scaling</text>
+<line x1="140" y1="168" x2="140" y2="186" class="arrow"/>
+<rect x="18" y="188" width="244" height="50" rx="8" class="box hl"/>
+<text x="30" y="209" class="b1">Conformal set</text>
+<text x="30" y="227" class="b2">holds the truth 95% of the time</text>
+<line x1="140" y1="238" x2="140" y2="256" class="arrow"/>
+<rect x="18" y="258" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="279" class="b1">Set with a cancer + others</text>
+<text x="30" y="297" class="b2">→ “see a specialist”</text>
+<line x1="140" y1="308" x2="140" y2="326" class="arrow"/>
+<rect x="18" y="328" width="244" height="50" rx="8" class="box prop"/>
+<text x="30" y="349" class="b1">Out-of-distribution check</text>
+<text x="30" y="367" class="b2">unfamiliar photo → abstain</text>
+<text x="18" y="418" class="lbl">WHY</text>
+<text x="18" y="444" class="txt">• A wrong AI drags doctors down</text>
+<text x="18" y="468" class="txt">• Non-specialists gain most:</text>
+<text x="28" y="488" class="txt">+13 points of sensitivity</text>
+<text x="18" y="512" class="txt">• The guarantee breaks on new</text>
+<text x="28" y="532" class="txt">data → measure it</text>
+<rect x="18" y="580" width="244" height="84" rx="10" class="lesson"/>
+<text x="30" y="602" class="lbl" fill="#1d5c4f">DECISION</text>
+<text x="30" y="626" class="lessontxt">A precise</text>
+<text x="30" y="648" class="lessontxt">“I don't know”</text>
+<text x="18" y="696" class="foot">Angelopoulos &amp; Bates 2021</text>
+<text x="18" y="716" class="foot">Krakowski · npj Digit Med 2024</text>
+</g>
+<g transform="translate(1224,140)">
+<rect width="280" height="730" rx="14" class="panel"/>
+<path d="M14,0 H266 A14,14 0 0 1 280,14 V100 H0 V14 A14,14 0 0 1 14,0 z" fill="#5f6f7b"/>
+<text x="18" y="30" class="tag">17 · MCP</text>
+<text x="18" y="60" class="title">One tool server,</text>
+<text x="18" y="84" class="title">any app</text>
+<rect x="18" y="118" width="244" height="50" rx="8" class="box hl"/>
+<text x="30" y="139" class="b1">neo-vision MCP server</text>
+<text x="30" y="157" class="b2">one standard, any host</text>
+<line x1="140" y1="168" x2="140" y2="186" class="arrow"/>
+<rect x="18" y="188" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="209" class="b1">Vision tools</text>
+<text x="30" y="227" class="b2">quality, segment, embed, classify</text>
+<line x1="140" y1="238" x2="140" y2="256" class="arrow"/>
+<rect x="18" y="258" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="279" class="b1">Trust tools</text>
+<text x="30" y="297" class="b2">set, heatmap, concepts, cases</text>
+<line x1="140" y1="308" x2="140" y2="326" class="arrow"/>
+<rect x="18" y="328" width="244" height="50" rx="8" class="box prop"/>
+<text x="30" y="349" class="b1">Resources</text>
+<text x="30" y="367" class="b2">model card, data card, thresholds</text>
+<text x="18" y="418" class="lbl">WHY</text>
+<text x="18" y="444" class="txt">• Same tools in Claude Desktop,</text>
+<text x="28" y="464" class="txt">web and mobile</text>
+<text x="18" y="488" class="txt">• Photos stay local: only</text>
+<text x="28" y="508" class="txt">numbers reach the LLM</text>
+<text x="18" y="532" class="txt">• Tools are code: user consent</text>
+<text x="28" y="552" class="txt">before each call</text>
+<rect x="18" y="580" width="244" height="84" rx="10" class="lesson"/>
+<text x="30" y="602" class="lbl" fill="#1d5c4f">DECISION</text>
+<text x="30" y="626" class="lessontxt">Build tools once,</text>
+<text x="30" y="648" class="lessontxt">use them everywhere</text>
+<text x="18" y="696" class="foot">MCP spec 2025-06-18, 2026-07-28</text>
+<text x="18" y="716" class="foot">Anthropic · agents guide 2024</text>
+</g>
+<g transform="translate(1520,140)">
+<rect width="280" height="730" rx="14" class="panel"/>
+<path d="M14,0 H266 A14,14 0 0 1 280,14 V100 H0 V14 A14,14 0 0 1 14,0 z" fill="#6d5a8a"/>
+<text x="18" y="30" class="tag">18 · AGENTS</text>
+<text x="18" y="60" class="title">Simple first, more</text>
+<text x="18" y="84" class="title">agents only if measured</text>
+<rect x="18" y="118" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="139" class="b1">v0 fixed pipeline</text>
+<text x="30" y="157" class="b2">quality → classify → explain</text>
+<line x1="140" y1="168" x2="140" y2="186" class="arrow"/>
+<rect x="18" y="188" width="244" height="50" rx="8" class="box"/>
+<text x="30" y="209" class="b1">v1 tools via MCP</text>
+<text x="30" y="227" class="b2">same steps, standard calls</text>
+<line x1="140" y1="238" x2="140" y2="256" class="arrow"/>
+<rect x="18" y="258" width="244" height="50" rx="8" class="box hl"/>
+<text x="30" y="279" class="b1">v2 one orchestrator</text>
+<text x="30" y="297" class="b2">LLM plans, tools measure</text>
+<line x1="140" y1="308" x2="140" y2="326" class="arrow"/>
+<rect x="18" y="328" width="244" height="50" rx="8" class="box prop"/>
+<text x="30" y="349" class="b1">v3 + rule-based Critic</text>
+<text x="30" y="367" class="b2">multi-agent only if it beats v2</text>
+<text x="18" y="418" class="lbl">WHY</text>
+<text x="18" y="444" class="txt">• Multi-agent ≈ 15× the tokens</text>
+<text x="28" y="464" class="txt">of a chat</text>
+<text x="18" y="488" class="txt">• Diagnosis steps depend</text>
+<text x="28" y="508" class="txt">on each other</text>
+<text x="18" y="532" class="txt">• Critic: quality, coverage,</text>
+<text x="28" y="552" class="txt">conflicts, uncertainty</text>
+<rect x="18" y="580" width="244" height="84" rx="10" class="lesson"/>
+<text x="30" y="602" class="lbl" fill="#1d5c4f">DECISION</text>
+<text x="30" y="626" class="lessontxt">LLM coordinates and</text>
+<text x="30" y="648" class="lessontxt">writes; tools give numbers</text>
+<text x="18" y="696" class="foot">Anthropic 2024–25 · MDAgents 2024</text>
+<text x="18" y="716" class="foot">Liu (DermAgent) · arXiv 2026</text>
+</g>
+<text x="40" y="912" class="lbl">HOW A CASE FLOWS (PROPOSED: ROUTING BY UNCERTAINTY)</text>
+<rect x="40" y="926" width="170" height="54" rx="27" fill="#2A9D8F"/>
+<text x="62" y="950" class="lchip1">CLEAR CASE</text>
+<text x="62" y="968" class="lchip2">short path</text>
+<rect x="232" y="926" width="272" height="54" rx="10" class="chip"/>
+<text x="244" y="949" class="c1">Good photo</text>
+<text x="244" y="967" class="c2">no warnings</text>
+<line x1="506" y1="953" x2="522" y2="953" class="arrow"/>
+<rect x="526" y="926" width="272" height="54" rx="10" class="chip"/>
+<text x="538" y="949" class="c1">Conformal set = 1 class</text>
+<text x="538" y="967" class="c2">one answer at 95% coverage</text>
+<line x1="800" y1="953" x2="816" y2="953" class="arrow"/>
+<rect x="820" y="926" width="272" height="54" rx="10" class="chip"/>
+<text x="832" y="949" class="c1">Concepts + cases agree</text>
+<text x="832" y="967" class="c2">no conflict</text>
+<line x1="1094" y1="953" x2="1110" y2="953" class="arrow"/>
+<rect x="1114" y="926" width="272" height="54" rx="10" class="chip"/>
+<text x="1126" y="949" class="c1">Short report</text>
+<text x="1126" y="967" class="c2">for the doctor</text>
+<rect x="40" y="996" width="170" height="54" rx="27" fill="#E07A3F"/>
+<text x="62" y="1020" class="lchip1">UNCERTAIN</text>
+<text x="62" y="1038" class="lchip2">long path</text>
+<rect x="232" y="996" width="272" height="54" rx="10" class="chip"/>
+<text x="244" y="1019" class="c1">Set ≥ 2 classes</text>
+<text x="244" y="1037" class="c2">including a cancer</text>
+<line x1="506" y1="1023" x2="522" y2="1023" class="arrow"/>
+<rect x="526" y="996" width="272" height="54" rx="10" class="chip"/>
+<text x="538" y="1019" class="c1">Low similarity or conflict</text>
+<text x="538" y="1037" class="c2">classifier vs cases</text>
+<line x1="800" y1="1023" x2="816" y2="1023" class="arrow"/>
+<rect x="820" y="996" width="272" height="54" rx="10" class="chip"/>
+<text x="832" y="1019" class="c1">Critic checks</text>
+<text x="832" y="1037" class="c2">quality, coverage, conflicts</text>
+<line x1="1094" y1="1023" x2="1110" y2="1023" class="arrow"/>
+<rect x="1114" y="996" width="272" height="54" rx="10" class="chip"/>
+<text x="1126" y="1019" class="c1">Report + referral</text>
+<text x="1126" y="1037" class="c2">“see a specialist”</text>
+<rect x="1420" y="926" width="380" height="124" rx="12" class="lesson"/>
+<text x="1440" y="952" class="lbl" fill="#1d5c4f">EVIDENCE CHAIN</text>
+<text x="1440" y="978" class="lessontxt">Every sentence of the report cites</text>
+<text x="1440" y="1000" class="lessontxt">the tool that produced it.</text>
+<text x="1440" y="1022" class="lessontxt">No number comes from the LLM.</text>
+</svg>

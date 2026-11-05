@@ -1,0 +1,252 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1840" height="1004" viewBox="0 0 1840 1004" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5b6770"/>
+    </marker>
+    <style>
+      .panel { fill: #ffffff; stroke: #d5dade; stroke-width: 1.5; }
+      .tag { font-size: 15px; font-weight: 700; fill: #ffffff; opacity: 0.92; letter-spacing: 1px; }
+      .title { font-size: 19px; font-weight: 700; fill: #ffffff; }
+      .box { fill: #f3f5f7; stroke: #c9d0d6; stroke-width: 1.2; }
+      .hl { fill: #fff6e0; stroke: #e0b44c; }
+      .later { fill: #fafbfc; stroke: #9aa5ad; stroke-dasharray: 6 4; }
+      .prop { fill: #eaf2fb; stroke: #8fb3d9; }
+      .open { fill: #fff6e0; stroke: #e0b44c; stroke-dasharray: 6 4; }
+      .b1 { font-size: 14px; font-weight: 700; fill: #1f2a33; }
+      .b2 { font-size: 13px; fill: #46525c; }
+      .muted { fill: #7a868f; }
+      .lbl { font-size: 11.5px; font-weight: 700; fill: #7a868f; letter-spacing: 1.5px; }
+      .txt { font-size: 14px; fill: #2b3640; }
+      .lesson { fill: #eef6f4; stroke: #9cc9bd; }
+      .lessontxt { font-size: 15px; font-weight: 700; fill: #1d5c4f; }
+      .foot { font-size: 13px; font-style: italic; fill: #5b6770; }
+      .arrow { stroke: #5b6770; stroke-width: 1.8; marker-end: url(#arr); }
+      .chip { fill: #ffffff; stroke: #c9d0d6; stroke-width: 1.2; }
+      .c1 { font-size: 13px; font-weight: 700; fill: #1f2a33; }
+      .c2 { font-size: 12.5px; fill: #46525c; }
+      .lchip1 { font-size: 15px; font-weight: 700; fill: #ffffff; }
+      .lchip2 { font-size: 12.5px; fill: #ffffff; opacity: 0.9; }
+    </style>
+  </defs>
+<rect width="1840" height="1004" fill="#fafbfc"/>
+<text x="40" y="62" font-size="30" font-weight="700" fill="#1f2a33">What Neo Helper is made of: building blocks in 7 layers</text>
+<text x="40" y="96" font-size="16" fill="#5b6770">Storyboard part 4 · status after literature packages 1–3 (milestone M1) · nothing is built yet · each layer is built in the milestone on the left</text>
+<rect x="1500" y="24" width="34" height="20" rx="4" class="box "/>
+<text x="1544" y="39" font-size="14" fill="#2b3640">decided</text>
+<rect x="1500" y="52" width="34" height="20" rx="4" class="box prop"/>
+<text x="1544" y="67" font-size="14" fill="#2b3640">proposed, to confirm</text>
+<rect x="1500" y="80" width="34" height="20" rx="4" class="box open"/>
+<text x="1544" y="95" font-size="14" fill="#2b3640">open question</text>
+<rect x="1500" y="108" width="34" height="20" rx="4" class="box later"/>
+<text x="1544" y="123" font-size="14" fill="#2b3640">future option</text>
+<rect x="40" y="150" width="210" height="76" rx="10" fill="#3D5A80"/>
+<text x="58" y="183" font-size="17" font-weight="700" fill="#ffffff">DATA</text>
+<text x="58" y="205" font-size="13" fill="#ffffff" opacity="0.9">milestone M2</text>
+<rect x="266" y="150" width="245" height="76" rx="10" class="box"/>
+<rect x="266" y="160" width="5" height="56" rx="2" fill="#3D5A80"/>
+<text x="284" y="183" class="b1">HAM10000</text>
+<text x="284" y="204" class="b2">first training set</text>
+<rect x="523" y="150" width="245" height="76" rx="10" class="box"/>
+<rect x="523" y="160" width="5" height="56" rx="2" fill="#3D5A80"/>
+<text x="541" y="183" class="b1">Split by lesion_id</text>
+<text x="541" y="204" class="b2">70 / 15 / 15</text>
+<rect x="780" y="150" width="245" height="76" rx="10" class="box"/>
+<rect x="780" y="160" width="5" height="56" rx="2" fill="#3D5A80"/>
+<text x="798" y="183" class="b1">External test sets</text>
+<text x="798" y="204" class="b2">DDI, PAD-UFES-20, PH2, Derm7pt</text>
+<rect x="1037" y="150" width="245" height="76" rx="10" class="box"/>
+<rect x="1037" y="160" width="5" height="56" rx="2" fill="#3D5A80"/>
+<text x="1055" y="183" class="b1">ISIC 2019</text>
+<text x="1055" y="204" class="b2">after the HAM10000 baseline</text>
+<rect x="1294" y="150" width="245" height="76" rx="10" class="box open"/>
+<rect x="1294" y="160" width="5" height="56" rx="2" fill="#3D5A80"/>
+<text x="1312" y="183" class="b1">Chanda criteria labels</text>
+<text x="1312" y="204" class="b2">link and licence to check</text>
+<rect x="1551" y="150" width="245" height="76" rx="10" class="box later"/>
+<rect x="1551" y="160" width="5" height="56" rx="2" fill="#3D5A80"/>
+<text x="1569" y="183" class="b1 muted">Hospital data</text>
+<text x="1569" y="204" class="b2">annotation guide IT/EN/ES</text>
+<rect x="40" y="242" width="210" height="76" rx="10" fill="#2A9D8F"/>
+<text x="58" y="275" font-size="17" font-weight="700" fill="#ffffff">VISION MODELS</text>
+<text x="58" y="297" font-size="13" fill="#ffffff" opacity="0.9">milestone M3</text>
+<rect x="266" y="242" width="245" height="76" rx="10" class="box"/>
+<rect x="266" y="252" width="5" height="56" rx="2" fill="#2A9D8F"/>
+<text x="284" y="275" class="b1">Quality + artifact gate</text>
+<text x="284" y="296" class="b2">rules + MONET flags</text>
+<rect x="523" y="242" width="245" height="76" rx="10" class="box open"/>
+<rect x="523" y="252" width="5" height="56" rx="2" fill="#2A9D8F"/>
+<text x="541" y="275" class="b1">Segmentation</text>
+<text x="541" y="296" class="b2">U-Net or MedSAM: to choose</text>
+<rect x="780" y="242" width="245" height="76" rx="10" class="box"/>
+<rect x="780" y="252" width="5" height="56" rx="2" fill="#2A9D8F"/>
+<text x="798" y="275" class="b1">PanDerm backbone</text>
+<text x="798" y="296" class="b2">frozen, cached embeddings</text>
+<rect x="1037" y="242" width="245" height="76" rx="10" class="box"/>
+<rect x="1037" y="252" width="5" height="56" rx="2" fill="#2A9D8F"/>
+<text x="1055" y="275" class="b1">Baselines</text>
+<text x="1055" y="296" class="b2">ImageNet, DINOv2, Derm Found.</text>
+<rect x="1294" y="242" width="245" height="76" rx="10" class="box"/>
+<rect x="1294" y="252" width="5" height="56" rx="2" fill="#2A9D8F"/>
+<text x="1312" y="275" class="b1">7-class head</text>
+<text x="1312" y="296" class="b2">+ malignancy score, low cut-off</text>
+<rect x="1551" y="242" width="245" height="76" rx="10" class="box"/>
+<rect x="1551" y="252" width="5" height="56" rx="2" fill="#2A9D8F"/>
+<text x="1569" y="275" class="b1">Fine-tuning</text>
+<text x="1569" y="296" class="b2">second experiment</text>
+<rect x="40" y="334" width="210" height="76" rx="10" fill="#C9A227"/>
+<text x="58" y="367" font-size="17" font-weight="700" fill="#ffffff">TRUST</text>
+<text x="58" y="389" font-size="13" fill="#ffffff" opacity="0.9">milestone M3</text>
+<rect x="266" y="334" width="245" height="76" rx="10" class="box"/>
+<rect x="266" y="344" width="5" height="56" rx="2" fill="#C9A227"/>
+<text x="284" y="367" class="b1">Calibration</text>
+<text x="284" y="388" class="b2">temperature scaling</text>
+<rect x="523" y="334" width="245" height="76" rx="10" class="box"/>
+<rect x="523" y="344" width="5" height="56" rx="2" fill="#C9A227"/>
+<text x="541" y="367" class="b1">Conformal sets</text>
+<text x="541" y="388" class="b2">“I don't know” with a guarantee</text>
+<rect x="780" y="334" width="245" height="76" rx="10" class="box prop"/>
+<rect x="780" y="344" width="5" height="56" rx="2" fill="#C9A227"/>
+<text x="798" y="367" class="b1">Out-of-distribution</text>
+<text x="798" y="388" class="b2">unfamiliar photo → abstain</text>
+<rect x="1037" y="334" width="245" height="76" rx="10" class="box prop"/>
+<rect x="1037" y="344" width="5" height="56" rx="2" fill="#C9A227"/>
+<text x="1055" y="367" class="b1">Grad-CAM</text>
+<text x="1055" y="388" class="b2">+ sanity checks</text>
+<rect x="1294" y="334" width="245" height="76" rx="10" class="box"/>
+<rect x="1294" y="344" width="5" height="56" rx="2" fill="#C9A227"/>
+<text x="1312" y="367" class="b1">MONET concepts</text>
+<text x="1312" y="388" class="b2">check on Derm7pt · opt. CBM</text>
+<rect x="1551" y="334" width="245" height="76" rx="10" class="box prop"/>
+<rect x="1551" y="344" width="5" height="56" rx="2" fill="#C9A227"/>
+<text x="1569" y="367" class="b1">Similar cases (CBIR)</text>
+<text x="1569" y="388" class="b2">16 nearest, show 4–8</text>
+<rect x="40" y="426" width="210" height="76" rx="10" fill="#6d5a8a"/>
+<text x="58" y="459" font-size="17" font-weight="700" fill="#ffffff">AGENTS</text>
+<text x="58" y="481" font-size="13" fill="#ffffff" opacity="0.9">milestone M4</text>
+<rect x="266" y="426" width="245" height="76" rx="10" class="box"/>
+<rect x="266" y="436" width="5" height="56" rx="2" fill="#6d5a8a"/>
+<text x="284" y="459" class="b1">v0 → v1 → v2 → v3</text>
+<text x="284" y="480" class="b2">multi-agent only if it pays</text>
+<rect x="523" y="426" width="245" height="76" rx="10" class="box"/>
+<rect x="523" y="436" width="5" height="56" rx="2" fill="#6d5a8a"/>
+<text x="541" y="459" class="b1">neo-vision MCP server</text>
+<text x="541" y="480" class="b2">8 tools + resources</text>
+<rect x="780" y="426" width="245" height="76" rx="10" class="box open"/>
+<rect x="780" y="436" width="5" height="56" rx="2" fill="#6d5a8a"/>
+<text x="798" y="459" class="b1">Orchestrator LLM</text>
+<text x="798" y="480" class="b2">local/open or API?</text>
+<rect x="1037" y="426" width="245" height="76" rx="10" class="box"/>
+<rect x="1037" y="436" width="5" height="56" rx="2" fill="#6d5a8a"/>
+<text x="1055" y="459" class="b1">Critic / Safety</text>
+<text x="1055" y="480" class="b2">quality, artifacts, conflicts</text>
+<rect x="1294" y="426" width="245" height="76" rx="10" class="box prop"/>
+<rect x="1294" y="436" width="5" height="56" rx="2" fill="#6d5a8a"/>
+<text x="1312" y="459" class="b1">Reporter</text>
+<text x="1312" y="480" class="b2">+ evidence chain</text>
+<rect x="1551" y="426" width="245" height="76" rx="10" class="box prop"/>
+<rect x="1551" y="436" width="5" height="56" rx="2" fill="#6d5a8a"/>
+<text x="1569" y="459" class="b1">Routing by uncertainty</text>
+<text x="1569" y="480" class="b2">short or long path</text>
+<rect x="40" y="518" width="210" height="76" rx="10" fill="#E07A3F"/>
+<text x="58" y="551" font-size="17" font-weight="700" fill="#ffffff">EVALUATION</text>
+<text x="58" y="573" font-size="13" fill="#ffffff" opacity="0.9">milestones M3–M4</text>
+<rect x="266" y="518" width="245" height="76" rx="10" class="box"/>
+<rect x="266" y="528" width="5" height="56" rx="2" fill="#E07A3F"/>
+<text x="284" y="551" class="b1">CLEAR Derm grid</text>
+<text x="284" y="572" class="b2">25-item checklist</text>
+<rect x="523" y="518" width="245" height="76" rx="10" class="box"/>
+<rect x="523" y="528" width="5" height="56" rx="2" fill="#E07A3F"/>
+<text x="541" y="551" class="b1">Results by skin type</text>
+<text x="541" y="572" class="b2">DDI, Fitzpatrick groups</text>
+<rect x="780" y="518" width="245" height="76" rx="10" class="box prop"/>
+<rect x="780" y="528" width="5" height="56" rx="2" fill="#E07A3F"/>
+<text x="798" y="551" class="b1">Lethal miss on DDI</text>
+<text x="798" y="572" class="b2">vs ChatGPT and Gemini</text>
+<rect x="1037" y="518" width="245" height="76" rx="10" class="box prop"/>
+<rect x="1037" y="528" width="5" height="56" rx="2" fill="#E07A3F"/>
+<text x="1055" y="551" class="b1">Coverage + set size</text>
+<text x="1055" y="572" class="b2">per class and per centre</text>
+<rect x="1294" y="518" width="245" height="76" rx="10" class="box prop"/>
+<rect x="1294" y="528" width="5" height="56" rx="2" fill="#E07A3F"/>
+<text x="1312" y="551" class="b1">Report quality</text>
+<text x="1312" y="572" class="b2">LLM judge + doctor check</text>
+<rect x="1551" y="518" width="245" height="76" rx="10" class="box prop"/>
+<rect x="1551" y="528" width="5" height="56" rx="2" fill="#E07A3F"/>
+<text x="1569" y="551" class="b1">v2 vs v3</text>
+<text x="1569" y="572" class="b2">accuracy, tokens, time</text>
+<rect x="40" y="610" width="210" height="76" rx="10" fill="#5f6f7b"/>
+<text x="58" y="643" font-size="17" font-weight="700" fill="#ffffff">INTERFACES</text>
+<text x="58" y="665" font-size="13" fill="#ffffff" opacity="0.9">milestones M5–M6</text>
+<rect x="266" y="610" width="245" height="76" rx="10" class="box open"/>
+<rect x="266" y="620" width="5" height="56" rx="2" fill="#5f6f7b"/>
+<text x="284" y="643" class="b1">Gradio demo</text>
+<text x="284" y="664" class="b2">public? needs a free backbone</text>
+<rect x="523" y="610" width="245" height="76" rx="10" class="box"/>
+<rect x="523" y="620" width="5" height="56" rx="2" fill="#5f6f7b"/>
+<text x="541" y="643" class="b1">Web app</text>
+<text x="541" y="664" class="b2">FastAPI + Next.js</text>
+<rect x="780" y="610" width="245" height="76" rx="10" class="box prop"/>
+<rect x="780" y="620" width="5" height="56" rx="2" fill="#5f6f7b"/>
+<text x="798" y="643" class="b1">Mobile app</text>
+<text x="798" y="664" class="b2">Expo + capture guidance</text>
+<rect x="1037" y="610" width="245" height="76" rx="10" class="box open"/>
+<rect x="1037" y="620" width="5" height="56" rx="2" fill="#5f6f7b"/>
+<text x="1055" y="643" class="b1">On device or server?</text>
+<text x="1055" y="664" class="b2">CoreML / TFLite vs API</text>
+<rect x="1294" y="610" width="245" height="76" rx="10" class="box prop"/>
+<rect x="1294" y="620" width="5" height="56" rx="2" fill="#5f6f7b"/>
+<text x="1312" y="643" class="b1">Doctor-first design</text>
+<text x="1312" y="664" class="b2">mainly non-specialists</text>
+<rect x="40" y="702" width="210" height="76" rx="10" fill="#8a5a44"/>
+<text x="58" y="735" font-size="17" font-weight="700" fill="#ffffff">GOVERNANCE</text>
+<text x="58" y="757" font-size="13" fill="#ffffff" opacity="0.9">milestones M1, M7</text>
+<rect x="266" y="702" width="245" height="76" rx="10" class="box"/>
+<rect x="266" y="712" width="5" height="56" rx="2" fill="#8a5a44"/>
+<text x="284" y="735" class="b1">Licences</text>
+<text x="284" y="756" class="b2">PanDerm, MONET, HAM: non-comm.</text>
+<rect x="523" y="702" width="245" height="76" rx="10" class="box"/>
+<rect x="523" y="712" width="5" height="56" rx="2" fill="#8a5a44"/>
+<text x="541" y="735" class="b1">Intended use</text>
+<text x="541" y="756" class="b2">support, not self-diagnosis</text>
+<rect x="780" y="702" width="245" height="76" rx="10" class="box prop"/>
+<rect x="780" y="712" width="5" height="56" rx="2" fill="#8a5a44"/>
+<text x="798" y="735" class="b1">Privacy</text>
+<text x="798" y="756" class="b2">photos stay on our server</text>
+<rect x="1037" y="702" width="245" height="76" rx="10" class="box open"/>
+<rect x="1037" y="712" width="5" height="56" rx="2" fill="#8a5a44"/>
+<text x="1055" y="735" class="b1">AI Act / MDR</text>
+<text x="1055" y="756" class="b2">literature package 4</text>
+<rect x="1294" y="702" width="245" height="76" rx="10" class="box"/>
+<rect x="1294" y="712" width="5" height="56" rx="2" fill="#8a5a44"/>
+<text x="1312" y="735" class="b1">Model + data cards</text>
+<text x="1312" y="756" class="b2">with known limits</text>
+<rect x="1551" y="702" width="245" height="76" rx="10" class="box later"/>
+<rect x="1551" y="712" width="5" height="56" rx="2" fill="#8a5a44"/>
+<text x="1569" y="735" class="b1 muted">Ethics approval</text>
+<text x="1569" y="756" class="b2">only for hospital data</text>
+<text x="40" y="814" class="lbl">COMPLEXITY AT A GLANCE</text>
+<text x="40" y="866" font-size="40" font-weight="700" fill="#1f2a33">41 blocks</text>
+<text x="40" y="894" font-size="15" fill="#46525c">in 7 layers, built over milestones M2–M7</text>
+<rect x="40.0" y="914" width="368.8" height="34" fill="#f3f5f7" stroke="#5b6770" stroke-width="1.5"/>
+<rect x="408.8" y="914" width="210.7" height="34" fill="#eaf2fb" stroke="#8fb3d9" stroke-width="1.5"/>
+<rect x="619.5" y="914" width="105.4" height="34" fill="#fff6e0" stroke="#e0b44c" stroke-width="1.5"/>
+<rect x="724.9" y="914" width="35.1" height="34" fill="#fafbfc" stroke="#9aa5ad" stroke-width="1.5"/>
+<rect x="40" y="962" width="14" height="14" rx="3" fill="#f3f5f7" stroke="#5b6770" stroke-width="1.5"/>
+<text x="62" y="974" font-size="14" font-weight="700" fill="#1f2a33">21 decided</text>
+<rect x="190" y="962" width="14" height="14" rx="3" fill="#eaf2fb" stroke="#8fb3d9" stroke-width="1.5"/>
+<text x="212" y="974" font-size="14" font-weight="700" fill="#1f2a33">12 proposed</text>
+<rect x="340" y="962" width="14" height="14" rx="3" fill="#fff6e0" stroke="#e0b44c" stroke-width="1.5"/>
+<text x="362" y="974" font-size="14" font-weight="700" fill="#1f2a33">6 open</text>
+<rect x="490" y="962" width="14" height="14" rx="3" fill="#fafbfc" stroke="#9aa5ad" stroke-width="1.5"/>
+<text x="512" y="974" font-size="14" font-weight="700" fill="#1f2a33">2 future</text>
+<text x="800" y="814" class="lbl">OPEN QUESTIONS TO CLOSE</text>
+<text x="800" y="844" font-size="14.5" fill="#2b3640">1  PanDerm licence: authors' answer (email draft ready)</text>
+<text x="800" y="874" font-size="14.5" fill="#2b3640">2  Does MONET read dermoscopic criteria? (test on Derm7pt)</text>
+<text x="800" y="904" font-size="14.5" fill="#2b3640">3  Segmentation model: U-Net or MedSAM</text>
+<text x="800" y="934" font-size="14.5" fill="#2b3640">4  Orchestrator LLM: local / open model or API (privacy)</text>
+<text x="1310" y="844" font-size="14.5" fill="#2b3640">5  Public demo vs non-commercial licences</text>
+<text x="1310" y="874" font-size="14.5" fill="#2b3640">6  On-device or server inference for mobile</text>
+<text x="1310" y="904" font-size="14.5" fill="#2b3640">7  AI Act / MDR class (literature package 4)</text>
+<text x="1310" y="934" font-size="14.5" fill="#2b3640">8  Original contribution vs DermAgent (issue M1.10)</text>
+</svg>
