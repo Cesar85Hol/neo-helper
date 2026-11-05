@@ -59,4 +59,4 @@
 - Adottare il **critico deterministico** per l'agente Critic/Safety (v3), con controlli di qualità, copertura, conflitto (classificatore contro casi simili contro concetti) e incertezza (insieme conformal).
 - **Catena di prove** nel report: ogni frase cita il tool che l'ha prodotta.
 - Usare DermAgent come **baseline di confronto** nella discussione. Non è un esperimento, se il codice non è pubblico ⚠️ da verificare.
-- Aggiornare la §8 (gap) dello stato dell'arte e la issue M1.10 (domande di ricerca) alla luce di questo lavoro.
+- Aggiornare la §9 (gap) dello stato dell'arte e la issue M1.10 (domande di ricerca) alla luce di questo lavoro.

@@ -1,0 +1,17 @@
+# Episodio 19 — Le regole: MDR, AI Act e cosa significano per Neo Helper
+
+Ultimo episodio del pacchetto quattro. Parliamo di regole. Quando un software aiuta a capire se un neo è un tumore, cosa dice la legge?
+
+In Europa la prima regola è l'MDR, il regolamento sui dispositivi medici, in vigore dal maggio duemilaventuno. Malvehy e colleghi, dell'ospedale di Barcellona, l'hanno spiegato ai dermatologi nel duemilaventidue. Il punto chiave è semplice: un software con una finalità diagnostica è un dispositivo medico, come un dermatoscopio. E con le nuove regole i software salgono di classe di rischio: di solito almeno la classe due a. Questo vuol dire che un organismo indipendente deve controllare la documentazione, che serve una valutazione clinica, un sistema di qualità, la gestione dei rischi, e la sorveglianza anche dopo la vendita. Gli autori avvertono anche dei costi: prodotti più lenti ad arrivare, prezzi più alti, e meno aziende sul mercato. Ricordate DERM, dell'episodio precedente? Ha la classe tre, la più alta.
+
+La seconda regola è nuova: l'AI Act, il regolamento europeo sull'intelligenza artificiale, in vigore dall'agosto duemilaventiquattro. Per l'AI Act, un'intelligenza artificiale dentro un dispositivo medico è ad alto rischio. E l'alto rischio porta obblighi in più: dati di qualità e rappresentativi, gestione del rischio, documentazione e trasparenza, supervisione umana, e monitoraggio nel tempo.
+
+Ma qui c'è una storia in movimento. Van Kolfschooten e colleghi, BMJ Digital Health, duemilaventisei, raccontano che la Commissione europea, con un pacchetto di semplificazione presentato nel dicembre duemilaventicinque, ha proposto di togliere quasi tutti questi obblighi ai dispositivi medici. L'etichetta "alto rischio" resterebbe, ma senza le tutele. Nel luglio duemilaventisei un altro negoziato, quello sul cosiddetto Digital Omnibus, ha invece mantenuto le tutele. Il pacchetto per la sanità è ancora in discussione. La posizione degli autori: semplificare va bene, ma le procedure, non le protezioni per i pazienti. Per la tesi, la lezione pratica è una: questo capitolo va ricontrollato prima della consegna, perché le regole possono cambiare.
+
+Negli Stati Uniti la FDA ha i suoi percorsi, e il caso più noto è DermaSensor, autorizzato nel duemilaventiquattro. Per le app destinate al pubblico, invece, nessuna autorizzazione.
+
+E Neo Helper? Neo Helper è un prototipo di ricerca. Non è venduto, non è usato per decisioni cliniche, non dà diagnosi ai pazienti, e lo dice chiaramente in ogni schermata. Per questo non è un dispositivo medico. Se un giorno volesse diventarlo, servirebbero tre cose che oggi non abbiamo. Dati e modelli con licenze commerciali: PanDerm, MONET e HAM10000 sono solo per la ricerca. Uno studio clinico prospettico. E una certificazione di classe due a o superiore, con tutti gli obblighi dell'AI Act.
+
+C'è però un modo intelligente di usare queste regole già adesso: come lista di controllo volontaria. Dati e loro limiti, scritti in una scheda dei dati. Risultati per fototipo e per centro. Il medico che decide, con l'agente che avverte. Un report che cita sempre lo strumento da cui viene ogni numero. E un registro delle versioni e degli errori. Sono esattamente le buone pratiche che la letteratura scientifica ci ha chiesto in tutti i pacchetti precedenti. La legge, in fondo, chiede le stesse cose.
+
+Con questo episodio si chiude la parte di letteratura. Restano due compiti: verificare le informazioni ancora incerte, e scrivere le domande di ricerca della tesi.

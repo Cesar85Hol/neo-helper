@@ -102,10 +102,35 @@
 - **Push:** per un po' GitHub ha rifiutato ogni push con "fatal error in commit_refs_rules", anche un commit vuoto di prova: era un problema lato GitHub. Al secondo tentativo il push è riuscito.
 - Chiuse **M1.6** (#6) e **M1.7** (#7): Pacchetto 3 completato.
 
+## 2026-11-06 — Pacchetto letteratura 4 (§7 challenge ISIC + §8 prodotti e regole)
+- **§7 (issue #3, M1.3):** schede su:
+  - ISIC 2018 (Codella 2019);
+  - ISIC 2019 (Combalia 2022, *Lancet Digit Health*);
+  - BCN20000 (Hernández-Pérez 2024);
+  - ISIC 2020 (Rotemberg 2021; soluzione vincente di Ha 2020; risultati e contesto del paziente di Kurtansky 2024);
+  - ISIC 2024 / SLICE-3D (Kurtansky 2025, *npj Digit Med*).
+  
+  Introduzione `S7_introduzione.md`.
+- **§8 (issue #8, M1.8):** schede su Freeman 2020 (app, *BMJ*), Wongvibulsin 2024 (app con AI), DermaSensor (Jaklitsch 2023), DERM di Skin Analytics (Marsden 2024), MDR in dermatologia (Malvehy 2022), AI Act e riforme 2025–2026 (Van Kolfschooten 2026). Introduzione `S8_introduzione.md`. Aggiornato `04_etica_regolatorio.md` con una sezione "Cosa significa per Neo Helper".
+- **Cosa è stato letto:**
+  - testo completo: Codella 2019, Ha 2020, Malvehy 2022, BCN20000 (salvo i risultati delle baseline);
+  - parti sostanziali del testo: Combalia 2022, Kurtansky 2025, Rotemberg 2021, Freeman 2020, Marsden 2024, Jaklitsch 2023, Van Kolfschooten 2026;
+  - solo abstract: Kurtansky 2024, Wongvibulsin 2024.
+  
+  Le notizie regolatorie su DermaSensor (FDA 2024) e DERM (CE classe III 2025) vengono da fonti web secondarie o aziendali: sono segnate con ⚠️.
+- **Scoperte importanti:**
+  - ISIC 2019: l'accuratezza bilanciata crolla dall'82% al 59% su BCN20000, e gli algoritmi chiamano "maligna" quasi metà delle lesioni mai viste. È una conferma forte del "non so" (P8) e di BCN20000 come test esterno.
+  - **BCN20000 ha licenza CC BY 4.0**, a differenza di HAM10000 (non commerciale).
+  - Metriche da aggiungere alla valutazione: specificità a sensibilità fissa, pAUC sopra l'80% di sensibilità, lesioni da controllare per trovare un tumore.
+  - AI Act: il quadro per i dispositivi medici è in movimento (Health Innovation Package, Digital Omnibus). Va ricontrollato prima della tesi.
+- **Stato dell'arte** riorganizzato:
+  - nuova §7 "Challenge ISIC", §8 "Prodotti e regolatorio", §9 "Gap";
+  - le righe ISIC della §2 rimandano alla §7.
+- Output: `S7_challenge_isic.docx`, `S8_prodotti_e_regolatorio.docx`; episodi audio 16–19 (tutte le tracce ritaggate x/19).
+
 ### Prossimi passi
 1. **Inviare** la mail agli autori di PanDerm/DermFM-Zero (Cesar), poi annotare la risposta nel file.
-2. **Pacchetto 4:** challenge ISIC 2016–2020 e 2024 (#3), prodotti esistenti e regolamentazione (#8).
-3. **Chiusura M1:** verifica dei ⚠️ (#9), domande di ricerca e contributo originale rispetto a DermAgent (#10).
-4. Testo completo di Anriot 2026 (accesso universitario o dagli autori); link e licenza delle annotazioni di Chanda 2024.
-5. Solo dopo la M1: scaricare HAM10000 ed eseguire la prima EDA (split per `lesion_id`, conteggio artefatti).
-6. (Opzionale) Caricare su NotebookLM i Word nuovi (S5, S6) e quelli aggiornati (S3).
+2. **Chiusura M1:** verifica dei ⚠️ (#9, compresi licenza di BCN20000, date dell'AI Act e transizione MDR), domande di ricerca e contributo originale rispetto a DermAgent (#10).
+3. Testo completo di Anriot 2026 (accesso universitario o dagli autori); link e licenza delle annotazioni di Chanda 2024.
+4. Solo dopo la M1: scaricare HAM10000 ed eseguire la prima EDA (split per `lesion_id`, conteggio artefatti).
+5. (Opzionale) Caricare su NotebookLM i Word nuovi (S5–S8) e quelli aggiornati (S3).

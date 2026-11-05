@@ -8,8 +8,9 @@
 | **ISIC Archive** (isic-archive.com, API) | Dermatoscopiche + cliniche | > 400k ⚠️ | Diagnosi, metadati, alcune maschere | CC-0 / CC-BY / CC-BY-NC per immagine | Sorgente principale |
 | **HAM10000** | Dermatoscopiche | ~10k | 7 classi, istologia per > 50% | CC-BY-NC | Training/benchmark |
 | **ISIC 2019** (BCN20000 + HAM + MSK) | Dermatoscopiche | ~25k train | 8 classi + "unknown" al test | CC-BY-NC | Training multiclasse |
-| **ISIC 2020** | Dermatoscopiche | ~33k | Benigno/maligno, molto sbilanciato, ID paziente | CC-BY-NC | Binario, contesto paziente |
-| **ISIC 2024 / SLICE-3D** | Crop da total body 3D (simili a smartphone) | ~400k | Binario, pochissimi maligni, metadati ricchi | CC-BY-NC ⚠️ | Domain shift verso foto non dermatoscopiche |
+| **BCN20000** (Hospital Clínic Barcelona) | Dermatoscopiche | 18.946 img, 5.583 lesioni (12.413 train / 6.533 test) | 8 classi + OOD nel test; sedi difficili (unghie, mucose) | **CC BY 4.0** (Sci Data 2024; ⚠️ verificare su Figshare/ISIC) | Test esterno severo; dati con licenza aperta |
+| **ISIC 2020** | Dermatoscopiche | ~33k | Benigno/maligno, molto sbilanciato, ID paziente | CC BY-NC 4.0 (verificato, Rotemberg 2021) | Binario, contesto paziente |
+| **ISIC 2024 / SLICE-3D** | Crop da total body 3D (simili a smartphone) | ~400k | Binario, pochissimi maligni, metadati ricchi | CC-BY-NC ⚠️ | Domain shift verso foto non dermatoscopiche; metrica pAUC > 80% sens. (Kurtansky 2025) |
 | **ISIC 2018 Task 1/2** | Dermatoscopiche | ~2.6k | **Maschere di segmentazione** + attributi dermoscopici | CC-BY-NC | Segmentazione |
 | **PH2** | Dermatoscopiche | 200 | Maschere, criteri ABCD, colori | Uso accademico | Test esterno, ABCD |
 | **Derm7pt** | Dermatoscopiche + cliniche (coppie) | ~1k casi | **7-point checklist** | Uso accademico | Agente criteri 7-point |

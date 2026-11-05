@@ -70,3 +70,22 @@ build "S6_agenti_e_mcp.docx" "§6 — Agenti, sistemi multi-agente e MCP" \
   "$P/2024_kim_mdagents.md" \
   "$P/2026_liu_dermagent.md" \
   "$P/2026_vatsal_agentic-taxonomy.md"
+
+build "S7_challenge_isic.docx" "§7 — Le challenge ISIC dal 2016 al 2024" \
+  "$P/S7_introduzione.md" \
+  "$P/2019_codella_isic2018.md" \
+  "$P/2022_combalia_isic2019.md" \
+  "$P/2024_hernandez-perez_bcn20000.md" \
+  "$P/2021_rotemberg_isic2020.md" \
+  "$P/2020_ha_isic2020-winner.md" \
+  "$P/2024_kurtansky_isic2020-context.md" \
+  "$P/2025_kurtansky_isic2024.md"
+
+build "S8_prodotti_e_regolatorio.docx" "§8 — Prodotti sul mercato e regole" \
+  "$P/S8_introduzione.md" \
+  "$P/2020_freeman_smartphone-apps.md" \
+  "$P/2024_wongvibulsin_ai-apps.md" \
+  "$P/2023_jaklitsch_dermasensor.md" \
+  "$P/2024_marsden_derm.md" \
+  "$P/2022_malvehy_mdr-dermatology.md" \
+  "$P/2026_vankolfschooten_ai-act.md"

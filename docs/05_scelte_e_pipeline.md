@@ -64,7 +64,7 @@ Fonti lette il 2026-11-04: README di PanDerm ("CC-BY-NC-ND 4.0", "may only be us
 | Pubblicare la sola testa addestrata sugli embedding | ⚠️ Zona grigia: non è chiaro se conti come "derivato" |
 | App o demo aperta al pubblico, uso clinico, prodotto | ❌ Non permesso (non è ricerca accademica; se commerciale anche NC) |
 
-**Un vincolo che vale comunque:** anche HAM10000 e i dataset ISIC sono **CC-BY-NC**. Un Neo Helper commerciale sarebbe bloccato **dai dati**, non solo da PanDerm. Per un prodotto bisognerebbe cambiare dati **e** backbone.
+**Un vincolo che vale comunque:** anche HAM10000 e i dataset ISIC sono **CC-BY-NC**. Un Neo Helper commerciale sarebbe bloccato **dai dati**, non solo da PanDerm. Per un prodotto bisognerebbe cambiare dati **e** backbone. Un'eccezione utile (Pacchetto 4): **BCN20000** è pubblicato con licenza **CC BY 4.0** ⚠️ da verificare sul repository. E anche con dati e modelli liberi servirebbe la certificazione come dispositivo medico (MDR, almeno classe IIa) e il rispetto dell'AI Act: vedi [04_etica_regolatorio.md](04_etica_regolatorio.md).
 
 **Tracce per non dover cambiare backbone:**
 1. **Chiedere agli autori** (Monash University, gruppo di Siyuan Yan e Zongyuan Ge ⚠️) un permesso scritto per l'uso previsto. È una mail; per un progetto accademico capita spesso che dicano di sì.

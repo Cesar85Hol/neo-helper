@@ -28,12 +28,12 @@
 Deliverable: `01_stato_dell_arte.md` completo + tabella comparativa dei risultati.
 - [x] Clinica di base: melanoma, nevi, dermatoscopia, regola ABCDE, ABCD dermoscopico, 7-point checklist, pattern analysis
 - [x] Paper fondativi DL in dermatologia (Esteva 2017, Haenssle 2018, Tschandl 2019/2020…)
-- [ ] Challenge ISIC 2016–2020, ISIC 2024 (SLICE-3D)
+- [x] Challenge ISIC 2016–2020, ISIC 2024 (SLICE-3D)
 - [x] Foundation model e vision-language in dermatologia (MONET, PanDerm, Derm Foundation…)
 - [x] Bias e fairness (Fitzpatrick17k, DDI)
 - [x] Explainability e human-AI collaboration
 - [x] Sistemi multi-agente e LLM in medicina; MCP
-- [ ] Prodotti esistenti e regolatorio (SkinVision, DermaSensor, MDR/AI Act)
+- [x] Prodotti esistenti e regolatorio (SkinVision, DermaSensor, MDR/AI Act)
 
 ### Fase 2 — Dati e analisi esplorativa (settimane 4–6)
 Deliverable: notebook EDA + `data/README.md` con provenienza e licenze.
