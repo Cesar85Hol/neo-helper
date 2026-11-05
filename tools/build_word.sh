@@ -50,3 +50,23 @@ build "S4_bias_e_fairness.docx" "§4 — Bias, equità e shortcut learning" \
   "$P/2021_groh_fitzpatrick17k.md" \
   "$P/2022_daneshjou_ddi.md" \
   "$P/2022_daneshjou_clear-derm.md"
+
+build "S5_spiegabilita_e_incertezza.docx" "§5 — Spiegabilità, incertezza e collaborazione uomo-AI" \
+  "$P/S5_introduzione.md" \
+  "$P/2017_selvaraju_gradcam.md" \
+  "$P/2018_adebayo_sanity-checks.md" \
+  "$P/2020_koh_concept-bottleneck.md" \
+  "$P/2019_tschandl_cbir.md" \
+  "$P/2024_chanda_xai-dermatologist.md" \
+  "$P/2021_angelopoulos_conformal.md" \
+  "$P/2024_krakowski_human-ai-meta.md"
+
+build "S6_agenti_e_mcp.docx" "§6 — Agenti, sistemi multi-agente e MCP" \
+  "$P/S6_introduzione.md" \
+  "$P/2024_anthropic_building-agents.md" \
+  "$P/2025_anthropic_multi-agent-research.md" \
+  "$P/2024_mcp_specification.md" \
+  "$P/2025_tu_amie.md" \
+  "$P/2024_kim_mdagents.md" \
+  "$P/2026_liu_dermagent.md" \
+  "$P/2026_vatsal_agentic-taxonomy.md"

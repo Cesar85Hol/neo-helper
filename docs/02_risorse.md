@@ -13,6 +13,7 @@
 | **ISIC 2018 Task 1/2** | Dermatoscopiche | ~2.6k | **Maschere di segmentazione** + attributi dermoscopici | CC-BY-NC | Segmentazione |
 | **PH2** | Dermatoscopiche | 200 | Maschere, criteri ABCD, colori | Uso accademico | Test esterno, ABCD |
 | **Derm7pt** | Dermatoscopiche + cliniche (coppie) | ~1k casi | **7-point checklist** | Uso accademico | Agente criteri 7-point |
+| **Annotazioni di Chanda 2024** (su HAM10000) | Dermatoscopiche | 3.611 img (MEL+NV con istologia) | Criteri dermoscopici **localizzati**, 14 dermatologi | ⚠️ link e licenza da verificare | Validare MONET, concept bottleneck, controllo delle heatmap |
 | **PAD-UFES-20** | Cliniche da smartphone | ~2.3k | 6 classi + metadati clinici | CC-BY | Test smartphone |
 | **Fitzpatrick17k** | Cliniche (web) | ~17k | 114 condizioni + fototipo | Uso ricerca | Fairness |
 | **DDI** (Stanford) | Cliniche | ~650 | Fototipi I–VI, biopsia | Accesso su richiesta | Fairness |

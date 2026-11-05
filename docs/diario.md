@@ -75,9 +75,25 @@
 - **Anriot 2026:** resta solo l'abstract (JAMA non accessibile). Segnato un probabile refuso nell'IC dell'abstract.
 - Aggiornati `01_stato_dell_arte.md`, `02_risorse.md`, `S3_introduzione.md` e `05_scelte_e_pipeline.md` (§2); rigenerati i Word e gli episodi 8–9.
 
+## 2026-11-05 — Pacchetto letteratura 3 (§5 spiegabilità + §6 agenti e MCP)
+- Riconosciuto un errore di ordine: la Milestone 1 va chiusa prima dei dati (M2). Restano #3, #8, #9 e #10.
+- **§5 (issue #6, M1.6):** schede su Grad-CAM 2017, Adebayo 2018 (test di sanità), Tschandl 2019 (CBIR), Koh 2020 (concept bottleneck), Angelopoulos e Bates 2021 (conformal), Chanda 2024 (XAI dermoscopica, 116 medici), Krakowski 2024 (meta-analisi uomo-AI). Introduzione `S5_introduzione.md`.
+- **§6 (issue #7, M1.7):** schede su Anthropic 2024 (*Building effective agents*), Anthropic 2025 (sistema multi-agente), specifica MCP (2025-06-18 e 2026-07-28), AMIE (Nature 2025 e 2026), MDAgents 2024, DermAgent 2026, Vatsal 2026 (rassegna). Introduzione `S6_introduzione.md`.
+- **Cosa è stato letto:**
+  - testo completo: Tschandl 2019, Krakowski 2024, Chanda 2024 (tranne il supplementare);
+  - abstract e discussione: AMIE;
+  - pagine web complete: blog di Anthropic, pagine introduttive della specifica MCP;
+  - **sintesi strutturate di alphaXiv**, non il PDF: Grad-CAM, Adebayo, Koh, Angelopoulos, MDAgents, DermAgent, Vatsal. I numeri sono segnati con ⚠️.
+- **Scoperte importanti:**
+  - **Chanda 2024** ha pubblicato annotazioni dermoscopiche localizzate su HAM10000, il nostro dataset; aggiunte a `02_risorse.md`.
+  - **DermAgent** (Monash, 2026) è il lavoro più vicino a Neo Helper: il contributo originale va precisato nella M1.10. Aggiunta una nota alla §8 dello stato dell'arte.
+- Output: `S5_spiegabilita_e_incertezza.docx`, `S6_agenti_e_mcp.docx`; episodi audio 12–15 (tutti gli MP3 rigenerati: tracce x/15).
+- Aggiornati `01_stato_dell_arte.md` (§5, §6, §8), `00_roadmap.md` (spuntate anche "Clinica di base" e "Paper fondativi"), `02_risorse.md`, `refs.bib` (15 voci), `tools/build_word.sh`.
+
 ### Prossimi passi
 1. **Inviare** la mail agli autori di PanDerm/DermFM-Zero (Cesar), poi annotare la risposta nel file.
-2. Testo completo di Anriot 2026 (accesso universitario o dagli autori).
-3. Scaricare HAM10000 ed eseguire la prima EDA (split per `lesion_id`, conteggio artefatti).
-4. Pacchetto 3: explainability e collaborazione uomo-AI, sistemi multi-agente e MCP.
-5. (Opzionale) Caricare i nuovi Word su NotebookLM.
+2. **Pacchetto 4:** challenge ISIC 2016–2020 e 2024 (#3), prodotti esistenti e regolamentazione (#8).
+3. **Chiusura M1:** verifica dei ⚠️ (#9), domande di ricerca e contributo originale rispetto a DermAgent (#10).
+4. Testo completo di Anriot 2026 (accesso universitario o dagli autori); link e licenza delle annotazioni di Chanda 2024.
+5. Solo dopo la M1: scaricare HAM10000 ed eseguire la prima EDA (split per `lesion_id`, conteggio artefatti).
+6. (Opzionale) Caricare su NotebookLM i Word nuovi (S5, S6) e quelli aggiornati (S3).

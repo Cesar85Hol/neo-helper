@@ -52,21 +52,33 @@
 | Daneshjou R. et al., *Checklist for evaluation of image-based AI reports in dermatology* (**CLEAR Derm**), JAMA Dermatology 2022 | **Da usare come checklist per la tua valutazione** | ✅ [scheda](papers/2022_daneshjou_clear-derm.md) |
 
 ## 5. Explainability, incertezza e collaborazione uomo-AI
-- Grad-CAM (Selvaraju 2017); limiti delle saliency map in medicina.
-- Concept-based explanations: TCAV, Concept Bottleneck Models (Koh 2020), MONET.
-- Conformal prediction per insiemi di diagnosi con copertura garantita (Angelopoulos & Bates, tutorial 2021).
-- Tschandl 2020 (sopra): il formato dell'output (probabilità multiclasse vs CBIR "casi simili") cambia l'efficacia per il medico.
-- CBIR (content-based image retrieval): mostrare **casi simili** dal dataset è un'ottima feature di interfaccia.
+Introduzione: [S5_introduzione.md](papers/S5_introduzione.md).
+
+| Paper | Note | Stato |
+|-------|------|-------|
+| Selvaraju R.R. et al., **Grad-CAM**, ICCV 2017 | Heatmap per qualsiasi CNN; dice dove, non perché | ✅ [scheda](papers/2017_selvaraju_gradcam.md) (sintesi alphaXiv) |
+| Adebayo J. et al., *Sanity checks for saliency maps*, NeurIPS 2018 | Molte heatmap non dipendono dal modello; Grad-CAM supera i test | ✅ [scheda](papers/2018_adebayo_sanity-checks.md) (sintesi alphaXiv) |
+| Tschandl P. et al., *Content-based dermatoscopic image retrieval*, **Br J Dermatol 2019** | 16 casi simili ≈ softmax; aiuta su classi nuove | ✅ [scheda](papers/2019_tschandl_cbir.md) |
+| Koh P.W. et al., **Concept Bottleneck Models**, ICML 2020 | Concetti leggibili e correggibili dal medico | ✅ [scheda](papers/2020_koh_concept-bottleneck.md) (sintesi alphaXiv) |
+| Angelopoulos A.N. & Bates S., *Gentle introduction to conformal prediction*, 2021 | Insiemi di diagnosi con copertura garantita | ✅ [scheda](papers/2021_angelopoulos_conformal.md) (sintesi alphaXiv) |
+| Chanda T. et al., *Dermatologist-like explainable AI…*, **Nat Commun 2024** | Criteri dermoscopici localizzati su HAM10000; +fiducia, non +accuratezza; annotazioni pubblicate | ✅ [scheda](papers/2024_chanda_xai-dermatologist.md) |
+| Krakowski I. et al., *Human-AI interaction in skin cancer diagnosis* (meta-analisi), **npj Digit Med 2024** | Con AI sens. 74,8→81,1%, spec. 81,5→86,1%; più beneficio ai non dermatologi | ✅ [scheda](papers/2024_krakowski_human-ai-meta.md) |
+| Tschandl 2020 (§2) | La forma dell'output conta; l'AI difettosa trascina i medici | ✅ (§2) |
+| TCAV (Kim 2018); calibrazione/conformal su ISIC ⚠️ | Approfondimenti | 📖 |
 
 ## 6. LLM, sistemi multi-agente, MCP
+Introduzione: [S6_introduzione.md](papers/S6_introduzione.md).
+
 | Fonte | Note | Stato |
 |-------|------|-------|
-| Anthropic, *Building effective agents* (blog, dic 2024) | Pattern: workflow vs agenti, **orchestrator-workers**, evaluator-optimizer | 📖 |
-| Anthropic, *How we built our multi-agent research system* (2025) | Orchestratore + subagent in parallelo, pro/contro (costo token) | 📖 |
-| Specifica **Model Context Protocol** (modelcontextprotocol.io) | Tool, resource, prompt; client/server; trasporti stdio/HTTP | 📖 |
-| Tu T. et al., **AMIE** (Google), Nature 2025 ⚠️ | LLM conversazionale diagnostico | 📖 |
-| MedAgents (Tang X. et al., 2023/2024) ⚠️, MDAgents (Kim Y. et al., NeurIPS 2024) ⚠️ | Collaborazione multi-agente per ragionamento medico | 📖 |
-| Survey "LLM-based multi-agent systems in healthcare" (2024–2025) | Cercare una survey recente | 📖 |
+| Anthropic, *Building effective agents* (blog, dic 2024) | Workflow vs agenti, **orchestrator-workers**, evaluator-optimizer; partire semplice | ✅ [scheda](papers/2024_anthropic_building-agents.md) |
+| Anthropic, *How we built our multi-agent research system* (giu 2025) | +90,2% vs agente singolo, circa 15 volte i token; quando non conviene | ✅ [scheda](papers/2025_anthropic_multi-agent-research.md) |
+| Specifica **Model Context Protocol** (2025-06-18; ultima 2026-07-28) | Tool, resource, prompt; host/client/server; principi di sicurezza | ✅ [scheda](papers/2024_mcp_specification.md) (pagine introduttive) |
+| Tu T. et al., **AMIE**, Nature 2025 (+ seguito Nature 2026) | LLM conversazionale diagnostico; OSCE simulati; non pronto per la clinica | ✅ [scheda](papers/2025_tu_amie.md) (abstract + discussione) |
+| Kim Y. et al., **MDAgents**, NeurIPS 2024 | Squadra di LLM adattata alla complessità | ✅ [scheda](papers/2024_kim_mdagents.md) (sintesi alphaXiv) |
+| Liu Y. et al., **DermAgent**, arXiv 2026 | Agente dermatologico con tool, RAG e critico a regole: **il più vicino a Neo Helper** | ✅ [scheda](papers/2026_liu_dermagent.md) (sintesi alphaXiv) |
+| Vatsal S. et al., *Agentic AI in Healthcare & Medicine: seven-dimensional taxonomy*, IEEE Access 2026 | Rassegna di 49 studi: mancano HITL, recupero errori, sicurezza, regole | ✅ [scheda](papers/2026_vatsal_agentic-taxonomy.md) (sintesi alphaXiv) |
+| MedAgents (Tang X. et al., 2024) ⚠️; survey "LLM-based agents in medicine" (arXiv 2502.11211) | Approfondimenti | 📖 |
 
 ## 7. Prodotti esistenti e regolatorio
 - **SkinVision** (app consumer, CE marked), **Miiskin**, **Google DermAssist** (CE class I, ora ritirato/limitato ⚠️).
@@ -76,6 +88,8 @@
 - Vedi [04_etica_regolatorio.md](04_etica_regolatorio.md).
 
 ## 8. Gap identificabili (ipotesi per il contributo originale)
+> ⚠️ Da rivedere nella M1.10 alla luce di **DermAgent** (2026), che già orchestra modelli dermatologici con tool e un critico: vedi le differenze proposte in [S6_introduzione.md](papers/S6_introduzione.md).
+
 1. Pochi sistemi open **end-to-end** (modello + spiegazione + interfaccia + mobile) riproducibili.
 2. Integrazione di **criteri dermoscopici espliciti** (ABCD/7-point) con classificatori DL, presentata al medico in modo strutturato.
 3. Uso di **architetture multi-agente/MCP** in dermatologia: quasi inesplorato in letteratura peer-reviewed (da verificare con ricerca sistematica).

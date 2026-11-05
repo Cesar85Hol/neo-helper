@@ -1,0 +1,17 @@
+# Episodio 13 — Casi simili, il "non so" e il medico con l'AI
+
+Secondo episodio del pacchetto tre. Oggi tre idee: mostrare casi simili, saper dire "non so", e capire cosa succede davvero quando un medico usa l'AI.
+
+Primo lavoro: Tschandl e colleghi, British Journal of Dermatology, duemiladiciannove, ancora Vienna. Ho letto il testo completo. La domanda è: invece di dare una probabilità, perché non mostrare al medico le immagini più simili dell'archivio, ognuna con la sua diagnosi? Si chiama ricerca di immagini per contenuto, in inglese CBIR.
+
+Come si fa? La rete trasforma ogni immagine in una lista di duemila numeri. Due immagini simili hanno liste simili. Per un caso nuovo, si cercano le liste più vicine nell'archivio. Su tre dataset diversi, guardare le sedici immagini più simili e contare le diagnosi è accurato quanto la probabilità della rete. Con solo due immagini va peggio; oltre sedici non migliora. E c'è una sorpresa: una rete addestrata su tre malattie, se cerca casi simili in un archivio che ne contiene otto, riesce a riconoscere anche le malattie che non ha mai imparato. Per il medico, poi, è intuitivo. Se i casi simili non assomigliano per niente alla lesione, capisce da solo che la macchina, questa volta, non lo può aiutare.
+
+Seconda idea: dire "non so" con un criterio preciso. Il metodo si chiama conformal prediction. Il riferimento è un tutorial molto citato di Angelopoulos e Bates, del duemilaventuno. Funziona così. Si prende il classificatore già addestrato e un gruppo di casi mai visti, il set di calibrazione. Si guarda quanto il modello sbaglia su questi casi e si sceglie una soglia. Da quel momento, per ogni paziente nuovo, il modello non dà una sola diagnosi, ma un insieme di diagnosi, costruito in modo da contenere quella vera, per esempio, nel novantacinque per cento dei casi. Senza ipotesi sulla distribuzione dei dati.
+
+Se l'insieme contiene una sola diagnosi, il caso è chiaro. Se ne contiene tre, tra cui un melanoma, il modello sta dicendo: non sono sicuro, fai vedere questa lesione a uno specialista. Attenzione però: la garanzia vale se i pazienti nuovi assomigliano a quelli di calibrazione. Su immagini di un altro ospedale va misurata, non data per scontata.
+
+Terza idea: cosa succede quando il medico usa davvero l'AI. Krakowski e colleghi, npj Digital Medicine, duemilaventiquattro, hanno messo insieme dieci studi, quasi sessantottomila valutazioni. Senza AI, i medici riconoscevano il tumore nel settantacinque per cento dei casi; con l'AI, nell'ottantuno. Anche la specificità sale, da ottantuno a ottantasei. Migliorano tutti, ma chi migliora di più sono i non dermatologi: medici di base, infermieri, studenti. Più tredici punti di sensibilità.
+
+Due avvertenze dalla stessa revisione. Primo: quasi nessuno studio ha provato le spiegazioni sui medici; i casi simili sono l'unico metodo testato, in due studi. Secondo: quando l'AI dà un consiglio sbagliato, i medici peggiorano. È lo stesso messaggio di Tschandl duemilaventi e di Chanda duemilaventiquattro.
+
+Per Neo Helper questo significa tre cose. Uno strumento che mostra i casi simili, quasi gratis, perché gli embedding li calcoliamo già. Uno strumento che restituisce l'insieme conformal e permette all'agente di dire "non so" con un criterio preciso. E un pubblico chiaro: i medici non specialisti, quelli che dall'AI guadagnano di più. Senza dimenticare di misurare quanto ci si fida della macchina quando sbaglia.
