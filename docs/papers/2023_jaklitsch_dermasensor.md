@@ -3,7 +3,7 @@
 - **Rivista:** *Journal of Primary Care & Community Health* 14 (2023) · [DOI 10.1177/21501319231205979](https://doi.org/10.1177/21501319231205979) · PMID 37933569 · PMC10631325
 - **Gruppo:** sei autori, tra cui Laura Ferris (University of Pittsburgh) ⚠️ verificare affiliazioni e conflitti d'interesse con l'azienda
 - **Testo letto:** abstract e parti di introduzione e discussione (PMC).
-- **Dati sull'autorizzazione FDA:** presi da fonti **secondarie** (comunicati e stampa di settore, gennaio 2024), non dalla decisione ufficiale della FDA ⚠️.
+- **Dati sull'autorizzazione FDA:** verificati il 2026-11-09 sulla banca dati De Novo della FDA e su Venkatesh et al., *npj Digit Med* 7:156 (2024), [DOI 10.1038/s41746-024-01161-1](https://doi.org/10.1038/s41746-024-01161-1).
 
 ## In una frase
 DermaSensor **non guarda una foto**: misura come la luce viene diffusa dalla lesione (spettroscopia) e un algoritmo dice "indagare" o "monitorare". Con il suo aiuto, i medici di base riconoscono più tumori.
@@ -11,12 +11,11 @@ DermaSensor **non guarda una foto**: misura come la luce viene diffusa dalla les
 ## Il dispositivo
 - **Portatile**, appoggiato sulla lesione. Usa la **spettroscopia a diffusione elastica** (ESS) e un algoritmo di machine learning.
 - Pensato per i **medici di base**, non per i dermatologi né per i pazienti.
-- **FDA, gennaio 2024:** autorizzazione **De Novo**, il primo dispositivo con AI per i tumori della pelle autorizzato negli Stati Uniti (secondo le fonti secondarie) ⚠️.
-- **Studio registrativo DERM-SUCCESS:**
-  - sensibilità circa **96%** su 224 tumori;
-  - specificità circa **21%**, cioè molti falsi positivi.
-  
-  Numeri da fonti secondarie ⚠️.
+- **FDA:** autorizzazione **De Novo DEN230008**, decisione del 12 gennaio 2024, **classe II**. È il primo dispositivo con AI per i tumori della pelle indicato per **medici non dermatologi**, in pazienti di 40 anni o più. La FDA ha chiesto studi dopo l'autorizzazione nelle popolazioni poco rappresentate (nello studio registrativo il 97,1% dei pazienti era bianco).
+- **Studio registrativo DERM-SUCCESS** (Venkatesh 2024): 1.579 lesioni di 1.005 pazienti in 22 centri di medicina generale.
+  - sensibilità **95,5%** (medici di base 83%);
+  - specificità **20,7%**, cioè molti falsi positivi;
+  - valore predittivo negativo 96,6%.
 
 ## Lo studio letto: utilità per i medici di base
 - **57 medici di base** valutano **50 immagini cliniche** (25 maligne, 25 benigne), prima senza e poi con il risultato del dispositivo.

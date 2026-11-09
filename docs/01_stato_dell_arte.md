@@ -14,7 +14,7 @@
 - Classi tipiche nei dataset: nevo melanocitico (NV), melanoma (MEL), cheratosi seborroica (BKL), carcinoma basocellulare (BCC), cheratosi attinica (AK), carcinoma squamocellulare (SCC), dermatofibroma (DF), lesioni vascolari (VASC).
 
 ✅ Sintesi: [papers/00_background_clinico.md](papers/00_background_clinico.md) (include Argenziano 1998 e 2003).
-📖 Fonte consigliata per approfondire: Argenziano G. et al., *Dermoscopy of pigmented skin lesions* (JAAD 2003, consensus net meeting) ⚠️; un manuale di dermatoscopia (es. Marghoob / Kittler).
+📖 Fonte consigliata per approfondire: Argenziano G. et al., *Dermoscopy of pigmented skin lesions: results of a consensus meeting via the Internet*, JAAD 48(5):679–693 (2003), DOI 10.1067/mjd.2003.281; un manuale di dermatoscopia (es. Marghoob / Kittler).
 
 ## 2. Paper fondativi di Deep Learning in dermatologia
 | Paper | Perché è importante | Stato |
@@ -45,7 +45,7 @@
 | Groh M. et al., *Evaluating deep neural networks trained on clinical images in dermatology with the Fitzpatrick 17k dataset*, CVPR-W 2021 | Annotazioni del fototipo | ✅ [scheda](papers/2021_groh_fitzpatrick17k.md) |
 | Daneshjou R. et al., *Disparities in dermatology AI performance on a diverse, curated clinical image set* (**DDI**), **Science Advances 2022** | Calo di performance su pelli scure | ✅ [scheda](papers/2022_daneshjou_ddi.md) |
 | Winkler J.K. et al., *Association between surgical skin markings… and diagnostic performance of a CNN*, **JAMA Dermatology 2019** | Artefatti (inchiostro) → **shortcut learning** | ✅ [scheda](papers/2019_winkler_surgical-markings.md) (abstract) |
-| Bissoto A. et al., studi su bias/artefatti in ISIC (2019–2020) ⚠️ | I modelli imparano "scorciatoie" | 📖 |
+| Bissoto A. et al., *(De)Constructing Bias on Skin Lesion Datasets* (arXiv 1904.08818, 2019) e *Debiasing Skin Lesion Datasets and Models? Not So Fast* (arXiv 2004.11457, 2020); workshop ISIC a CVPR ⚠️ sede | I modelli imparano "scorciatoie" | 📖 |
 | Daneshjou R. et al., *Checklist for evaluation of image-based AI reports in dermatology* (**CLEAR Derm**), JAMA Dermatology 2022 | **Da usare come checklist per la tua valutazione** | ✅ [scheda](papers/2022_daneshjou_clear-derm.md) |
 
 ## 5. Explainability, incertezza e collaborazione uomo-AI
@@ -61,7 +61,7 @@ Introduzione: [S5_introduzione.md](papers/S5_introduzione.md).
 | Chanda T. et al., *Dermatologist-like explainable AI…*, **Nat Commun 2024** | Criteri dermoscopici localizzati su HAM10000; +fiducia, non +accuratezza; annotazioni pubblicate | ✅ [scheda](papers/2024_chanda_xai-dermatologist.md) |
 | Krakowski I. et al., *Human-AI interaction in skin cancer diagnosis* (meta-analisi), **npj Digit Med 2024** | Con AI sens. 74,8→81,1%, spec. 81,5→86,1%; più beneficio ai non dermatologi | ✅ [scheda](papers/2024_krakowski_human-ai-meta.md) |
 | Tschandl 2020 (§2) | La forma dell'output conta; l'AI difettosa trascina i medici | ✅ (§2) |
-| TCAV (Kim 2018); calibrazione/conformal su ISIC ⚠️ | Approfondimenti | 📖 |
+| TCAV (Kim B. et al., ICML 2018, arXiv 1711.11279); calibrazione/conformal su ISIC (da cercare) | Approfondimenti | 📖 |
 
 ## 6. LLM, sistemi multi-agente, MCP
 Introduzione: [S6_introduzione.md](papers/S6_introduzione.md).
@@ -75,7 +75,7 @@ Introduzione: [S6_introduzione.md](papers/S6_introduzione.md).
 | Kim Y. et al., **MDAgents**, NeurIPS 2024 | Squadra di LLM adattata alla complessità | ✅ [scheda](papers/2024_kim_mdagents.md) (sintesi alphaXiv) |
 | Liu Y. et al., **DermAgent**, arXiv 2026 | Agente dermatologico con tool, RAG e critico a regole: **il più vicino a Neo Helper** | ✅ [scheda](papers/2026_liu_dermagent.md) (sintesi alphaXiv) |
 | Vatsal S. et al., *Agentic AI in Healthcare & Medicine: seven-dimensional taxonomy*, IEEE Access 2026 | Rassegna di 49 studi: mancano HITL, recupero errori, sicurezza, regole | ✅ [scheda](papers/2026_vatsal_agentic-taxonomy.md) (sintesi alphaXiv) |
-| MedAgents (Tang X. et al., 2024) ⚠️; survey "LLM-based agents in medicine" (arXiv 2502.11211) | Approfondimenti | 📖 |
+| MedAgents (Tang X. et al., arXiv 2311.10537, 2023; sede ⚠️); survey "LLM-based agents in medicine" (arXiv 2502.11211) | Approfondimenti | 📖 |
 
 ## 7. Challenge ISIC (2016–2024)
 Introduzione: [S7_introduzione.md](papers/S7_introduzione.md).
@@ -90,7 +90,7 @@ Introduzione: [S7_introduzione.md](papers/S7_introduzione.md).
 | Ha Q. et al., soluzione vincente SIIM-ISIC 2020, arXiv 2020 | Ensemble di 18 reti, validazione stabile, bersaglio a 9 classi | ✅ [scheda](papers/2020_ha_isic2020-winner.md) |
 | Kurtansky N. et al., risultati ISIC 2020 e contesto del paziente, **JEADV 2024** | Il contesto (7 lesioni) non aiuta né reti né medici | ✅ [scheda](papers/2024_kurtansky_isic2020-context.md) (abstract) |
 | Kurtansky N. et al., *Automated triage… 3D total-body photography* (ISIC 2024), **npj Digit Med 2025** | pAUC > 80% sens.; contesto del paziente utile; 1 tumore ogni ~52 lesioni controllate | ✅ [scheda](papers/2025_kurtansky_isic2024.md) |
-| Kurtansky N. et al., SLICE-3D (Sci Data 2024) ⚠️; MILK10k (ISIC 2025) ⚠️ | Dataset | 📖 |
+| Kurtansky N. et al., *The SLICE-3D dataset*, Sci Data 11:884 (2024), DOI 10.1038/s41597-024-03743-w; MILK10k (collezione ISIC, 10.480 immagini, CC BY-NC) | Dataset (verificati) | 📖 |
 
 ## 8. Prodotti esistenti e regolatorio
 Introduzione: [S8_introduzione.md](papers/S8_introduzione.md) · documento: [04_etica_regolatorio.md](04_etica_regolatorio.md).
@@ -99,19 +99,20 @@ Introduzione: [S8_introduzione.md](papers/S8_introduzione.md) · documento: [04_
 |-------|------|-------|
 | Freeman K. et al., *Algorithm based smartphone apps…*, **BMJ 2020** | 9 studi, 6 app; SkinVision sens. 80% / spec. 78%; CE insufficiente | ✅ [scheda](papers/2020_freeman_smartphone-apps.md) |
 | Wongvibulsin S. et al., *Current state of dermatology mobile apps with AI*, **JAMA Dermatol 2024** | 41 app, nessuna FDA, poca trasparenza | ✅ [scheda](papers/2024_wongvibulsin_ai-apps.md) (abstract) |
-| Jaklitsch E. et al., DermaSensor e medici di base, **J Prim Care Community Health 2023** (+ FDA De Novo 2024 ⚠️) | Spettroscopia; sens. dei medici di base 67% → 88% | ✅ [scheda](papers/2023_jaklitsch_dermasensor.md) |
-| Marsden H. et al., DERM (Skin Analytics) nel servizio sanitario inglese, **Front Med 2024** | Meno invii inutili a pari sensibilità; CE classe III 2025 ⚠️ | ✅ [scheda](papers/2024_marsden_derm.md) |
+| Jaklitsch E. et al., DermaSensor e medici di base, **J Prim Care Community Health 2023** (+ FDA De Novo DEN230008, 12 gennaio 2024, verificato) | Spettroscopia; sens. dei medici di base 67% → 88% | ✅ [scheda](papers/2023_jaklitsch_dermasensor.md) |
+| Marsden H. et al., DERM (Skin Analytics) nel servizio sanitario inglese, **Front Med 2024** | Meno invii inutili a pari sensibilità; CE classe III 2025 (fonte aziendale) | ✅ [scheda](papers/2024_marsden_derm.md) |
 | Malvehy J. et al., *New regulation of medical devices in the EU: impact in dermatology*, **JEADV 2022** | MDR: software diagnostico almeno classe IIa | ✅ [scheda](papers/2022_malvehy_mdr-dermatology.md) |
 | Van Kolfschooten H. et al., *High-risk without safeguards? The EU AI Act…*, **BMJ Digit Health AI 2026** | AI Act alto rischio; riforme 2025–2026 | ✅ [scheda](papers/2026_vankolfschooten_ai-act.md) |
-| Moleanalyzer Pro (FotoFinder), Miiskin, Google DermAssist ⚠️ | Altri prodotti | 📖 |
+| Moleanalyzer Pro (FotoFinder), Miiskin; Google DermAssist (CE classe I 2021, "non più in sviluppo" secondo Google) | Altri prodotti | 📖 |
 
-## 9. Gap identificabili (ipotesi per il contributo originale)
-> ⚠️ Da rivedere nella M1.10 alla luce di **DermAgent** (2026), che già orchestra modelli dermatologici con tool e un critico: vedi le differenze proposte in [S6_introduzione.md](papers/S6_introduzione.md).
+## 9. Gap identificabili e contributo originale
+Aggiornato il 2026-11-09 dopo i pacchetti 1–4, anche alla luce di **DermAgent** (2026). Domande di ricerca e contributo in [07_domande_di_ricerca.md](07_domande_di_ricerca.md).
 
-1. Pochi sistemi open **end-to-end** (modello + spiegazione + interfaccia + mobile) riproducibili.
-2. Integrazione di **criteri dermoscopici espliciti** (ABCD/7-point) con classificatori DL, presentata al medico in modo strutturato.
-3. Uso di **architetture multi-agente/MCP** in dermatologia: quasi inesplorato in letteratura peer-reviewed (da verificare con ricerca sistematica).
-4. **Quantificazione dell'incertezza** e "abstention" (il sistema dice "non so / immagine inadatta").
+1. **"Non so" senza garanzie.** I classificatori chiamano "maligne" quasi metà delle lesioni mai viste (Combalia 2022). Gli agenti dermatologici usano soglie di confidenza (DermAgent), e nessuno integra un'astensione con copertura garantita e misurata per fototipo e per centro → **RQ2**.
+2. **Spiegazioni non verificate.** Le heatmap spesso non superano i test di sanità (Adebayo 2018); MONET non è mai stato valutato sui criteri dermoscopici; le annotazioni localizzate degli esperti (Chanda 2024) sono pubbliche ma poco usate per validare → **RQ3**.
+3. **Valutazioni troppo ottimistiche.** Spesso c'è un solo test interno (HAM10000); la metrica non rispecchia la clinica; mancano i risultati per fototipo (DDI, CLEAR Derm, Kurtansky 2025) → **RQ1**.
+4. **Agenti medici poco controllati.** Mancano controllo umano, gestione degli errori e risoluzione dei conflitti (Vatsal 2026); nessuno misura il costo del multi-agente rispetto all'agente singolo; DermAgent dipende da un modello chiuso → **RQ4**.
+5. **Licenze e riproducibilità.** I modelli migliori sono non commerciali (PanDerm, MONET); pochi sistemi aperti end-to-end documentano licenze e regole → **RQ1** e il contributo 5.
 
 ## 10. Strategia di ricerca bibliografica
 - Banche dati: PubMed, Google Scholar, Semantic Scholar, arXiv (cs.CV, eess.IV), IEEE Xplore.

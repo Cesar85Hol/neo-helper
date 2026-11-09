@@ -128,9 +128,36 @@
   - le righe ISIC della §2 rimandano alla §7.
 - Output: `S7_challenge_isic.docx`, `S8_prodotti_e_regolatorio.docx`; episodi audio 16–19 (tutte le tracce ritaggate x/19).
 
+## 2026-11-09 — Chiusura della M1: verifiche (#9) e domande di ricerca (#10)
+- **Verifica dei ⚠️ (issue #9):** registro completo in [`06_verifiche_M1.md`](06_verifiche_M1.md).
+  - Fonti: Crossref, API di arXiv, API dell'archivio ISIC (licenza per immagine), Hugging Face, GitHub, Figshare, banca dati FDA, EUR-Lex, sintesi legali.
+  - Esito: ✅ 19 confermati, ✏️ 13 corretti, ❓ 2 non risolti (licenza di DermFM-Zero, CE di DERM). Restano da confermare alcune sedi di pubblicazione e alcuni termini di licenza (§6 del registro).
+- **Correzioni importanti:**
+  - **BCN20000** è CC BY 4.0 solo su **Figshare**; sull'archivio ISIC è CC BY-NC;
+  - **ISIC 2020** e **SLICE-3D** hanno licenze **miste** immagine per immagine;
+  - l'archivio ISIC ha **581.002** immagini;
+  - **AI Act:** obblighi per i dispositivi medici rinviati al **2 agosto 2028** (Digital Omnibus, reg. UE 2026/1744);
+  - DermaSensor confermato (De Novo DEN230008, 12 gennaio 2024, classe II, sensibilità 95,5%, specificità 20,7%);
+  - il seguito di AMIE ha primo autore Liévin;
+  - Vatsal 2026 risulta solo come preprint;
+  - MONET su Hugging Face è ora `suinleelab/monet`.
+- **Scoperte:**
+  - le **annotazioni di Chanda 2024** sono su Figshare con licenza CC BY 4.0;
+  - **HIBA**, un dataset argentino sull'archivio ISIC (1.616 immagini, CC BY), aggiunto alle risorse e al §4.3 delle scelte.
+- **Domande di ricerca (issue #10):** proposta in [`07_domande_di_ricerca.md`](07_domande_di_ricerca.md), **da confermare**.
+  - RQ1 vedere, RQ2 dubitare, RQ3 spiegare, RQ4 coordinare, RQ5 facoltativa aiutare;
+  - nuovo titolo di lavoro;
+  - contributo originale rispetto a DermAgent.
+  
+  Aggiornati `00_roadmap.md` e la §9 (gap) dello stato dell'arte.
+- Output: `S9_domande_e_verifiche.docx`; episodio audio 20 (tutte le tracce ritaggate x/20).
+
 ### Prossimi passi
-1. **Inviare** la mail agli autori di PanDerm/DermFM-Zero (Cesar), poi annotare la risposta nel file.
-2. **Chiusura M1:** verifica dei ⚠️ (#9, compresi licenza di BCN20000, date dell'AI Act e transizione MDR), domande di ricerca e contributo originale rispetto a DermAgent (#10).
-3. Testo completo di Anriot 2026 (accesso universitario o dagli autori); link e licenza delle annotazioni di Chanda 2024.
-4. Solo dopo la M1: scaricare HAM10000 ed eseguire la prima EDA (split per `lesion_id`, conteggio artefatti).
-5. (Opzionale) Caricare su NotebookLM i Word nuovi (S5–S8) e quelli aggiornati (S3).
+1. **Confermare o correggere le domande di ricerca** (Cesar), poi chiudere la #10 e la Milestone 1.
+2. **Inviare** la mail agli autori di PanDerm/DermFM-Zero (Cesar), poi annotare la risposta nel file.
+3. **Milestone 2 (dati):**
+   - ambiente Python (M2.1);
+   - download riproducibile di HAM10000, BCN20000 da Figshare, DDI, PAD-UFES-20, HIBA, PH2, Derm7pt e annotazioni di Chanda, con la **licenza registrata per immagine** (M2.2);
+   - EDA e divisione per `lesion_id` (M2.3).
+4. Testo completo di Anriot 2026; leggere i testi di MDR (regola 11) e AI Act consolidato prima della consegna della tesi.
+5. (Opzionale) Caricare su NotebookLM i Word nuovi (S5–S9) e quelli aggiornati (S3).

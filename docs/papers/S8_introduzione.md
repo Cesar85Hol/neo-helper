@@ -13,8 +13,8 @@ Le sezioni precedenti parlavano di ricerca. Questa guarda **cosa esiste davvero*
 
 **2. I prodotti per i medici: prove migliori, regole più severe.**
 - **DermaSensor** (USA): non usa foto ma la **spettroscopia**.
-  - È il primo dispositivo con AI per i tumori della pelle autorizzato dalla **FDA** (De Novo, gennaio 2024 ⚠️), per i **medici di base**.
-  - Molto sensibile (circa 96%), poco specifico (circa 21%) ⚠️.
+  - È il primo dispositivo con AI per i tumori della pelle autorizzato dalla **FDA** per i non specialisti (De Novo, 12 gennaio 2024, classe II, verificato), per i **medici di base**.
+  - Molto sensibile (95,5%), poco specifico (20,7%) nello studio registrativo (Venkatesh 2024).
   - Con il suo aiuto i medici di base passano dal 67% all'88% di sensibilità su immagini (Jaklitsch 2023).
 - **DERM** di Skin Analytics (Regno Unito): dermoscopia con smartphone, dentro i percorsi del servizio sanitario inglese, con più di 81.000 pazienti.
   - In uno studio prospettico trova i tumori quanto i teledermatologi, ma evita **più invii inutili** (Marsden 2024).
@@ -34,7 +34,7 @@ Le sezioni precedenti parlavano di ricerca. Questa guarda **cosa esiste davvero*
 | Prodotto | Tecnologia | Per chi | Stato regolatorio | Prove |
 |----------|-----------|---------|-------------------|-------|
 | SkinVision | Foto smartphone + algoritmo | Pubblico | CE (prima dell'MDR) | Sens. 80%, spec. 78% su lesioni scelte da medici |
-| DermaSensor | Spettroscopia + ML | Medici di base | FDA De Novo 2024 ⚠️ | Sens. ~96%, spec. ~21% ⚠️ |
+| DermaSensor | Spettroscopia + ML | Medici di base | FDA De Novo 2024, classe II | Sens. 95,5%, spec. 20,7% |
 | DERM (Skin Analytics) | Dermoscopia smartphone + ensemble CNN | Servizio sanitario, triage | UKCA IIa 2022; CE classe III 2025 ⚠️ | Prospettico: meno invii a pari sensibilità |
 | App AI negli store (41) | Varie | Pubblico | Nessuna FDA | Quasi nessuna prova |
 

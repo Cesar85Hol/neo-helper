@@ -13,16 +13,16 @@ Fonti e dettagli: [S8_introduzione.md](papers/S8_introduzione.md) e le schede co
   - servono valutazione clinica, gestione del rischio, sistema qualità e sorveglianza dopo l'immissione sul mercato;
   - fonte: [Malvehy 2022](papers/2022_malvehy_mdr-dermatology.md).
   
-  Esempio: **DERM** (Skin Analytics) ha la **classe III** per l'uso autonomo (2025, fonte aziendale ⚠️). Il periodo di transizione per i dispositivi già esistenti è stato prorogato al 2027–2028 (reg. UE 2023/607 ⚠️ da verificare).
+  Esempio: **DERM** (Skin Analytics) ha la **classe III** per l'uso autonomo (2025, fonte aziendale ⚠️). Il periodo di transizione per i dispositivi già esistenti è prorogato dal reg. UE 2023/607: 31 dicembre 2027 per classe III e IIb impiantabili, 31 dicembre 2028 per le altre IIb, le IIa e alcune classe I (verificato).
 - **UE — AI Act** (reg. 2024/1689, in vigore da agosto 2024):
   - l'AI nei dispositivi medici è ad **alto rischio** (Allegato I);
   - obblighi su **dati** (qualità e rappresentatività), gestione del rischio, **documentazione e trasparenza**, **supervisione umana**, **monitoraggio**;
-  - obblighi per l'Allegato I dal 2 agosto 2027 ⚠️ da verificare.
+  - obblighi per l'Allegato I **rinviati al 2 agosto 2028** dal Digital Omnibus sull'AI (reg. UE 2026/1744, Gazzetta del 24 luglio 2026); i dispositivi medici restano nella sezione A. Data da sintesi legali, testo in Gazzetta non letto.
   
   **Il quadro è in movimento:** l'Health Innovation Package (dicembre 2025) proporrebbe di togliere quasi tutti questi obblighi ai dispositivi medici. Il compromesso sul Digital Omnibus (luglio 2026) li ha per ora mantenuti ([Van Kolfschooten 2026](papers/2026_vankolfschooten_ai-act.md)). Da ricontrollare prima della consegna della tesi.
 - **USA — FDA:**
   - percorsi 510(k), De Novo, PMA;
-  - **DermaSensor** è il primo dispositivo con AI per i tumori della pelle autorizzato (De Novo, gennaio 2024 ⚠️). È per i medici di base e usa la spettroscopia, non le foto;
+  - **DermaSensor** è il primo dispositivo con AI per i tumori della pelle autorizzato per non specialisti (De Novo DEN230008, 12 gennaio 2024, classe II, verificato). È per i medici non dermatologi, usa la spettroscopia e non le foto, e la FDA ha chiesto studi dopo l'autorizzazione sulle pelli poco rappresentate;
   - nessuna app per il pubblico è autorizzata ([Freeman 2020](papers/2020_freeman_smartphone-apps.md), [Wongvibulsin 2024](papers/2024_wongvibulsin_ai-apps.md)).
 - **GDPR:** le immagini cutanee sono **dati sanitari** (art. 9) e possono essere identificative (tatuaggi, volto). Nella demo pubblica: nessuna conservazione o consenso esplicito, oppure solo immagini dei dataset.
 

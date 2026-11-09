@@ -1,7 +1,7 @@
 # Tu et al., 2025 — AMIE: verso un'AI che fa diagnosi conversando
 
 - **Rivista:** *Nature* (2025) · [DOI 10.1038/s41586-025-08866-7](https://doi.org/10.1038/s41586-025-08866-7) · PMID 40205050 · PMC12158756
-- **Seguito:** *Towards conversational artificial intelligence for disease management*, *Nature* (2026) · [DOI 10.1038/s41586-026-10764-5](https://doi.org/10.1038/s41586-026-10764-5) · PMID 42310463 · PMC13421318
+- **Seguito:** Liévin et al., *Towards conversational artificial intelligence for disease management*, *Nature* (2026) · [DOI 10.1038/s41586-026-10764-5](https://doi.org/10.1038/s41586-026-10764-5) · PMID 42310463 · PMC13421318
 - **Gruppo:** Google Research e Google DeepMind
 - **Testo letto:** abstract e discussione del paper del 2025; abstract, limiti e conclusioni di quello del 2026. Il testo completo è in PMC, ma non l'ho letto tutto ⚠️.
 

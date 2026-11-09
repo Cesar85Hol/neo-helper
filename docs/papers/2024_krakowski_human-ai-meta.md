@@ -1,6 +1,6 @@
 # Krakowski et al., 2024 — Medici con e senza AI nella diagnosi del cancro della pelle: meta-analisi
 
-- **Rivista:** *npj Digital Medicine* 7:78 (2024) ⚠️ numero dell'articolo da verificare · [DOI 10.1038/s41746-024-01031-w](https://doi.org/10.1038/s41746-024-01031-w) · PMID 38594408 · PMC11004168
+- **Rivista:** *npj Digital Medicine* 7:78 (2024) · [DOI 10.1038/s41746-024-01031-w](https://doi.org/10.1038/s41746-024-01031-w) · PMID 38594408 · PMC11004168
 - **Gruppo:** Stanford (gruppo di Roxana Daneshjou) ⚠️ affiliazioni da verificare
 - **Testo letto:** **completo** (PMC), senza materiale supplementare.
 

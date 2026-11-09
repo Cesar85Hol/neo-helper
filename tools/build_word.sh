@@ -89,3 +89,7 @@ build "S8_prodotti_e_regolatorio.docx" "§8 — Prodotti sul mercato e regole" \
   "$P/2024_marsden_derm.md" \
   "$P/2022_malvehy_mdr-dermatology.md" \
   "$P/2026_vankolfschooten_ai-act.md"
+
+build "S9_domande_e_verifiche.docx" "§9 — Domande di ricerca e verifica dei riferimenti" \
+  docs/07_domande_di_ricerca.md \
+  docs/06_verifiche_M1.md

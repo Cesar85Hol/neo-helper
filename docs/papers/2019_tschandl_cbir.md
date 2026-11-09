@@ -1,6 +1,6 @@
 # Tschandl et al., 2019 — Ricerca di immagini simili (CBIR) in dermoscopia
 
-- **Rivista:** *British Journal of Dermatology* 181(1):155–165 (2019) ⚠️ volume e pagine da verificare · [DOI 10.1111/bjd.17189](https://doi.org/10.1111/bjd.17189) · PMID 30207594 · PMC7379719
+- **Rivista:** *British Journal of Dermatology* 181:155–165 (2019; online 2018) · [DOI 10.1111/bjd.17189](https://doi.org/10.1111/bjd.17189) · PMID 30207594 · PMC7379719
 - **Gruppo:** Medical University of Vienna (Tschandl, Kittler) con Argenziano e Zalaudek
 - **Testo letto:** **completo** (PMC).
 

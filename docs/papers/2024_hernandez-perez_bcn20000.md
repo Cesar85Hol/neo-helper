@@ -27,5 +27,5 @@
 
 ## Cosa porto in Neo Helper
 - **Test esterno principale dermoscopico**, coerente con la scelta di aggiungere ISIC 2019 **dopo** la baseline.
-- **Licenza:** con HAM10000 non commerciale, BCN20000 (CC BY) è un pezzo di un eventuale dataset "libero" per un uso futuro fuori dalla ricerca. Va affiancato a un backbone libero come DINOv2. ⚠️ Verificare la licenza effettiva su Figshare e sull'archivio ISIC prima di usarlo così.
+- **Licenza:** con HAM10000 non commerciale, BCN20000 (CC BY) è un pezzo di un eventuale dataset "libero" per un uso futuro fuori dalla ricerca. Va affiancato a un backbone libero come DINOv2. **Verificato il 2026-11-09:** la copia su Figshare (10.6084/m9.figshare.24140028) è CC BY 4.0, mentre le stesse immagini sull'archivio ISIC sono CC BY-NC. Per la licenza aperta bisogna scaricare da Figshare.
 - Controllare con MONET la presenza del **bordo nero** per classe prima di usarlo nel training.

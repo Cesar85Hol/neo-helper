@@ -3,16 +3,19 @@
 ## Titolo di lavoro
 **"Un sistema multi-agente per il supporto alla diagnosi dermatoscopica di lesioni melanocitiche: classificazione, spiegabilità e orchestrazione tramite Model Context Protocol"**
 
-## Domande di ricerca (bozza — da raffinare dopo la Fase 1)
-- **RQ1** — Quanto si avvicinano i modelli open (CNN/ViT/foundation model dermatologici) allo stato dell'arte su benchmark pubblici (ISIC, HAM10000, BCN20000), con metriche clinicamente rilevanti (sensibilità per melanoma a specificità fissata, AUROC, calibrazione)?
-- **RQ2** — Un'architettura **multi-agente** (agenti specializzati: qualità immagine, segmentazione, classificazione, criteri ABCD/7-point, spiegazione, report) migliora **affidabilità, trasparenza e utilità percepita** rispetto a un singolo classificatore "black box"?
-- **RQ3** — Come si comporta il sistema su **pelli diverse (Fitzpatrick IV–VI)** e su immagini **cliniche da smartphone** vs dermatoscopiche (domain shift)?
-- **RQ4** (opzionale) — Un LLM orchestratore, con tool esposti via MCP, introduce rischi (allucinazioni, overconfidence) e come mitigarli?
+## Domande di ricerca (proposta del 2026-11-09, da confermare — dettagli in [07_domande_di_ricerca.md](07_domande_di_ricerca.md))
+- **RQ1 — Vedere:** quanto rende PanDerm congelato con una testa lineare rispetto a DINOv2, ImageNet e Derm Foundation, su HAM10000 e su test esterni (BCN20000, DDI, PAD-UFES-20, HIBA, PH2, Derm7pt)? Quanto si perde con un backbone a licenza libera?
+- **RQ2 — Dubitare:** calibrazione e insiemi conformal permettono di dire "non so" in modo affidabile su lesioni mai viste, centri nuovi e fototipi diversi? A quale costo in invii allo specialista?
+- **RQ3 — Spiegare:** le spiegazioni (criteri dermoscopici, heatmap, casi simili) sono fedeli al modello e concordano con le annotazioni dei dermatologi?
+- **RQ4 — Coordinare:** un agente con tool MCP e un critico a regole produce report tracciabili senza numeri inventati? Il multi-agente (v3) vale il suo costo rispetto all'agente singolo (v2)?
+- **RQ5 (facoltativa) — Aiutare:** con l'ospedale, Neo Helper migliora le decisioni dei medici non specialisti, e quanto lo si segue quando sbaglia?
+
+La bozza di ottobre (RQ1–RQ4) è confrontata con questa proposta nella tabella finale di `07_domande_di_ricerca.md`.
 
 ## Ipotesi di scope (cosa NON facciamo)
 - Non è un dispositivo medico, non dà diagnosi al paziente: è **per il medico**, come "second opinion".
 - Niente raccolta di dati reali di pazienti nella prima versione: solo dataset pubblici.
-- Target iniziale: classificazione **benigno / maligno** + multiclasse (ISIC 8–9 classi) su immagini **dermatoscopiche**. Le immagini cliniche smartphone sono un'estensione.
+- Target iniziale: **7 classi di HAM10000 + punteggio di malignità** su immagini **dermatoscopiche** (P1–P2); ISIC 2019 (8 classi) dopo la baseline. Le immagini cliniche da smartphone sono un'estensione.
 
 ---
 

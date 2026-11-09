@@ -222,6 +222,12 @@ Esempio: arriva un dataset di **pazienti ispanici o latinoamericani**, con pelle
 - **Fitzpatrick17k:** la rete va meglio sui fototipi **vicini** a quelli visti. I fototipi intermedi (III–IV) sono un ponte utile verso entrambi gli estremi.
 - **Attenzione:** etnia e fototipo **non** sono la stessa cosa. Le popolazioni ispaniche/latinoamericane coprono quasi tutta la scala. Vanno registrati entrambi, separatamente.
 - **Nota:** DDI contiene già pazienti che si dichiarano ispanici o latinoamericani (selezionati a Stanford insieme a pazienti neri) e PAD-UFES-20 viene dal Brasile. Sono già un primo banco di prova per questo scenario.
+- **Nuovo (verifica del 2026-11-09):** sull'archivio ISIC c'è il dataset **HIBA** dell'Hospital Italiano de Buenos Aires (2019–2022):
+  - 1.616 immagini, di cui 1.270 dermoscopiche e 346 cliniche;
+  - 623 pazienti argentini;
+  - licenza **CC BY**.
+  
+  È un test esterno **latinoamericano e dermoscopico**, già pubblico e utilizzabile senza aspettare l'ospedale. Nel campione esaminato i fototipi sono però soprattutto II–III: misura il cambio di popolazione e di centro, non le pelli scure.
 - **Altro rischio:** se il nuovo dataset è fatto di **foto cliniche** e non dermoscopiche, il problema principale diventa la modalità, non il colore della pelle. Il campo `modality` serve proprio a separare i due effetti.
 
 ## 5. L'annotazione manuale che aiuta di più

@@ -1,6 +1,6 @@
 # Chanda et al., 2024 — Un'AI spiegabile "come un dermatologo" aumenta fiducia e sicurezza
 
-- **Rivista:** *Nature Communications* 15:524 (2024) ⚠️ numero dell'articolo da verificare · [DOI 10.1038/s41467-023-43095-4](https://doi.org/10.1038/s41467-023-43095-4) · PMID 38225244 · PMC10789736
+- **Rivista:** *Nature Communications* 15:524 (2024) · [DOI 10.1038/s41467-023-43095-4](https://doi.org/10.1038/s41467-023-43095-4) · PMID 38225244 · PMC10789736
 - **Gruppo:** consorzio europeo coordinato dal DKFZ di Heidelberg (gruppo di Titus Brinker) ⚠️
 - **Testo letto:** **completo** (PMC). Letti introduzione, risultati, parte dei metodi e dei limiti; non il materiale supplementare.
 
@@ -48,7 +48,7 @@ Una rete che spiega la diagnosi **con i criteri dermoscopici e indicando dove si
   - addestrare un concept bottleneck;
   - misurare se le heatmap guardano i criteri giusti.
   
-  ⚠️ Recuperare il link e la licenza del dataset.
+  Dataset: Figshare [10.6084/m9.figshare.23766477](https://doi.org/10.6084/m9.figshare.23766477), **CC BY 4.0** (verificato 2026-11-09). Attenzione alle immagini duplicate tra i gruppi.
 - Nel report, mostrare i **criteri con la loro posizione** quando possibile.
 - Nella valutazione con utenti, misurare **anche** l'accordo con l'AI quando sbaglia, non solo l'accuratezza e la fiducia.
 - Adattare la presentazione all'**esperienza** dell'utente (Fase 5–6: interfaccia per medici di base o per dermatologi).

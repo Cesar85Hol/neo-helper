@@ -1,6 +1,6 @@
 # Vatsal et al., 2026 — Agenti LLM in sanità: una tassonomia in sette dimensioni
 
-- **Rivista:** *IEEE Access* (gennaio 2026) ⚠️ volume e DOI da verificare · [arXiv 2602.04813](https://arxiv.org/abs/2602.04813)
+- **Fonte:** preprint TechRxiv (v1 ottobre 2025, v2 febbraio 2026) e [arXiv 2602.04813](https://arxiv.org/abs/2602.04813). La pubblicazione su *IEEE Access* indicata dalla sintesi alphaXiv **non risulta** su Crossref ⚠️
 - **Gruppo:** New York University e Cleveland State University
 - **Testo letto:** sintesi strutturata del testo completo generata da alphaXiv, non il PDF. Percentuali da ricontrollare ⚠️.
 
