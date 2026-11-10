@@ -93,22 +93,22 @@ Tre punti di attenzione:
 | Regole e licenze | Restare nel lecito, dirlo chiaramente | Prototipo di ricerca, non un dispositivo; requisiti dell'AI Act come lista volontaria | Demo pubblica in conflitto con le licenze non commerciali; regole in movimento (AI Act al 2028) | MDR: software diagnostico almeno di classe IIa; AI Act: alto rischio |
 | Metodo | Tracciabilità e onestà | Schede con lo stato di lettura e i ⚠️, verifiche, Word e audio, diario, convenzioni git | 7 schede da sintesi alphaXiv; 89 ⚠️ nelle schede; tabella comparativa mancante | Ogni affermazione della tesi deve avere una fonte controllabile |
 
-## 6. Correzioni proposte e stato (aggiornato il 2026-11-10)
+## 6. Correzioni proposte e stato (completate il 2026-11-10)
 
 | # | Correzione | Stato |
 |---|------------|-------|
-| 1 | Tabella comparativa dei risultati (deliverable della Fase 1) | Da fare |
-| 2 | Roadmap: Fasi 2–7, struttura della tesi, criteri delle milestone, titolo | ✅ **Fatto** (2026-11-10) |
-| 3 | Testo delle issue M2–M7 allineato alle decisioni della M1 | Proposto (§7), da applicare su GitHub con il tuo permesso |
-| 4 | Nuove issue per la RQ6 (M3.6, M4.5, M5.3) | Proposto (§7), da creare con il tuo permesso |
-| 5 | `03_architettura.md` allineato (nomi dei tool, classificatore, criteri) | Da fare |
-| 6 | Storyboard 2 e 4 aggiornati (BCN20000, HIBA, Chanda, RQ6) | Da fare |
-| 7 | Letteratura per la M3 (MedSAM, DINOv2, conformal in dermatologia, melanoma acrale, dataset asiatici) | Rimandato all'inizio della M3, scritto nelle issue M3.2, M3.3, M3.6 |
-| 8 | Licenze o accesso di DDI, PH2 e Derm7pt | Rimandato alla M2.2, scritto nella issue |
-| 9 | 89 ⚠️ nelle schede | Rimandato alla scrittura della tesi |
-| 10 | Azioni di Cesar: mail agli autori di PanDerm, ospedale, Zotero | **Tenute in conto** nella roadmap (sezione "Azioni in sospeso"); da decidere più avanti |
+| 1 | Tabella comparativa dei risultati (deliverable della Fase 1) | ✅ §11 di `01_stato_dell_arte.md` (28 righe) |
+| 2 | Roadmap: Fasi 2–7, struttura della tesi, criteri delle milestone, titolo | ✅ |
+| 3 | Testo delle issue M2–M7 allineato alle decisioni della M1 | ✅ 20 issue aggiornate su GitHub (#11–#30) |
+| 4 | Nuove issue per la RQ6 | ✅ #33 M3.6, #34 M4.5, #35 M5.3; più #32 M1.12 (ricerca su pelli non chiare) |
+| 5 | `03_architettura.md` allineato (nomi dei tool, classificatore, criteri) | ✅ con la tabella dei tool di riferimento |
+| 6 | Storyboard 2 e 4 aggiornati | ✅ test esterni, annotazioni di Chanda, nuovo livello "Inclusion (RQ6)" (47 blocchi in 8 livelli) |
+| 7 | Letteratura per la M3 | Rimandata all'inizio della M3, scritta nelle issue M3.2, M3.3 e M3.6 |
+| 8 | Licenze o accesso di DDI, PH2 e Derm7pt | Rimandate alla M2.2, scritte nella issue #12 |
+| 9 | 89 ⚠️ nelle schede | Rimandati alla scrittura della tesi |
+| 10 | Azioni di Cesar: mail agli autori di PanDerm, ospedale, Zotero | Tenute in conto nella roadmap ("Azioni in sospeso") |
 
-## 7. Allineamento delle issue delle milestone successive (proposta)
+## 7. Allineamento delle issue delle milestone successive (applicato il 2026-11-10)
 Ho confrontato le 20 issue aperte delle milestone M2–M7 con le decisioni finali della M1 (P1–P10, C1–C5, RQ1–RQ6, verifiche). I testi in inglese pronti da applicare sono preparati.
 
 | Issue | È allineata? | Cosa cambia |

@@ -23,6 +23,7 @@
 | [docs/06_verifiche_M1.md](docs/06_verifiche_M1.md) | Verifica dei riferimenti e delle licenze (M1.9) |
 | [docs/07_domande_di_ricerca.md](docs/07_domande_di_ricerca.md) | Domande di ricerca RQ1–RQ6 e contributo originale |
 | [docs/08_revisione_M1.md](docs/08_revisione_M1.md) | Revisione finale della Milestone 1 |
+| [docs/09_pelli_non_chiare.md](docs/09_pelli_non_chiare.md) | Dataset e studi su pelli non chiare (RQ6) |
 | [docs/annotazione/](docs/annotazione/) | Istruzioni per chi annota (italiano, inglese, spagnolo) |
 | [docs/figures/](docs/figures/) | Storyboard delle decisioni |
 | [docs/audio/](docs/audio/) | Copioni degli episodi audio |

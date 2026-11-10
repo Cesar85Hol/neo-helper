@@ -192,8 +192,25 @@
   - nuova sezione **"Azioni in sospeso"**: mail agli autori di PanDerm, ospedale, Zotero, tenute in conto per decidere più avanti.
 - **Issue M2–M7 controllate** (20 aperte): 4 non allineate (#12, #14, #21, #24), 4 in parte, le altre quasi. Testi in inglese pronti; più 3 nuove issue per la RQ6 (M3.6, M4.5, M5.3). Da applicare su GitHub con il permesso di Cesar. Tabella al §7 di `08_revisione_M1.md`.
 
+## 2026-11-10 — Correzioni completate e ricerca sulle pelli non chiare (M1.11, M1.12)
+- **Nuova issue #32 (M1.12):** ricerca di dataset e studi su pelli non chiare per la RQ6 → [`09_pelli_non_chiare.md`](09_pelli_non_chiare.md).
+  - Fototipi V–VI solo nel 5,8% di 1,1 milioni di immagini pubbliche; Sud America e Africa quasi assenti (Gröger 2026).
+  - Fototipo riportato nel 2,1% delle immagini (Wen 2022).
+  - Nessuno studio identifica pazienti ispanici o latinoamericani (Pérez-Lalinde 2026).
+  - L'AI allarga il divario per tono nei medici di base (Groh 2024).
+  - Il tipo di malattia pesa più del tono, e circa 10 esempi per categoria bastano per adattare un foundation model (Kunwor 2026): conferma l'ipotesi H6d.
+  - I dataset "diversi" pubblici (SCIN, PASSION, DermaCon-IN) sono soprattutto di malattie infiammatorie; manca un dataset pubblico di **dermoscopie di tumori su pelli IV–VI**.
+  
+  Word S9 aggiornato; episodio 21 "Oltre le pelli chiare"; 11 voci BibTeX.
+- **Correzioni della revisione completate:**
+  - tabella comparativa dei risultati (§11 dello stato dell'arte, 28 studi);
+  - `03_architettura.md` allineato (tabella dei tool di riferimento, report con catena di prove e lingua);
+  - storyboard 2 e 4 aggiornati (8 livelli, 47 blocchi, nuovo livello "Inclusion");
+  - **20 issue M2–M7 aggiornate su GitHub**;
+  - nuove issue **#33 M3.6**, **#34 M4.5**, **#35 M5.3** per la RQ6.
+
 ### Prossimi passi
-1. **Chiudere la revisione della M1** (#31) con le correzioni scelte da Cesar, poi chiudere la Milestone 1.
+1. **Chiudere la Milestone 1** su GitHub (tutte le issue chiuse), quando Cesar conferma.
 2. **Inviare** la mail agli autori di PanDerm/DermFM-Zero (Cesar), poi annotare la risposta nel file.
 3. **Milestone 2 (dati):**
    - ambiente Python (M2.1);

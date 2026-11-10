@@ -90,6 +90,7 @@ build "S8_prodotti_e_regolatorio.docx" "§8 — Prodotti sul mercato e regole" \
   "$P/2022_malvehy_mdr-dermatology.md" \
   "$P/2026_vankolfschooten_ai-act.md"
 
-build "S9_domande_e_verifiche.docx" "§9 — Domande di ricerca e verifica dei riferimenti" \
+build "S9_domande_e_verifiche.docx" "§9 — Domande di ricerca, verifiche e pelli non chiare" \
   docs/07_domande_di_ricerca.md \
+  docs/09_pelli_non_chiare.md \
   docs/06_verifiche_M1.md

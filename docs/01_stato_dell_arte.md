@@ -48,6 +48,8 @@
 | Bissoto A. et al., *(De)Constructing Bias on Skin Lesion Datasets* (arXiv 1904.08818, 2019) e *Debiasing Skin Lesion Datasets and Models? Not So Fast* (arXiv 2004.11457, 2020); workshop ISIC a CVPR ⚠️ sede | I modelli imparano "scorciatoie" | 📖 |
 | Daneshjou R. et al., *Checklist for evaluation of image-based AI reports in dermatology* (**CLEAR Derm**), JAMA Dermatology 2022 | **Da usare come checklist per la tua valutazione** | ✅ [scheda](papers/2022_daneshjou_clear-derm.md) |
 
+> **Pelli non chiare, popolazioni latinoamericane, asiatiche e africane (RQ6):** dataset e studi raccolti in [09_pelli_non_chiare.md](09_pelli_non_chiare.md) (Wen 2022, Gröger 2026, Pérez-Lalinde 2026, Groh 2024, Kunwor 2026, Han 2018, Wang 2020, HIBA, PASSION, SCIN).
+
 ## 5. Explainability, incertezza e collaborazione uomo-AI
 Introduzione: [S5_introduzione.md](papers/S5_introduzione.md).
 
@@ -124,6 +126,75 @@ Aggiornato il 2026-11-09 dopo i pacchetti 1–4, anche alla luce di **DermAgent*
 - Strumenti: Zotero, Connected Papers / ResearchRabbit, Semantic Scholar alerts.
 
 ---
+
+## 11. Tabella comparativa dei risultati
+Deliverable della Fase 1, aggiunto nella revisione finale (2026-11-10).
+- **Colonna "Esterno":** il risultato principale viene da un test **esterno**, cioè da centri o dati diversi da quelli dell'addestramento.
+- **Colonna "Fototipo":** lo studio riporta i risultati **per fototipo**.
+- I numeri vengono dalle schede, dove è indicato cosa è stato letto.
+
+**A. Reti contro medici (dermoscopia o foto)**
+
+| Anno | Lavoro | Dati | Compito | Risultato principale | Esterno | Fototipo |
+|------|--------|------|---------|----------------------|---------|----------|
+| 2017 | Esteva (*Nature*) | ~130.000 foto cliniche, 2.032 malattie | Tumore contro benigno | AUC > 0,91; pari a 21 dermatologi | No | No |
+| 2018 | Haenssle (*Ann Oncol*) | Dermoscopie | Melanoma contro nevo | AUC 0,86 contro 0,79 di 58 dermatologi; specificità 82,5% contro 71,3–75,7% a pari sensibilità | No | No |
+| 2018 | Han (*J Invest Dermatol*) | Foto cliniche di pazienti coreani (Asan) | 12 tumori e benigni | AUC per il melanoma 0,96 sui coreani, 0,88 sugli europei (Edinburgh) | Sì | Etnia sì |
+| 2019 | Brinker (*Eur J Cancer*) | ~12.000 dermoscopie pubbliche | Melanoma contro nevo | Specificità 86,5% contro 60,0% di 157 dermatologi a pari sensibilità | No | No |
+| 2019 | Tschandl (*Lancet Oncol*) | HAM10000 (ISIC 2018) | 7 classi | Sensibilità media per classe 84,5–88,5% (algoritmi) contro 79,2% (511 lettori); calo sulle immagini di altri centri | In parte | No |
+| 2020 | Wang (*Chin Med J*) | Dermoscopie di pazienti cinesi | Tumori comuni + psoriasi | Accuratezza 81,5%; pari a 164 dermatologi | No | Etnia sì |
+
+**B. Fuori dal laboratorio: challenge, bias e test esterni**
+
+| Anno | Lavoro | Dati | Compito | Risultato principale | Esterno | Fototipo |
+|------|--------|------|---------|----------------------|---------|----------|
+| 2019 | Codella, ISIC 2018 (arXiv) | HAM10000 + 316 immagini esterne | 7 classi | Accuratezza bilanciata massima 0,885; la maggior parte va peggio sul test esterno | Sì | No |
+| 2019 | Winkler (*JAMA Dermatol*) | 130 lesioni con e senza segni di penna | Melanoma contro nevo | Specificità dall'84% al 46% con i segni di penna | — | No |
+| 2021 | Groh, Fitzpatrick17k (CVPR-W) | 16.577 foto cliniche | 114 malattie | Accuratezza 20,2% (114 classi); migliore sui fototipi visti in addestramento | — | **Sì** |
+| 2022 | Combalia, ISIC 2019 (*Lancet Digit Health*) | 25.331 dermoscopie, 8 classi + "mai viste" | 8 classi | Accuratezza bilanciata dall'82,0% (HAM10000) al 58,8% (BCN20000); lesioni mai viste riconosciute al 6% (dermatologi 26%); il 47% chiamate maligne | Sì | No |
+| 2022 | Daneshjou, DDI (*Sci Adv*) | 656 foto con biopsia, fototipi I–VI | Tumore contro benigno | AUC da 0,88–0,94 dichiarate a 0,56–0,67; sensibilità sulle pelli scure fino a 0,12–0,23 | Sì | **Sì** |
+| 2024 | Kurtansky, ISIC 2020 (*JEADV*) | 33.126 dermoscopie per paziente | Melanoma | AUROC 0,943–0,949 (primi 50); il contesto del paziente non aiuta | No | No |
+| 2025 | Kurtansky, ISIC 2024 (*npj Digit Med*) | 900.000 ritagli da foto 3D | Triage dei tumori | pAUC 0,173, AUC 0,967; circa 52 lesioni controllate per ogni tumore all'80% di sensibilità | No | No |
+| 2026 | Anriot (*JAMA Dermatol*) | 1.117 casi reali | Multiclasse | PanDerm 72,2% contro esperti 74,2%; CNN di prima generazione 56,7% | Sì | No |
+| 2026 | Kunwor (arXiv) | DDI + SCIN | Tumori e malattie infiammatorie | Il tipo di malattia pesa più del tono (0,62 → 0,21); circa 10 esempi per categoria bastano per adattarsi | Sì | **Sì** |
+
+**C. Foundation model e concetti**
+
+| Anno | Lavoro | Dati | Compito | Risultato principale | Esterno | Fototipo |
+|------|--------|------|---------|----------------------|---------|----------|
+| 2024 | Kim, MONET (*Nat Med*) | 105.550 immagini con testo | Concetti | AUROC media 0,766 sui concetti SkinCon (CLIP 0,692); concept bottleneck per il melanoma 0,892 | — | Solo sintesi |
+| 2025 | Yan, PanDerm (*Nat Med*) | 2,15 milioni di immagini, 4 modalità | 28 compiti | Migliore su 9 dataset su 10; con il 10–30% delle etichette pari agli altri | Sì | Solo accuratezza complessiva |
+| 2019 | Tschandl, CBIR (*Br J Dermatol*) | 3 dataset dermoscopici | Tumore contro benigno | 16 casi simili: AUC 0,806–0,852, pari alla softmax | In parte | No |
+
+**D. Medici con l'AI**
+
+| Anno | Lavoro | Dati | Compito | Risultato principale | Esterno | Fototipo |
+|------|--------|------|---------|----------------------|---------|----------|
+| 2020 | Tschandl (*Nat Med*) | 302 medici, HAM10000 | 7 classi | Accuratezza dal 63,6% al 77,0% con le probabilità multiclasse; l'AI sbagliata inganna anche gli esperti | — | No |
+| 2024 | Chanda (*Nat Commun*) | 116 medici, HAM10000 | Melanoma contro nevo | Accuratezza bilanciata dal 66,2% al 72,3% con l'AI e al 73,2% con le spiegazioni; fiducia +17,5% | — | No |
+| 2024 | Krakowski (*npj Digit Med*) | Meta-analisi di 10 studi | Tumori della pelle | Sensibilità dal 74,8% all'81,1%, specificità dall'81,5% all'86,1% con l'AI; più beneficio ai non dermatologi | — | No |
+| 2024 | Groh (*Nat Med*) | 848 medici, 39 paesi, 46 malattie | Diagnosi differenziale | Medici 4 punti peggio sulle pelli scure; l'AI +33% ma allarga il divario per i medici di base | — | **Sì** |
+
+**E. LLM e agenti**
+
+| Anno | Lavoro | Dati | Compito | Risultato principale | Esterno | Fototipo |
+|------|--------|------|---------|----------------------|---------|----------|
+| 2024 | Zhou, SkinGPT-4 (*Nat Commun*) | Immagini cliniche | Descrizione e diagnosi | "Corretta o pertinente" nell'80,6% secondo i dermatologi: non è una misura di accuratezza | No | No |
+| 2026 | Bhagwat (*Bioengineering*) | DDI, ChatGPT 5.2 e Gemini 3.1 | Prime 3 diagnosi | Top-1 23–32%; tumori mancati nel 32–50%; specificità 23–43%; peggio sui fototipi V–VI | Sì | **Sì** |
+| 2026 | Liu, DermAgent (arXiv) | 5 benchmark, poche centinaia di immagini | Agente con tool | Zero-shot su HAM10000 61,8% (MedAgent-Pro 57,6%) | — | No |
+
+**F. Prodotti**
+
+| Anno | Lavoro | Dati | Compito | Risultato principale | Esterno | Fototipo |
+|------|--------|------|---------|----------------------|---------|----------|
+| 2020 | Freeman (*BMJ*), app | 9 studi, 6 app | Rischio di tumore | SkinVision: sensibilità 80%, specificità 78% su lesioni scelte da medici | — | No |
+| 2024 | Venkatesh e Jaklitsch, DermaSensor | 1.579 lesioni (DERM-SUCCESS) | Indagare o monitorare | Sensibilità 95,5%, specificità 20,7%; 97,1% di pazienti bianchi | Sì | In parte |
+| 2024 | Marsden (*Front Med*), DERM | 789 lesioni, NHS | Triage | A pari sensibilità (~91%) evita più invii inutili dei teledermatologi | Sì | 4% fototipi IV–VI |
+
+**Cosa dice la tabella, in breve:**
+1. I risultati migliori sono quasi sempre **interni**. Quando il test è esterno o realistico, le prestazioni scendono: Combalia, DDI, Anriot.
+2. **Pochissimi studi riportano i risultati per fototipo**: 5 righe su 28. Quando lo fanno, il divario c'è (DDI, Groh 2024, Bhagwat) ma non sempre nella stessa direzione (Kunwor).
+3. L'AI **aiuta i medici**, soprattutto i meno esperti, ma può trascinarli quando sbaglia e può allargare i divari.
 
 ## Scheda di lettura (template)
 ```

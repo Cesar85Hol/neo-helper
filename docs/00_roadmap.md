@@ -42,6 +42,8 @@ Deliverable: `01_stato_dell_arte.md` completo + tabella comparativa dei risultat
 - [x] Explainability e human-AI collaboration
 - [x] Sistemi multi-agente e LLM in medicina; MCP
 - [x] Prodotti esistenti e regolatorio (SkinVision, DermaSensor, MDR/AI Act)
+- [x] Dataset e studi su pelli non chiare per la RQ6 (M1.12, [09_pelli_non_chiare.md](09_pelli_non_chiare.md))
+- [x] Tabella comparativa dei risultati (§11 di `01_stato_dell_arte.md`)
 
 ### Fase 2 — Dati e baseline (settimane 4–7) · M2
 Deliverable: script di download riproducibili, registro dati con **licenza e fonte per immagine**, notebook EDA, vettori salvati, prime baseline.
@@ -74,7 +76,7 @@ Deliverable: modello calibrato con "non so", spiegazioni verificate, report di v
   - concept bottleneck facoltativo;
   - **casi simili** (k = 16)
 - [ ] **Valutazione esterna** su BCN20000, DDI, PAD-UFES-20, HIBA, PH2, Derm7pt, per fototipo, sede, centro e artefatto; tabella CLEAR Derm (M3.5, RQ1)
-- [ ] **Popolazioni latinoamericane e lesioni acrali** (RQ6, nuova issue proposta):
+- [ ] **Popolazioni latinoamericane e lesioni acrali** (M3.6, RQ6; base: [09_pelli_non_chiare.md](09_pelli_non_chiare.md)):
   - HIBA, PAD-UFES-20, BALD;
   - **adattamento con pochi dati locali** (solo la testa);
   - ricerca di dataset asiatici
@@ -90,7 +92,7 @@ Deliverable: server MCP `neo-vision`, agente singolo e multi-agente confrontati 
   - numeri solo dai tool;
   - scelta dell'LLM (locale o open contro API) per la privacy
 - [ ] **v3**, multi-agente con **critico a regole** e percorso guidato dall'incertezza; confronto v0, v2 e v3 su accuratezza, numeri inventati, conflitti intercettati, token e tempo; **casi trappola** (M4.4)
-- [ ] **Report multilingue** (italiano, inglese, spagnolo, portoghese) (RQ6, nuova issue proposta)
+- [ ] **Report multilingue** (italiano, inglese, spagnolo, portoghese) (M4.5, RQ6)
 
 ### Fase 5 — Interfaccia web (settimane 15–18) · M5
 Deliverable: demo utilizzabile, compatibile con le licenze.
@@ -99,7 +101,7 @@ Deliverable: demo utilizzabile, compatibile con le licenze.
   - **pubblica** solo con un backbone libero (DINOv2) e immagini dei dataset, senza conservare le immagini;
   - avviso sempre visibile
 - [ ] Web app (M5.2): FastAPI + Next.js con caricamento, controllo qualità, probabilità, insieme conformal, criteri, casi simili, heatmap, report PDF, **più lingue**
-- [ ] **Pacchetto per centri con poche risorse** (RQ6, nuova issue proposta): CPU, licenze aperte, LLM locale, guida per aggiungere i propri dati
+- [ ] **Pacchetto per centri con poche risorse** (M5.3, RQ6): CPU, licenze aperte, LLM locale, guida per aggiungere i propri dati
 
 ### Fase 6 — App mobile (settimane 18–21) · M6
 Deliverable: prototipo installabile.
