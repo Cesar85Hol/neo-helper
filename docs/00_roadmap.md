@@ -32,7 +32,9 @@ La bozza di ottobre (RQ1–RQ4) è confrontata con questa proposta nella tabella
 - [ ] Ambiente: Python 3.11+, `uv` o conda, PyTorch, GPU (locale Apple Silicon MPS / Colab / Kaggle / cloud)
 - [ ] Gestore di riferimenti bibliografici (Zotero + export BibTeX in `docs/refs.bib`)
 
-### Fase 1 — Revisione della letteratura (settimane 1–4)
+### Fase 1 — Revisione della letteratura (settimane 1–4) · M1 ✅ chiusa il 2026-11-10
+Riepilogo per leggere in fretta come siamo usciti dalla M1: [10_dashboard_M1.md](10_dashboard_M1.md) e la [dashboard interattiva](dashboard/neo_helper_M1.html) (IT/EN/ES).
+
 Deliverable: `01_stato_dell_arte.md` completo + tabella comparativa dei risultati.
 - [x] Clinica di base: melanoma, nevi, dermatoscopia, regola ABCDE, ABCD dermoscopico, 7-point checklist, pattern analysis
 - [x] Paper fondativi DL in dermatologia (Esteva 2017, Haenssle 2018, Tschandl 2019/2020…)
@@ -134,7 +136,7 @@ Deliverable: prototipo installabile.
 ## Milestone
 | # | Milestone | Criterio di completamento |
 |---|-----------|---------------------------|
-| M1 | Letteratura chiusa | ≥ 30 paper schedati, RQ definitive, revisione finale (M1.11) chiusa |
+| M1 | Letteratura chiusa ✅ | ≥ 30 paper schedati, RQ definitive, revisione finale (M1.11) chiusa. **Fatto il 2026-11-10:** 42 schede, RQ1–RQ6, 12 issue chiuse |
 | M2 | Baseline | Dati scaricati con licenza e fonte per immagine; divisione per `lesion_id`; baseline con vettori congelati (PanDerm, DINOv2, Derm Foundation, ImageNet) con accuratezza bilanciata e metriche di malignità su HAM10000; notebook riproducibile |
 | M3 | Modello finale | Calibrato, con "non so" conformal, spiegazioni verificate; valutato su ≥ 3 test esterni, per fototipo e su HIBA, PAD-UFES-20 e BALD (RQ6) |
 | M4 | MCP + agenti | v0, v1 (server MCP), v2 e v3 funzionanti; report con catena di prove; confronto di costi e sicurezza su casi trappola |

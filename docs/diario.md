@@ -218,3 +218,37 @@
    - EDA e divisione per `lesion_id` (M2.3).
 4. Testo completo di Anriot 2026; leggere i testi di MDR (regola 11) e AI Act consolidato prima della consegna della tesi.
 5. (Opzionale) Caricare su NotebookLM i Word nuovi (S5–S9) e quelli aggiornati (S3).
+
+## 2026-11-10 — Chiusura della Milestone 1
+- **Dashboard di uscita dalla M1**, da usare come riferimento nelle milestone successive:
+  - [`10_dashboard_M1.md`](10_dashboard_M1.md): si legge in due minuti; scelte chiave con il perché, RQ, pipeline, passi definiti con le issue, cose aperte, mappa dei documenti;
+  - [`dashboard/neo_helper_M1.html`](dashboard/neo_helper_M1.html): versione interattiva in un solo file, senza dipendenze, in **italiano, inglese e spagnolo** (selettore in alto a destra). Sette viste:
+    - panoramica con contatori animati e percorso della M1;
+    - 14 scelte filtrabili per area, ognuna con perché, fonte e grafico;
+    - 13 grafici di evidenze dalla letteratura;
+    - le due pipeline animate;
+    - le domande RQ1–RQ6;
+    - la mappa dei 47 blocchi con ciambella e filtro per stato;
+    - il Gantt M1–M7 con le issue.
+  
+  Tema chiaro e scuro, adatta al telefono, rispetta "riduci movimento".
+- **Bilancio della M1:**
+  - 42 schede di paper;
+  - 9 file Word, 21 episodi audio;
+  - 4 storyboard;
+  - 6 domande di ricerca (cuore: RQ1, RQ2, RQ6);
+  - 47 blocchi in 8 livelli;
+  - 12 issue chiuse: #1–#10, #31, #32.
+- **Milestone 1 chiusa** anche su GitHub.
+
+### Prossimi passi
+1. **Milestone 2 (dati e baseline):**
+   - ambiente Python con percorso solo CPU (#11);
+   - download con licenza e fonte per immagine (#12);
+   - EDA e divisione per `lesion_id` (#13);
+   - baseline congelate PanDerm, DINOv2, Derm Foundation, ImageNet (#14).
+2. **Azioni di Cesar, da decidere:**
+   - mail agli autori di PanDerm (bozza pronta);
+   - ospedale di contatto;
+   - Zotero sì o no.
+3. Restano da leggere prima della tesi: il testo completo di Anriot 2026, MDR (regola 11) e il testo consolidato dell'AI Act.

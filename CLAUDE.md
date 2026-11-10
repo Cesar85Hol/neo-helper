@@ -18,6 +18,7 @@
 - `docs/papers/` — one literature note per paper; `docs/refs.bib` — BibTeX.
 - `docs/audio/` — spoken-style scripts for the audio episodes.
 - `docs/figures/` — figures: the SVG is the source, the PNG is rendered from it with headless Chrome (2x scale). The decision storyboards (`storyboard_0N_*.svg`) are in English.
+- `docs/dashboard/` — interactive dashboards: one self-contained HTML file per milestone (no external dependencies), code in English, visible texts in Italian, English and Spanish with a language switch. Each has a Markdown summary in `docs/` (e.g. `docs/10_dashboard_M1.md`).
 - `tools/` — helper scripts (`build_word.sh`, `build_audio.py`).
 - `outputs/` — generated files, not tracked by git. MP3s go to `~/Music/Neo Helper` (Spotify local files).
 

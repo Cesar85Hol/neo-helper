@@ -24,6 +24,8 @@
 | [docs/07_domande_di_ricerca.md](docs/07_domande_di_ricerca.md) | Domande di ricerca RQ1–RQ6 e contributo originale |
 | [docs/08_revisione_M1.md](docs/08_revisione_M1.md) | Revisione finale della Milestone 1 |
 | [docs/09_pelli_non_chiare.md](docs/09_pelli_non_chiare.md) | Dataset e studi su pelli non chiare (RQ6) |
+| [docs/10_dashboard_M1.md](docs/10_dashboard_M1.md) | **Dashboard: come siamo usciti dalla Milestone 1** (scelte, RQ, passi) |
+| [docs/dashboard/](docs/dashboard/) | Dashboard interattiva in italiano, inglese e spagnolo (aprire `neo_helper_M1.html` nel browser) |
 | [docs/annotazione/](docs/annotazione/) | Istruzioni per chi annota (italiano, inglese, spagnolo) |
 | [docs/figures/](docs/figures/) | Storyboard delle decisioni |
 | [docs/audio/](docs/audio/) | Copioni degli episodi audio |
@@ -38,7 +40,7 @@
 
 ## Stato
 - [x] Fase 0 — Impostazione documentazione
-- [x] Fase 1 — Revisione della letteratura (revisione finale in corso, M1.11)
+- [x] Fase 1 — Revisione della letteratura (**Milestone 1 chiusa il 2026-11-10**; riepilogo in [docs/10_dashboard_M1.md](docs/10_dashboard_M1.md))
 - [ ] Fase 2 — Dati e baseline
 - [ ] Fase 3 — Modello e valutazione
 - [ ] Fase 4 — Agenti e MCP
