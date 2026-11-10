@@ -183,6 +183,15 @@
   - testo delle issue #12, #14, #19, #21, #24 da aggiornare;
   - nuove issue per la RQ6.
 
+## 2026-11-10 — Roadmap e issue allineate alla M1
+- **Roadmap aggiornata** alle decisioni finali:
+  - titolo proposto;
+  - Fasi 2–7 con dataset, baseline congelate, metriche, RQ6, demo compatibile con le licenze;
+  - struttura della tesi per RQ;
+  - criteri delle milestone;
+  - nuova sezione **"Azioni in sospeso"**: mail agli autori di PanDerm, ospedale, Zotero, tenute in conto per decidere più avanti.
+- **Issue M2–M7 controllate** (20 aperte): 4 non allineate (#12, #14, #21, #24), 4 in parte, le altre quasi. Testi in inglese pronti; più 3 nuove issue per la RQ6 (M3.6, M4.5, M5.3). Da applicare su GitHub con il permesso di Cesar. Tabella al §7 di `08_revisione_M1.md`.
+
 ### Prossimi passi
 1. **Chiudere la revisione della M1** (#31) con le correzioni scelte da Cesar, poi chiudere la Milestone 1.
 2. **Inviare** la mail agli autori di PanDerm/DermFM-Zero (Cesar), poi annotare la risposta nel file.

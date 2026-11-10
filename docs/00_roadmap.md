@@ -1,7 +1,9 @@
 # 00 — Roadmap (impostazione "tesi magistrale")
 
 ## Titolo di lavoro
-**"Un sistema multi-agente per il supporto alla diagnosi dermatoscopica di lesioni melanocitiche: classificazione, spiegabilità e orchestrazione tramite Model Context Protocol"**
+**"Neo Helper: un assistente agentico, spiegabile e accessibile per la diagnosi dermoscopica — incertezza garantita, orchestrazione tramite Model Context Protocol e valutazione su popolazioni latinoamericane"** (proposta del 2026-11-10, da [07_domande_di_ricerca.md](07_domande_di_ricerca.md))
+
+Titolo iniziale (ottobre 2026): *"Un sistema multi-agente per il supporto alla diagnosi dermatoscopica di lesioni melanocitiche: classificazione, spiegabilità e orchestrazione tramite Model Context Protocol"*.
 
 ## Domande di ricerca (confermate il 2026-11-10 — dettagli in [07_domande_di_ricerca.md](07_domande_di_ricerca.md))
 - **RQ1 — Vedere:** quanto rende PanDerm congelato con una testa lineare rispetto a DINOv2, ImageNet e Derm Foundation, su HAM10000 e su test esterni (BCN20000, DDI, PAD-UFES-20, HIBA, PH2, Derm7pt)? Quanto si perde con un backbone a licenza libera?
@@ -17,6 +19,8 @@ La bozza di ottobre (RQ1–RQ4) è confrontata con questa proposta nella tabella
 - Non è un dispositivo medico, non dà diagnosi al paziente: è **per il medico**, come "second opinion".
 - Niente raccolta di dati reali di pazienti nella prima versione: solo dataset pubblici.
 - Target iniziale: **7 classi di HAM10000 + punteggio di malignità** su immagini **dermatoscopiche** (P1–P2); ISIC 2019 (8 classi) dopo la baseline. Le immagini cliniche da smartphone sono un'estensione.
+- Niente ensemble "da gara": la priorità è l'affidabilità ("non so", spiegazioni verificate, test esterni), non l'ultimo decimale.
+- **Cuore della tesi:** RQ1, RQ2 e RQ6, che usano gli stessi esperimenti e gli stessi dati. Poi RQ3 e RQ4. RQ5, web completo e mobile possono restare prototipi (vedi [08_revisione_M1.md](08_revisione_M1.md) §4).
 
 ---
 
@@ -39,72 +43,104 @@ Deliverable: `01_stato_dell_arte.md` completo + tabella comparativa dei risultat
 - [x] Sistemi multi-agente e LLM in medicina; MCP
 - [x] Prodotti esistenti e regolatorio (SkinVision, DermaSensor, MDR/AI Act)
 
-### Fase 2 — Dati e analisi esplorativa (settimane 4–6)
-Deliverable: notebook EDA + `data/README.md` con provenienza e licenze.
-- [ ] Download ISIC 2019/2020 + HAM10000 (+ metadati)
-- [ ] EDA: distribuzione classi, sbilanciamento, duplicati tra dataset (**leakage!** HAM10000 ⊂ ISIC 2018/2019), stessi pazienti in train/test, artefatti (righelli, peli, inchiostro, cerchi del dermatoscopio)
-- [ ] Split **per paziente/lesione**, non per immagine
-- [ ] Definire test set esterni (es. PH2, Derm7pt, PAD-UFES-20, DDI) per valutare la generalizzazione
+### Fase 2 — Dati e baseline (settimane 4–7) · M2
+Deliverable: script di download riproducibili, registro dati con **licenza e fonte per immagine**, notebook EDA, vettori salvati, prime baseline.
+- [ ] Ambiente Python (M2.1), con un percorso che funziona anche **solo su CPU** (RQ6)
+- [ ] Download (M2.2):
+  - **HAM10000** (training);
+  - test esterni: **BCN20000 da Figshare** (CC BY 4.0), **DDI** (accesso su richiesta), **PAD-UFES-20**, **HIBA**, **PH2**, **Derm7pt**;
+  - per la RQ6: **BALD** (acrali), **MSKCC Skin Tone**, cheratosi cilene;
+  - **annotazioni di Chanda** (Figshare).
+  
+  ISIC 2019 completo **dopo** la baseline. Verificare le licenze di DDI, PH2 e Derm7pt.
+- [ ] Registro dati comune (campi del §4.1 di `05_scelte_e_pipeline.md`), compresi `license` e `source`
+- [ ] EDA (M2.3):
+  - classi e squilibrio;
+  - duplicati tra dataset (HAM10000 ⊂ ISIC 2018/2019; BCN20000 su ISIC e su Figshare);
+  - **controllo degli artefatti con MONET** (penna, righello, adesivo, bordo nero) per classe;
+  - divisione **per `lesion_id`** 70/15/15
+- [ ] Baseline (M2.4):
+  - **vettori congelati + testa lineare** per PanDerm, DINOv2, Derm Foundation e ImageNet, sugli stessi split;
+  - metriche: accuratezza bilanciata, AUC per classe, specificità a sensibilità 90/95% per il punteggio di malignità, pAUC > 80% di sensibilità, intervalli bootstrap
 
-### Fase 3 — Modelli e valutazione (settimane 6–12)
-Deliverable: tabella risultati, modelli salvati, report di valutazione.
-- [ ] **Baseline**: ResNet50 / EfficientNet pre-addestrato ImageNet (fine-tuning)
-- [ ] **Modelli moderni**: ConvNeXt, ViT/DINOv2, EVA; confronto
-- [ ] **Foundation model** dermatologico come feature extractor + linear probe (se i pesi sono accessibili)
-- [ ] **Segmentazione** lesione (U-Net / SAM / MedSAM) → utile per ABCD e per ritagliare
-- [ ] Gestione sbilanciamento: loss pesata/focal, oversampling, augmentation (anche rimozione peli)
-- [ ] **Calibrazione** (temperature scaling, ECE) e **incertezza** (MC-dropout, ensemble, conformal prediction)
-- [ ] **Explainability**: Grad-CAM, attention maps, concept-based (MONET-like), criteri dermoscopici
-- [ ] Metriche: AUROC, balanced accuracy, sensibilità @ specificità 80/90%, pAUC (ISIC 2024), ECE, analisi per sottogruppi
-- [ ] Export: ONNX / CoreML / TFLite per il mobile
+### Fase 3 — Modello finale e valutazione (settimane 7–13) · M3
+Deliverable: modello calibrato con "non so", spiegazioni verificate, report di valutazione esterna e per sottogruppi (RQ1, RQ2, RQ3, RQ6).
+- [ ] Esperimento di **fine-tuning** (ultimi blocchi o LoRA) contro backbone congelato; scelta finale del backbone; percorso con licenza libera (M3.1)
+- [ ] **Segmentazione** (U-Net o MedSAM, da scegliere), contando i fallimenti (Jaccard < 0,65) (M3.2)
+- [ ] **Calibrazione** (temperature scaling, ECE), **insiemi conformal** (anche per classe) e **controllo fuori distribuzione**; test con le lesioni sconosciute di BCN20000; tumori mancati (M3.3, RQ2)
+- [ ] **Spiegabilità** (M3.4, RQ3):
+  - Grad-CAM (variante per ViT) con **test di sanità**;
+  - **concetti MONET** validati su Derm7pt e sulle annotazioni di Chanda;
+  - concept bottleneck facoltativo;
+  - **casi simili** (k = 16)
+- [ ] **Valutazione esterna** su BCN20000, DDI, PAD-UFES-20, HIBA, PH2, Derm7pt, per fototipo, sede, centro e artefatto; tabella CLEAR Derm (M3.5, RQ1)
+- [ ] **Popolazioni latinoamericane e lesioni acrali** (RQ6, nuova issue proposta):
+  - HIBA, PAD-UFES-20, BALD;
+  - **adattamento con pochi dati locali** (solo la testa);
+  - ricerca di dataset asiatici
+- [ ] Letteratura "al momento giusto": segmentazione (MedSAM), DINOv2, calibrazione e conformal in dermatologia, epidemiologia del melanoma acrale
+- [ ] Export per il mobile (ONNX / CoreML / TFLite) solo se serve alla Fase 6
 
-### Fase 4 — Pool di agenti + MCP (settimane 10–15)
-Deliverable: server MCP funzionante + orchestratore + test. Vedi [03_architettura.md](03_architettura.md).
-- [ ] Ogni capacità (qualità immagine, segmentazione, classificazione, spiegazione, ricerca letteratura) come **tool MCP**
-- [ ] Agenti specializzati + **orchestratore** (pattern orchestrator–workers)
-- [ ] Output strutturato (JSON schema) → report per il medico
-- [ ] Guardrail: l'LLM non inventa probabilità, le prende dai tool; disclaimer sempre presenti
-- [ ] Valutazione: correttezza del report, coerenza, tracciabilità
+### Fase 4 — Tool MCP e agenti (settimane 11–16) · M4
+Deliverable: server MCP `neo-vision`, agente singolo e multi-agente confrontati (RQ4). Vedi [03_architettura.md](03_architettura.md) e [05_scelte_e_pipeline.md](05_scelte_e_pipeline.md) §3.2.
+- [ ] **v0**, pipeline fissa senza LLM: qualità → segmentazione → vettore → classificazione + insieme conformal → spiegazioni → report a modello fisso (M4.1)
+- [ ] **v1**, server MCP con i tool `check_quality`, `segment_lesion`, `embed_image`, `classify`, `predict_set`, `explain_heatmap`, `describe_concepts`, `similar_cases`, più le resource: model card, data card, soglie (M4.2)
+- [ ] **v2**, un orchestratore (M4.3):
+  - report JSON con **catena di prove**;
+  - numeri solo dai tool;
+  - scelta dell'LLM (locale o open contro API) per la privacy
+- [ ] **v3**, multi-agente con **critico a regole** e percorso guidato dall'incertezza; confronto v0, v2 e v3 su accuratezza, numeri inventati, conflitti intercettati, token e tempo; **casi trappola** (M4.4)
+- [ ] **Report multilingue** (italiano, inglese, spagnolo, portoghese) (RQ6, nuova issue proposta)
 
-### Fase 5 — Interfaccia web (settimane 12–16)
-Deliverable: demo web online.
-- [ ] Prototipo rapido con **Gradio/Streamlit** (anche su Hugging Face Spaces)
-- [ ] Versione "vera": **FastAPI** backend + **Next.js/React** frontend
-- [ ] Funzioni: upload, crop/qualità, heatmap sovrapposta, probabilità calibrate, criteri ABCD, report PDF, storico confronti nel tempo (follow-up)
+### Fase 5 — Interfaccia web (settimane 15–18) · M5
+Deliverable: demo utilizzabile, compatibile con le licenze.
+- [ ] Demo rapida con Gradio (M5.1):
+  - **solo per ricerca** se usa PanDerm o MONET;
+  - **pubblica** solo con un backbone libero (DINOv2) e immagini dei dataset, senza conservare le immagini;
+  - avviso sempre visibile
+- [ ] Web app (M5.2): FastAPI + Next.js con caricamento, controllo qualità, probabilità, insieme conformal, criteri, casi simili, heatmap, report PDF, **più lingue**
+- [ ] **Pacchetto per centri con poche risorse** (RQ6, nuova issue proposta): CPU, licenze aperte, LLM locale, guida per aggiungere i propri dati
 
-### Fase 6 — App mobile (settimane 15–19)
-Deliverable: app installabile (TestFlight / APK).
-- [ ] Scelta framework: **React Native (Expo)** (riuso con il web) oppure **Flutter**
-- [ ] Acquisizione da fotocamera + guida alla qualità (messa a fuoco, luce, distanza)
-- [ ] Inferenza **on-device** (CoreML/TFLite, privacy) vs **server** (modelli più grandi + agenti)
+### Fase 6 — App mobile (settimane 18–21) · M6
+Deliverable: prototipo installabile.
+- [ ] Expo (React Native) con guida all'acquisizione: messa a fuoco, luce, distanza, lente dermoscopica per smartphone come DERM (M6.1)
+- [ ] Inferenza **sul dispositivo** (backbone leggero) o **sul server** (PanDerm e agenti): misura di latenza e accuratezza (M6.2)
 
-### Fase 7 — Valutazione finale e scrittura (settimane 19–24)
-- [ ] Esperimenti finali, ablation (singolo modello vs multi-agente)
-- [ ] (Opzionale) valutazione qualitativa con 1–3 medici/dermatologi su casi pubblici: usabilità (SUS), utilità percepita
-- [ ] Scrittura: struttura tesi (sotto)
-- [ ] Release GitHub: README, model card, data card, limiti noti
+### Fase 7 — Valutazione finale e scrittura (settimane 21–26) · M7
+- [ ] Esperimenti finali e ablazioni (singolo modello contro agente, v2 contro v3)
+- [ ] (Facoltativo, RQ5) studio con medici non specialisti, solo con l'ospedale e il comitato etico
+- [ ] Model card, data card (licenza per fonte), lista volontaria dell'AI Act, CLEAR Derm (M7.1)
+- [ ] Scrittura della tesi (M7.2); ricontrollare le regole (MDR, AI Act) prima della consegna
+- [ ] Release con DOI su Zenodo, senza pesi di PanDerm modificati (M7.3)
 
 ---
 
-## Struttura della "tesi" finale
-1. Introduzione e motivazione
-2. Background clinico (melanoma, dermatoscopia, criteri diagnostici)
-3. Stato dell'arte (DL in dermatologia, foundation model, multi-agent/LLM, MCP)
-4. Dati e metodologia
-5. Modelli di classificazione/segmentazione ed esperimenti
-6. Architettura multi-agente e integrazione MCP
-7. Applicazioni web e mobile
-8. Valutazione (quantitativa, fairness, qualitativa)
-9. Etica, regolatorio, limiti
-10. Conclusioni e sviluppi futuri
+## Struttura della tesi finale
+1. Introduzione e motivazione, compreso lo scopo di inclusione per l'America Latina
+2. Background clinico (melanoma, dermoscopia, criteri diagnostici, melanoma acrale)
+3. Stato dell'arte (DL in dermatologia, foundation model, bias, spiegabilità, agenti e MCP, challenge ISIC, prodotti e regole)
+4. Dati e metodologia (dataset, licenze, divisione per lesione, metriche, CLEAR Derm)
+5. **RQ1** — Modelli: PanDerm contro backbone liberi, test esterni
+6. **RQ2** — Incertezza e "non so"
+7. **RQ6** — Popolazioni latinoamericane, lesioni acrali, adattamento locale, accessibilità
+8. **RQ3** — Spiegazioni verificate
+9. **RQ4** — Tool MCP e agenti: report, sicurezza, costi
+10. Applicazioni web e mobile (prototipi) e, se fatta, **RQ5**
+11. Etica, licenze, regole, limiti
+12. Conclusioni e sviluppi futuri
 
 ## Milestone
 | # | Milestone | Criterio di completamento |
 |---|-----------|---------------------------|
-| M1 | Letteratura chiusa | ≥ 30 paper schedati, RQ definitive |
-| M2 | Baseline | AUROC su ISIC val con split corretto, notebook riproducibile |
-| M3 | Modello finale | Calibrato, con XAI, testato su ≥ 1 dataset esterno |
-| M4 | MCP + agenti | Orchestratore produce report strutturato end-to-end |
-| M5 | Demo web | Online e usabile |
-| M6 | App mobile | Build installabile |
-| M7 | Release | Repo pubblico documentato + documento finale |
+| M1 | Letteratura chiusa | ≥ 30 paper schedati, RQ definitive, revisione finale (M1.11) chiusa |
+| M2 | Baseline | Dati scaricati con licenza e fonte per immagine; divisione per `lesion_id`; baseline con vettori congelati (PanDerm, DINOv2, Derm Foundation, ImageNet) con accuratezza bilanciata e metriche di malignità su HAM10000; notebook riproducibile |
+| M3 | Modello finale | Calibrato, con "non so" conformal, spiegazioni verificate; valutato su ≥ 3 test esterni, per fototipo e su HIBA, PAD-UFES-20 e BALD (RQ6) |
+| M4 | MCP + agenti | v0, v1 (server MCP), v2 e v3 funzionanti; report con catena di prove; confronto di costi e sicurezza su casi trappola |
+| M5 | Demo web | Demo compatibile con le licenze, in più lingue, con avvisi; pacchetto per centri con poche risorse |
+| M6 | App mobile | Prototipo installabile con guida all'acquisizione |
+| M7 | Release | Repo documentato (model card, data card), tesi, DOI Zenodo |
+
+## Azioni in sospeso (di Cesar)
+- [ ] **Mail agli autori di PanDerm/DermFM-Zero** sulla licenza: bozza pronta in [corrispondenza/](corrispondenza/2026-11-04_mail_autori_panderm.md). Da decidere quando inviarla.
+- [ ] **Ospedale di contatto:** dati nuovi, studio facoltativo RQ5, comitato etico. Istruzioni per gli annotatori pronte in [annotazione/](annotazione/). Da decidere più avanti.
+- [ ] **Zotero sì o no:** gestore della bibliografia (Fase 0, mai fatto). Oggi `docs/refs.bib` è scritto a mano.

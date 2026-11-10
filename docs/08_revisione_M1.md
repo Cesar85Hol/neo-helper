@@ -93,20 +93,51 @@ Tre punti di attenzione:
 | Regole e licenze | Restare nel lecito, dirlo chiaramente | Prototipo di ricerca, non un dispositivo; requisiti dell'AI Act come lista volontaria | Demo pubblica in conflitto con le licenze non commerciali; regole in movimento (AI Act al 2028) | MDR: software diagnostico almeno di classe IIa; AI Act: alto rischio |
 | Metodo | Tracciabilità e onestà | Schede con lo stato di lettura e i ⚠️, verifiche, Word e audio, diario, convenzioni git | 7 schede da sintesi alphaXiv; 89 ⚠️ nelle schede; tabella comparativa mancante | Ogni affermazione della tesi deve avere una fonte controllabile |
 
-## 6. Cosa propongo prima di chiudere la M1
-1. **Da fare subito (proposte 1, 2, 5, 6 del §3):**
-   - tabella comparativa dei risultati;
-   - roadmap allineata;
-   - `03_architettura.md` allineato;
-   - storyboard aggiornati.
-2. **Su GitHub, con il tuo permesso (proposte 3 e 4):**
-   - aggiornare il testo delle issue #12, #14, #19, #21, #24;
-   - creare le issue per la RQ6.
-3. **Da rimandare (proposte 7–9):**
-   - letteratura per la M3 all'inizio della M3;
-   - licenze di DDI, PH2 e Derm7pt nella M2.2;
-   - ⚠️ delle schede durante la scrittura.
-4. **Tue (proposta 10):**
-   - mail agli autori di PanDerm;
-   - ospedale;
-   - decisione su Zotero.
+## 6. Correzioni proposte e stato (aggiornato il 2026-11-10)
+
+| # | Correzione | Stato |
+|---|------------|-------|
+| 1 | Tabella comparativa dei risultati (deliverable della Fase 1) | Da fare |
+| 2 | Roadmap: Fasi 2–7, struttura della tesi, criteri delle milestone, titolo | ✅ **Fatto** (2026-11-10) |
+| 3 | Testo delle issue M2–M7 allineato alle decisioni della M1 | Proposto (§7), da applicare su GitHub con il tuo permesso |
+| 4 | Nuove issue per la RQ6 (M3.6, M4.5, M5.3) | Proposto (§7), da creare con il tuo permesso |
+| 5 | `03_architettura.md` allineato (nomi dei tool, classificatore, criteri) | Da fare |
+| 6 | Storyboard 2 e 4 aggiornati (BCN20000, HIBA, Chanda, RQ6) | Da fare |
+| 7 | Letteratura per la M3 (MedSAM, DINOv2, conformal in dermatologia, melanoma acrale, dataset asiatici) | Rimandato all'inizio della M3, scritto nelle issue M3.2, M3.3, M3.6 |
+| 8 | Licenze o accesso di DDI, PH2 e Derm7pt | Rimandato alla M2.2, scritto nella issue |
+| 9 | 89 ⚠️ nelle schede | Rimandato alla scrittura della tesi |
+| 10 | Azioni di Cesar: mail agli autori di PanDerm, ospedale, Zotero | **Tenute in conto** nella roadmap (sezione "Azioni in sospeso"); da decidere più avanti |
+
+## 7. Allineamento delle issue delle milestone successive (proposta)
+Ho confrontato le 20 issue aperte delle milestone M2–M7 con le decisioni finali della M1 (P1–P10, C1–C5, RQ1–RQ6, verifiche). I testi in inglese pronti da applicare sono preparati.
+
+| Issue | È allineata? | Cosa cambia |
+|-------|--------------|-------------|
+| #11 M2.1 ambiente Python | Quasi | Aggiungere il funzionamento **solo su CPU** (RQ6) e i vettori salvati fuori da git |
+| #12 M2.2 download | **No** | Titolo e testo: non "ISIC 2019/2020", ma HAM10000 + test esterni (BCN20000 da Figshare, DDI, PAD-UFES-20, HIBA, PH2, Derm7pt) + dati della RQ6 + annotazioni di Chanda; **licenza e fonte per immagine**; ISIC 2019 dopo |
+| #13 M2.3 EDA | Quasi | Controllo degli artefatti con MONET; duplicati BCN20000 tra ISIC e Figshare; bozza della data card |
+| #14 M2.4 baseline | **No** | Non "fine-tuning ResNet50": **vettori congelati + testa lineare** per PanDerm, DINOv2, Derm Foundation e ImageNet; metriche cliniche |
+| #15 M3.1 backbone | In parte | Diventa "esperimento di fine-tuning e scelta finale del backbone" (il confronto passa alla M2.4) |
+| #16 M3.2 segmentazione | Quasi | Contare i fallimenti; leggere MedSAM; licenza dei pesi |
+| #17 M3.3 calibrazione | Quasi | Conformal per classe, controllo fuori distribuzione, copertura per centro e fototipo, lesioni sconosciute (RQ2) |
+| #18 M3.4 spiegabilità | Quasi | Test di sanità; validazione di MONET su Derm7pt e Chanda (RQ3) |
+| #19 M3.5 test esterni | In parte | Aggiungere BCN20000 e HIBA; per centro e per artefatto; CLEAR Derm (RQ1) |
+| #20 M4.1 v0 | Quasi | Passi allineati alla pipeline del §3.2 delle scelte |
+| #21 M4.2 server MCP | **No** | **Nomi dei tool** allineati; resource; principi di sicurezza MCP |
+| #22 M4.3 v2 | Quasi | Catena di prove; scelta dell'LLM locale o via API (RQ4) |
+| #23 M4.4 v3 | Quasi | Critico a regole, percorso guidato dall'incertezza, casi trappola, confronto dei costi (RQ4) |
+| #24 M5.1 demo Gradio | **No** | Vincolo di licenza: pubblica solo con un backbone libero, altrimenti solo per ricerca |
+| #25 M5.2 web app | In parte | Insieme conformal, criteri, casi simili; **più lingue** (RQ6) |
+| #26 M6.1 mobile | Quasi | Lente dermoscopica per smartphone; più lingue |
+| #27 M6.2 dispositivo o server | Quasi | PanDerm è troppo pesante per il telefono; misure solo su CPU |
+| #28 M7.1 model card | Quasi | Licenza per fonte; lista volontaria dell'AI Act; risultati per sottogruppo |
+| #29 M7.2 tesi | In parte | Struttura per RQ1–RQ6 (roadmap aggiornata); ricontrollare l'AI Act (2028) |
+| #30 M7.3 Zenodo | Quasi | Niente pesi di PanDerm modificati; licenze di terzi |
+
+**Nuove issue proposte:**
+- **M3.6** "Evaluation on Latin American and acral datasets (RQ6)":
+  - HIBA, PAD-UFES-20, dati cileni, BALD, MSKCC Skin Tone;
+  - adattamento con pochi dati locali;
+  - ricerca di dataset asiatici.
+- **M4.5** "Multilingual report (Spanish and Portuguese)".
+- **M5.3** "Package for low-resource research centres": CPU, licenze aperte, LLM locale, guida per aggiungere i propri dati.
