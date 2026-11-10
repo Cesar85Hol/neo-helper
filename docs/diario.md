@@ -165,8 +165,26 @@
 - Corretto il §4.3 delle scelte: i metadati pubblici di DDI non riportano l'etnia.
 - Nuovo titolo di lavoro (proposta) e contributo 6 (accessibilità). Episodio 20 aggiornato.
 
+## 2026-11-10 — Revisione finale della M1 (issue #31, M1.11)
+- Pushati i commit della M1.9 e della M1.10; chiuse **#9** e **#10** con un commento. Creata la issue **#31** "M1.11_Final review of milestone 1". La Milestone 1 resta **aperta**.
+- **Revisione completa** in [`08_revisione_M1.md`](08_revisione_M1.md):
+  - controllo dei principi: tutti rispettati;
+  - 10 cose dimenticate o non allineate;
+  - giudizio sulla logica del percorso;
+  - tabella "obiettivi, scelte, criticità, perché" per 16 aree.
+- **Già corretti:**
+  - README con i nuovi documenti, la Fase 1 e l'obiettivo RQ6;
+  - roadmap con la spunta del repository pubblico;
+  - etichetta "Testo letto" nella scheda MCP.
+- **Da decidere con Cesar:**
+  - tabella comparativa dei risultati (deliverable della Fase 1 mancante);
+  - roadmap delle Fasi 2–5 e `03_architettura.md` da allineare;
+  - storyboard 2 e 4 da aggiornare;
+  - testo delle issue #12, #14, #19, #21, #24 da aggiornare;
+  - nuove issue per la RQ6.
+
 ### Prossimi passi
-1. **Revisione finale della M1** (issue M1.11), poi chiusura della Milestone 1.
+1. **Chiudere la revisione della M1** (#31) con le correzioni scelte da Cesar, poi chiudere la Milestone 1.
 2. **Inviare** la mail agli autori di PanDerm/DermFM-Zero (Cesar), poi annotare la risposta nel file.
 3. **Milestone 2 (dati):**
    - ambiente Python (M2.1);

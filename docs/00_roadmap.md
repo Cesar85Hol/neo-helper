@@ -24,7 +24,7 @@ La bozza di ottobre (RQ1–RQ4) è confrontata con questa proposta nella tabella
 
 ### Fase 0 — Setup (settimana 1)
 - [x] Cartella documentazione MD
-- [ ] Repo GitHub pubblico (licenza: MIT o Apache-2.0 per il codice; attenzione: le licenze dei **dataset** sono spesso CC-BY-NC → i pesi addestrati vanno distribuiti rispettandole)
+- [x] Repo GitHub pubblico (licenza: MIT o Apache-2.0 per il codice; attenzione: le licenze dei **dataset** sono spesso CC-BY-NC → i pesi addestrati vanno distribuiti rispettandole)
 - [ ] Ambiente: Python 3.11+, `uv` o conda, PyTorch, GPU (locale Apple Silicon MPS / Colab / Kaggle / cloud)
 - [ ] Gestore di riferimenti bibliografici (Zotero + export BibTeX in `docs/refs.bib`)
 

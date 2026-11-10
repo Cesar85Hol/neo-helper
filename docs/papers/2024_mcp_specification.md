@@ -1,7 +1,7 @@
 # Model Context Protocol (MCP) — la specifica
 
 - **Fonte:** [modelcontextprotocol.io/specification](https://modelcontextprotocol.io/specification/latest). Protocollo aperto presentato da Anthropic nel novembre 2024 ⚠️ data di lancio da verificare.
-- **Versioni lette (2026-11-04):** la pagina introduttiva della versione **2025-06-18** e quella della versione più recente, **2026-07-28**. Non ho letto le pagine di dettaglio (architettura, protocollo di base, trasporti).
+- **Testo letto (2026-11-04):** la pagina introduttiva della versione **2025-06-18** e quella della versione più recente, **2026-07-28**. Non ho letto le pagine di dettaglio (architettura, protocollo di base, trasporti).
 
 ## In una frase
 MCP è uno **standard per collegare un LLM a strumenti e dati esterni**, come una presa universale. Lo stesso server di strumenti funziona con qualsiasi applicazione compatibile.
