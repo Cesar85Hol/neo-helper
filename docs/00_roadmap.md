@@ -3,12 +3,13 @@
 ## Titolo di lavoro
 **"Un sistema multi-agente per il supporto alla diagnosi dermatoscopica di lesioni melanocitiche: classificazione, spiegabilità e orchestrazione tramite Model Context Protocol"**
 
-## Domande di ricerca (proposta del 2026-11-09, da confermare — dettagli in [07_domande_di_ricerca.md](07_domande_di_ricerca.md))
+## Domande di ricerca (confermate il 2026-11-10 — dettagli in [07_domande_di_ricerca.md](07_domande_di_ricerca.md))
 - **RQ1 — Vedere:** quanto rende PanDerm congelato con una testa lineare rispetto a DINOv2, ImageNet e Derm Foundation, su HAM10000 e su test esterni (BCN20000, DDI, PAD-UFES-20, HIBA, PH2, Derm7pt)? Quanto si perde con un backbone a licenza libera?
 - **RQ2 — Dubitare:** calibrazione e insiemi conformal permettono di dire "non so" in modo affidabile su lesioni mai viste, centri nuovi e fototipi diversi? A quale costo in invii allo specialista?
 - **RQ3 — Spiegare:** le spiegazioni (criteri dermoscopici, heatmap, casi simili) sono fedeli al modello e concordano con le annotazioni dei dermatologi?
 - **RQ4 — Coordinare:** un agente con tool MCP e un critico a regole produce report tracciabili senza numeri inventati? Il multi-agente (v3) vale il suo costo rispetto all'agente singolo (v2)?
 - **RQ5 (facoltativa) — Aiutare:** con l'ospedale, Neo Helper migliora le decisioni dei medici non specialisti, e quanto lo si segue quando sbaglia?
+- **RQ6 — Includere:** come si comporta l'insieme degli strumenti di AI (lo stato dell'arte) su fototipi di pelli latinoamericane e, dove ci sono dati, asiatiche (HIBA, PAD-UFES-20, lesioni acrali di BALD)? Cosa serve perché centri di ricerca latinoamericani possano usarlo e adattarlo con pochi dati locali?
 
 La bozza di ottobre (RQ1–RQ4) è confrontata con questa proposta nella tabella finale di `07_domande_di_ricerca.md`.
 

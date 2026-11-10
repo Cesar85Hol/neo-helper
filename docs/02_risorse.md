@@ -16,9 +16,12 @@
 | **PH2** | Dermatoscopiche | 200 | Maschere, criteri ABCD, colori | Uso accademico | Test esterno, ABCD |
 | **Derm7pt** | Dermatoscopiche + cliniche (coppie) | ~1k casi | **7-point checklist** | Uso accademico | Agente criteri 7-point |
 | **Annotazioni di Chanda 2024** (su HAM10000) | Dermatoscopiche | 3.611 img (MEL+NV con istologia) | Criteri dermoscopici **localizzati**, 14 dermatologi | **CC BY 4.0**, Figshare 10.6084/m9.figshare.23766477 | Validare MONET, concept bottleneck, controllo delle heatmap |
-| **PAD-UFES-20** | Cliniche da smartphone | ~2.3k | 6 classi + metadati clinici | CC-BY | Test smartphone |
+| **PAD-UFES-20** (Brasile) | Cliniche da smartphone | 2.298 (archivio ISIC) | 6 classi + metadati clinici | CC BY (verificato sull'archivio ISIC) | Test smartphone; **RQ6** |
 | **Fitzpatrick17k** | Cliniche (web) | ~17k | 114 condizioni + fototipo | Uso ricerca | Fairness |
 | **DDI** (Stanford) | Cliniche | ~650 | Fototipi I–VI, biopsia | Accesso su richiesta | Fairness |
+| **BALD** (lesioni acrali, BRAAFF) | Dermatoscopiche | 666 | Melanomi e nevi **acrali**, anche da centri giapponesi | CC BY-NC (archivio ISIC, DOI 10.34970/669187) | **RQ6**: sede acrale, proxy asiatico |
+| **MSKCC Skin Tone Labeling** | Varie (esame di tutto il corpo) | 4.879 img, 64 pazienti | Annotazioni dettagliate del **tono della pelle** | CC BY (DOI 10.34970/962049) | **RQ6**: misurare il tono della pelle |
+| **Cheratosi seborroiche, Pontificia Universidad Católica de Chile** | Dermatoscopiche | 150 | Una sola diagnosi | CC BY (DOI 10.34970/478917) | **RQ6**: piccolo test cileno |
 | **MILK10k** (ISIC 2025) | Coppie clinica+dermatoscopica | 10.480 | Multiclasse | CC BY-NC (archivio ISIC, DOI 10.34970/648456) | Multimodale |
 
 Dove scaricare: sito ISIC (challenge.isic-archive.com), Kaggle (mirror ISIC 2019/2020/2024, HAM10000), Harvard Dataverse (HAM10000), Mendeley Data (PAD-UFES-20).

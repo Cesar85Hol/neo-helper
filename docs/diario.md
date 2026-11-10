@@ -152,8 +152,21 @@
   Aggiornati `00_roadmap.md` e la §9 (gap) dello stato dell'arte.
 - Output: `S9_domande_e_verifiche.docx`; episodio audio 20 (tutte le tracce ritaggate x/20).
 
+## 2026-11-10 — RQ6 e conferma delle domande di ricerca
+- **Domande di ricerca confermate** da Cesar, con l'aggiunta della **RQ6 — Includere**: lo stato dell'arte funziona anche sulle pelli latinoamericane e asiatiche? Lo scopo è rendere Neo Helper usabile da centri di ricerca latinoamericani e di paesi con poco accesso.
+- **Dati per la RQ6**, trovati sull'archivio ISIC:
+  - HIBA (Argentina, CC BY);
+  - PAD-UFES-20 (Brasile, CC BY);
+  - cheratosi seborroiche della Pontificia Universidad Católica (Cile, CC BY);
+  - BALD, lesioni acrali con centri giapponesi (CC BY-NC);
+  - MSKCC Skin Tone Labeling (CC BY).
+  
+  Non ho trovato dataset asiatici pubblici di lesioni generali: da cercare nella M2.
+- Corretto il §4.3 delle scelte: i metadati pubblici di DDI non riportano l'etnia.
+- Nuovo titolo di lavoro (proposta) e contributo 6 (accessibilità). Episodio 20 aggiornato.
+
 ### Prossimi passi
-1. **Confermare o correggere le domande di ricerca** (Cesar), poi chiudere la #10 e la Milestone 1.
+1. **Revisione finale della M1** (issue M1.11), poi chiusura della Milestone 1.
 2. **Inviare** la mail agli autori di PanDerm/DermFM-Zero (Cesar), poi annotare la risposta nel file.
 3. **Milestone 2 (dati):**
    - ambiente Python (M2.1);

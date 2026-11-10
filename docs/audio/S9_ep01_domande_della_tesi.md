@@ -4,7 +4,7 @@ Siamo alla fine della revisione della letteratura. In diciannove episodi abbiamo
 
 Prima una nota sulle verifiche. Ho ricontrollato online le informazioni che avevamo segnato come incerte. Tre sorprese. La prima: il dataset di Barcellona, BCN20000, ha una licenza aperta se lo si scarica da Figshare, ma la copia sull'archivio ISIC è non commerciale. Conta da dove si scarica. La seconda: sull'archivio ISIC c'è un dataset argentino, dell'Hospital Italiano de Buenos Aires, con milleseicento immagini e licenza aperta. Un test latinoamericano già pronto, anche se con pelli soprattutto chiare. La terza: l'AI Act europeo è stato modificato a luglio duemilaventisei, e gli obblighi per i dispositivi medici con intelligenza artificiale slittano all'agosto duemilaventotto.
 
-E ora le domande. Sono quattro, più una facoltativa. Ognuna ha un verbo.
+E ora le domande. Sono sei, di cui una facoltativa. Ognuna ha un verbo.
 
 Prima domanda: vedere. Quanto vale davvero PanDerm, il foundation model dermatologico, rispetto a modelli generici come DINOv2? E quanto si perderebbe usando un modello con licenza libera? Lo misuriamo non solo su HAM10000, ma su sei test esterni, da Barcellona a Stanford, dal Brasile all'Argentina, con metriche cliniche: quanto è specifico il modello quando trova il novanta o il novantacinque per cento dei tumori. L'ipotesi è che il vantaggio di PanDerm si riduca fuori dal laboratorio, come hanno mostrato Anriot e la gara del duemiladiciannove.
 
@@ -14,8 +14,10 @@ Terza domanda: spiegare. Le spiegazioni di Neo Helper sono vere? Cioè, sono fed
 
 Quarta domanda: coordinare. Un agente che usa gli strumenti attraverso MCP, con un critico fatto di regole, scrive report migliori e tracciabili, senza mai inventare un numero? E un sistema con più agenti vale il suo costo, che può essere molte volte quello di un agente solo? Prepareremo anche dei casi trappola: segni di penna, lesioni sconosciute, conflitti tra modelli, dati del paziente sbagliati.
 
-E la quinta, facoltativa: aiutare. Se l'ospedale di contatto sarà d'accordo, un piccolo studio con medici non specialisti, prima senza e poi con Neo Helper. Per misurare se decidono meglio, e quanto lo seguono quando sbaglia.
+La quinta, facoltativa: aiutare. Se l'ospedale di contatto sarà d'accordo, un piccolo studio con medici non specialisti, prima senza e poi con Neo Helper. Per misurare se decidono meglio, e quanto lo seguono quando sbaglia.
 
-Qual è allora il contributo originale? In una frase: un assistente aperto che vede con un modello addestrato, dice "non so" con una garanzia misurata, spiega con la lingua del dermatologo verificata dagli esperti, e coordina gli strumenti in modo tracciabile, con un confronto onesto dei costi. E con la trasparenza su licenze e regole.
+E la sesta, che è uno degli scopi principali dello studio: includere. Lo stato dell'arte funziona anche sulle pelli latinoamericane e asiatiche? I modelli migliori sono stati addestrati quasi solo su pelli chiare europee e australiane. Ma l'obiettivo è che Neo Helper possa essere usato anche da centri di ricerca in America Latina, o in altri paesi che non hanno accesso a questi strumenti. Per rispondere abbiamo già dei dati pubblici: il dataset argentino di Buenos Aires, quello brasiliano PAD-UFES-20, e una raccolta di lesioni acrali, cioè su palmi, piante e unghie, con immagini anche da centri giapponesi. Il melanoma acrale è proporzionalmente più frequente nelle popolazioni asiatiche e latinoamericane, ed è quasi assente nei dataset europei. L'ipotesi è che gli strumenti perdano accuratezza, e che bastino pochi dati locali per recuperarne una buona parte. E c'è un secondo obiettivo, pratico: far funzionare tutto con un computer normale, con licenze aperte quando serve, e con il report in spagnolo e portoghese.
 
-Queste domande sono una proposta. Diventano definitive quando le confermi.
+Qual è allora il contributo originale? In una frase: un assistente aperto che vede con un modello addestrato, dice "non so" con una garanzia misurata, spiega con la lingua del dermatologo verificata dagli esperti, coordina gli strumenti in modo tracciabile con un confronto onesto dei costi, ed è valutato e pensato anche per le popolazioni latinoamericane. Con la trasparenza su licenze e regole.
+
+Queste domande sono ora confermate. Da qui si passa ai dati.

@@ -1,10 +1,13 @@
 # 07 — Domande di ricerca e contributo originale (issue #10, M1.10)
 
-> **Stato: proposta del 2026-11-09, da confermare.** Scritta alla fine della revisione della letteratura (pacchetti 1–4). Sostituisce la bozza RQ1–RQ4 di [00_roadmap.md](00_roadmap.md).
+> **Stato: confermate il 2026-11-10**, con l'aggiunta della **RQ6** sulle pelli latinoamericane e asiatiche, chiesta da Cesar. Scritte alla fine della revisione della letteratura (pacchetti 1–4). Sostituiscono la bozza RQ1–RQ4 di [00_roadmap.md](00_roadmap.md).
 > Ogni domanda indica: perché è aperta (fonti), ipotesi, dati, metriche e milestone in cui si risponde.
 
 ## Titolo di lavoro (proposta)
-**"Neo Helper: un assistente agentico, spiegabile e capace di dire 'non so' per la diagnosi dermoscopica — foundation model, incertezza garantita e orchestrazione tramite Model Context Protocol"**
+**"Neo Helper: un assistente agentico, spiegabile e accessibile per la diagnosi dermoscopica — incertezza garantita, orchestrazione tramite Model Context Protocol e valutazione su popolazioni latinoamericane"**
+
+## Uno degli scopi dello studio
+Verificare se lo **stato dell'arte** dell'AI per le lesioni cutanee funziona anche su pelli con fototipi come quelli **latinoamericani e asiatici**. L'obiettivo pratico è che il repository e l'app siano **usabili da centri di ricerca in America Latina** e in altri paesi con poco accesso a questi strumenti (vedi RQ6 e il contributo 6).
 
 ## Il problema in tre righe
 I modelli di AI per le lesioni pigmentate sono accurati in laboratorio, ma:
@@ -126,6 +129,58 @@ Solo se l'ospedale di contatto lo rende possibile, con approvazione del comitato
 - **Perché:** i non dermatologi sono quelli che guadagnano di più dall'AI (Krakowski 2024), e l'effetto delle spiegazioni sui medici è poco studiato.
 - **Milestone:** dopo M5, se fattibile.
 
+## RQ6 — Includere: lo stato dell'arte funziona anche sulle pelli latinoamericane e asiatiche?
+**Domanda.** Come si comporta l'insieme degli strumenti di AI di Neo Helper su immagini di pazienti **latinoamericani** e, dove ci sono dati, **asiatici**, con fototipi soprattutto intermedi (III–V)? Gli strumenti sono:
+- classificatore;
+- "non so" conformal;
+- concetti;
+- casi simili;
+- report dell'agente.
+
+E cosa serve perché un **centro di ricerca latinoamericano** possa usarlo e adattarlo ai propri pazienti?
+
+- **Perché è aperta:**
+  - HAM10000 viene da Austria e Australia, con pelli quasi tutte chiare, e non riporta il fototipo;
+  - i modelli perdono molto sulle pelli scure (DDI 2022), e la rete va meglio sui fototipi vicini a quelli visti (Fitzpatrick17k 2021);
+  - anche gli LLM vanno peggio sui fototipi V–VI (Bhagwat 2026);
+  - la FDA ha chiesto a DermaSensor studi sulle popolazioni poco rappresentate (Venkatesh 2024);
+  - **etnia e fototipo non coincidono**: le popolazioni latinoamericane coprono quasi tutta la scala;
+  - il **melanoma acrale** (palmi, piante, unghie) è proporzionalmente più frequente nelle popolazioni asiatiche e latinoamericane ⚠️ (fonte epidemiologica da citare) ed è rarissimo in HAM10000.
+- **Ipotesi:**
+  - H6a: gli strumenti perdono di più sui dati latinoamericani e asiatici che sui test esterni europei;
+  - H6b: la perdita dipende più dal **centro**, dalla **modalità** (dermoscopia o foto) e dalla **sede** (acrale) che dal fototipo da solo;
+  - H6c: il "non so" aumenta su questi dati, come deve, ma la copertura garantita si rompe;
+  - H6d: **pochi dati locali** bastano a recuperare buona parte della perdita, riaddestrando solo la testa. Si prova dividendo HIBA in una parte di adattamento e una di test.
+- **Dati** (verificati il 2026-11-10 sull'archivio ISIC):
+
+  | Dataset | Paese | Immagini | Tipo | Licenza | Uso per la RQ6 |
+  |---------|-------|----------|------|---------|----------------|
+  | HIBA | Argentina | 1.616 | dermoscopia + foto cliniche | CC BY | Test principale e prova di adattamento locale (H6d) |
+  | PAD-UFES-20 | Brasile | 2.298 | foto da smartphone | CC BY | Test con un'altra modalità (H6b) |
+  | Cheratosi seborroiche della Pontificia Universidad Católica | Cile | 150 | dermoscopia | CC BY | Piccolo test aggiuntivo |
+  | BALD, lesioni acrali | vari, tra cui centri giapponesi | 666 | dermoscopia | CC BY-NC | Melanoma acrale e nevi acrali (proxy asiatico) |
+  | MSKCC Skin Tone Labeling | USA | 4.879 | vario | CC BY | Misurare il **tono della pelle** con annotazioni dettagliate |
+  | DDI | USA | 656 | foto cliniche | da verificare ⚠️ | Fototipi I–VI; include pazienti ispanici, ma i metadati pubblici non riportano l'etnia (Bhagwat 2026) |
+  | Dati dell'ospedale di contatto | — | — | — | — | Possibilità futura (§4 delle scelte), istruzioni anche in spagnolo |
+
+  ⚠️ Non ho trovato dataset **asiatici** pubblici di lesioni generali sull'archivio ISIC: da cercare nella M2 (per esempio i dataset coreani usati in letteratura, spesso ad accesso limitato).
+- **Metriche:** le stesse di RQ1 e RQ2, separate per:
+  - paese e dataset;
+  - fototipo e tono della pelle, dove disponibili;
+  - **sede acrale o non acrale**;
+  - modalità.
+  
+  Per H6d: guadagno in funzione del numero di immagini locali usate.
+- **Accessibilità per centri con poche risorse** (obiettivo collegato, da misurare):
+  - funziona su **CPU** o una GPU comune (backbone congelato, vettori salvati);
+  - percorso con **licenze aperte** per chi non fa ricerca accademica (DINOv2 + BCN20000 da Figshare + HIBA e PAD-UFES-20 in CC BY);
+  - **LLM locale**;
+  - report e interfaccia in **spagnolo e portoghese**;
+  - guida per aggiungere i propri dati riaddestrando solo la testa.
+  
+  Misure: tempo per caso su CPU, memoria, costo.
+- **Milestone:** M2 (dati e licenze), M3 (valutazione), M4 (report multilingue), M5–M6 (interfaccia).
+
 ---
 
 ## Il contributo originale (rispetto alla letteratura e a DermAgent)
@@ -142,6 +197,7 @@ Solo se l'ospedale di contatto lo rende possibile, con approvazione del comitato
    - cosa servirebbe per un prodotto (MDR, AI Act).
    
    Codice aperto (MIT), con le licenze di dati e modelli documentate.
+6. **Valutazione e adattamento su popolazioni latinoamericane (e acrali/asiatiche), con un percorso accessibile** per centri di ricerca con poche risorse: hardware modesto, licenze aperte, LLM locale, lingua spagnola e portoghese, adattamento con pochi dati locali (RQ6).
 
 ## Cosa NON fa la tesi
 - Non è un dispositivo medico e non dà diagnosi ai pazienti.
@@ -154,6 +210,7 @@ Solo se l'ospedale di contatto lo rende possibile, con approvazione del comitato
 |---|---|---|
 | RQ1 modelli open contro stato dell'arte | **RQ1** PanDerm contro backbone liberi, con test esterni e metriche cliniche | Licenze (§1.2 delle scelte); calo fuori dal laboratorio (Combalia, Anriot) |
 | RQ2 il multi-agente migliora affidabilità e utilità | Divisa in **RQ2** (il "non so"), **RQ3** (le spiegazioni), **RQ4** (gli agenti e i costi) | Sono tre problemi diversi con metriche diverse |
-| RQ3 pelli diverse e smartphone | Pelli diverse **dentro** RQ1 e RQ2; lo smartphone diventa un'estensione | DDI e HIBA disponibili subito; lo smartphone è un altro problema (modalità) |
+| RQ3 pelli diverse e smartphone | Pelli diverse **dentro** RQ1 e RQ2 e, per le popolazioni latinoamericane e asiatiche, nella **RQ6**; lo smartphone resta un'estensione, ma PAD-UFES-20 entra nella RQ6 | DDI e HIBA disponibili subito; lo smartphone è un altro problema (modalità) |
 | RQ4 rischi dell'LLM | Dentro **RQ4** con metriche precise (numeri inventati, conflitti intercettati) | Bhagwat 2026, Vatsal 2026 |
 | — | **RQ5** facoltativa, studio con medici | Krakowski 2024, Chanda 2024 |
+| — | **RQ6** pelli latinoamericane e asiatiche, accessibilità | Scopo dichiarato di Cesar (2026-11-10); DDI, Fitzpatrick17k, Bhagwat 2026; dataset HIBA, PAD-UFES-20, BALD |

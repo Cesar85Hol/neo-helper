@@ -221,7 +221,7 @@ Esempio: arriva un dataset di **pazienti ispanici o latinoamericani**, con pelle
 - **DDI:** il divario tra pelli chiare e scure si chiude solo aggiungendo **immagini diverse**; i trucchi di addestramento "per l'equità" non sono bastati.
 - **Fitzpatrick17k:** la rete va meglio sui fototipi **vicini** a quelli visti. I fototipi intermedi (III–IV) sono un ponte utile verso entrambi gli estremi.
 - **Attenzione:** etnia e fototipo **non** sono la stessa cosa. Le popolazioni ispaniche/latinoamericane coprono quasi tutta la scala. Vanno registrati entrambi, separatamente.
-- **Nota:** DDI contiene già pazienti che si dichiarano ispanici o latinoamericani (selezionati a Stanford insieme a pazienti neri) e PAD-UFES-20 viene dal Brasile. Sono già un primo banco di prova per questo scenario.
+- **Nota:** DDI contiene già pazienti che si dichiarano ispanici o latinoamericani (selezionati a Stanford insieme a pazienti neri), ma **i metadati pubblici di DDI non riportano l'etnia** (Bhagwat 2026): si possono usare solo i gruppi di fototipo. PAD-UFES-20 viene dal Brasile. Questo scenario è diventato la **RQ6** (vedi [07_domande_di_ricerca.md](07_domande_di_ricerca.md)).
 - **Nuovo (verifica del 2026-11-09):** sull'archivio ISIC c'è il dataset **HIBA** dell'Hospital Italiano de Buenos Aires (2019–2022):
   - 1.616 immagini, di cui 1.270 dermoscopiche e 346 cliniche;
   - 623 pazienti argentini;
