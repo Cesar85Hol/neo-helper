@@ -769,7 +769,13 @@ function render() {
   watch(main);
   if (view === "map") animateDonut();
 }
-function go(v) { if (!VIEWS.includes(v)) return; view = v; history.replaceState(null, "", "#" + v); render(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+function go(v) {
+  if (!VIEWS.includes(v)) return;
+  view = v;
+  try { history.replaceState(null, "", "#" + v); } catch (e) { /* sandboxed viewers may block URL changes */ }
+  render();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
 document.addEventListener("click", e => {
   const t = e.target.closest("button");
