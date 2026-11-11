@@ -1,6 +1,6 @@
 # --- Dati e modelli (non vanno su git: troppo grandi / licenze) ---
-data/
-datasets/
+/data/
+/datasets/
 *.zip
 *.tar
 *.tar.gz

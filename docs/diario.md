@@ -252,3 +252,31 @@
    - ospedale di contatto;
    - Zotero sì o no.
 3. Restano da leggere prima della tesi: il testo completo di Anriot 2026, MDR (regola 11) e il testo consolidato dell'AI Act.
+
+## 2026-11-11 — Avvio della Milestone 2: piano e ambiente (M2.1)
+- **Piano della M2 in sei pacchetti**, concordato con Cesar:
+  - P1 ambiente (#11);
+  - P2 registro dati e HAM10000 (#12, prima parte);
+  - P3 EDA e divisione per lesione (#13);
+  - P4 baseline congelate (#14);
+  - P5 test esterni e dataset per la RQ6 (#12, #13);
+  - P6 chiusura con dashboard (#36).
+- **Decisioni:**
+  - tutta la M2 gira sul Mac (M4, 24 GB): con i backbone congelati non serve una GPU in cloud. Kaggle è la riserva; la scelta per il fine-tuning si fa in M3.1;
+  - dati, pesi e vettori **fuori dal repository**, nella cartella della variabile `NEO_DATA_DIR` (predefinita `~/neo-helper-data`);
+  - ambiente con **`uv`** e Python 3.12 in `ml/.venv`, con versioni bloccate in `uv.lock`;
+  - tracciamento con MLflow in locale;
+  - baseline ImageNet: ResNet-50 e ViT-B/16;
+  - Derm Foundation in un ambiente TensorFlow separato.
+- **GitHub:** descrizione della milestone M2 aggiornata; issue #11, #12 e #14 allineate al piano; nuova issue **#36 M2.5** per la chiusura.
+- **Pacchetto P1 fatto** (`ml/`):
+  - `pyproject.toml`, `uv.lock`, [`ml/README.md`](../ml/README.md);
+  - `neo/paths.py` (cartelle dei dati), `neo/device.py` (MPS, CUDA o CPU), `neo/check.py` (comando `neo-check`);
+  - 12 test superati; prova con 10 immagini finte riuscita su MPS e su sola CPU;
+  - PyTorch 2.15.0, timm 1.0.31; l'ambiente occupa 930 MB.
+- `.gitignore`: le regole `data/` e `datasets/` valgono ora solo alla radice, così `ml/data/` può contenere gli script di download.
+- **Stime da verificare:** dimensioni dei dataset (30–40 GB in tutto) e tempi di calcolo dei vettori; gli script mostreranno le dimensioni reali prima di scaricare.
+
+### Prossimi passi
+1. **P2:** schema del registro dati, script di download con modalità di prova, HAM10000 e annotazioni di Chanda.
+2. **Azioni di Cesar:** richiesta di accesso a DDI e a Derm7pt; accettare i termini di Derm Foundation su Hugging Face.

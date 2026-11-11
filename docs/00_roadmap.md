@@ -29,7 +29,7 @@ La bozza di ottobre (RQ1–RQ4) è confrontata con questa proposta nella tabella
 ### Fase 0 — Setup (settimana 1)
 - [x] Cartella documentazione MD
 - [x] Repo GitHub pubblico (licenza: MIT o Apache-2.0 per il codice; attenzione: le licenze dei **dataset** sono spesso CC-BY-NC → i pesi addestrati vanno distribuiti rispettandole)
-- [ ] Ambiente: Python 3.11+, `uv` o conda, PyTorch, GPU (locale Apple Silicon MPS / Colab / Kaggle / cloud)
+- [x] Ambiente: Python 3.12 con `uv`, PyTorch su Apple Silicon (MPS); Kaggle come riserva (fatto il 2026-11-11, vedi [`ml/README.md`](../ml/README.md))
 - [ ] Gestore di riferimenti bibliografici (Zotero + export BibTeX in `docs/refs.bib`)
 
 ### Fase 1 — Revisione della letteratura (settimane 1–4) · M1 ✅ chiusa il 2026-11-10
@@ -49,7 +49,7 @@ Deliverable: `01_stato_dell_arte.md` completo + tabella comparativa dei risultat
 
 ### Fase 2 — Dati e baseline (settimane 4–7) · M2
 Deliverable: script di download riproducibili, registro dati con **licenza e fonte per immagine**, notebook EDA, vettori salvati, prime baseline.
-- [ ] Ambiente Python (M2.1), con un percorso che funziona anche **solo su CPU** (RQ6)
+- [x] Ambiente Python (M2.1), con un percorso che funziona anche **solo su CPU** (RQ6)
 - [ ] Download (M2.2):
   - **HAM10000** (training);
   - test esterni: **BCN20000 da Figshare** (CC BY 4.0), **DDI** (accesso su richiesta), **PAD-UFES-20**, **HIBA**, **PH2**, **Derm7pt**;
