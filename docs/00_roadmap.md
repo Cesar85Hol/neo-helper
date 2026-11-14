@@ -29,7 +29,7 @@ La bozza di ottobre (RQ1–RQ4) è confrontata con questa proposta nella tabella
 ### Fase 0 — Setup (settimana 1)
 - [x] Cartella documentazione MD
 - [x] Repo GitHub pubblico (licenza: MIT o Apache-2.0 per il codice; attenzione: le licenze dei **dataset** sono spesso CC-BY-NC → i pesi addestrati vanno distribuiti rispettandole)
-- [x] Ambiente: Python 3.12 con `uv`, PyTorch su Apple Silicon (MPS); Kaggle come riserva (fatto il 2026-11-11, vedi [`ml/README.md`](../ml/README.md))
+- [x] Ambiente: Python 3.12 con `uv`, PyTorch su Apple Silicon (MPS); Kaggle come riserva (fatto il 2026-11-11, vedi [`ml/README_it.md`](../ml/README_it.md))
 - [ ] Gestore di riferimenti bibliografici (Zotero + export BibTeX in `docs/refs.bib`)
 
 ### Fase 1 — Revisione della letteratura (settimane 1–4) · M1 ✅ chiusa il 2026-11-10

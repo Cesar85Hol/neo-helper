@@ -270,7 +270,7 @@
   - Derm Foundation in un ambiente TensorFlow separato.
 - **GitHub:** descrizione della milestone M2 aggiornata; issue #11, #12 e #14 allineate al piano; nuova issue **#36 M2.5** per la chiusura.
 - **Pacchetto P1 fatto** (`ml/`):
-  - `pyproject.toml`, `uv.lock`, [`ml/README.md`](../ml/README.md);
+  - `pyproject.toml`, `uv.lock`, [`ml/README_it.md`](../ml/README_it.md);
   - `neo/paths.py` (cartelle dei dati), `neo/device.py` (MPS, CUDA o CPU), `neo/check.py` (comando `neo-check`);
   - 12 test superati; prova con 10 immagini finte riuscita su MPS e su sola CPU;
   - PyTorch 2.15.0, timm 1.0.31; l'ambiente occupa 930 MB.
@@ -280,3 +280,31 @@
 ### Prossimi passi
 1. **P2:** schema del registro dati, script di download con modalità di prova, HAM10000 e annotazioni di Chanda.
 2. **Azioni di Cesar:** richiesta di accesso a DDI e a Derm7pt; accettare i termini di Derm Foundation su Hugging Face.
+
+## 2026-11-11 — Registro dati e HAM10000 (M2.2, prima parte)
+- **Pacchetto P2 fatto** (`ml/neo/data/`, spiegato in [`ml/data/README_it.md`](../ml/data/README_it.md)):
+  - catalogo delle fonti con indirizzo, dimensione e checksum MD5 di ogni file;
+  - comando `neo-data`: `list`, `download` (di prova finché non si aggiunge `--yes`), `registry`;
+  - **registro dati comune**: 23 colonne uguali per tutti i dataset, con licenza e fonte per immagine;
+  - convertitore di HAM10000;
+  - 25 test superati.
+- **Scaricati e verificati** (checksum corretti):
+  - HAM10000 dal Dataverse di Harvard, versione 4.0: immagini, metadati, maschere di Tschandl e test ufficiale ISIC 2018 con etichette (3,2 GB);
+  - annotazioni di Chanda 2024 da Figshare, versione 9, con i dati dello studio con i lettori (18 MB);
+  - a mano, da Cesar: DDI (226 MB) e Derm7pt (152 MB).
+  
+  La cartella dati occupa 6,0 GB, meno della stima.
+- **Registro di HAM10000:** 10.015 immagini, tutte presenti su disco, 600 × 450 pixel nel campione controllato; 7.470 lesioni; 5.340 immagini con istologia; 7.756 dall'Austria e 2.259 dall'Australia. Mancano paziente, fototipo ed etnia.
+- **Licenze verificate:** HAM10000 CC BY-NC 4.0; Derm7pt CC BY-NC-ND 4.0; DDI con accordo di Stanford (solo ricerca personale non commerciale, niente ridistribuzione né lavori derivati; ⚠️ letti i primi sei punti). `02_risorse.md` aggiornato. PH2 resta da verificare.
+- **Problema con iCloud:** la cartella `Documents` è sincronizzata, e iCloud rompe un ambiente Python tenuto dentro il progetto (file nascosti, collegamenti rinominati in "… 2"). L'ambiente sta ora in `~/.venvs/neo-helper-ml`, indicato a `uv` con la variabile `UV_PROJECT_ENVIRONMENT`; VS Code la imposta da solo con `.vscode/settings.json`. Cesar ha scelto di lasciare il progetto in `Documents`.
+- **Da decidere prima delle baseline:** `akiec` contata tra le maligne, come in Tschandl 2020.
+
+### Prossimi passi
+1. **P3:** EDA di HAM10000, duplicati, divisione 70/15/15 per `lesion_id`, controllo degli artefatti con MONET.
+2. Leggere il testo completo dell'accordo di DDI.
+
+## 2026-11-14 — README in tre lingue e test più espliciti
+- **README in inglese, italiano e spagnolo**, su richiesta di Cesar: `README.md` è la versione inglese, `README_it.md` e `README_es.md` le altre due, con il selettore di lingua in cima. Vale per la radice del repository, per `ml/` e per `ml/data/`. Il resto della documentazione in `docs/` resta in italiano.
+- **Test più leggibili:** `pytest` ora elenca ogni test per nome con il suo esito; i README di `ml/` spiegano cosa controlla ogni file di test. Nei resoconti delle sessioni i test vanno riportati uno per uno.
+- **Ambiente dei documenti ricreato** (`.venv` nella radice, Python 3.10, edge-tts 7.3.1, mutagen 1.48.1, tabulate 0.10.0), dopo una cancellazione per errore. I comandi dati a Cesar funzionano ora da qualunque cartella.
+- `CLAUDE.md` aggiornato con queste convenzioni e con la nota su iCloud.

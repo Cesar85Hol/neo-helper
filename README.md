@@ -1,49 +1,60 @@
 # Neo Helper
 
-> Sistema di supporto alla decisione clinica (CDSS) per l'analisi di immagini di nevi/lesioni cutanee.
-> Web + mobile, architettura multi-agente orchestrata, con tool esposti via MCP.
-> Progetto di studio/ricerca, open source. **Non è un dispositivo medico** e non sostituisce il medico.
+**English** · [Italiano](README_it.md) · [Español](README_es.md)
 
-## Obiettivi personali del progetto
-1. Approfondire l'**analisi di immagini mediche** (classificazione, segmentazione, explainability, calibrazione).
-2. Imparare a progettare **pool di agenti** con un **orchestratore** che coordina agenti specializzati.
-3. Usare **MCP (Model Context Protocol)** per esporre modelli e strumenti come tool riutilizzabili.
-4. Costruire un prodotto end-to-end: modello → API → interfaccia web → app mobile.
-5. Verificare se lo stato dell'arte funziona anche su pelli **latinoamericane e asiatiche**, e rendere Neo Helper **usabile da centri di ricerca con poche risorse**, in particolare in America Latina (RQ6).
+> Clinical decision support system (CDSS) for the analysis of images of nevi and skin lesions.
+> Web + mobile, orchestrated multi-agent architecture, with tools exposed through MCP.
+> Study and research project, open source. **It is not a medical device** and does not replace the physician.
 
-## Struttura della documentazione
-| File | Contenuto |
-|------|-----------|
-| [docs/00_roadmap.md](docs/00_roadmap.md) | Piano di lavoro "stile tesi magistrale": fasi, deliverable, milestone |
-| [docs/01_stato_dell_arte.md](docs/01_stato_dell_arte.md) | Letteratura: paper chiave, domande di ricerca, gap |
-| [docs/02_risorse.md](docs/02_risorse.md) | Dataset, modelli pre-addestrati, librerie, tool UI/mobile |
-| [docs/03_architettura.md](docs/03_architettura.md) | Architettura del sistema e del pool di agenti / MCP |
+## Personal goals of the project
+1. Go deeper into **medical image analysis** (classification, segmentation, explainability, calibration).
+2. Learn to design **pools of agents** with an **orchestrator** that coordinates specialised agents.
+3. Use **MCP (Model Context Protocol)** to expose models and instruments as reusable tools.
+4. Build an end-to-end product: model → API → web interface → mobile app.
+5. Check whether the state of the art also works on **Latin American and Asian** skin, and make Neo Helper **usable by research centres with few resources**, in particular in Latin America (RQ6).
+
+## Code
+| Folder | Content |
+|--------|---------|
+| [ml/](ml/README.md) | Machine-learning code: environment, datasets, data registry, baselines (Milestone 2 onwards) |
+| [ml/data/](ml/data/README.md) | Provenance and licences of the datasets; the common data registry |
+| [tools/](tools/) | Helper scripts for the documentation (Word files, audio episodes) |
+
+## Documentation
+The research documentation in `docs/` is written in Italian.
+
+| File | Content |
+|------|---------|
+| [docs/00_roadmap.md](docs/00_roadmap.md) | Work plan in the style of a master's thesis: phases, deliverables, milestones |
+| [docs/01_stato_dell_arte.md](docs/01_stato_dell_arte.md) | Literature: key papers, research questions, gaps |
+| [docs/02_risorse.md](docs/02_risorse.md) | Datasets, pre-trained models, libraries, UI and mobile tools |
+| [docs/03_architettura.md](docs/03_architettura.md) | Architecture of the system and of the agent pool / MCP |
 | [docs/04_etica_regolatorio.md](docs/04_etica_regolatorio.md) | Disclaimer, privacy, bias, MDR / AI Act |
-| [docs/05_scelte_e_pipeline.md](docs/05_scelte_e_pipeline.md) | Scelte confermate, licenze, pipeline, ISIC 2019, nuovi dati, annotazione |
-| [docs/06_verifiche_M1.md](docs/06_verifiche_M1.md) | Verifica dei riferimenti e delle licenze (M1.9) |
-| [docs/07_domande_di_ricerca.md](docs/07_domande_di_ricerca.md) | Domande di ricerca RQ1–RQ6 e contributo originale |
-| [docs/08_revisione_M1.md](docs/08_revisione_M1.md) | Revisione finale della Milestone 1 |
-| [docs/09_pelli_non_chiare.md](docs/09_pelli_non_chiare.md) | Dataset e studi su pelli non chiare (RQ6) |
-| [docs/10_dashboard_M1.md](docs/10_dashboard_M1.md) | **Dashboard: come siamo usciti dalla Milestone 1** (scelte, RQ, passi) |
-| [docs/dashboard/](docs/dashboard/) | Dashboard interattiva in italiano, inglese e spagnolo (aprire `neo_helper_M1.html` nel browser) |
-| [docs/annotazione/](docs/annotazione/) | Istruzioni per chi annota (italiano, inglese, spagnolo) |
-| [docs/figures/](docs/figures/) | Storyboard delle decisioni |
-| [docs/audio/](docs/audio/) | Copioni degli episodi audio |
-| [docs/diario.md](docs/diario.md) | Diario di bordo: decisioni prese, cose da verificare, note |
-| [docs/papers/](docs/papers/) | Schede di lettura dei paper |
-| [docs/refs.bib](docs/refs.bib) | Bibliografia BibTeX |
+| [docs/05_scelte_e_pipeline.md](docs/05_scelte_e_pipeline.md) | Confirmed choices, licences, pipeline, ISIC 2019, new data, annotation |
+| [docs/06_verifiche_M1.md](docs/06_verifiche_M1.md) | Check of references and licences (M1.9) |
+| [docs/07_domande_di_ricerca.md](docs/07_domande_di_ricerca.md) | Research questions RQ1–RQ6 and original contribution |
+| [docs/08_revisione_M1.md](docs/08_revisione_M1.md) | Final review of Milestone 1 |
+| [docs/09_pelli_non_chiare.md](docs/09_pelli_non_chiare.md) | Datasets and studies on non-light skin (RQ6) |
+| [docs/10_dashboard_M1.md](docs/10_dashboard_M1.md) | **Dashboard: how we left Milestone 1** (choices, RQs, steps) |
+| [docs/dashboard/](docs/dashboard/) | Interactive dashboard in Italian, English and Spanish (open `neo_helper_M1.html` in a browser) |
+| [docs/annotazione/](docs/annotazione/) | Instructions for annotators (Italian, English, Spanish) |
+| [docs/figures/](docs/figures/) | Decision storyboards |
+| [docs/audio/](docs/audio/) | Scripts of the audio episodes |
+| [docs/diario.md](docs/diario.md) | Project log: decisions taken, things to verify, notes |
+| [docs/papers/](docs/papers/) | Reading notes on the papers |
+| [docs/refs.bib](docs/refs.bib) | BibTeX bibliography |
 
-## Licenze
-- Codice: [MIT](LICENSE)
-- Documentazione (`docs/`): [CC BY 4.0](docs/LICENSE)
-- Dataset e modelli di terze parti restano soggetti alle loro licenze (spesso CC-BY-NC).
+## Licences
+- Code: [MIT](LICENSE)
+- Documentation (`docs/`): [CC BY 4.0](docs/LICENSE)
+- Third-party datasets and models remain subject to their own licences (often CC BY-NC).
 
-## Stato
-- [x] Fase 0 — Impostazione documentazione
-- [x] Fase 1 — Revisione della letteratura (**Milestone 1 chiusa il 2026-11-10**; riepilogo in [docs/10_dashboard_M1.md](docs/10_dashboard_M1.md))
-- [ ] Fase 2 — Dati e baseline
-- [ ] Fase 3 — Modello e valutazione
-- [ ] Fase 4 — Agenti e MCP
-- [ ] Fase 5 — Web app
-- [ ] Fase 6 — Mobile app
-- [ ] Fase 7 — Valutazione finale e scrittura
+## Status
+- [x] Phase 0 — Documentation set-up
+- [x] Phase 1 — Literature review (**Milestone 1 closed on 2026-11-10**; summary in [docs/10_dashboard_M1.md](docs/10_dashboard_M1.md))
+- [ ] Phase 2 — Data and baselines (in progress: environment, data registry and HAM10000 done)
+- [ ] Phase 3 — Model and evaluation
+- [ ] Phase 4 — Agents and MCP
+- [ ] Phase 5 — Web app
+- [ ] Phase 6 — Mobile app
+- [ ] Phase 7 — Final evaluation and writing

@@ -1,65 +1,93 @@
-# ml/ — codice di machine learning di Neo Helper
+# ml/ — machine-learning code of Neo Helper
 
-Qui vive il codice della Milestone 2 in poi: dati, baseline con backbone congelati, valutazione.
-Il codice è in inglese; questa pagina spiega in italiano come usarlo.
+**English** · [Italiano](README_it.md) · [Español](README_es.md)
 
-## Cosa serve
-- macOS, Linux o Windows; Python 3.12 (lo scarica `uv` da solo).
-- [`uv`](https://docs.astral.sh/uv/): sul Mac `brew install uv`.
-- Nessuna GPU obbligatoria: tutto funziona anche **solo su CPU**, più lentamente.
+The code from Milestone 2 onwards lives here: data, baselines with frozen backbones, evaluation.
 
-## Primo avvio
-Dalla cartella `ml/`:
+## Requirements
+- macOS, Linux or Windows; Python 3.12 (`uv` downloads it by itself).
+- [`uv`](https://docs.astral.sh/uv/): on a Mac, `brew install uv`.
+- No GPU required: everything also runs on **CPU only**, more slowly.
+
+## First run
+From the `ml/` folder:
 
 ```bash
 uv sync
 ```
 
-Crea l'ambiente `ml/.venv` con le versioni esatte scritte in `uv.lock`.
+Creates the environment `ml/.venv` with the exact versions written in `uv.lock`.
 
 ```bash
 uv run neo-check
 ```
 
-Stampa versioni, dispositivi disponibili e cartella dei dati, poi fa una prova con 10 immagini finte.
-Per provare il percorso solo CPU: `uv run neo-check --device cpu`.
+Prints versions, available devices and the data folder, then runs a trial with 10 fake images.
+To try the CPU-only path: `uv run neo-check --device cpu`.
 
 ```bash
 uv run pytest
 ```
 
-Esegue i test.
+Runs the tests. Each test is listed by name with its result (`PASSED`, `FAILED` or `SKIPPED`), followed by a summary line.
+
+## What the tests check
+| File | What it checks |
+|------|----------------|
+| `tests/test_environment.py` | data folder from `NEO_DATA_DIR`; device choice (MPS, CUDA, CPU) and errors for unknown or unavailable devices; embeddings of fake images on every device; same embeddings on CPU and GPU |
+| `tests/test_data.py` | catalogue entries complete; download with checksum, skip when already present, rejection of corrupted files; safe zip extraction; dry run downloads nothing; HAM10000 conversion; registry validation |
+
+The tests never use the network or the real datasets: they work on small fake files in a temporary folder.
+
+## If the project is in a folder synced with iCloud
+On macOS, iCloud marks some files inside `ml/.venv` as "hidden", and Python 3.12 ignores them: the result is the error `ModuleNotFoundError: No module named 'neo'`. A symbolic link is not enough: iCloud renames it.
+
+The real solution is to keep the project **outside** synced folders. Otherwise, tell `uv` to put the environment elsewhere, in every terminal before the other commands:
+
+```bash
+export UV_PROJECT_ENVIRONMENT="$HOME/.venvs/neo-helper-ml"
+```
+
+Then `uv sync` and the other commands work as above. From any folder of the repository, in one line:
+
+```bash
+UV_PROJECT_ENVIRONMENT="$HOME/.venvs/neo-helper-ml" uv run --project ml pytest ml/tests
+```
 
 ## In VS Code
-1. Aprire la cartella del progetto.
-2. `Cmd+Shift+P` → **Python: Select Interpreter** → scegliere `ml/.venv/bin/python`.
-3. Nei notebook, scegliere lo stesso interprete come kernel.
+1. Open the project folder.
+2. `Cmd+Shift+P` → **Python: Select Interpreter** → choose `ml/.venv/bin/python` (or `~/.venvs/neo-helper-ml/bin/python` in the iCloud case).
+3. In notebooks, choose the same interpreter as kernel.
 
-## Dove stanno i dati
-Dati, pesi dei modelli e vettori salvati **non** stanno nel repository. Stanno nella cartella indicata dalla variabile d'ambiente `NEO_DATA_DIR`; se non è impostata, in `~/neo-helper-data`.
+## Where the data lives
+Data, model weights and cached embeddings are **not** in the repository. They are in the folder given by the `NEO_DATA_DIR` environment variable; if it is not set, in `~/neo-helper-data`.
 
-| Sottocartella | Contenuto |
-|---------------|-----------|
-| `raw/` | dataset come scaricati |
-| `registry/` | registro dati comune (una riga per immagine) e divisioni |
-| `weights/` | pesi dei backbone |
-| `embeddings/` | vettori salvati, un file per backbone e dataset |
-| `mlruns/` | esperimenti tracciati con MLflow |
+| Sub-folder | Content |
+|------------|---------|
+| `raw/` | datasets as downloaded |
+| `registry/` | common data registry (one row per image) and splits |
+| `weights/` | backbone weights |
+| `embeddings/` | cached embeddings, one file per backbone and dataset |
+| `mlruns/` | experiments tracked with MLflow |
 
-## Struttura
-| Percorso | Contenuto |
-|----------|-----------|
-| `pyproject.toml` | dipendenze e configurazione degli strumenti |
-| `uv.lock` | versioni esatte, generato da `uv` (non si modifica a mano) |
-| `neo/paths.py` | cartelle dei dati |
-| `neo/device.py` | scelta del dispositivo: MPS, CUDA o CPU |
-| `neo/check.py` | controllo dell'ambiente (`neo-check`) |
-| `tests/` | test automatici |
+Datasets, licences and the registry format are described in [data/README.md](data/README.md).
 
-## Comandi utili
-| Scopo | Comando |
-|-------|---------|
-| Aggiungere una libreria | `uv add nome` |
-| Aggiungere uno strumento di sviluppo | `uv add --dev nome` |
-| Controllare lo stile | `uv run ruff check .` |
-| Riallineare l'ambiente al file di blocco | `uv sync` |
+## Structure
+| Path | Content |
+|------|---------|
+| `pyproject.toml` | dependencies and tool configuration |
+| `uv.lock` | exact versions, generated by `uv` (not edited by hand) |
+| `neo/paths.py` | data folders |
+| `neo/device.py` | device choice: MPS, CUDA or CPU |
+| `neo/check.py` | environment check (`neo-check`) |
+| `neo/data/` | dataset catalogue, downloads, data registry (`neo-data`) |
+| `tests/` | automatic tests |
+
+## Useful commands
+| Purpose | Command |
+|---------|---------|
+| Show the datasets and what is on disk | `uv run neo-data list` |
+| Add a library | `uv add name` |
+| Add a development tool | `uv add --dev name` |
+| Check the code style | `uv run ruff check .` |
+| Re-align the environment with the lock file | `uv sync` |
