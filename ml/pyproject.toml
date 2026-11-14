@@ -29,6 +29,7 @@ dev = [
 # Command-line entry points: `uv run neo-check`.
 [project.scripts]
 neo-check = "neo.check:main"
+neo-data = "neo.data.cli:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -39,6 +40,8 @@ packages = ["neo"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+# -v lists every test with its result; -ra adds the reason for skipped or failed tests.
+addopts = "-v -ra"
 
 [tool.ruff]
 line-length = 100

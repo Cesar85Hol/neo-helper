@@ -6,23 +6,25 @@
 | Dataset | Tipo immagini | Dimensione (circa) | Classi / annotazioni | Licenza (da verificare) | Uso previsto |
 |---------|---------------|--------------------|----------------------|-------------------------|--------------|
 | **ISIC Archive** (isic-archive.com, API) | Dermatoscopiche + cliniche | 581.002 (2026-11-09) | Diagnosi, metadati, alcune maschere | CC-0 / CC-BY / CC-BY-NC per immagine | Sorgente principale |
-| **HAM10000** | Dermatoscopiche | ~10k | 7 classi, istologia per > 50% | CC-BY-NC | Training/benchmark |
+| **HAM10000** | Dermatoscopiche | 10.015 img, 7.470 lesioni; 2,8 GB | 7 classi, istologia per 5.340 immagini (53%) | **CC BY-NC 4.0** (Harvard Dataverse V4.0, DOI 10.7910/DVN/DBW86T, verificato 2026-11-11) | Training/benchmark |
 | **ISIC 2019** (BCN20000 + HAM + MSK) | Dermatoscopiche | ~25k train | 8 classi + "unknown" al test | CC-BY-NC | Training multiclasse |
 | **BCN20000** (Hospital Clínic Barcelona) | Dermatoscopiche | 18.946 img, 5.583 lesioni (12.413 train / 6.533 test) | 8 classi + OOD nel test; sedi difficili (unghie, mucose) | **CC BY 4.0 su Figshare** (10.6084/m9.figshare.24140028); **CC BY-NC sull'archivio ISIC** | Test esterno severo; dati con licenza aperta |
 | **HIBA** (Hospital Italiano de Buenos Aires, 2019–2022) | 1.270 dermoscopiche polarizzate + 346 cliniche | 1.616 img, 1.246 lesioni, 623 pazienti | Diagnosi, conferma, sede, storia di melanoma | **CC BY** (archivio ISIC, DOI 10.34970/587329) | Test esterno latinoamericano (fototipi soprattutto II–III) |
 | **ISIC 2020** | Dermatoscopiche | ~33k | Benigno/maligno, molto sbilanciato, ID paziente | CC BY-NC 4.0 nel paper; sull'archivio ISIC miste: 19.557 CC BY, 13.569 CC BY-NC | Binario, contesto paziente |
 | **ISIC 2024 / SLICE-3D** | Crop da total body 3D (simili a smartphone) | ~400k | Binario, pochissimi maligni, metadati ricchi | Miste sull'archivio: CC-0, CC BY, CC BY-NC (401.059 img); Sci Data 11:884 | Domain shift verso foto non dermatoscopiche; metrica pAUC > 80% sens. (Kurtansky 2025) |
 | **ISIC 2018 Task 1/2** | Dermatoscopiche | ~2.6k | **Maschere di segmentazione** + attributi dermoscopici | CC-BY-NC | Segmentazione |
-| **PH2** | Dermatoscopiche | 200 | Maschere, criteri ABCD, colori | Uso accademico | Test esterno, ABCD |
-| **Derm7pt** | Dermatoscopiche + cliniche (coppie) | ~1k casi | **7-point checklist** | Uso accademico | Agente criteri 7-point |
+| **PH2** | Dermatoscopiche | 200 | Maschere, criteri ABCD, colori | Uso accademico ⚠️ da verificare | Test esterno, ABCD |
+| **Derm7pt** | Dermatoscopiche + cliniche (coppie) | ~1k casi, 2.045 img; 152 MB | **7-point checklist** | **CC BY-NC-ND 4.0** (pagina di download, verificato 2026-11-11) | Agente criteri 7-point |
 | **Annotazioni di Chanda 2024** (su HAM10000) | Dermatoscopiche | 3.611 img (MEL+NV con istologia) | Criteri dermoscopici **localizzati**, 14 dermatologi | **CC BY 4.0**, Figshare 10.6084/m9.figshare.23766477 | Validare MONET, concept bottleneck, controllo delle heatmap |
 | **PAD-UFES-20** (Brasile) | Cliniche da smartphone | 2.298 (archivio ISIC) | 6 classi + metadati clinici | CC BY (verificato sull'archivio ISIC) | Test smartphone; **RQ6** |
 | **Fitzpatrick17k** | Cliniche (web) | ~17k | 114 condizioni + fototipo | Uso ricerca | Fairness |
-| **DDI** (Stanford) | Cliniche | ~650 | Fototipi I–VI, biopsia | Accesso su richiesta | Fairness |
+| **DDI** (Stanford) | Cliniche | 656 img, 570 pazienti; 226 MB | Fototipi I–VI, biopsia | **Stanford Research Use Agreement**: solo ricerca personale non commerciale, niente ridistribuzione né lavori derivati (verificato 2026-11-11; ⚠️ letti i primi sei punti) | Fairness |
 | **BALD** (lesioni acrali, BRAAFF) | Dermatoscopiche | 666 | Melanomi e nevi **acrali**, anche da centri giapponesi | CC BY-NC (archivio ISIC, DOI 10.34970/669187) | **RQ6**: sede acrale, proxy asiatico |
 | **MSKCC Skin Tone Labeling** | Varie (esame di tutto il corpo) | 4.879 img, 64 pazienti | Annotazioni dettagliate del **tono della pelle** | CC BY (DOI 10.34970/962049) | **RQ6**: misurare il tono della pelle |
 | **Cheratosi seborroiche, Pontificia Universidad Católica de Chile** | Dermatoscopiche | 150 | Una sola diagnosi | CC BY (DOI 10.34970/478917) | **RQ6**: piccolo test cileno |
 | **MILK10k** (ISIC 2025) | Coppie clinica+dermatoscopica | 10.480 | Multiclasse | CC BY-NC (archivio ISIC, DOI 10.34970/648456) | Multimodale |
+
+Provenienza, file e checksum dei dataset già scaricati: [`ml/data/README_it.md`](../ml/data/README_it.md).
 
 Dove scaricare: sito ISIC (challenge.isic-archive.com), Kaggle (mirror ISIC 2019/2020/2024, HAM10000), Harvard Dataverse (HAM10000), Mendeley Data (PAD-UFES-20).
 
