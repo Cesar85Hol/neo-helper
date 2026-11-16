@@ -99,6 +99,6 @@ Un archivo CSV por conjunto de datos en `registry/`, una fila por imagen, **las 
 
 **Vocabulario de diagnósticos** (las 7 clases de HAM10000; se amplía en el paquete P5): `akiec`, `bcc`, `bkl`, `df`, `mel`, `nv`, `vasc`.
 
-**Malignas para la puntuación de malignidad:** `mel`, `bcc`, `akiec`. ⚠️ `akiec` (queratosis actínicas y carcinoma intraepitelial) se cuenta como maligna, como en Tschandl 2020: por confirmar antes de las líneas base.
+**Malignas para la puntuación de malignidad:** `mel`, `bcc`, `akiec`. `akiec` (queratosis actínicas y carcinoma intraepitelial) se cuenta como maligna, como en Tschandl 2020 (decidido el 2026-11-17).
 
 **Lo que falta en HAM10000:** identificador del paciente, fototipo, etnia. Las columnas quedan vacías.

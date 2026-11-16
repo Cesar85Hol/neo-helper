@@ -99,6 +99,6 @@ One CSV file per dataset in `registry/`, one row per image, **the same columns f
 
 **Diagnosis vocabulary** (the 7 classes of HAM10000; extended in package P5): `akiec`, `bcc`, `bkl`, `df`, `mel`, `nv`, `vasc`.
 
-**Malignant for the malignancy score:** `mel`, `bcc`, `akiec`. ⚠️ `akiec` (actinic keratoses and intraepithelial carcinoma) is counted as malignant, as in Tschandl 2020: to be confirmed before the baselines.
+**Malignant for the malignancy score:** `mel`, `bcc`, `akiec`. `akiec` (actinic keratoses and intraepithelial carcinoma) is counted as malignant, as in Tschandl 2020 (decided on 2026-11-17).
 
 **Missing in HAM10000:** patient identifier, phototype, ethnicity. The columns stay empty.

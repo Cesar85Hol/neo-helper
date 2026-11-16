@@ -338,3 +338,4 @@
 1. Prova di Cesar e commit del pacchetto P3.
 2. **P4:** baseline congelate. Da confermare prima: `akiec` tra le maligne.
 - **Riassunto della prima parte della M2:** [`12_riassunto_M2_parte1.md`](12_riassunto_M2_parte1.md), con il Word `outputs/milestone2/M2_parte1_ambiente_dati_EDA.docx` (riassunto + EDA con i grafici) da caricare su NotebookLM. `tools/build_word.sh` costruisce ora anche i riassunti di milestone.
+- **Deciso (2026-11-17):** `akiec` conta tra le maligne nel punteggio di malignità, insieme a `mel` e `bcc`, come in Tschandl 2020.

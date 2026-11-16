@@ -99,6 +99,6 @@ Un file CSV per dataset in `registry/`, una riga per immagine, **le stesse colon
 
 **Vocabolario delle diagnosi** (le 7 classi di HAM10000; si estende nel pacchetto P5): `akiec`, `bcc`, `bkl`, `df`, `mel`, `nv`, `vasc`.
 
-**Maligne per il punteggio di malignità:** `mel`, `bcc`, `akiec`. ⚠️ `akiec` (cheratosi attiniche e carcinoma intraepiteliale) è contata come maligna, come in Tschandl 2020: scelta da confermare prima delle baseline.
+**Maligne per il punteggio di malignità:** `mel`, `bcc`, `akiec`. `akiec` (cheratosi attiniche e carcinoma intraepiteliale) è contata come maligna, come in Tschandl 2020 (deciso il 2026-11-17).
 
 **Cosa manca in HAM10000:** identificativo del paziente, fototipo, etnia. Le colonne restano vuote.

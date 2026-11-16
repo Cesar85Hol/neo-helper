@@ -100,7 +100,7 @@ Uno dei test era scritto male e falliva; è stato corretto l'esempio, non il cod
 | README | in inglese, italiano e spagnolo |
 
 ## Cosa resta da decidere
-- **Le cheratosi attiniche contano tra le maligne?** Per ora sì, come in Tschandl 2020. Cambia il punteggio di malignità.
+- ~~Le cheratosi attiniche contano tra le maligne?~~ **Deciso il 2026-11-17: sì**, come in Tschandl 2020.
 - **Penna, righello, adesivo, bolle** non sono misurati: servirebbe un piccolo campione annotato a mano.
 
 ## Cosa viene dopo
