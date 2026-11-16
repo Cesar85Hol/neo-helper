@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Build the literature Word documents (one per section) from the Markdown notes in docs/papers/.
-# Usage: tools/build_word.sh   → output in outputs/letteratura/
+# Build the Word documents from the Markdown notes: one per literature section
+# (docs/papers/) and one per milestone summary.
+# Usage: tools/build_word.sh   → output in outputs/letteratura/ and outputs/milestone2/
 # Document titles stay in Italian: they are content, not code.
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -15,7 +16,7 @@ build() {
   pandoc "$@" \
     --from gfm --to docx \
     --metadata title="$title" \
-    --metadata subtitle="Neo Helper — riassunti di letteratura" \
+    --metadata subtitle="${SUBTITLE:-Neo Helper — riassunti di letteratura}" \
     --metadata date="$(date +%d/%m/%Y)" \
     --metadata lang=it-IT --metadata toc-title="Indice" \
     --toc --toc-depth=2 \
@@ -94,3 +95,13 @@ build "S9_domande_e_verifiche.docx" "§9 — Domande di ricerca, verifiche e pel
   docs/07_domande_di_ricerca.md \
   docs/09_pelli_non_chiare.md \
   docs/06_verifiche_M1.md
+
+# --- Milestone 2: summaries (output in outputs/milestone2/) ---
+OUT=outputs/milestone2
+SUBTITLE="Neo Helper — riassunti di milestone"
+mkdir -p "$OUT"
+P=docs
+
+build "M2_parte1_ambiente_dati_EDA.docx" "Milestone 2, prima parte — ambiente, dati ed EDA" \
+  docs/12_riassunto_M2_parte1.md \
+  docs/11_eda_ham10000.md
