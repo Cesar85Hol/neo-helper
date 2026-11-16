@@ -53,7 +53,7 @@ def test_catalogue_entries_are_complete():
         assert len(names) == len(set(names))
         for remote in source.files:
             assert remote.url.startswith("https://")
-            assert remote.size > 0 and len(remote.md5) == 32
+            assert remote.size > 0 and len(remote.checksum.rpartition(":")[2]) in (32, 40, 64)
 
 
 def test_default_selection_is_the_core_group():
@@ -64,6 +64,26 @@ def test_default_selection_is_the_core_group():
     }
     with pytest.raises(ValueError):
         HAM10000.select(["no-such-group"])
+
+
+def test_sha256_and_git_checksums_are_verified(tmp_path):
+    content = b"weights" * 500
+    folder = tmp_path / "dest"
+    sha256 = "sha256:" + hashlib.sha256(content).hexdigest()
+    git = "gitsha1:" + hashlib.sha1(f"blob {len(content)}\0".encode() + content).hexdigest()
+    for number, checksum in enumerate((sha256, git)):
+        remote = local_remote(tmp_path, content, name=f"file{number}.bin", md5=checksum)
+        download_file(remote, folder, verbose=False)
+        assert is_complete(remote, folder)
+    wrong = local_remote(tmp_path, content, name="wrong.bin", md5="sha256:" + "0" * 64)
+    with pytest.raises(DownloadError):
+        download_file(wrong, folder, verbose=False)
+
+
+def test_models_go_to_the_weights_folder(data_dir, capsys):
+    assert main(["download", "monet"]) == 0
+    out = capsys.readouterr().out
+    assert str(data_dir / "weights" / "monet") in out and "Dry run" in out
 
 
 def test_human_size():

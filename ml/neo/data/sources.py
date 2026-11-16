@@ -1,7 +1,7 @@
 """Catalogue of the dataset sources: where each file comes from, its size,
 checksum and licence.
 
-File lists, sizes and MD5 checksums are pinned here on purpose: a download is
+File lists, sizes and checksums are pinned here on purpose: a download is
 accepted only if it matches, so everyone works on exactly the same files.
 They were read from the repository APIs on the date given in ``checked``.
 """
@@ -18,7 +18,7 @@ class RemoteFile:
     name: str  # file name on disk
     url: str
     size: int  # bytes
-    md5: str
+    checksum: str  # "md5:<hex>", "sha256:<hex>" or "gitsha1:<hex>"; a bare hex string is MD5
     group: str = "core"  # files are downloaded by group; "core" is the default
 
 
@@ -34,6 +34,7 @@ class Source:
     landing_page: str
     version: str
     checked: str  # date the catalogue entry was read from the repository
+    folder: str = "raw"  # sub-folder of the data folder: "raw" for datasets, "weights" for models
     files: tuple[RemoteFile, ...] = field(default_factory=tuple)
 
     def groups(self) -> list[str]:
@@ -165,7 +166,81 @@ CHANDA2024 = Source(
     ),
 )
 
-SOURCES: dict[str, Source] = {s.key: s for s in (HAM10000, CHANDA2024)}
+_MONET = "https://huggingface.co/suinleelab/monet/resolve/1d1efd0b8d61bde82cde22d2e93c28d73441f29e"
+
+# MONET: CLIP ViT-L/14 trained on dermatology images and text (Kim et al.,
+# Nature Medicine 2024). Used to audit artifacts and to describe concepts.
+# The Hugging Face repository was renamed from chanwkim/monet; the revision is
+# pinned. Small files carry the git blob checksum, the weights a SHA-256.
+MONET = Source(
+    key="monet",
+    title="MONET (Medical cONcept rETriever), CLIP ViT-L/14 weights",
+    license="CC BY-NC-SA 4.0",
+    license_url="https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    doi="10.1038/s41591-024-02887-x",
+    landing_page="https://huggingface.co/suinleelab/monet",
+    version="Hugging Face revision 1d1efd0 (2024-04-11)",
+    checked="2026-11-16",
+    folder="weights",
+    files=(
+        RemoteFile(
+            "model.safetensors",
+            f"{_MONET}/model.safetensors",
+            1710537716,
+            "sha256:f5b874fff0aa8119484a75a497c997da8b4ff300a8c81c838aab893f301390af",
+        ),
+        RemoteFile(
+            "config.json",
+            f"{_MONET}/config.json",
+            4519,
+            "gitsha1:2c19f6666e0e163c7954df66cb901353fcad088e",
+        ),
+        RemoteFile(
+            "preprocessor_config.json",
+            f"{_MONET}/preprocessor_config.json",
+            286,
+            "gitsha1:3ba3809cc8255bd1e3150f8a10673d67e67d720e",
+        ),
+        RemoteFile(
+            "tokenizer.json",
+            f"{_MONET}/tokenizer.json",
+            2224003,
+            "gitsha1:580c79c6862f31d1f9bd08dd1a415ba0d0502cd9",
+        ),
+        RemoteFile(
+            "tokenizer_config.json",
+            f"{_MONET}/tokenizer_config.json",
+            905,
+            "gitsha1:702bb12920b291cade3706cf215c1604d2255d93",
+        ),
+        RemoteFile(
+            "special_tokens_map.json",
+            f"{_MONET}/special_tokens_map.json",
+            389,
+            "gitsha1:9bfb42aa97dcd61e89f279ccaee988bccb4fabae",
+        ),
+        RemoteFile(
+            "vocab.json",
+            f"{_MONET}/vocab.json",
+            961143,
+            "gitsha1:4297ea6a8d2bae1fea8f48b45e257814dcb11f69",
+        ),
+        RemoteFile(
+            "merges.txt",
+            f"{_MONET}/merges.txt",
+            524619,
+            "gitsha1:76e821f1b6f0a9709293c3b6b51ed90980b3166b",
+        ),
+        RemoteFile(
+            "README.md",
+            f"{_MONET}/README.md",
+            4205,
+            "gitsha1:d9be94237f053403271a49631adab6e396dc0392",
+        ),
+    ),
+)
+
+SOURCES: dict[str, Source] = {s.key: s for s in (HAM10000, CHANDA2024, MONET)}
 
 
 def get_source(key: str) -> Source:

@@ -38,7 +38,7 @@ Dove scaricare: sito ISIC (challenge.isic-archive.com), Kaggle (mirror ISIC 2019
 |---------|-----------|------|
 | **timm** (Hugging Face) | ResNet, EfficientNet, ConvNeXt, ViT, EVA, DINOv2… | Baseline e backbone |
 | **DINOv2 / DINOv3** (Meta) | Feature self-supervised fortissime | Linear probe molto efficace; DINOv2 **Apache 2.0** (anche uso commerciale) |
-| **MONET** (GitHub suinleelab) | CLIP dermatologico, concetti | Explainability concept-based; pesi su HF `chanwkim/monet`. Repository **CC BY-NC-SA 4.0**; la model card esclude qualsiasi uso in produzione (verificato 2026-11-04) |
+| **MONET** (GitHub suinleelab) | CLIP dermatologico, concetti | Explainability concept-based; pesi su HF `suinleelab/monet` (prima `chanwkim/monet`; 1,71 GB, revisione `1d1efd0`). Repository **CC BY-NC-SA 4.0**; la model card esclude qualsiasi uso in produzione (verificato 2026-11-04) |
 | **PanDerm** (GitHub SiyuanYan1) | Foundation model dermatologico multimodale (ViT-L) | Pesi pubblici, licenza **CC-BY-NC-ND 4.0** (solo ricerca non commerciale) |
 | **DermFM-Zero** (GitHub SiyuanYan1, HF `redlessone/DermFM-Zero`) | Successore immagine-testo di PanDerm, zero-shot e concetti (arXiv 2602.10624) | ⚠️ Licenza ancora contraddittoria (2026-11-09): metadati HF `cc-by-nc-4.0`, ma il testo per l'accesso ai pesi dice CC BY-NC-ND e vieta la ridistribuzione; pre-training include ISIC, BCN20000, Fitzpatrick17k |
 | **Derm Foundation** (Google, HF) | Embedding dermatologici (BiT ResNet101x3, vettore da 6.144) | Gated: termini d'uso Health AI Developer Foundations |

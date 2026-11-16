@@ -36,6 +36,9 @@ Ejecuta las pruebas. Cada prueba aparece con su nombre y su resultado (`PASSED`,
 |---------|---------------|
 | `tests/test_environment.py` | carpeta de datos a partir de `NEO_DATA_DIR`; elección del dispositivo (MPS, CUDA, CPU) y errores para dispositivos desconocidos o ausentes; vectores de imágenes falsas en cada dispositivo; mismos vectores en CPU y GPU |
 | `tests/test_data.py` | entradas del catálogo completas; descarga con suma de verificación, omisión si el archivo ya existe, rechazo de archivos corruptos; extracción segura de los zip; el ensayo de descarga no descarga nada; conversión de HAM10000; controles del registro |
+| `tests/test_split_and_duplicates.py` | ninguna lesión en dos partes; fracciones 70/15/15; proporciones de clases conservadas; misma semilla, misma partición; fugas e imágenes faltantes detectadas; una partición publicada no se sobrescribe; duplicados encontrados y clasificados; gráficos dibujados y guardados |
+| `tests/test_concepts.py` | puntuación alta cuando la imagen corresponde a las palabras, baja cuando no; media sobre términos y plantillas; puntuaciones entre 0 y 1; mensaje claro si faltan los pesos; vectores guardados reutilizados solo para las mismas imágenes |
+| `tests/test_artifacts.py` | borde negro: ausente en una imagen a campo completo, presente con campo redondo, menor con una apertura más ancha, no se activa por una lesión oscura en el centro |
 
 Las pruebas nunca usan la red ni los conjuntos de datos reales: trabajan con pequeños archivos falsos en una carpeta temporal.
 
@@ -80,7 +83,11 @@ Los conjuntos de datos, las licencias y el formato del registro se describen en 
 | `neo/paths.py` | carpetas de datos |
 | `neo/device.py` | elección del dispositivo: MPS, CUDA o CPU |
 | `neo/check.py` | comprobación del entorno (`neo-check`) |
-| `neo/data/` | catálogo de conjuntos de datos, descargas, registro de datos (`neo-data`) |
+| `neo/data/` | catálogo de conjuntos de datos, descargas, registro de datos, búsqueda de duplicados, partición por lesión (`neo-data`) |
+| `neo/concepts.py` | puntuaciones de conceptos con MONET (imágenes y palabras en el mismo espacio de vectores) |
+| `neo/plots.py` | funciones para los gráficos, con un único estilo legible también para personas con daltonismo |
+| `notebooks/` | cuadernos de análisis, guardados sin resultados |
+| `splits/` | particiones entrenamiento / validación / prueba publicadas (no se regeneran) |
 | `tests/` | pruebas automáticas |
 
 ## Comandos útiles

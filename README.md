@@ -36,6 +36,8 @@ The research documentation in `docs/` is written in Italian.
 | [docs/08_revisione_M1.md](docs/08_revisione_M1.md) | Final review of Milestone 1 |
 | [docs/09_pelli_non_chiare.md](docs/09_pelli_non_chiare.md) | Datasets and studies on non-light skin (RQ6) |
 | [docs/10_dashboard_M1.md](docs/10_dashboard_M1.md) | **Dashboard: how we left Milestone 1** (choices, RQs, steps) |
+| [docs/11_eda_ham10000.md](docs/11_eda_ham10000.md) | Exploratory analysis of HAM10000 and the split by lesion |
+| [docs/12_riassunto_M2_parte1.md](docs/12_riassunto_M2_parte1.md) | Milestone 2, first part: what was done (environment, data, EDA) |
 | [docs/dashboard/](docs/dashboard/) | Interactive dashboard in Italian, English and Spanish (open `neo_helper_M1.html` in a browser) |
 | [docs/annotazione/](docs/annotazione/) | Instructions for annotators (Italian, English, Spanish) |
 | [docs/figures/](docs/figures/) | Decision storyboards |

@@ -58,7 +58,7 @@ Deliverable: script di download riproducibili, registro dati con **licenza e fon
   
   ISIC 2019 completo **dopo** la baseline. Verificare le licenze di DDI, PH2 e Derm7pt.
 - [ ] Registro dati comune (campi del §4.1 di `05_scelte_e_pipeline.md`), compresi `license` e `source`
-- [ ] EDA (M2.3):
+- [ ] EDA (M2.3) — fatta per HAM10000 il 2026-11-14 ([11_eda_ham10000.md](11_eda_ham10000.md)); controllo degli artefatti fatto il 2026-11-17; restano i duplicati tra dataset (pacchetto P5):
   - classi e squilibrio;
   - duplicati tra dataset (HAM10000 ⊂ ISIC 2018/2019; BCN20000 su ISIC e su Figshare);
   - **controllo degli artefatti con MONET** (penna, righello, adesivo, bordo nero) per classe;

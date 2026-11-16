@@ -36,6 +36,8 @@ La documentazione di ricerca in `docs/` è scritta in italiano.
 | [docs/08_revisione_M1.md](docs/08_revisione_M1.md) | Revisione finale della Milestone 1 |
 | [docs/09_pelli_non_chiare.md](docs/09_pelli_non_chiare.md) | Dataset e studi su pelli non chiare (RQ6) |
 | [docs/10_dashboard_M1.md](docs/10_dashboard_M1.md) | **Dashboard: come siamo usciti dalla Milestone 1** (scelte, RQ, passi) |
+| [docs/11_eda_ham10000.md](docs/11_eda_ham10000.md) | Analisi esplorativa di HAM10000 e divisione per lesione |
+| [docs/12_riassunto_M2_parte1.md](docs/12_riassunto_M2_parte1.md) | Milestone 2, prima parte: cosa è stato fatto (ambiente, dati, EDA) |
 | [docs/dashboard/](docs/dashboard/) | Dashboard interattiva in italiano, inglese e spagnolo (aprire `neo_helper_M1.html` nel browser) |
 | [docs/annotazione/](docs/annotazione/) | Istruzioni per chi annota (italiano, inglese, spagnolo) |
 | [docs/figures/](docs/figures/) | Storyboard delle decisioni |

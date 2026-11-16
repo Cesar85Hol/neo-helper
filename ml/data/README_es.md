@@ -24,6 +24,10 @@ Desde la carpeta `ml/`:
 | Descarga real | `uv run neo-data download ham10000 --yes` |
 | Otros grupos de archivos | `uv run neo-data download ham10000 --groups segmentations --yes` |
 | Extraer las imágenes y construir el registro | `uv run neo-data registry ham10000` |
+| Buscar imágenes duplicadas | `uv run neo-data duplicates ham10000` |
+| Crear o comprobar la partición por lesión | `uv run neo-data split ham10000` |
+| Descargar los pesos de MONET (ensayo sin `--yes`) | `uv run neo-data download monet --yes` |
+| Puntuar los artefactos de las imágenes | `uv run neo-data artifacts ham10000` |
 
 Un archivo ya presente con el tamaño y la suma de verificación correctos no se vuelve a descargar. Una descarga que no coincide con el catálogo se rechaza y se borra.
 
@@ -56,6 +60,12 @@ El grupo `isic2018_test` es el conjunto de prueba oficial del desafío ISIC 2018
 |-------|---------|--------|
 | `core` | `annotations_gt.zip`, `metadata_gt.csv`, `README.md` | 12,7 MB |
 | `reader_study` | `metadata_phase1–3.csv`, `Source Data.zip`, `Datasets.zip` | 5,5 MB |
+
+### MONET (pesos del modelo)
+- **Qué es:** CLIP ViT-L/14 entrenado con imágenes y textos de dermatología (Kim et al., Nature Medicine 2024); sirve para puntuar conceptos.
+- **Fuente:** Hugging Face `suinleelab/monet` (antes `chanwkim/monet`), revisión `1d1efd0` del 11 de abril de 2024.
+- **Licencia:** CC BY-NC-SA 4.0 (repositorio GitHub); la ficha del modelo excluye cualquier uso en producción.
+- **Tamaño y lugar:** 1,71 GB, en `weights/monet/`.
 
 ### Descargados a mano (acceso con registro)
 | Conjunto | Archivo en `raw/` | Licencia | Restricciones |

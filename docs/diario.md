@@ -308,3 +308,33 @@
 - **Test più leggibili:** `pytest` ora elenca ogni test per nome con il suo esito; i README di `ml/` spiegano cosa controlla ogni file di test. Nei resoconti delle sessioni i test vanno riportati uno per uno.
 - **Ambiente dei documenti ricreato** (`.venv` nella radice, Python 3.10, edge-tts 7.3.1, mutagen 1.48.1, tabulate 0.10.0), dopo una cancellazione per errore. I comandi dati a Cesar funzionano ora da qualunque cartella.
 - `CLAUDE.md` aggiornato con queste convenzioni e con la nota su iCloud.
+
+## 2026-11-14 — EDA di HAM10000 e divisione per lesione (M2.3, prima parte)
+- **Pacchetto P3, parte senza download** → [`11_eda_ham10000.md`](11_eda_ham10000.md), notebook `ml/notebooks/01_eda_ham10000.ipynb`, cinque grafici in `docs/figures/eda_ham10000_*`.
+- **Cosa dicono i dati:**
+  - i nevi sono il 67%; la classe più grande è 58 volte la più piccola;
+  - il 26% delle lesioni ha più immagini (il 45% delle immagini);
+  - tumori tutti con istologia, nevi solo per il 37%;
+  - **classe e centro sono legati:** 90% delle `akiec` dall'Australia; `vidir_molemax` è al 94% nevi. Rischio di scorciatoia, da controllare con MONET e con risultati per centro;
+  - mancano fototipo e paziente: l'equità per tono si misura solo sui dataset esterni.
+- **Duplicati:** 17 coppie quasi identiche, tutte dentro la stessa lesione; nessuna tra lesioni diverse. Scartata l'impronta dHash 8 × 8 (migliaia di falsi allarmi); usata la differenza tra miniature a colori. Da ricontrollare con i vettori in P4.
+- **Divisione pubblicata:** `ml/splits/ham10000_lesion_v1.csv`, 70/15/15 per lesione, stratificata, seme 2026: 7.005 / 1.509 / 1.501 immagini. Non si rigenera; il test si usa una volta sola.
+- **Codice:** `neo/data/duplicates.py`, `neo/data/split.py`, `neo/plots.py`, comandi `neo-data duplicates` e `neo-data split`. 37 test superati (12 nuovi).
+- I notebook si salvano **senza risultati**, perché le immagini di esempio sono sotto licenza CC BY-NC.
+
+### Prossimi passi
+1. Controllo degli artefatti con MONET (serve il permesso per scaricare i pesi), poi chiusura di P3.
+2. **P4:** baseline congelate. Prima va confermato se `akiec` conta tra le maligne.
+
+## 2026-11-17 — Controllo degli artefatti con MONET (M2.3)
+- **Pesi di MONET scaricati** (1,71 GB, CC BY-NC-SA 4.0) in `weights/monet/`. Il repository su Hugging Face si chiama ora `suinleelab/monet`; revisione fissata nel catalogo. Il downloader verifica anche SHA-256 e impronta git.
+- **Punteggi dei concetti** (`neo/concepts.py`) con la formula del tutorial degli autori; i vettori coincidono con quelli della libreria. Vettori di HAM10000 calcolati in 11,5 minuti sul Mac (MPS) e salvati in `embeddings/`: serviranno anche in M3.4.
+- **MONET sulle dermoscopie, controllo a occhio** (24 immagini per concetto, giudizio mio): bene i **peli**; **non affidabili** penna, righello, adesivo, bordo nero e bolle, perché MONET confonde il colore della lesione con l'artefatto ("penna viola" trova le lesioni vascolari). Prima risposta, parziale, alla domanda aperta della M1.
+- **Bordo nero misurato sui pixel** (`neo/data/artifacts.py`): 955 immagini (9,5%), il 91% da `vidir_modern`; 16,7% delle maligne contro 7,8% delle benigne, e la differenza resta anche dentro `vidir_modern` (31,7% contro 23,6%). **Possibile scorciatoia**: nelle baseline i risultati vanno riportati con e senza bordo nero.
+- Penna, righello, adesivo e bolle restano non misurati: servirebbe un campione annotato a mano.
+- `11_eda_ham10000.md` §7 completato; comando `neo-data artifacts`; 51 test.
+
+### Prossimi passi
+1. Prova di Cesar e commit del pacchetto P3.
+2. **P4:** baseline congelate. Da confermare prima: `akiec` tra le maligne.
+- **Riassunto della prima parte della M2:** [`12_riassunto_M2_parte1.md`](12_riassunto_M2_parte1.md), con il Word `outputs/milestone2/M2_parte1_ambiente_dati_EDA.docx` (riassunto + EDA con i grafici) da caricare su NotebookLM. `tools/build_word.sh` costruisce ora anche i riassunti di milestone.

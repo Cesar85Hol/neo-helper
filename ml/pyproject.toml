@@ -9,6 +9,7 @@ readme = "README.md"
 requires-python = ">=3.11,<3.13"
 license = { text = "MIT" }
 dependencies = [
+    "matplotlib>=3.9",
     "numpy>=2.0",
     "pandas>=2.2",
     "pillow>=10.0",
@@ -16,12 +17,15 @@ dependencies = [
     "timm>=1.0",
     "torch>=2.5",
     "torchvision>=0.20",
+    "transformers>=4.46",
 ]
 
 # Tools needed to develop and test, not to run the pipeline.
 [dependency-groups]
 dev = [
     "ipykernel>=6.29",
+    "nbconvert>=7.16",
+    "nbformat>=5.10",
     "pytest>=8.0",
     "ruff>=0.8",
 ]
@@ -48,3 +52,7 @@ line-length = 100
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+# Notebook cells keep long chart titles on one line; display() is a notebook built-in.
+"notebooks/*" = ["E501", "F821"]

@@ -4,6 +4,9 @@
     neo-data download ham10000            # dry run: show files and sizes, download nothing
     neo-data download ham10000 --yes      # really download
     neo-data registry ham10000            # extract the images and build the data registry
+    neo-data duplicates ham10000          # look for duplicate images
+    neo-data split ham10000               # create the train / validation / test split by lesion
+    neo-data artifacts ham10000           # score image artifacts (MONET concepts, dark corners)
 
 Downloads are a dry run unless ``--yes`` is given.
 """
@@ -12,8 +15,10 @@ from __future__ import annotations
 
 import argparse
 
+import pandas as pd
+
 from neo import paths
-from neo.data import ham10000, registry
+from neo.data import artifacts, duplicates, ham10000, registry, split
 from neo.data.download import download_file, free_space, human_size, is_complete
 from neo.data.sources import SOURCES, get_source
 
@@ -24,7 +29,7 @@ REGISTRY_BUILDERS = {ham10000.KEY: ham10000.build_registry}
 def cmd_list(_: argparse.Namespace) -> int:
     print(f"Data folder: {paths.data_dir()}")
     for source in SOURCES.values():
-        folder = paths.subdir("raw") / source.key
+        folder = paths.subdir(source.folder) / source.key
         print(f"\n{source.key}: {source.title}")
         print(f"  licence {source.license}; DOI {source.doi}; {source.version}")
         for group in source.groups():
@@ -39,7 +44,7 @@ def cmd_download(args: argparse.Namespace) -> int:
     source = get_source(args.dataset)
     groups = args.groups.split(",") if args.groups else None
     files = source.select(groups)
-    folder = paths.subdir("raw") / source.key
+    folder = paths.subdir(source.folder) / source.key
 
     print(f"{source.title}")
     print(f"Licence:     {source.license} ({source.license_url})")
@@ -84,6 +89,63 @@ def cmd_registry(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_duplicates(args: argparse.Namespace) -> int:
+    frame = registry.load(args.dataset)
+    print(f"Comparing {len(frame)} images (threshold {args.threshold} grey levels)...")
+    pairs = duplicates.find_pairs(frame, threshold=args.threshold)
+    counts = duplicates.summarise(pairs)
+    print(f"Duplicate pairs found:              {counts['pairs']}")
+    print(f"  identical files (same checksum):  {counts['exact']}")
+    print(f"  inside the same lesion:           {counts['same_lesion']}")
+    print(f"  linking two different lesions:    {counts['across_lesions']}")
+    print(f"  linking two different diagnoses:  {counts['across_diagnoses']}")
+    path = paths.subdir("registry", create=True) / f"{args.dataset}_duplicates.csv"
+    pairs.to_csv(path, index=False)
+    print(f"Pairs written: {path}")
+    if counts["across_lesions"]:
+        print("WARNING: pairs across lesions can leak between training and test.")
+    return 0
+
+
+def cmd_split(args: argparse.Namespace) -> int:
+    frame = registry.load(args.dataset)
+    path = split.split_path(args.dataset)
+    if path.exists() and not args.overwrite:
+        print(f"Split already published, not changed: {path}")
+        parts = split.load(args.dataset)
+        split.check(parts, frame)
+    else:
+        parts = split.split_by_lesion(frame)
+        path = split.save(parts, args.dataset, overwrite=args.overwrite)
+        print(f"Split written: {path} (seed {split.DEFAULT_SEED})")
+    print("Checks passed: every image once, no lesion in two parts, all classes in every part.")
+    print(split.summary(parts, frame).to_string())
+    return 0
+
+
+def cmd_artifacts(args: argparse.Namespace) -> int:
+    # Imported here: loading the model libraries is slow and other commands do not need them.
+    from neo import concepts
+
+    frame = registry.load(args.dataset)
+    root = paths.data_dir()
+    print(f"Measuring dark corners on {len(frame)} images...")
+    scores = frame[["uid"]].copy()
+    scores["dark_corners_pixels"] = artifacts.dark_corner_shares([root / f for f in frame["file"]])
+    print("Scoring MONET concepts (image vectors are computed once, then read from disk)...")
+    model, processor, device = concepts.load_monet(args.device)
+    vectors = concepts.cached_image_vectors(frame, args.dataset, model, processor, device)
+    monet = concepts.score_concepts(vectors, concepts.ARTIFACTS, model, processor, device)
+    scores = pd.concat([scores, monet], axis=1)
+    path = paths.subdir("registry", create=True) / f"{args.dataset}_artifact_scores.csv"
+    scores.to_csv(path, index=False)
+    dark = scores["dark_corners_pixels"] > artifacts.DEFAULT_THRESHOLD
+    print(f"Scores written: {path}")
+    print(f"Images with dark corners: {int(dark.sum())} ({dark.mean():.1%})")
+    print("MONET scores rank images; check each concept by eye before using a threshold.")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="neo-data", description="Datasets of Neo Helper.")
     commands = parser.add_subparsers(dest="command", required=True)
@@ -101,6 +163,21 @@ def main(argv: list[str] | None = None) -> int:
     build = commands.add_parser("registry", help="Extract images and build the data registry.")
     build.add_argument("dataset", choices=sorted(SOURCES))
     build.set_defaults(run=cmd_registry)
+
+    dup = commands.add_parser("duplicates", help="Look for duplicate images in a registry.")
+    dup.add_argument("dataset", choices=sorted(REGISTRY_BUILDERS))
+    dup.add_argument("--threshold", type=float, default=duplicates.DEFAULT_THRESHOLD)
+    dup.set_defaults(run=cmd_duplicates)
+
+    parts = commands.add_parser("split", help="Create or check the split by lesion.")
+    parts.add_argument("dataset", choices=sorted(REGISTRY_BUILDERS))
+    parts.add_argument("--overwrite", action="store_true", help="Replace a published split.")
+    parts.set_defaults(run=cmd_split)
+
+    audit = commands.add_parser("artifacts", help="Score image artifacts in a registry.")
+    audit.add_argument("dataset", choices=sorted(REGISTRY_BUILDERS))
+    audit.add_argument("--device", default="auto", help="auto, cpu, mps or cuda.")
+    audit.set_defaults(run=cmd_artifacts)
 
     args = parser.parse_args(argv)
     return args.run(args)

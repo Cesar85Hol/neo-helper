@@ -34,18 +34,32 @@ def human_size(n_bytes: int) -> str:
     raise AssertionError("unreachable")
 
 
-def md5_of(path: Path) -> str:
-    digest = hashlib.md5()
+def _hasher(checksum: str, size: int):
+    """Return (hash object, expected hex digest) for a catalogue checksum."""
+    algorithm, _, expected = checksum.rpartition(":")
+    algorithm = algorithm or "md5"
+    if algorithm == "md5":
+        return hashlib.md5(), expected
+    if algorithm == "sha256":
+        return hashlib.sha256(), expected
+    if algorithm == "gitsha1":
+        # Git hashes the content after a small header with the file size.
+        return hashlib.sha1(f"blob {size}\0".encode()), expected
+    raise ValueError(f"Unknown checksum algorithm '{algorithm}'")
+
+
+def checksum_matches(path: Path, remote: RemoteFile) -> bool:
+    digest, expected = _hasher(remote.checksum, remote.size)
     with path.open("rb") as handle:
         while chunk := handle.read(CHUNK):
             digest.update(chunk)
-    return digest.hexdigest()
+    return digest.hexdigest() == expected
 
 
 def is_complete(remote: RemoteFile, folder: Path) -> bool:
     """True when the file is on disk with the expected size and checksum."""
     path = folder / remote.name
-    return path.is_file() and path.stat().st_size == remote.size and md5_of(path) == remote.md5
+    return path.is_file() and path.stat().st_size == remote.size and checksum_matches(path, remote)
 
 
 def download_file(remote: RemoteFile, folder: Path, verbose: bool = True) -> Path:
@@ -58,7 +72,7 @@ def download_file(remote: RemoteFile, folder: Path, verbose: bool = True) -> Pat
         return target
 
     partial = target.with_name(target.name + ".part")
-    digest = hashlib.md5()
+    digest, expected = _hasher(remote.checksum, remote.size)
     done = 0
     next_report = 0.1
     request = urllib.request.Request(remote.url, headers={"User-Agent": USER_AGENT})
@@ -71,11 +85,11 @@ def download_file(remote: RemoteFile, folder: Path, verbose: bool = True) -> Pat
                 print(f"  {remote.name}: {done / remote.size:4.0%} of {human_size(remote.size)}")
                 next_report += 0.1
 
-    if done != remote.size or digest.hexdigest() != remote.md5:
+    if done != remote.size or digest.hexdigest() != expected:
         partial.unlink(missing_ok=True)
         raise DownloadError(
-            f"{remote.name}: expected {remote.size} bytes with MD5 {remote.md5}, "
-            f"got {done} bytes with MD5 {digest.hexdigest()}. The partial file was removed."
+            f"{remote.name}: expected {remote.size} bytes with checksum {remote.checksum}, "
+            f"got {done} bytes with digest {digest.hexdigest()}. The partial file was removed."
         )
     partial.replace(target)
     if verbose:

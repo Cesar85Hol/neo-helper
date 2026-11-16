@@ -36,6 +36,8 @@ La documentación de investigación en `docs/` está escrita en italiano.
 | [docs/08_revisione_M1.md](docs/08_revisione_M1.md) | Revisión final del Hito 1 |
 | [docs/09_pelli_non_chiare.md](docs/09_pelli_non_chiare.md) | Conjuntos de datos y estudios sobre pieles no claras (RQ6) |
 | [docs/10_dashboard_M1.md](docs/10_dashboard_M1.md) | **Panel: cómo salimos del Hito 1** (decisiones, RQ, pasos) |
+| [docs/11_eda_ham10000.md](docs/11_eda_ham10000.md) | Análisis exploratorio de HAM10000 y partición por lesión |
+| [docs/12_riassunto_M2_parte1.md](docs/12_riassunto_M2_parte1.md) | Hito 2, primera parte: qué se hizo (entorno, datos, EDA) |
 | [docs/dashboard/](docs/dashboard/) | Panel interactivo en italiano, inglés y español (abrir `neo_helper_M1.html` en el navegador) |
 | [docs/annotazione/](docs/annotazione/) | Instrucciones para quienes anotan (italiano, inglés, español) |
 | [docs/figures/](docs/figures/) | Guiones gráficos de las decisiones |

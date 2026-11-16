@@ -36,6 +36,9 @@ Runs the tests. Each test is listed by name with its result (`PASSED`, `FAILED` 
 |------|----------------|
 | `tests/test_environment.py` | data folder from `NEO_DATA_DIR`; device choice (MPS, CUDA, CPU) and errors for unknown or unavailable devices; embeddings of fake images on every device; same embeddings on CPU and GPU |
 | `tests/test_data.py` | catalogue entries complete; download with checksum, skip when already present, rejection of corrupted files; safe zip extraction; dry run downloads nothing; HAM10000 conversion; registry validation |
+| `tests/test_split_and_duplicates.py` | no lesion in two parts; 70/15/15 fractions; class proportions kept; same seed gives the same split; leaks and missing images are detected; a published split is not overwritten; duplicates found and classified; charts drawn and saved |
+| `tests/test_concepts.py` | concept score high when the image matches the words, low when it does not; averaging over terms and templates; scores between 0 and 1; clear message when the weights are missing; cached vectors reused only for the same images |
+| `tests/test_artifacts.py` | dark corners: none on a full-frame picture, present with a round field of view, smaller with a wider opening, not triggered by a dark lesion in the centre |
 
 The tests never use the network or the real datasets: they work on small fake files in a temporary folder.
 
@@ -80,7 +83,11 @@ Datasets, licences and the registry format are described in [data/README.md](dat
 | `neo/paths.py` | data folders |
 | `neo/device.py` | device choice: MPS, CUDA or CPU |
 | `neo/check.py` | environment check (`neo-check`) |
-| `neo/data/` | dataset catalogue, downloads, data registry (`neo-data`) |
+| `neo/data/` | dataset catalogue, downloads, data registry, duplicate search, split by lesion (`neo-data`) |
+| `neo/concepts.py` | MONET concept scores (image and text in the same vector space) |
+| `neo/plots.py` | chart helpers with one colour-blind-safe style |
+| `notebooks/` | analysis notebooks, committed without outputs |
+| `splits/` | published train / validation / test splits (never regenerated) |
 | `tests/` | automatic tests |
 
 ## Useful commands

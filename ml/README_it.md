@@ -36,6 +36,9 @@ Esegue i test. Ogni test è elencato per nome con il suo esito (`PASSED`, `FAILE
 |------|----------------|
 | `tests/test_environment.py` | cartella dei dati da `NEO_DATA_DIR`; scelta del dispositivo (MPS, CUDA, CPU) ed errori per dispositivi sconosciuti o assenti; vettori di immagini finte su ogni dispositivo; stessi vettori su CPU e GPU |
 | `tests/test_data.py` | voci del catalogo complete; download con checksum, salto se il file c'è già, rifiuto dei file corrotti; estrazione sicura degli zip; la prova di download non scarica nulla; conversione di HAM10000; controlli del registro |
+| `tests/test_split_and_duplicates.py` | nessuna lesione in due parti; frazioni 70/15/15; proporzioni delle classi mantenute; stesso seme, stessa divisione; fughe e immagini mancanti rilevate; una divisione pubblicata non si sovrascrive; duplicati trovati e classificati; grafici disegnati e salvati |
+| `tests/test_concepts.py` | punteggio alto quando l'immagine corrisponde alle parole, basso quando non corrisponde; media su termini e modelli di frase; punteggi tra 0 e 1; messaggio chiaro se mancano i pesi; vettori salvati riusati solo per le stesse immagini |
+| `tests/test_artifacts.py` | bordo nero: assente in un'immagine a pieno campo, presente con campo rotondo, minore con apertura più larga, non scatta per una lesione scura al centro |
 
 I test non usano mai la rete né i dataset veri: lavorano su piccoli file finti in una cartella temporanea.
 
@@ -80,7 +83,11 @@ Dataset, licenze e formato del registro sono descritti in [data/README_it.md](da
 | `neo/paths.py` | cartelle dei dati |
 | `neo/device.py` | scelta del dispositivo: MPS, CUDA o CPU |
 | `neo/check.py` | controllo dell'ambiente (`neo-check`) |
-| `neo/data/` | catalogo dei dataset, download, registro dati (`neo-data`) |
+| `neo/data/` | catalogo dei dataset, download, registro dati, ricerca dei duplicati, divisione per lesione (`neo-data`) |
+| `neo/concepts.py` | punteggi dei concetti con MONET (immagini e parole nello stesso spazio di vettori) |
+| `neo/plots.py` | funzioni per i grafici, con un unico stile leggibile anche da chi è daltonico |
+| `notebooks/` | notebook di analisi, salvati senza risultati |
+| `splits/` | divisioni training / validazione / test pubblicate (non si rigenerano) |
 | `tests/` | test automatici |
 
 ## Comandi utili
