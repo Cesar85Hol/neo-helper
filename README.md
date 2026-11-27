@@ -38,7 +38,9 @@ The research documentation in `docs/` is written in Italian.
 | [docs/10_dashboard_M1.md](docs/10_dashboard_M1.md) | **Dashboard: how we left Milestone 1** (choices, RQs, steps) |
 | [docs/11_eda_ham10000.md](docs/11_eda_ham10000.md) | Exploratory analysis of HAM10000 and the split by lesion |
 | [docs/12_riassunto_M2_parte1.md](docs/12_riassunto_M2_parte1.md) | Milestone 2, first part: what was done (environment, data, EDA) |
-| [docs/dashboard/](docs/dashboard/) | Interactive dashboard in Italian, English and Spanish (open `neo_helper_M1.html` in a browser) |
+| [docs/13_dashboard_M2.md](docs/13_dashboard_M2.md) | Milestone 2 dashboard: data, code and tests linked |
+| [docs/14_schede_codice_M2.md](docs/14_schede_codice_M2.md) | Code cards of milestone 2: one plain-language card per code file (Italian, also as Word for NotebookLM) |
+| [docs/dashboard/](docs/dashboard/) | Interactive dashboards in Italian, English and Spanish: `neo_helper_M1.html` (milestone 1 exit) and `neo_helper_M2.html` (milestone 2: data, code and tests linked; facts regenerated from the code) |
 | [docs/annotazione/](docs/annotazione/) | Instructions for annotators (Italian, English, Spanish) |
 | [docs/figures/](docs/figures/) | Decision storyboards |
 | [docs/audio/](docs/audio/) | Scripts of the audio episodes |

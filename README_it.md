@@ -38,7 +38,9 @@ La documentazione di ricerca in `docs/` è scritta in italiano.
 | [docs/10_dashboard_M1.md](docs/10_dashboard_M1.md) | **Dashboard: come siamo usciti dalla Milestone 1** (scelte, RQ, passi) |
 | [docs/11_eda_ham10000.md](docs/11_eda_ham10000.md) | Analisi esplorativa di HAM10000 e divisione per lesione |
 | [docs/12_riassunto_M2_parte1.md](docs/12_riassunto_M2_parte1.md) | Milestone 2, prima parte: cosa è stato fatto (ambiente, dati, EDA) |
-| [docs/dashboard/](docs/dashboard/) | Dashboard interattiva in italiano, inglese e spagnolo (aprire `neo_helper_M1.html` nel browser) |
+| [docs/13_dashboard_M2.md](docs/13_dashboard_M2.md) | Dashboard della M2: dati, codice e test collegati |
+| [docs/14_schede_codice_M2.md](docs/14_schede_codice_M2.md) | Schede del codice della M2: una scheda in parole semplici per ogni file di codice (anche in Word per NotebookLM) |
+| [docs/dashboard/](docs/dashboard/) | Dashboard interattive in italiano, inglese e spagnolo: `neo_helper_M1.html` (uscita dalla M1) e `neo_helper_M2.html` (M2: dati, codice e test collegati; fatti rigenerati dal codice) |
 | [docs/annotazione/](docs/annotazione/) | Istruzioni per chi annota (italiano, inglese, spagnolo) |
 | [docs/figures/](docs/figures/) | Storyboard delle decisioni |
 | [docs/audio/](docs/audio/) | Copioni degli episodi audio |

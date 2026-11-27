@@ -20,7 +20,7 @@
 - `docs/audio/` — spoken-style scripts for the audio episodes.
 - `docs/figures/` — figures: the SVG is the source, the PNG is rendered from it with headless Chrome (2x scale). The decision storyboards (`storyboard_0N_*.svg`) are in English.
 - `docs/dashboard/` — interactive dashboards: one self-contained HTML file per milestone (no external dependencies), code in English, visible texts in Italian, English and Spanish with a language switch. Each has a Markdown summary in `docs/` (e.g. `docs/10_dashboard_M1.md`).
-- `tools/` — helper scripts (`build_word.sh`, `build_audio.py`).
+- `tools/` — helper scripts (`build_word.sh`, `build_audio.py`, `build_dashboard_m2.py`). `build_dashboard_m2.py` collects the facts of the M2 dashboard (modules, functions, imports, test results, data on disk, commits) from the project; run it with the ML environment after every work package. Module and test descriptions in the dashboard are hand-written in three languages: add them when a module or test is new (the dashboard flags missing ones).
 - `ml/` — machine-learning code (package `neo`, tests in `ml/tests/`), managed with `uv`. Datasets, weights and embeddings live outside the repository, in `NEO_DATA_DIR` (default `~/neo-helper-data`).
 - `outputs/` — generated files, not tracked by git. MP3s go to `~/Music/Neo Helper` (Spotify local files).
 
@@ -34,3 +34,9 @@
 - Give the user commands that work from any folder (the app terminal starts in the repository root).
 - When reporting test results, be explicit: list which tests ran, what each one checks and how it ended (a table per test file), not only the total.
 - Downloads: show the dry run (files, real sizes) and wait for the user's permission before `--yes`.
+
+## How Cesar follows the code (decided 2026-11-28)
+Three tools together, for every work package from M2-P4 on:
+1. **Dashboard** — regenerate `docs/dashboard/neo_helper_M2.html` with `tools/build_dashboard_m2.py` at the end of the package; write the three-language descriptions of new modules and tests.
+2. **One pull request per package** — work on a branch (e.g. `m2-p4-baselines`), never commit package work directly to `main`. The PR body (English) has a guided tour: which files to read, in which order, and why; add short inline review comments on the key lines. Cesar reviews and merges; never merge it yourself.
+3. **Code cards** — update `docs/14_schede_codice_M2.md` (Italian, spoken style, one card per module) and rebuild the Word with `tools/build_word.sh`, for NotebookLM.

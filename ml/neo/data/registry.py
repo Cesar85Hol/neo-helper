@@ -62,7 +62,7 @@ DIAGNOSES: dict[str, str] = {
 
 # Classes counted as malignant for the malignancy score. 'akiec' is included
 # as in Tschandl et al. 2020 (actinic keratoses are pre-malignant, Bowen's
-# disease is carcinoma in situ).
+# disease is carcinoma in situ). Confirmed on 2026-11-17.
 MALIGNANT = frozenset({"akiec", "bcc", "mel"})
 
 LABEL_SOURCES = ("histology", "follow_up", "consensus", "confocal", "single_expert", "unknown")
