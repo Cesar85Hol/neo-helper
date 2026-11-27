@@ -339,3 +339,23 @@
 2. **P4:** baseline congelate. Da confermare prima: `akiec` tra le maligne.
 - **Riassunto della prima parte della M2:** [`12_riassunto_M2_parte1.md`](12_riassunto_M2_parte1.md), con il Word `outputs/milestone2/M2_parte1_ambiente_dati_EDA.docx` (riassunto + EDA con i grafici) da caricare su NotebookLM. `tools/build_word.sh` costruisce ora anche i riassunti di milestone.
 - **Deciso (2026-11-17):** `akiec` conta tra le maligne nel punteggio di malignità, insieme a `mel` e `bcc`, come in Tschandl 2020.
+
+## 2026-11-20 — Dashboard della M2: dati, codice e test collegati
+- Cesar ha chiesto di poter **seguire il codice**, non solo i resoconti in chat. Ho proposto alcune opzioni (da scegliere) e, intanto, costruito la dashboard della M2.
+- **Dashboard** [`dashboard/neo_helper_M2.html`](dashboard/neo_helper_M2.html), con riepilogo in [`13_dashboard_M2.md`](13_dashboard_M2.md): sette viste (dove siamo, flusso, codice, test, dati, risultati e decisioni, come seguire), in italiano, inglese e spagnolo, tema chiaro e scuro, senza dipendenze.
+- **I fatti si rigenerano dal codice** con `tools/build_dashboard_m2.py`: legge i moduli (funzioni, collegamenti tra file, comandi), esegue i test e ne registra gli esiti, misura la cartella dei dati, legge i commit. Prima esecuzione: 13 moduli, 1.311 righe di codice, 52 test superati, 8,1 GB di dati, 6 commit della M2.
+- La mappa del codice mostra chi usa chi: in alto il comando `neo-data`, in basso le fondamenta (`paths`, `device`, `sources`, `split`...).
+- **Grafici riproducibili:** rieseguire il notebook cambiava i file SVG (data e identificativi casuali) senza cambiare il disegno. Ora `neo/plots.py` salva senza data e con identificativi fissi; nuovo test `test_saved_svg_is_identical_when_drawn_twice` (52 test).
+
+## 2026-11-28 — Come seguire il codice: dashboard, pull request, schede
+- **Scelta di Cesar:** tre strumenti insieme (A + C + D):
+  - la **dashboard** della M2, rigenerata dal codice a fine pacchetto (controllo visivo);
+  - **una pull request per pacchetto**, con giro guidato e commenti sulle righe importanti; la versione principale cambia solo quando Cesar approva e unisce;
+  - le **schede del codice** in italiano, una per file, da ascoltare su NotebookLM.
+- **Schede del codice:** [`14_schede_codice_M2.md`](14_schede_codice_M2.md) e il Word `outputs/milestone2/M2_schede_del_codice.docx`; `tools/build_word.sh` le costruisce insieme al riassunto.
+- Regole scritte in `CLAUDE.md` (sezione "How Cesar follows the code").
+- Questo lavoro, la dashboard e la decisione su `akiec` vanno su GitHub con la **prima pull request**.
+
+### Prossimi passi
+1. Cesar legge la pull request e la unisce.
+2. **P4:** baseline congelate, sul ramo `m2-p4-baselines`, partendo dai backbone liberi (ImageNet e DINOv2) con la prova di download.

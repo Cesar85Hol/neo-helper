@@ -38,7 +38,9 @@ La documentación de investigación en `docs/` está escrita en italiano.
 | [docs/10_dashboard_M1.md](docs/10_dashboard_M1.md) | **Panel: cómo salimos del Hito 1** (decisiones, RQ, pasos) |
 | [docs/11_eda_ham10000.md](docs/11_eda_ham10000.md) | Análisis exploratorio de HAM10000 y partición por lesión |
 | [docs/12_riassunto_M2_parte1.md](docs/12_riassunto_M2_parte1.md) | Hito 2, primera parte: qué se hizo (entorno, datos, EDA) |
-| [docs/dashboard/](docs/dashboard/) | Panel interactivo en italiano, inglés y español (abrir `neo_helper_M1.html` en el navegador) |
+| [docs/13_dashboard_M2.md](docs/13_dashboard_M2.md) | Panel del Hito 2: datos, código y pruebas enlazados |
+| [docs/14_schede_codice_M2.md](docs/14_schede_codice_M2.md) | Fichas del código del Hito 2: una ficha en lenguaje sencillo por archivo de código (en italiano, también en Word para NotebookLM) |
+| [docs/dashboard/](docs/dashboard/) | Paneles interactivos en italiano, inglés y español: `neo_helper_M1.html` (salida del Hito 1) y `neo_helper_M2.html` (Hito 2: datos, código y pruebas enlazados; hechos regenerados desde el código) |
 | [docs/annotazione/](docs/annotazione/) | Instrucciones para quienes anotan (italiano, inglés, español) |
 | [docs/figures/](docs/figures/) | Guiones gráficos de las decisiones |
 | [docs/audio/](docs/audio/) | Guiones de los episodios de audio |

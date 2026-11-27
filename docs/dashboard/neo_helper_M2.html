@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neo Helper · Milestone 2</title>
+<meta name="description" content="Neo Helper milestone 2: data, code, tests and findings, linked together (IT/EN/ES). Facts are regenerated from the code by tools/build_dashboard_m2.py.">
+<style>
+  :root {
+    --bg: #f6f7f9; --surface: #ffffff; --surface-2: #f0f2f5; --ink: #1c2630; --muted: #5f6b76;
+    --line: #dde2e7; --accent: #2A9D8F; --accent-ink: #ffffff; --shadow: 0 1px 2px rgba(20,30,40,.06), 0 6px 18px rgba(20,30,40,.06);
+    --g-base: #7b8794; --g-data: #3D5A80; --g-model: #2A9D8F; --g-chart: #D9692F; --g-cli: #6d5a8a;
+    --ok: #1f8a4c; --bad: #c0392b; --warn: #b7791f;
+    --st-done: #2A9D8F; --st-part: #C08A1E; --st-next: #D9692F; --st-plan: #a3adb5;
+    --radius: 14px; --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1418; --surface: #172028; --surface-2: #1d2731; --ink: #e7ecf0; --muted: #9aa7b2; --line: #2b3742;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+      --g-base: #9aa7b2; --g-data: #6f97cc; --g-cli: #9b86c4; --ok: #4cc27f; --bad: #ef6f61; --warn: #e0a83a; --st-plan: #5b6873;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1418; --surface: #172028; --surface-2: #1d2731; --ink: #e7ecf0; --muted: #9aa7b2; --line: #2b3742;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+    --g-base: #9aa7b2; --g-data: #6f97cc; --g-cli: #9b86c4; --ok: #4cc27f; --bad: #ef6f61; --warn: #e0a83a; --st-plan: #5b6873;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: var(--bg); color: var(--ink); font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); }
+  button { font: inherit; color: inherit; }
+  code, .mono { font-family: var(--mono); font-size: .88em; }
+  code { background: var(--surface-2); padding: 1px 5px; border-radius: 5px; word-break: break-word; }
+
+  .topbar { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .topbar-inner { max-width: 1240px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 750; white-space: nowrap; }
+  .brand-dot { width: 26px; height: 26px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #c9875a 0 28%, #7a4a2c 29% 60%, transparent 61%), var(--surface-2); border: 2px solid var(--ink); }
+  .brand small { display: block; font-weight: 500; color: var(--muted); font-size: 12px; }
+  nav.tabs { display: flex; gap: 4px; overflow-x: auto; flex: 1 1 auto; min-width: 0; scrollbar-width: none; }
+  nav.tabs::-webkit-scrollbar { display: none; }
+  @media (max-width: 860px) { nav.tabs { order: 3; flex-basis: 100%; } }
+  nav.tabs button { border: 0; background: transparent; padding: 7px 12px; border-radius: 999px; cursor: pointer; color: var(--muted); white-space: nowrap; font-weight: 600; font-size: 14px; }
+  nav.tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); }
+  nav.tabs button:hover:not([aria-selected="true"]) { background: var(--surface-2); color: var(--ink); }
+  .controls { display: flex; gap: 8px; align-items: center; margin-left: auto; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 2px; background: var(--surface); }
+  .seg button { border: 0; background: transparent; padding: 4px 10px; border-radius: 999px; cursor: pointer; font-weight: 700; font-size: 12.5px; color: var(--muted); }
+  .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+  .icon-btn { border: 1px solid var(--line); background: var(--surface); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: grid; place-items: center; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  main { max-width: 1240px; margin: 0 auto; padding: 22px 16px 60px; }
+  .view { animation: rise .4s ease both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  h1 { font-size: clamp(24px, 3.2vw, 36px); line-height: 1.15; margin: 6px 0 10px; letter-spacing: -.3px; }
+  h2 { font-size: 20px; margin: 0 0 6px; letter-spacing: -.2px; }
+  h3 { font-size: 15.5px; margin: 0 0 6px; }
+  .lead { color: var(--muted); max-width: 860px; margin: 0 0 20px; }
+  .eyebrow { font-size: 12px; font-weight: 750; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px; }
+  .grid { display: grid; gap: 14px; }
+  .g2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+  .g3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  .stack > * + * { margin-top: 14px; }
+  .muted { color: var(--muted); }
+  .small { font-size: 13px; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 2px 9px; border-radius: 999px; font-size: 12.5px; font-weight: 650; background: var(--surface-2); border: 1px solid var(--line); cursor: pointer; text-align: left; }
+  .chip.static { cursor: default; }
+  .chip .sw { width: 9px; height: 9px; border-radius: 3px; display: inline-block; }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .note { border-left: 4px solid var(--warn); background: color-mix(in srgb, var(--warn) 10%, var(--surface)); padding: 10px 14px; border-radius: 0 10px 10px 0; font-size: 14px; }
+  .note.info { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 9%, var(--surface)); }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); font-weight: 750; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .table-wrap { overflow-x: auto; }
+
+  /* Overview */
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 18px; }
+  .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px; box-shadow: var(--shadow); }
+  .kpi b { display: block; font-size: 28px; line-height: 1.05; letter-spacing: -.5px; font-variant-numeric: tabular-nums; }
+  .kpi span { color: var(--muted); font-size: 13px; }
+  .packages { display: grid; grid-template-columns: repeat(6, minmax(140px, 1fr)); gap: 10px; overflow-x: auto; padding-bottom: 4px; }
+  .pkg { border: 1px solid var(--line); border-top: 5px solid var(--st); border-radius: 12px; padding: 10px 12px; background: var(--surface); }
+  .pkg .id { font-weight: 800; font-size: 13px; color: var(--muted); }
+  .pkg .name { font-weight: 700; font-size: 14px; display: block; }
+  .pkg .st { font-size: 12px; font-weight: 750; color: var(--st); text-transform: uppercase; letter-spacing: .5px; }
+  .timeline { list-style: none; margin: 0; padding: 0; }
+  .timeline li { display: grid; grid-template-columns: 92px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--line); }
+  .timeline li:last-child { border-bottom: 0; }
+  .timeline .when { font-weight: 750; font-size: 13px; color: var(--muted); }
+  .timeline .what b { display: block; }
+
+  /* Flow */
+  .stage { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); margin-bottom: 12px; overflow: hidden; }
+  .stage-head { display: flex; gap: 12px; align-items: baseline; padding: 14px 16px 6px; }
+  .stage-n { font-weight: 800; color: var(--accent); font-size: 13px; min-width: 22px; }
+  .stage-row { display: grid; grid-template-columns: 1fr 24px 1.25fr 24px 1fr 1fr; gap: 6px; padding: 6px 16px 14px; align-items: stretch; }
+  .arrow { display: grid; place-items: center; color: var(--muted); font-weight: 800; }
+  .box { border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; background: var(--surface-2); font-size: 13px; }
+  .box .lbl { font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 4px; }
+  .box .cmd { font-family: var(--mono); font-size: 12.5px; font-weight: 700; display: block; margin-bottom: 6px; }
+  .box ul { margin: 0; padding-left: 16px; }
+  .box li { margin: 2px 0; word-break: break-word; }
+  .stage details { border-top: 1px solid var(--line); padding: 10px 16px 12px; background: color-mix(in srgb, var(--surface-2) 50%, var(--surface)); }
+  .stage summary { cursor: pointer; font-weight: 700; font-size: 13.5px; }
+  .stage details p { margin: 8px 0 0; font-size: 14px; }
+  @media (max-width: 900px) { .stage-row { grid-template-columns: 1fr; } .arrow { transform: rotate(90deg); height: 16px; } }
+
+  /* Code map */
+  .map { overflow-x: auto; }
+  .map svg { width: 100%; min-width: 760px; height: auto; display: block; }
+  .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 28px; }
+  @media (max-width: 900px) { .detail-grid { grid-template-columns: 1fr; } }
+  .map .node rect { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+  .map .node .strip { stroke: none; }
+  .map .node text { fill: var(--ink); font: 600 13.5px var(--mono); }
+  .map .node { cursor: pointer; }
+  .map .node:hover rect.body { stroke: var(--ink); }
+  .map .node.sel rect.body { stroke: var(--ink); stroke-width: 2.5; }
+  .map .node.dim { opacity: .3; }
+  .map .edge { fill: none; stroke: var(--muted); stroke-width: 1.2; opacity: .45; }
+  .map .edge.hot { stroke: var(--accent); stroke-width: 2.2; opacity: 1; }
+  .map .edge.dim { opacity: .12; }
+  .map .layer-label { fill: var(--muted); font: 700 11px -apple-system, sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+  .legend { display: flex; gap: 12px; flex-wrap: wrap; font-size: 12.5px; color: var(--muted); margin-top: 8px; }
+  .detail dl { margin: 10px 0 0; }
+  .detail dt { font-size: 11.5px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-top: 12px; }
+  .detail dd { margin: 4px 0 0; font-size: 14px; }
+  .fn { border-top: 1px solid var(--line); padding: 7px 0; font-size: 13px; }
+  .fn:first-child { border-top: 0; }
+  .fn .sig { font-family: var(--mono); font-size: 12px; font-weight: 700; word-break: break-word; }
+  .fn.private .sig { color: var(--muted); font-weight: 500; }
+  .fn .doc { color: var(--muted); margin-top: 2px; }
+  .mod-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+
+  /* Tests */
+  .test-summary { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+  .badge { display: inline-flex; gap: 6px; align-items: center; font-weight: 750; font-size: 13px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); }
+  .s-passed { color: var(--ok); } .s-failed { color: var(--bad); } .s-skipped { color: var(--warn); }
+  .filters { display: flex; gap: 6px; flex-wrap: wrap; margin: 0 0 14px; }
+  .filters button { border: 1px solid var(--line); background: var(--surface); padding: 5px 11px; border-radius: 999px; cursor: pointer; font-weight: 650; font-size: 13px; }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .test-row { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 8px; padding: 7px 0; border-top: 1px solid var(--line); font-size: 13.5px; }
+  .test-row:first-of-type { border-top: 0; }
+  .test-row .tname { font-family: var(--mono); font-size: 11.5px; color: var(--muted); display: block; word-break: break-word; }
+  .test-row .t { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 12px; white-space: nowrap; }
+  .test-row .icon { font-weight: 900; }
+
+  /* Bars */
+  .bar-row { display: grid; grid-template-columns: minmax(48px, 22%) 1fr 122px; gap: 10px; align-items: center; margin: 6px 0; font-size: 13.5px; }
+  .bar-track { height: 12px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 999px; background: var(--accent); }
+  .bar-val { font-variant-numeric: tabular-nums; font-weight: 700; text-align: right; font-size: 13px; }
+
+  /* Findings */
+  .finding { border-left: 4px solid var(--fc, var(--accent)); }
+  .finding .big { font-size: 26px; font-weight: 800; letter-spacing: -.4px; display: block; line-height: 1.1; margin: 4px 0; font-variant-numeric: tabular-nums; }
+  .verdict { font-weight: 750; white-space: nowrap; }
+  .verdict.yes { color: var(--ok); } .verdict.no { color: var(--bad); } .verdict.part { color: var(--warn); }
+  .decisions li { margin: 6px 0; }
+  .decisions .date { font-weight: 750; color: var(--muted); font-size: 12.5px; margin-right: 6px; }
+
+  /* Commands */
+  .cmd-block { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: start; background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; margin: 6px 0; }
+  .cmd-block code { background: transparent; padding: 0; font-size: 12px; white-space: pre-wrap; }
+  .copy { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 3px 9px; cursor: pointer; font-size: 12px; font-weight: 700; }
+  .commit { display: grid; grid-template-columns: 76px 92px 1fr; gap: 10px; padding: 7px 0; border-top: 1px solid var(--line); font-size: 13.5px; }
+  .commit:first-child { border-top: 0; }
+  @media (max-width: 600px) { .commit { grid-template-columns: 70px 1fr; } .commit .d { display: none; } }
+
+  footer { max-width: 1240px; margin: 0 auto; padding: 18px 16px 40px; color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--line); }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="brand-dot" aria-hidden="true"></span><div>Neo Helper<small id="brand-sub"></small></div></div>
+    <nav class="tabs" id="tabs" role="tablist"></nav>
+    <div class="controls">
+      <div class="seg" id="lang" role="group" aria-label="Language">
+        <button data-lang="it">IT</button><button data-lang="en">EN</button><button data-lang="es">ES</button>
+      </div>
+      <button class="icon-btn" id="theme" aria-label="Theme">◐</button>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer id="footer"></footer>
+
+<script>
+"use strict";
+/* Facts collected from the code, the tests, the data folder and git by
+   tools/build_dashboard_m2.py. Do not edit by hand: run the script. */
+const FACTS = /*FACTS-START*/{"generated":"2026-11-28 00:04","code":{"modules":[{"name":"neo","file":"ml/neo/__init__.py","lines":2,"doc":"Neo Helper: data handling, frozen-backbone baselines and evaluation.","functions":[],"imports":[],"commands":[]},{"name":"neo.check","file":"ml/neo/check.py","lines":66,"doc":"Environment check: print the setup and run a tiny embedding smoke test.","functions":[{"name":"run_smoke_test","kind":"function","signature":"run_smoke_test(device: torch.device, n_images: int=10, batch_size: int=5)","doc":"Embed ``n_images`` random images on ``device`` and return shape and timing.","line":28,"private":false},{"name":"main","kind":"function","signature":"main(argv: list[str] | None=None)","doc":"","line":51,"private":false}],"imports":["neo.device","neo.paths"],"commands":[]},{"name":"neo.concepts","file":"ml/neo/concepts.py","lines":129,"doc":"Concept scores with MONET: how strongly does an image show a concept described in words (for example \"ruler\" or \"purple pen\")?","functions":[{"name":"weights_folder","kind":"function","signature":"weights_folder()","doc":"","line":54,"private":false},{"name":"load_monet","kind":"function","signature":"load_monet(device: torch.device | str='auto')","doc":"Load MONET from the local weights folder. Returns (model, processor, device).","line":58,"private":false},{"name":"_normalise","kind":"function","signature":"_normalise(vectors: torch.Tensor)","doc":"","line":77,"private":true},{"name":"embed_images","kind":"function","signature":"embed_images(files: list[Path], model, processor, device: torch.device, batch_size: int=32)","doc":"Return one normalised MONET image vector per file (float32, n x 768).","line":81,"private":false},{"name":"embed_texts","kind":"function","signature":"embed_texts(sentences: list[str], model, processor, device: torch.device)","doc":"Return one normalised MONET text vector per sentence.","line":100,"private":false},{"name":"presence_score","kind":"function","signature":"presence_score(image_vectors: np.ndarray, target: torch.Tensor, reference: torch.Tensor)","doc":"Concept presence score of every image.","line":109,"private":false},{"name":"score_concepts","kind":"function","signature":"score_concepts(image_vectors: np.ndarray, concepts: dict[str, tuple[str, ...]], model, processor, device: torch.device)","doc":"Return a table with one column of scores per concept.","line":124,"private":false},{"name":"cached_image_vectors","kind":"function","signature":"cached_image_vectors(frame: pd.DataFrame, source: str, model, processor, device)","doc":"MONET image vectors of a registry, computed once and saved in ``embeddings/``.","line":145,"private":false}],"imports":["neo.device","neo.paths"],"commands":[]},{"name":"neo.data","file":"ml/neo/data/__init__.py","lines":1,"doc":"Dataset sources, downloads and the common data registry.","functions":[],"imports":[],"commands":[]},{"name":"neo.data.artifacts","file":"ml/neo/data/artifacts.py","lines":34,"doc":"Image artifacts measured directly on the pixels.","functions":[{"name":"dark_corner_share","kind":"function","signature":"dark_corner_share(image: Image.Image)","doc":"Share of dark pixels in the four corner squares of ``image`` (0 to 1).","line":22,"private":false},{"name":"dark_corner_shares","kind":"function","signature":"dark_corner_shares(files: list[Path], workers: int=8)","doc":"``dark_corner_share`` for many image files.","line":37,"private":false}],"imports":[],"commands":[]},{"name":"neo.data.cli","file":"ml/neo/data/cli.py","lines":154,"doc":"Command line for datasets: ``neo-data``.","functions":[{"name":"cmd_list","kind":"function","signature":"cmd_list(_: argparse.Namespace)","doc":"","line":29,"private":false},{"name":"cmd_download","kind":"function","signature":"cmd_download(args: argparse.Namespace)","doc":"","line":43,"private":false},{"name":"cmd_registry","kind":"function","signature":"cmd_registry(args: argparse.Namespace)","doc":"","line":80,"private":false},{"name":"cmd_duplicates","kind":"function","signature":"cmd_duplicates(args: argparse.Namespace)","doc":"","line":92,"private":false},{"name":"cmd_split","kind":"function","signature":"cmd_split(args: argparse.Namespace)","doc":"","line":110,"private":false},{"name":"cmd_artifacts","kind":"function","signature":"cmd_artifacts(args: argparse.Namespace)","doc":"","line":126,"private":false},{"name":"main","kind":"function","signature":"main(argv: list[str] | None=None)","doc":"","line":149,"private":false}],"imports":["neo.concepts","neo.data.artifacts","neo.data.download","neo.data.duplicates","neo.data.ham10000","neo.data.registry","neo.data.sources","neo.data.split","neo.paths"],"commands":[{"name":"download","help":"Download a dataset (dry run by default)."},{"name":"registry","help":"Extract images and build the data registry."},{"name":"duplicates","help":"Look for duplicate images in a registry."},{"name":"split","help":"Create or check the split by lesion."},{"name":"artifacts","help":"Score image artifacts in a registry."},{"name":"list","help":"Show the catalogue and what is on disk."}]},{"name":"neo.data.download","file":"ml/neo/data/download.py","lines":106,"doc":"Download dataset files with size and checksum verification, and extract zip archives safely.","functions":[{"name":"DownloadError","kind":"class","signature":"DownloadError","doc":"A downloaded file does not match the catalogue.","line":23,"private":false},{"name":"human_size","kind":"function","signature":"human_size(n_bytes: int)","doc":"Format a size in bytes for people: 1366522108 -> '1.37 GB'.","line":27,"private":false},{"name":"_hasher","kind":"function","signature":"_hasher(checksum: str, size: int)","doc":"Return (hash object, expected hex digest) for a catalogue checksum.","line":37,"private":true},{"name":"checksum_matches","kind":"function","signature":"checksum_matches(path: Path, remote: RemoteFile)","doc":"","line":51,"private":false},{"name":"is_complete","kind":"function","signature":"is_complete(remote: RemoteFile, folder: Path)","doc":"True when the file is on disk with the expected size and checksum.","line":59,"private":false},{"name":"download_file","kind":"function","signature":"download_file(remote: RemoteFile, folder: Path, verbose: bool=True)","doc":"Download one file into ``folder`` and verify it. Returns the final path.","line":65,"private":false},{"name":"free_space","kind":"function","signature":"free_space(folder: Path)","doc":"Free bytes on the disk that holds ``folder`` (the folder may not exist yet).","line":100,"private":false},{"name":"extract_zip","kind":"function","signature":"extract_zip(archive: Path, destination: Path)","doc":"Extract ``archive`` into ``destination`` and return the number of files.","line":108,"private":false}],"imports":["neo.data.sources"],"commands":[]},{"name":"neo.data.duplicates","file":"ml/neo/data/duplicates.py","lines":77,"doc":"Find duplicate images inside a registry.","functions":[{"name":"_md5","kind":"function","signature":"_md5(path: Path)","doc":"","line":37,"private":true},{"name":"_thumbnail","kind":"function","signature":"_thumbnail(path: Path)","doc":"","line":41,"private":true},{"name":"find_pairs","kind":"function","signature":"find_pairs(frame: pd.DataFrame, threshold: float=DEFAULT_THRESHOLD, root: Path | None=None, workers: int=8, chunk: int=500)","doc":"Return one row per pair of duplicate images found in ``frame``.","line":47,"private":false},{"name":"summarise","kind":"function","signature":"summarise(pairs: pd.DataFrame)","doc":"Count the pairs by kind.","line":89,"private":false}],"imports":["neo.paths"],"commands":[]},{"name":"neo.data.ham10000","file":"ml/neo/data/ham10000.py","lines":85,"doc":"HAM10000: extract the archives and convert the metadata to the common registry.","functions":[{"name":"raw_folder","kind":"function","signature":"raw_folder()","doc":"","line":42,"private":false},{"name":"extract_images","kind":"function","signature":"extract_images()","doc":"Extract the two image archives. Returns the number of image files.","line":46,"private":false},{"name":"convert","kind":"function","signature":"convert(metadata: pd.DataFrame)","doc":"Convert the HAM10000 metadata table to the common registry format.","line":60,"private":false},{"name":"build_registry","kind":"function","signature":"build_registry(check_files: bool=True)","doc":"Extract the images, convert the metadata and save the registry.","line":91,"private":false}],"imports":["neo.data.download","neo.data.registry","neo.data.sources","neo.paths"],"commands":[]},{"name":"neo.data.registry","file":"ml/neo/data/registry.py","lines":118,"doc":"The common data registry: one row per image, the same columns for every dataset.","functions":[{"name":"RegistryError","kind":"class","signature":"RegistryError","doc":"The registry does not respect the common format.","line":71,"private":false},{"name":"empty_frame","kind":"function","signature":"empty_frame(n_rows: int=0)","doc":"A registry with all columns and ``n_rows`` empty rows.","line":75,"private":false},{"name":"validate","kind":"function","signature":"validate(frame: pd.DataFrame, check_files: bool=False)","doc":"Raise ``RegistryError`` listing every problem found in ``frame``.","line":80,"private":false},{"name":"registry_path","kind":"function","signature":"registry_path(source: str)","doc":"","line":124,"private":false},{"name":"save","kind":"function","signature":"save(frame: pd.DataFrame, source: str)","doc":"Validate and write the registry of one dataset. Returns the file path.","line":128,"private":false},{"name":"load","kind":"function","signature":"load(source: str | None=None)","doc":"Load the registry of one dataset, or of all datasets when ``source`` is None.","line":137,"private":false}],"imports":["neo.paths"],"commands":[]},{"name":"neo.data.sources","file":"ml/neo/data/sources.py","lines":229,"doc":"Catalogue of the dataset sources: where each file comes from, its size, checksum and licence.","functions":[{"name":"RemoteFile","kind":"class","signature":"RemoteFile","doc":"One file to download.","line":15,"private":false},{"name":"Source","kind":"class","signature":"Source","doc":"One dataset as published by its authors.","line":26,"private":false},{"name":"get_source","kind":"function","signature":"get_source(key: str)","doc":"","line":246,"private":false}],"imports":[],"commands":[]},{"name":"neo.data.split","file":"ml/neo/data/split.py","lines":98,"doc":"Split a dataset into train / validation / test **by lesion**.","functions":[{"name":"SplitError","kind":"class","signature":"SplitError","doc":"The split breaks one of its rules.","line":27,"private":false},{"name":"split_by_lesion","kind":"function","signature":"split_by_lesion(frame: pd.DataFrame, fractions: tuple[float, float, float]=DEFAULT_FRACTIONS, seed: int=DEFAULT_SEED)","doc":"Assign every image of ``frame`` (a registry) to train, val or test.","line":31,"private":false},{"name":"check","kind":"function","signature":"check(split: pd.DataFrame, frame: pd.DataFrame)","doc":"Raise ``SplitError`` if ``split`` is not a valid lesion-level split of ``frame``.","line":70,"private":false},{"name":"split_path","kind":"function","signature":"split_path(source: str, version: str='v1')","doc":"","line":92,"private":false},{"name":"save","kind":"function","signature":"save(split: pd.DataFrame, source: str, version: str='v1', overwrite: bool=False)","doc":"Write the split to ``ml/splits/``. An existing split is never replaced by accident.","line":96,"private":false},{"name":"load","kind":"function","signature":"load(source: str, version: str='v1')","doc":"","line":109,"private":false},{"name":"summary","kind":"function","signature":"summary(split: pd.DataFrame, frame: pd.DataFrame)","doc":"Images per diagnosis and part, with lesion and image totals.","line":116,"private":false}],"imports":[],"commands":[]},{"name":"neo.device","file":"ml/neo/device.py","lines":31,"doc":"Choose where PyTorch runs: Apple GPU (MPS), NVIDIA GPU (CUDA) or CPU.","functions":[{"name":"available_devices","kind":"function","signature":"available_devices()","doc":"List the devices usable on this machine, best first.","line":14,"private":false},{"name":"select_device","kind":"function","signature":"select_device(preference: str='auto')","doc":"Return the requested device, or the best available one for ``auto``.","line":25,"private":false}],"imports":[],"commands":[]},{"name":"neo.paths","file":"ml/neo/paths.py","lines":29,"doc":"Locations of data, model weights and cached embeddings.","functions":[{"name":"data_dir","kind":"function","signature":"data_dir()","doc":"Return the root data folder, without creating it.","line":25,"private":false},{"name":"subdir","kind":"function","signature":"subdir(name: str, create: bool=False)","doc":"Return one of the known sub-folders, optionally creating it.","line":31,"private":false}],"imports":[],"commands":[]},{"name":"neo.plots","file":"ml/neo/plots.py","lines":159,"doc":"Chart helpers with one consistent, colour-blind-safe style.","functions":[{"name":"new_figure","kind":"function","signature":"new_figure(width: float=7.0, height: float=3.6)","doc":"A figure with the common style applied.","line":31,"private":false},{"name":"_title","kind":"function","signature":"_title(ax: Axes, title: str, subtitle: str | None)","doc":"","line":44,"private":true},{"name":"bar_counts","kind":"function","signature":"bar_counts(counts: pd.Series, title: str, subtitle: str | None=None, show_share: bool=True)","doc":"Horizontal bars for one series of counts, largest on top, each with its value.","line":50,"private":false},{"name":"bar_shares","kind":"function","signature":"bar_shares(shares: pd.Series, counts: pd.Series, title: str, subtitle: str | None=None)","doc":"Horizontal bars for one series of shares (0 to 1), labelled \"12.3% (45 of 366)\".","line":80,"private":false},{"name":"stacked_share","kind":"function","signature":"stacked_share(table: pd.DataFrame, title: str, subtitle: str | None=None, min_label: float=0.07)","doc":"100% stacked horizontal bars: one row per index value, one segment per column.","line":111,"private":false},{"name":"save","kind":"function","signature":"save(fig: Figure, folder: Path, name: str)","doc":"Save ``fig`` as SVG (source) and PNG (2x) in ``folder``.","line":170,"private":false}],"imports":[],"commands":[]}],"scripts":{"neo-check":"neo.check:main","neo-data":"neo.data.cli:main"},"notebooks":[{"file":"ml/notebooks/01_eda_ham10000.ipynb","cells":22,"imports":["neo.data.artifacts","neo.data.registry","neo.data.split","neo.paths","neo.plots"]}],"known":["neo","neo.check","neo.concepts","neo.data","neo.data.artifacts","neo.data.cli","neo.data.download","neo.data.duplicates","neo.data.ham10000","neo.data.registry","neo.data.sources","neo.data.split","neo.device","neo.paths","neo.plots"]},"tests":{"files":{"test_artifacts.py":{"file":"ml/tests/test_artifacts.py","doc":"Tests for the artifacts measured on the pixels.","imports":["neo.data.artifacts"],"tests":[{"name":"test_full_frame_image_has_no_dark_corners","status":"passed","seconds":0.001,"message":""},{"name":"test_round_field_of_view_has_dark_corners","status":"passed","seconds":0.001,"message":""},{"name":"test_wider_opening_gives_a_smaller_share","status":"passed","seconds":0.001,"message":""},{"name":"test_dark_lesion_in_the_centre_is_not_a_dark_corner","status":"passed","seconds":0.0,"message":""},{"name":"test_many_files_are_measured_in_order","status":"passed","seconds":0.003,"message":""}]},"test_concepts.py":{"file":"ml/tests/test_concepts.py","doc":"Tests for the MONET concept scores. No model is loaded: the score is checked on small hand-made vectors, where the right answer is known.","imports":["neo.concepts"],"tests":[{"name":"test_score_is_high_when_the_image_matches_the_concept","status":"passed","seconds":0.003,"message":""},{"name":"test_score_averages_terms_and_templates","status":"passed","seconds":0.0,"message":""},{"name":"test_scores_stay_between_zero_and_one","status":"passed","seconds":0.0,"message":""},{"name":"test_artifact_list_matches_the_templates","status":"passed","seconds":0.0,"message":""},{"name":"test_missing_weights_give_a_clear_message","status":"passed","seconds":1.267,"message":""},{"name":"test_cached_vectors_are_reused_only_for_the_same_images","status":"passed","seconds":0.004,"message":""}]},"test_data.py":{"file":"ml/tests/test_data.py","doc":"Tests for the dataset catalogue, downloads, archive extraction and registry.","imports":["neo.data.cli","neo.data.download","neo.data.ham10000","neo.data.registry","neo.data.sources","neo.paths"],"tests":[{"name":"test_catalogue_entries_are_complete","status":"passed","seconds":0.0,"message":""},{"name":"test_default_selection_is_the_core_group","status":"passed","seconds":0.0,"message":""},{"name":"test_sha256_and_git_checksums_are_verified","status":"passed","seconds":0.008,"message":""},{"name":"test_models_go_to_the_weights_folder","status":"passed","seconds":0.001,"message":""},{"name":"test_human_size","status":"passed","seconds":0.0,"message":""},{"name":"test_download_verifies_and_skips_second_time","status":"passed","seconds":0.001,"message":""},{"name":"test_download_with_wrong_checksum_is_rejected","status":"passed","seconds":0.001,"message":""},{"name":"test_zip_extraction","status":"passed","seconds":0.002,"message":""},{"name":"test_zip_with_path_outside_destination_is_rejected","status":"passed","seconds":0.001,"message":""},{"name":"test_dry_run_downloads_nothing","status":"passed","seconds":0.001,"message":""},{"name":"test_ham10000_conversion","status":"passed","seconds":0.002,"message":""},{"name":"test_validation_reports_problems","status":"passed","seconds":0.002,"message":""},{"name":"test_malignant_must_agree_with_diagnosis","status":"passed","seconds":0.002,"message":""},{"name":"test_missing_image_files_are_detected","status":"passed","seconds":0.002,"message":""},{"name":"test_build_registry_end_to_end","status":"passed","seconds":0.006,"message":""}]},"test_environment.py":{"file":"ml/tests/test_environment.py","doc":"Tests for the environment helpers: data paths, device choice, smoke test.","imports":["neo.check","neo.device","neo.paths"],"tests":[{"name":"test_data_dir_default","status":"passed","seconds":0.0,"message":""},{"name":"test_data_dir_from_environment","status":"passed","seconds":0.0,"message":""},{"name":"test_subdir_is_created_only_on_request","status":"passed","seconds":0.0,"message":""},{"name":"test_subdir_rejects_unknown_name","status":"passed","seconds":0.0,"message":""},{"name":"test_cpu_is_always_available","status":"passed","seconds":0.0,"message":""},{"name":"test_auto_picks_the_best_available_device","status":"passed","seconds":0.0,"message":""},{"name":"test_unknown_device_is_rejected","status":"passed","seconds":0.0,"message":""},{"name":"test_unavailable_device_raises_instead_of_falling_back","status":"passed","seconds":0.0,"message":""},{"name":"test_smoke_test_on_each_device[mps]","status":"passed","seconds":0.329,"message":""},{"name":"test_smoke_test_on_each_device[cpu]","status":"passed","seconds":0.059,"message":""},{"name":"test_embeddings_agree_between_cpu_and_accelerator","status":"passed","seconds":0.094,"message":""},{"name":"test_command_line_check_on_cpu","status":"passed","seconds":0.092,"message":""}]},"test_split_and_duplicates.py":{"file":"ml/tests/test_split_and_duplicates.py","doc":"Tests for the lesion-level split, the duplicate search and the chart helpers.","imports":["neo.data.duplicates","neo.data.ham10000","neo.data.registry","neo.data.split","neo.plots"],"tests":[{"name":"test_no_lesion_is_in_two_parts","status":"passed","seconds":0.022,"message":""},{"name":"test_split_fractions_are_close_to_70_15_15","status":"passed","seconds":0.017,"message":""},{"name":"test_split_keeps_class_proportions","status":"passed","seconds":0.019,"message":""},{"name":"test_split_is_reproducible_and_depends_on_the_seed","status":"passed","seconds":0.041,"message":""},{"name":"test_check_detects_a_leaking_lesion","status":"passed","seconds":0.02,"message":""},{"name":"test_check_detects_a_missing_image","status":"passed","seconds":0.018,"message":""},{"name":"test_bad_fractions_are_rejected","status":"passed","seconds":0.005,"message":""},{"name":"test_published_split_is_not_overwritten","status":"passed","seconds":0.019,"message":""},{"name":"test_published_ham10000_split_is_valid","status":"passed","seconds":0.007,"message":""},{"name":"test_duplicates_are_found_and_classified","status":"passed","seconds":0.004,"message":""},{"name":"test_charts_are_drawn_and_saved","status":"passed","seconds":0.202,"message":""},{"name":"test_too_many_series_are_rejected","status":"passed","seconds":0.0,"message":""},{"name":"test_share_chart_is_drawn","status":"passed","seconds":0.033,"message":""},{"name":"test_saved_svg_is_identical_when_drawn_twice","status":"passed","seconds":0.073,"message":""}]}},"totals":{"passed":52,"failed":0,"skipped":0},"seconds":7.5,"exit_code":0},"data":{"root":"~/neo-helper-data","total_bytes":8135986129,"places":[{"path":"raw/chanda2024","bytes":18229133,"files":8,"dir":true},{"path":"raw/ddi","bytes":236939381,"files":1,"dir":true},{"path":"raw/derm7pt","bytes":159112080,"files":1,"dir":true},{"path":"raw/ham10000","bytes":5972966614,"files":10022,"dir":true},{"path":"weights/monet","bytes":1714257785,"files":9,"dir":true},{"path":"registry/ham10000.csv","bytes":2556547,"files":1,"dir":false},{"path":"registry/ham10000_artifact_scores.csv","bytes":918437,"files":1,"dir":false},{"path":"registry/ham10000_duplicates.csv","bytes":1170,"files":1,"dir":false},{"path":"embeddings/monet_ham10000.npy","bytes":30766208,"files":1,"dir":false},{"path":"embeddings/monet_ham10000_uids.csv","bytes":220334,"files":1,"dir":false}],"ham10000":{"images":10015,"lesions":7470,"malignant":1954,"classes":{"nv":6705,"mel":1113,"bkl":1099,"bcc":514,"akiec":327,"vasc":142,"df":115},"centres":{"vidir_molemax":3954,"vidir_modern":3363,"rosendahl":2259,"vienna_dias":439},"label_source":{"histology":5340,"follow_up":3704,"consensus":902,"confocal":69},"images_per_lesion":{"1":5514,"2":1423,"3":490,"4":34,"5":5,"6":4},"columns":23},"split":{"file":"ml/splits/ham10000_lesion_v1.csv","images":{"train":7005,"val":1509,"test":1501},"lesions":{"test":1121,"train":5229,"val":1120},"malignant_share":{"test":0.1979,"train":0.1961,"val":0.1875},"by_class":{"akiec":{"test":48,"train":238,"val":41},"bcc":{"test":87,"train":351,"val":76},"bkl":{"test":161,"train":777,"val":161},"df":{"test":19,"train":81,"val":15},"mel":{"test":162,"train":785,"val":166},"nv":{"test":1000,"train":4675,"val":1030},"vasc":{"test":24,"train":98,"val":20}}},"duplicates":{"pairs":17,"exact":2,"across_lesions":0},"artifacts":{"threshold":0.05,"dark_total":955,"dark_by_class":{"akiec":0.0734,"bcc":0.1459,"bkl":0.1665,"df":0.2,"mel":0.2049,"nv":0.0613,"vasc":0.0775},"dark_by_centre":{"rosendahl":0.0354,"vidir_modern":0.2587,"vidir_molemax":0.0008,"vienna_dias":0.0046},"dark_by_malignant":{"False":0.0779,"True":0.1673},"hair_by_malignant":{"False":0.0858,"True":0.0379}}},"git":{"remote":"https://github.com/Cesar85Hol/neo-helper","commits":[{"hash":"31b3212","date":"2026-11-17","subject":"M2: Record the decision to count akiec as malignant"},{"hash":"8a0d42c","date":"2026-11-17","subject":"M2: Add summary of the first part of milestone 2 and its Word build"},{"hash":"02ea506","date":"2026-11-17","subject":"M2-P3: Add HAM10000 EDA, lesion-level split and artifact audit"},{"hash":"6a151cd","date":"2026-11-14","subject":"M2: Publish the READMEs in English, Italian and Spanish"},{"hash":"1a71114","date":"2026-11-14","subject":"M2-P2: Add data registry, download scripts and HAM10000 converter"},{"hash":"5b36842","date":"2026-11-11","subject":"M2-P1 #11: Set up the Python environment with uv"}],"unpushed":["31b3212"]},"figures":["eda_ham10000_centres.png","eda_ham10000_classes.png","eda_ham10000_dark_corners.png","eda_ham10000_images_per_lesion.png","eda_ham10000_label_source.png","eda_ham10000_sites.png"]}/*FACTS-END*/;
+
+/* ------------------------------------------------------------ hand-written texts */
+const L = (it, en, es) => ({ it, en, es });
+const GROUPS = {
+  base:  { color: "var(--g-base)",  name: L("Base", "Foundation", "Base") },
+  data:  { color: "var(--g-data)",  name: L("Dati", "Data", "Datos") },
+  model: { color: "var(--g-model)", name: L("Modelli", "Models", "Modelos") },
+  chart: { color: "var(--g-chart)", name: L("Grafici", "Charts", "Gráficos") },
+  cli:   { color: "var(--g-cli)",   name: L("Comandi", "Commands", "Comandos") }
+};
+
+/* What each module is for, in plain words. A module found in the code but
+   missing here is shown with a warning: the text needs to be written. */
+const MODULES = {
+  "neo.paths": { g: "base", what: L(
+    "Dice dove stanno dati, pesi e vettori: nella cartella NEO_DATA_DIR, fuori dal repository.",
+    "Says where data, weights and vectors live: in the NEO_DATA_DIR folder, outside the repository.",
+    "Indica dónde están datos, pesos y vectores: en la carpeta NEO_DATA_DIR, fuera del repositorio.") },
+  "neo.device": { g: "base", what: L(
+    "Sceglie dove far girare i calcoli: grafica del Mac (MPS), scheda NVIDIA (CUDA) o processore (CPU).",
+    "Chooses where computations run: Mac graphics (MPS), NVIDIA card (CUDA) or processor (CPU).",
+    "Elige dónde se ejecutan los cálculos: gráfica del Mac (MPS), tarjeta NVIDIA (CUDA) o procesador (CPU).") },
+  "neo.check": { g: "base", what: L(
+    "Comando neo-check: stampa l'ambiente e trasforma 10 immagini finte in vettori, per provare che tutto funziona.",
+    "neo-check command: prints the environment and turns 10 fake images into vectors, to prove everything works.",
+    "Comando neo-check: muestra el entorno y convierte 10 imágenes falsas en vectores, para comprobar que todo funciona.") },
+  "neo.data.sources": { g: "data", what: L(
+    "Il catalogo: per ogni dataset o modello, indirizzo, dimensione, impronta (checksum) e licenza di ogni file.",
+    "The catalogue: for each dataset or model, the address, size, checksum and licence of every file.",
+    "El catálogo: para cada conjunto o modelo, dirección, tamaño, suma de verificación y licencia de cada archivo.") },
+  "neo.data.download": { g: "data", what: L(
+    "Scarica i file, controlla l'impronta (MD5, SHA-256 o git) e scarta quelli corrotti; estrae gli zip in modo sicuro.",
+    "Downloads files, checks the checksum (MD5, SHA-256 or git) and rejects corrupted ones; extracts zips safely.",
+    "Descarga los archivos, comprueba la suma (MD5, SHA-256 o git) y descarta los dañados; extrae los zip de forma segura.") },
+  "neo.data.registry": { g: "data", what: L(
+    "Il registro dati: 23 colonne uguali per ogni dataset, una riga per immagine, con licenza e fonte; controlla che i valori siano validi.",
+    "The data registry: 23 columns shared by every dataset, one row per image, with licence and source; checks the values are valid.",
+    "El registro de datos: 23 columnas comunes a todos los conjuntos, una fila por imagen, con licencia y fuente; comprueba que los valores sean válidos.") },
+  "neo.data.ham10000": { g: "data", what: L(
+    "Estrae le immagini di HAM10000 e traduce i suoi metadati nel formato del registro.",
+    "Extracts the HAM10000 images and translates its metadata into the registry format.",
+    "Extrae las imágenes de HAM10000 y traduce sus metadatos al formato del registro.") },
+  "neo.data.duplicates": { g: "data", what: L(
+    "Cerca immagini identiche o quasi, confrontando miniature a colori 32 × 32, e dice se uniscono lesioni diverse.",
+    "Looks for identical or near-identical images by comparing 32 × 32 colour thumbnails, and says whether they link different lesions.",
+    "Busca imágenes idénticas o casi, comparando miniaturas en color de 32 × 32, e indica si unen lesiones distintas.") },
+  "neo.data.split": { g: "data", what: L(
+    "Divide le lesioni in addestramento, validazione e test (70/15/15), controlla che nessuna lesione stia in due parti e non riscrive una divisione già pubblicata.",
+    "Splits lesions into training, validation and test (70/15/15), checks that no lesion is in two parts and never overwrites a published split.",
+    "Divide las lesiones en entrenamiento, validación y prueba (70/15/15), comprueba que ninguna esté en dos partes y no sobrescribe una partición publicada.") },
+  "neo.data.artifacts": { g: "data", what: L(
+    "Misura sui pixel il bordo nero del dermatoscopio: quota di pixel scuri nei quattro angoli.",
+    "Measures the dark dermoscope border on the pixels: share of dark pixels in the four corners.",
+    "Mide en los píxeles el borde negro del dermatoscopio: proporción de píxeles oscuros en las cuatro esquinas.") },
+  "neo.concepts": { g: "model", what: L(
+    "Carica MONET e dà a ogni immagine un punteggio per un concetto descritto a parole (es. \"peli\"); salva i vettori per non ricalcolarli.",
+    "Loads MONET and gives every image a score for a concept described in words (e.g. \"hair\"); caches the vectors.",
+    "Carga MONET y da a cada imagen una puntuación para un concepto descrito con palabras (p. ej. \"pelo\"); guarda los vectores.") },
+  "neo.plots": { g: "chart", what: L(
+    "Funzioni per i grafici dell'EDA, con una tavolozza leggibile anche da chi è daltonico; salva SVG e PNG.",
+    "Chart functions for the EDA, with a colour-blind-safe palette; saves SVG and PNG.",
+    "Funciones para los gráficos del EDA, con una paleta apta para daltonismo; guarda SVG y PNG.") },
+  "neo.data.cli": { g: "cli", what: L(
+    "Il comando neo-data: raccoglie tutti i passi (list, download, registry, duplicates, split, artifacts) e chiama i moduli giusti.",
+    "The neo-data command: gathers every step (list, download, registry, duplicates, split, artifacts) and calls the right modules.",
+    "El comando neo-data: reúne todos los pasos (list, download, registry, duplicates, split, artifacts) y llama a los módulos adecuados.") }
+};
+
+/* What each test checks, in plain words (key = test name without parameters). */
+const TESTS = {
+  "test_environment.py": L("Ambiente: cartella dei dati, scelta del dispositivo, prova con immagini finte.", "Environment: data folder, device choice, trial with fake images.", "Entorno: carpeta de datos, elección del dispositivo, prueba con imágenes falsas."),
+  "test_data.py": L("Catalogo, download con impronta, estrazione degli zip, conversione di HAM10000, controlli del registro.", "Catalogue, checksum-verified downloads, zip extraction, HAM10000 conversion, registry checks.", "Catálogo, descargas verificadas, extracción de zip, conversión de HAM10000, controles del registro."),
+  "test_split_and_duplicates.py": L("Divisione per lesione, ricerca dei duplicati, grafici.", "Split by lesion, duplicate search, charts.", "Partición por lesión, búsqueda de duplicados, gráficos."),
+  "test_concepts.py": L("Punteggi di MONET, su vettori costruiti a mano (senza caricare il modello).", "MONET scores, on hand-made vectors (without loading the model).", "Puntuaciones de MONET, con vectores hechos a mano (sin cargar el modelo)."),
+  "test_artifacts.py": L("Bordo nero, su immagini disegnate apposta.", "Dark border, on purpose-drawn images.", "Borde negro, con imágenes dibujadas a propósito."),
+
+  test_data_dir_default: L("Senza variabile, i dati vanno in ~/neo-helper-data", "Without the variable, data goes to ~/neo-helper-data", "Sin la variable, los datos van a ~/neo-helper-data"),
+  test_data_dir_from_environment: L("La variabile NEO_DATA_DIR cambia la cartella dei dati", "NEO_DATA_DIR changes the data folder", "NEO_DATA_DIR cambia la carpeta de datos"),
+  test_subdir_is_created_only_on_request: L("Le sottocartelle si creano solo quando richiesto", "Sub-folders are created only on request", "Las subcarpetas solo se crean cuando se pide"),
+  test_subdir_rejects_unknown_name: L("Un nome di sottocartella sconosciuto dà errore", "An unknown sub-folder name raises an error", "Un nombre de subcarpeta desconocido da error"),
+  test_cpu_is_always_available: L("La CPU è sempre disponibile", "The CPU is always available", "La CPU siempre está disponible"),
+  test_auto_picks_the_best_available_device: L("\"auto\" sceglie il dispositivo migliore presente", "\"auto\" picks the best available device", "\"auto\" elige el mejor dispositivo presente"),
+  test_unknown_device_is_rejected: L("Un dispositivo inesistente (\"gpu\") è rifiutato", "A non-existent device (\"gpu\") is rejected", "Un dispositivo inexistente (\"gpu\") se rechaza"),
+  test_unavailable_device_raises_instead_of_falling_back: L("Un dispositivo assente dà errore invece di ripiegare in silenzio", "An absent device raises instead of silently falling back", "Un dispositivo ausente da error en vez de cambiar en silencio"),
+  test_smoke_test_on_each_device: L("10 immagini finte diventano vettori su questo dispositivo", "Fake images become vectors on this device", "Imágenes falsas se convierten en vectores en este dispositivo"),
+  test_embeddings_agree_between_cpu_and_accelerator: L("CPU e GPU danno gli stessi vettori", "CPU and GPU give the same vectors", "CPU y GPU dan los mismos vectores"),
+  test_command_line_check_on_cpu: L("Il comando neo-check funziona su sola CPU", "The neo-check command works on CPU only", "El comando neo-check funciona solo con CPU"),
+
+  test_catalogue_entries_are_complete: L("Ogni voce del catalogo ha licenza, DOI, indirizzo, dimensione e impronta", "Every catalogue entry has licence, DOI, address, size and checksum", "Cada entrada del catálogo tiene licencia, DOI, dirección, tamaño y suma"),
+  test_default_selection_is_the_core_group: L("Senza opzioni si scaricano solo i file essenziali", "Without options only the core files are downloaded", "Sin opciones solo se descargan los archivos esenciales"),
+  test_sha256_and_git_checksums_are_verified: L("Le impronte SHA-256 e git sono verificate; una sbagliata è rifiutata", "SHA-256 and git checksums are verified; a wrong one is rejected", "Las sumas SHA-256 y git se verifican; una errónea se rechaza"),
+  test_models_go_to_the_weights_folder: L("I pesi dei modelli vanno in weights/, non in raw/", "Model weights go to weights/, not raw/", "Los pesos de los modelos van a weights/, no a raw/"),
+  test_human_size: L("Le dimensioni si scrivono in modo leggibile (1.37 GB)", "Sizes are printed in a readable way (1.37 GB)", "Los tamaños se escriben de forma legible (1.37 GB)"),
+  test_download_verifies_and_skips_second_time: L("Un file scaricato e verificato non si riscarica", "A downloaded, verified file is not downloaded again", "Un archivo descargado y verificado no se vuelve a descargar"),
+  test_download_with_wrong_checksum_is_rejected: L("Un file corrotto è rifiutato e cancellato", "A corrupted file is rejected and deleted", "Un archivo dañado se rechaza y se borra"),
+  test_zip_extraction: L("Gli zip si estraggono con le sottocartelle", "Zips are extracted with their sub-folders", "Los zip se extraen con sus subcarpetas"),
+  test_zip_with_path_outside_destination_is_rejected: L("Uno zip che scriverebbe fuori dalla cartella è bloccato", "A zip that would write outside the folder is blocked", "Un zip que escribiría fuera de la carpeta se bloquea"),
+  test_dry_run_downloads_nothing: L("La prova di download non scarica nulla", "The dry run downloads nothing", "El ensayo de descarga no descarga nada"),
+  test_ham10000_conversion: L("I metadati di HAM10000 diventano righe valide del registro", "HAM10000 metadata become valid registry rows", "Los metadatos de HAM10000 se convierten en filas válidas"),
+  test_validation_reports_problems: L("Il controllo del registro trova doppioni, diagnosi ignote, licenze mancanti", "The registry check finds duplicates, unknown diagnoses, missing licences", "El control del registro encuentra duplicados, diagnósticos desconocidos, licencias ausentes"),
+  test_malignant_must_agree_with_diagnosis: L("Un nevo segnato come maligno è un errore", "A nevus marked as malignant is an error", "Un nevo marcado como maligno es un error"),
+  test_missing_image_files_are_detected: L("Le immagini mancanti su disco sono segnalate", "Image files missing on disk are reported", "Las imágenes que faltan en disco se señalan"),
+  test_build_registry_end_to_end: L("Dagli zip finti al file del registro, tutto il percorso", "From fake zips to the registry file, end to end", "De los zip falsos al archivo del registro, todo el recorrido"),
+
+  test_no_lesion_is_in_two_parts: L("Nessuna lesione finisce in due parti della divisione", "No lesion ends up in two parts of the split", "Ninguna lesión acaba en dos partes de la partición"),
+  test_split_fractions_are_close_to_70_15_15: L("Le quote di lesioni sono 70/15/15", "Lesion shares are 70/15/15", "Las proporciones de lesiones son 70/15/15"),
+  test_split_keeps_class_proportions: L("Ogni parte ha le stesse proporzioni di classi", "Every part keeps the class proportions", "Cada parte mantiene las proporciones de clases"),
+  test_split_is_reproducible_and_depends_on_the_seed: L("Stesso seme, stessa divisione; seme diverso, divisione diversa", "Same seed, same split; different seed, different split", "Misma semilla, misma partición; otra semilla, otra partición"),
+  test_check_detects_a_leaking_lesion: L("Una lesione spostata a mano in un'altra parte viene scoperta", "A lesion moved by hand into another part is caught", "Una lesión movida a mano a otra parte se detecta"),
+  test_check_detects_a_missing_image: L("Un'immagine mancante nella divisione viene scoperta", "An image missing from the split is caught", "Una imagen ausente de la partición se detecta"),
+  test_bad_fractions_are_rejected: L("Frazioni che non sommano a 1 sono rifiutate", "Fractions that do not sum to 1 are rejected", "Fracciones que no suman 1 se rechazan"),
+  test_published_split_is_not_overwritten: L("Una divisione già salvata non si sovrascrive", "A saved split is never overwritten", "Una partición guardada no se sobrescribe"),
+  test_published_ham10000_split_is_valid: L("Il file vero: 10.015 immagini, 7.470 lesioni, nessuna fuga", "The real file: 10,015 images, 7,470 lesions, no leak", "El archivo real: 10.015 imágenes, 7.470 lesiones, sin fugas"),
+  test_duplicates_are_found_and_classified: L("Trova il file identico e quello risalvato, ignora quello diverso", "Finds the identical and the re-saved file, ignores the different one", "Encuentra el archivo idéntico y el reguardado, ignora el distinto"),
+  test_charts_are_drawn_and_saved: L("I grafici si salvano in SVG e PNG", "Charts are saved as SVG and PNG", "Los gráficos se guardan en SVG y PNG"),
+  test_too_many_series_are_rejected: L("Più di 8 serie in un grafico danno errore", "More than 8 series in a chart raise an error", "Más de 8 series en un gráfico dan error"),
+  test_share_chart_is_drawn: L("Il grafico a percentuali si salva", "The percentage chart is saved", "El gráfico de porcentajes se guarda"),
+  test_saved_svg_is_identical_when_drawn_twice: L("Lo stesso grafico salvato due volte dà file identici", "The same chart saved twice gives identical files", "El mismo gráfico guardado dos veces da archivos idénticos"),
+
+  test_score_is_high_when_the_image_matches_the_concept: L("Punteggio alto se l'immagine somiglia al concetto, basso se no, 0,5 a metà", "High score when the image matches the concept, low if not, 0.5 in between", "Puntuación alta si la imagen se parece al concepto, baja si no, 0,5 a medias"),
+  test_score_averages_terms_and_templates: L("Una parola che non c'entra abbassa il punteggio", "An unrelated word lowers the score", "Una palabra que no viene al caso baja la puntuación"),
+  test_scores_stay_between_zero_and_one: L("I punteggi stanno sempre tra 0 e 1", "Scores always stay between 0 and 1", "Las puntuaciones siempre están entre 0 y 1"),
+  test_artifact_list_matches_the_templates: L("Ogni artefatto ha parole e frasi valide", "Every artifact has valid words and sentences", "Cada artefacto tiene palabras y frases válidas"),
+  test_missing_weights_give_a_clear_message: L("Senza i pesi, l'errore dice quale comando lanciare", "Without the weights, the error says which command to run", "Sin los pesos, el error indica qué comando ejecutar"),
+  test_cached_vectors_are_reused_only_for_the_same_images: L("I vettori salvati si riusano solo per le stesse immagini", "Cached vectors are reused only for the same images", "Los vectores guardados solo se reutilizan para las mismas imágenes"),
+
+  test_full_frame_image_has_no_dark_corners: L("Immagine a pieno campo: nessun bordo nero", "Full-frame image: no dark border", "Imagen a campo completo: sin borde negro"),
+  test_round_field_of_view_has_dark_corners: L("Campo rotondo: bordo nero trovato", "Round field of view: dark border found", "Campo redondo: borde negro detectado"),
+  test_wider_opening_gives_a_smaller_share: L("Apertura più larga, quota più bassa ma sopra la soglia", "Wider opening, smaller share but above the threshold", "Apertura más ancha, proporción menor pero sobre el umbral"),
+  test_dark_lesion_in_the_centre_is_not_a_dark_corner: L("Una lesione nera al centro non conta come bordo", "A black lesion in the centre does not count as a border", "Una lesión negra en el centro no cuenta como borde"),
+  test_many_files_are_measured_in_order: L("Più file misurati nell'ordine giusto", "Several files measured in the right order", "Varios archivos medidos en el orden correcto")
+};
+
+/* The pipeline since the data download: input → command and code → output → tests. */
+const STAGES = [
+  { id: "download", title: L("Scaricare e verificare", "Download and verify", "Descargar y verificar"),
+    lead: L("Ogni file viene confrontato con un'impronta fissata in anticipo: se non coincide, è scartato.", "Every file is compared with a checksum fixed in advance: if it does not match, it is discarded.", "Cada archivo se compara con una suma fijada de antemano: si no coincide, se descarta."),
+    input: [L("Archivi online: Harvard Dataverse (HAM10000), Figshare (Chanda), Hugging Face (MONET)", "Online archives: Harvard Dataverse (HAM10000), Figshare (Chanda), Hugging Face (MONET)", "Archivos en línea: Harvard Dataverse (HAM10000), Figshare (Chanda), Hugging Face (MONET)"), L("A mano: DDI, Derm7pt", "By hand: DDI, Derm7pt", "A mano: DDI, Derm7pt")],
+    cmd: "neo-data download <dataset> [--yes]", mods: ["neo.data.cli", "neo.data.sources", "neo.data.download", "neo.paths"],
+    out: ["raw/ham10000", "raw/chanda2024", "raw/ddi", "raw/derm7pt", "weights/monet"], tfiles: ["test_data.py"],
+    more: L("Senza --yes il comando fa solo la prova: elenca file, dimensioni vere e spazio libero, e si ferma. Il download scrive prima un file .part e lo rinomina solo se l'impronta è giusta, così un download interrotto non sembra mai completo.",
+            "Without --yes the command only does a dry run: it lists files, real sizes and free space, then stops. The download writes a .part file first and renames it only if the checksum matches, so an interrupted download never looks complete.",
+            "Sin --yes el comando solo hace el ensayo: lista archivos, tamaños reales y espacio libre, y se detiene. La descarga escribe primero un archivo .part y lo renombra solo si la suma coincide."),
+    try: "neo-data download ham10000" },
+  { id: "registry", title: L("Costruire il registro", "Build the registry", "Construir el registro"),
+    lead: L("Gli zip diventano 10.015 immagini; i metadati diventano una tabella comune con licenza e fonte per immagine.", "The zips become 10,015 images; the metadata become a common table with licence and source per image.", "Los zip se convierten en 10.015 imágenes; los metadatos en una tabla común con licencia y fuente por imagen."),
+    input: [L("raw/ham10000: 2 zip di immagini + metadati", "raw/ham10000: 2 image zips + metadata", "raw/ham10000: 2 zip de imágenes + metadatos")],
+    cmd: "neo-data registry ham10000", mods: ["neo.data.cli", "neo.data.ham10000", "neo.data.registry", "neo.data.download"],
+    out: ["registry/ham10000.csv"], tfiles: ["test_data.py"],
+    more: L("Prima di salvare, il registro viene controllato: colonne giuste, nessun doppione, diagnosi e fonti del vocabolario comune, colonna 'maligna' coerente con la diagnosi, ogni immagine presente su disco.",
+            "Before saving, the registry is checked: right columns, no duplicates, diagnoses and sources from the common vocabulary, 'malignant' consistent with the diagnosis, every image on disk.",
+            "Antes de guardar, el registro se controla: columnas correctas, sin duplicados, diagnósticos del vocabulario común, 'maligno' coherente con el diagnóstico, cada imagen en disco."),
+    try: "neo-data list" },
+  { id: "duplicates", title: L("Cercare i duplicati", "Find duplicates", "Buscar duplicados"),
+    lead: L("Immagini quasi identiche tra lesioni diverse sarebbero una fuga tra addestramento e test.", "Near-identical images across different lesions would leak between training and test.", "Imágenes casi idénticas entre lesiones distintas serían una fuga entre entrenamiento y prueba."),
+    input: [L("registry/ham10000.csv + immagini", "registry/ham10000.csv + images", "registry/ham10000.csv + imágenes")],
+    cmd: "neo-data duplicates ham10000", mods: ["neo.data.cli", "neo.data.duplicates", "neo.data.registry"],
+    out: ["registry/ham10000_duplicates.csv"], tfiles: ["test_split_and_duplicates.py"],
+    more: L("Ogni immagine è ridotta a una miniatura 32 × 32 a colori; due immagini sono una coppia se differiscono in media di meno di 3 livelli su 255. Un primo metodo (dHash 8 × 8) dava migliaia di falsi allarmi ed è stato scartato.",
+            "Each image is reduced to a 32 × 32 colour thumbnail; two images are a pair if they differ by less than 3 levels out of 255 on average. A first method (8 × 8 dHash) gave thousands of false alarms and was dropped.",
+            "Cada imagen se reduce a una miniatura en color de 32 × 32; dos imágenes son un par si difieren de media menos de 3 niveles sobre 255. Un primer método (dHash 8 × 8) daba miles de falsas alarmas y se descartó."),
+    try: "neo-data duplicates ham10000" },
+  { id: "split", title: L("Dividere per lesione", "Split by lesion", "Dividir por lesión"),
+    lead: L("70% addestramento, 15% validazione, 15% test, con tutte le immagini di una lesione dalla stessa parte.", "70% training, 15% validation, 15% test, with all images of a lesion on the same side.", "70% entrenamiento, 15% validación, 15% prueba, con todas las imágenes de una lesión en el mismo lado."),
+    input: [L("registry/ham10000.csv", "registry/ham10000.csv", "registry/ham10000.csv")],
+    cmd: "neo-data split ham10000", mods: ["neo.data.cli", "neo.data.split", "neo.data.registry"],
+    out: ["ml/splits/ham10000_lesion_v1.csv"], tfiles: ["test_split_and_duplicates.py"],
+    more: L("La divisione è stratificata per diagnosi, con seme 2026, ed è salvata nel repository (unico file di dati in git). Il comando rifiuta di rifarla: se si lancia di nuovo, la ricontrolla soltanto.",
+            "The split is stratified by diagnosis, with seed 2026, and saved in the repository (the only data file in git). The command refuses to redo it: run again, it only checks it.",
+            "La partición está estratificada por diagnóstico, con semilla 2026, y guardada en el repositorio (único archivo de datos en git). El comando se niega a rehacerla: si se ejecuta de nuevo, solo la comprueba."),
+    try: "neo-data split ham10000" },
+  { id: "artifacts", title: L("Controllare gli artefatti", "Audit the artifacts", "Controlar los artefactos"),
+    lead: L("Penna, righello, bordo nero, peli: se sono più frequenti in una classe, il modello può usarli come scorciatoia.", "Ink, ruler, dark border, hair: if more frequent in one class, the model can use them as a shortcut.", "Tinta, regla, borde negro, pelo: si son más frecuentes en una clase, el modelo puede usarlos como atajo."),
+    input: [L("registry/ham10000.csv + immagini", "registry/ham10000.csv + images", "registry/ham10000.csv + imágenes"), L("weights/monet (1,71 GB)", "weights/monet (1.71 GB)", "weights/monet (1,71 GB)")],
+    cmd: "neo-data artifacts ham10000", mods: ["neo.data.cli", "neo.concepts", "neo.data.artifacts", "neo.device"],
+    out: ["embeddings/monet_ham10000.npy", "registry/ham10000_artifact_scores.csv"], tfiles: ["test_concepts.py", "test_artifacts.py"],
+    more: L("Due strumenti: MONET dà un punteggio a parole (\"peli\", \"righello\"...), la misura sui pixel trova il bordo nero. I vettori di MONET si calcolano una volta (11,5 minuti sul Mac) e si riusano.",
+            "Two tools: MONET scores words (\"hair\", \"ruler\"...), the pixel measure finds the dark border. MONET vectors are computed once (11.5 minutes on the Mac) and reused.",
+            "Dos herramientas: MONET puntúa palabras (\"pelo\", \"regla\"...), la medida en píxeles encuentra el borde negro. Los vectores de MONET se calculan una vez (11,5 minutos en el Mac) y se reutilizan."),
+    try: "neo-data artifacts ham10000" },
+  { id: "eda", title: L("Guardare i dati (EDA)", "Look at the data (EDA)", "Mirar los datos (EDA)"),
+    lead: L("Tabelle e grafici per capire i dati prima di addestrare.", "Tables and charts to understand the data before training.", "Tablas y gráficos para entender los datos antes de entrenar."),
+    input: [L("Registro, divisione, duplicati, punteggi degli artefatti", "Registry, split, duplicates, artifact scores", "Registro, partición, duplicados, puntuaciones de artefactos")],
+    cmd: "ml/notebooks/01_eda_ham10000.ipynb", mods: ["neo.plots", "neo.data.registry", "neo.data.split", "neo.data.artifacts", "neo.paths"],
+    out: ["docs/figures/eda_ham10000_*", "docs/11_eda_ham10000.md"], tfiles: ["test_split_and_duplicates.py"],
+    more: L("Il notebook è salvato senza risultati, perché le immagini di esempio sono sotto licenza CC BY-NC. Si apre in VS Code con il kernel ~/.venvs/neo-helper-ml/bin/python e si esegue dall'alto in basso.",
+            "The notebook is saved without outputs, because the sample images are under CC BY-NC. Open it in VS Code with the ~/.venvs/neo-helper-ml/bin/python kernel and run it top to bottom.",
+            "El cuaderno se guarda sin resultados, porque las imágenes de ejemplo están bajo CC BY-NC. Se abre en VS Code con el kernel ~/.venvs/neo-helper-ml/bin/python y se ejecuta de arriba abajo."),
+    try: null }
+];
+
+const PACKAGES = [
+  { id: "P1", st: "done", name: L("Ambiente", "Environment", "Entorno"), issue: 11, note: L("chiusa", "closed", "cerrada") },
+  { id: "P2", st: "part", name: L("Registro e HAM10000", "Registry and HAM10000", "Registro y HAM10000"), issue: 12, note: L("altri dataset in P5", "other datasets in P5", "otros conjuntos en P5") },
+  { id: "P3", st: "part", name: L("EDA, divisione, artefatti", "EDA, split, artifacts", "EDA, partición, artefactos"), issue: 13, note: L("duplicati tra dataset in P5", "cross-dataset duplicates in P5", "duplicados entre conjuntos en P5") },
+  { id: "P4", st: "next", name: L("Baseline congelate", "Frozen baselines", "Líneas base congeladas"), issue: 14, note: L("prossimo", "next", "siguiente") },
+  { id: "P5", st: "plan", name: L("Test esterni e RQ6", "External tests and RQ6", "Pruebas externas y RQ6"), issue: 12, note: L("pianificato", "planned", "planificado") },
+  { id: "P6", st: "plan", name: L("Chiusura e dashboard", "Closing and dashboard", "Cierre y panel"), issue: 36, note: L("pianificato", "planned", "planificado") }
+];
+const ST_NAME = { done: L("Fatto", "Done", "Hecho"), part: L("Fatto per HAM10000", "Done for HAM10000", "Hecho para HAM10000"), next: L("Prossimo", "Next", "Siguiente"), plan: L("Da fare", "To do", "Pendiente") };
+
+const STORY = [
+  { d: "11/11", t: L("Ambiente pronto, dati scaricati", "Environment ready, data downloaded", "Entorno listo, datos descargados"),
+    x: L("HAM10000 (3,2 GB) e annotazioni di Chanda scaricati con verifica; DDI e Derm7pt scaricati a mano. Registro di HAM10000 costruito. L'ambiente Python esce dalla cartella iCloud.", "HAM10000 (3.2 GB) and Chanda annotations downloaded and verified; DDI and Derm7pt downloaded by hand. HAM10000 registry built. The Python environment moves out of the iCloud folder.", "HAM10000 (3,2 GB) y anotaciones de Chanda descargados y verificados; DDI y Derm7pt a mano. Registro de HAM10000 construido. El entorno Python sale de la carpeta iCloud.") },
+  { d: "14/11", t: L("README in tre lingue, EDA, divisione", "Three-language READMEs, EDA, split", "README en tres idiomas, EDA, partición"),
+    x: L("Ricerca dei duplicati (nessuno tra lesioni diverse), divisione per lesione pubblicata, notebook e grafici dell'EDA.", "Duplicate search (none across lesions), lesion-level split published, EDA notebook and charts.", "Búsqueda de duplicados (ninguno entre lesiones), partición por lesión publicada, cuaderno y gráficos del EDA.") },
+  { d: "16/11", t: L("MONET scaricato", "MONET downloaded", "MONET descargado"),
+    x: L("Pesi (1,71 GB) con revisione fissata; il downloader verifica anche SHA-256 e impronte git. Vettori di 10.015 immagini in 11,5 minuti.", "Weights (1.71 GB) at a pinned revision; the downloader also verifies SHA-256 and git checksums. Vectors of 10,015 images in 11.5 minutes.", "Pesos (1,71 GB) con revisión fijada; el descargador también verifica SHA-256 y git. Vectores de 10.015 imágenes en 11,5 minutos.") },
+  { d: "17/11", t: L("Controllo degli artefatti, P3 su GitHub", "Artifact audit, P3 on GitHub", "Control de artefactos, P3 en GitHub"),
+    x: L("MONET affidabile solo per i peli; bordo nero misurato sui pixel. Riassunto Word per NotebookLM. Deciso: akiec tra le maligne.", "MONET reliable for hair only; dark border measured on the pixels. Word summary for NotebookLM. Decided: akiec counts as malignant.", "MONET fiable solo para el pelo; borde negro medido en píxeles. Resumen Word para NotebookLM. Decidido: akiec cuenta como maligna.") },
+  { d: "20/11", t: L("Questa dashboard", "This dashboard", "Este panel"),
+    x: L("Collega dati, codice e test; i fatti si rigenerano dal codice con un comando.", "Links data, code and tests; facts are regenerated from the code with one command.", "Une datos, código y pruebas; los hechos se regeneran desde el código con un comando.") }
+];
+
+const DATASETS = [
+  { key: "raw/ham10000", name: "HAM10000", how: L("Automatico", "Automatic", "Automático"), lic: "CC BY-NC 4.0", src: "Harvard Dataverse V4.0", use: L("Addestramento", "Training", "Entrenamiento") },
+  { key: "raw/chanda2024", name: L("Annotazioni di Chanda", "Chanda annotations", "Anotaciones de Chanda"), how: L("Automatico", "Automatic", "Automático"), lic: "CC BY 4.0", src: "Figshare v9", use: L("Spiegazioni (M3.4)", "Explanations (M3.4)", "Explicaciones (M3.4)") },
+  { key: "raw/ddi", name: "DDI", how: L("A mano, con registrazione", "By hand, with registration", "A mano, con registro"), lic: L("Accordo di Stanford", "Stanford agreement", "Acuerdo de Stanford"), src: "Stanford AIMI", use: L("Test esterno, fototipi (P5)", "External test, skin types (P5)", "Prueba externa, fototipos (P5)") },
+  { key: "raw/derm7pt", name: "Derm7pt", how: L("A mano, con registrazione", "By hand, with registration", "A mano, con registro"), lic: "CC BY-NC-ND 4.0", src: "SFU", use: L("Test esterno, criteri (P5)", "External test, criteria (P5)", "Prueba externa, criterios (P5)") },
+  { key: "weights/monet", name: "MONET", how: L("Automatico", "Automatic", "Automático"), lic: "CC BY-NC-SA 4.0", src: "Hugging Face, rev. 1d1efd0", use: L("Concetti e artefatti", "Concepts and artifacts", "Conceptos y artefactos") }
+];
+
+const MONET_CHECK = [
+  { c: L("Peli", "Hair", "Pelo"), v: "yes", s: L("Peli evidenti in quasi tutte le prime 24", "Clear hair in almost all of the top 24", "Pelo evidente en casi todas las 24 primeras") },
+  { c: L("Righello", "Ruler", "Regla"), v: "no", s: L("Scala graduata in 5–6 su 24", "Scale bar in 5–6 of 24", "Escala graduada en 5–6 de 24") },
+  { c: L("Penna", "Ink", "Tinta"), v: "no", s: L("Penna in 2–3; il resto lesioni vascolari viola", "Ink in 2–3; the rest purple vascular lesions", "Tinta en 2–3; el resto lesiones vasculares violetas") },
+  { c: L("Bordo nero", "Dark border", "Borde negro"), v: "no", s: L("Bordo in 2–3; il resto nevi scuri", "Border in 2–3; the rest dark nevi", "Borde en 2–3; el resto nevos oscuros") },
+  { c: L("Adesivo", "Sticker", "Adhesivo"), v: "no", s: L("Nessun adesivo", "No sticker", "Ningún adhesivo") },
+  { c: L("Bolle", "Bubbles", "Burbujas"), v: "no", s: L("Bolle in 1–2", "Bubbles in 1–2", "Burbujas en 1–2") }
+];
+
+const DECISIONS = [
+  ["11/11", L("Ambiente con uv e Python 3.12; dati, pesi e vettori fuori dal repository (NEO_DATA_DIR)", "Environment with uv and Python 3.12; data, weights and vectors outside the repository (NEO_DATA_DIR)", "Entorno con uv y Python 3.12; datos, pesos y vectores fuera del repositorio (NEO_DATA_DIR)")],
+  ["11/11", L("Tutta la M2 sul Mac; Kaggle come riserva; MLflow in locale", "All of M2 on the Mac; Kaggle as fallback; local MLflow", "Todo el M2 en el Mac; Kaggle de reserva; MLflow local")],
+  ["11/11", L("Ambiente Python fuori dalla cartella iCloud (~/.venvs/neo-helper-ml)", "Python environment outside the iCloud folder (~/.venvs/neo-helper-ml)", "Entorno Python fuera de la carpeta iCloud (~/.venvs/neo-helper-ml)")],
+  ["14/11", L("README in inglese, italiano e spagnolo; notebook senza risultati (licenza delle immagini)", "READMEs in English, Italian and Spanish; notebooks without outputs (image licence)", "README en inglés, italiano y español; cuadernos sin resultados (licencia de las imágenes)")],
+  ["14/11", L("Divisione 70/15/15 per lesione, seme 2026, mai rigenerata; il test si usa una volta sola", "70/15/15 split by lesion, seed 2026, never regenerated; the test set is used once", "Partición 70/15/15 por lesión, semilla 2026, nunca regenerada; la prueba se usa una vez")],
+  ["17/11", L("MONET solo per i peli; bordo nero misurato sui pixel; risultati futuri anche con e senza bordo e per centro", "MONET for hair only; dark border measured on the pixels; future results also with and without border and per centre", "MONET solo para el pelo; borde negro medido en píxeles; resultados futuros también con y sin borde y por centro")],
+  ["17/11", L("akiec conta tra le maligne nel punteggio di malignità (come Tschandl 2020)", "akiec counts as malignant in the malignancy score (as Tschandl 2020)", "akiec cuenta como maligna en la puntuación de malignidad (como Tschandl 2020)")]
+];
+const OPEN = [
+  L("P4: stessa risoluzione (224 px) per tutti i backbone? DINOv2 in taglia grande? Ordine P4a → P4b → P4c?", "P4: same resolution (224 px) for all backbones? DINOv2 in large size? Order P4a → P4b → P4c?", "P4: ¿misma resolución (224 px) para todos? ¿DINOv2 grande? ¿Orden P4a → P4b → P4c?"),
+  L("PanDerm è su Google Drive senza impronta e richiede il codice degli autori", "PanDerm is on Google Drive without a checksum and needs the authors' code", "PanDerm está en Google Drive sin suma y requiere el código de los autores"),
+  L("Penna, righello, adesivo e bolle non misurati: servirebbe un campione annotato a mano", "Ink, ruler, sticker and bubbles not measured: a hand-annotated sample would be needed", "Tinta, regla, adhesivo y burbujas sin medir: haría falta una muestra anotada a mano"),
+  L("Il giudizio su MONET è mio, su 24 immagini per concetto: va confermato da un dermatologo", "The MONET verdict is mine, on 24 images per concept: a dermatologist should confirm it", "El juicio sobre MONET es mío, con 24 imágenes por concepto: debe confirmarlo un dermatólogo")
+];
+
+const UI = {
+  brandSub: L("Milestone 2 in corso · dati, codice, test", "Milestone 2 in progress · data, code, tests", "Hito 2 en curso · datos, código, pruebas"),
+  tabs: {
+    overview: L("Dove siamo", "Where we are", "Dónde estamos"),
+    flow: L("Flusso", "Flow", "Flujo"),
+    code: L("Codice", "Code", "Código"),
+    tests: L("Test", "Tests", "Pruebas"),
+    data: L("Dati", "Data", "Datos"),
+    findings: L("Risultati e decisioni", "Findings and decisions", "Resultados y decisiones"),
+    follow: L("Come seguire", "How to follow", "Cómo seguir")
+  },
+  heroEyebrow: L("Milestone 2 · dati e baseline", "Milestone 2 · data and baselines", "Hito 2 · datos y líneas base"),
+  heroTitle: L("Dal download dei dati alla prima fotografia di HAM10000", "From the data download to the first picture of HAM10000", "De la descarga de los datos a la primera foto de HAM10000"),
+  heroLead: L("Questa pagina collega i dati scaricati, il codice che li trasforma e i test che lo controllano. I numeri su codice, test e dati non sono scritti a mano: li raccoglie uno script dal progetto vero.",
+              "This page links the downloaded data, the code that transforms it and the tests that check it. Numbers about code, tests and data are not typed by hand: a script collects them from the real project.",
+              "Esta página une los datos descargados, el código que los transforma y las pruebas que lo controlan. Los números sobre código, pruebas y datos no se escriben a mano: un script los recoge del proyecto real."),
+  kImages: L("immagini HAM10000", "HAM10000 images", "imágenes HAM10000"),
+  kLesions: L("lesioni", "lesions", "lesiones"),
+  kTests: L("test superati", "tests passed", "pruebas superadas"),
+  kModules: L("moduli Python", "Python modules", "módulos Python"),
+  kLines: L("righe di codice", "lines of code", "líneas de código"),
+  kData: L("dati su disco", "data on disk", "datos en disco"),
+  kCommits: L("commit della M2", "M2 commits", "commits del M2"),
+  packages: L("I pacchetti della M2", "The M2 packages", "Los paquetes del M2"),
+  story: L("Dal download dei dati a oggi", "From the data download to today", "De la descarga de los datos a hoy"),
+  unpushed: L("commit non ancora su GitHub", "commits not yet on GitHub", "commits aún no en GitHub"),
+  flowLead: L("Ogni passo: cosa entra, quale comando e quali file di codice lo fanno, cosa esce, quali test lo controllano. Clicca un modulo per vederne il codice, un file di test per vederne i test.",
+              "Each step: what goes in, which command and code files do it, what comes out, which tests check it. Click a module to see its code, a test file to see its tests.",
+              "Cada paso: qué entra, qué comando y archivos de código lo hacen, qué sale, qué pruebas lo controlan. Pulsa un módulo para ver su código, un archivo de pruebas para ver sus pruebas."),
+  fIn: L("Entra", "In", "Entra"), fDo: L("Comando e codice", "Command and code", "Comando y código"), fOut: L("Esce", "Out", "Sale"), fTest: L("Controllato da", "Checked by", "Controlado por"),
+  fMore: L("Come funziona e come provarlo", "How it works and how to try it", "Cómo funciona y cómo probarlo"),
+  base: L("Sotto tutti i passi: neo.paths (dove sono i dati) e neo.device (dove girano i calcoli). neo-check prova l'ambiente.", "Under every step: neo.paths (where the data is) and neo.device (where computations run). neo-check tests the environment.", "Bajo todos los pasos: neo.paths (dónde están los datos) y neo.device (dónde se calcula). neo-check prueba el entorno."),
+  codeLead: L("Ogni riquadro è un file di codice. Una freccia da A a B vuol dire che A usa B. In alto i comandi, in basso le fondamenta. Clicca un modulo: qui sotto cosa fa, le sue funzioni, chi lo usa e quali test lo controllano.",
+              "Each box is a code file. An arrow from A to B means A uses B. Commands at the top, foundations at the bottom. Click a module: below, what it does, its functions, who uses it and which tests check it.",
+              "Cada recuadro es un archivo de código. Una flecha de A a B significa que A usa B. Arriba los comandos, abajo los cimientos. Pulsa un módulo: debajo, qué hace, sus funciones, quién lo usa y qué pruebas lo controlan."),
+  dWhat: L("Cosa fa", "What it does", "Qué hace"), dFile: L("File", "File", "Archivo"), dFns: L("Funzioni e classi", "Functions and classes", "Funciones y clases"),
+  dUses: L("Usa", "Uses", "Usa"), dUsedBy: L("È usato da", "Used by", "Lo usa"), dTests: L("Test che lo controllano", "Tests that check it", "Pruebas que lo controlan"),
+  dCmds: L("Sottocomandi", "Sub-commands", "Subcomandos"), dDoc: L("Descrizione nel codice (inglese)", "Description in the code", "Descripción en el código (inglés)"),
+  none: L("nessuno", "none", "ninguno"), lines: L("righe", "lines", "líneas"),
+  missingText: L("Testo da scrivere: questo modulo è nuovo e la dashboard non lo descrive ancora.", "Text to write: this module is new and the dashboard does not describe it yet.", "Texto por escribir: este módulo es nuevo y el panel aún no lo describe."),
+  privateNote: L("I nomi in grigio iniziano con _ : sono di uso interno al file.", "Names in grey start with _ : they are internal to the file.", "Los nombres en gris empiezan por _ : son internos al archivo."),
+  testsLead: L("Risultato dell'ultima esecuzione di tutti i test, fatta dallo script che aggiorna questa pagina. I test non usano la rete né i dati veri, salvo uno che controlla il file della divisione.",
+               "Result of the last run of all tests, made by the script that updates this page. Tests use neither the network nor the real data, except one that checks the split file.",
+               "Resultado de la última ejecución de todas las pruebas, hecha por el script que actualiza esta página. Las pruebas no usan la red ni los datos reales, salvo una que comprueba el archivo de la partición."),
+  all: L("Tutti", "All", "Todos"), passed: L("superati", "passed", "superadas"), failed: L("falliti", "failed", "fallidas"), skipped: L("saltati", "skipped", "omitidas"),
+  ran: L("eseguiti il", "run on", "ejecutadas el"), inSec: L("secondi", "seconds", "segundos"), checks: L("Controlla i moduli", "Checks the modules", "Controla los módulos"),
+  dataLead: L("Tutto quello che sta in ~/neo-helper-data, fuori dal repository, con le dimensioni lette dal disco.", "Everything in ~/neo-helper-data, outside the repository, with sizes read from disk.", "Todo lo que está en ~/neo-helper-data, fuera del repositorio, con tamaños leídos del disco."),
+  onDisk: L("Su disco", "On disk", "En disco"), datasets: L("Dataset e modelli", "Datasets and models", "Conjuntos y modelos"),
+  cPath: L("Percorso", "Path", "Ruta"), cSize: L("Dimensione", "Size", "Tamaño"), cFiles: L("File", "Files", "Archivos"),
+  cName: L("Nome", "Name", "Nombre"), cHow: L("Come", "How", "Cómo"), cLic: L("Licenza", "Licence", "Licencia"), cSrc: L("Fonte", "Source", "Fuente"), cUse: L("Uso", "Use", "Uso"),
+  classes: L("HAM10000: immagini per classe", "HAM10000: images per class", "HAM10000: imágenes por clase"),
+  splitT: L("La divisione per lesione", "The split by lesion", "La partición por lesión"),
+  train: L("Addestramento", "Training", "Entrenamiento"), val: L("Validazione", "Validation", "Validación"), test: L("Test", "Test", "Prueba"),
+  images: L("Immagini", "Images", "Imágenes"), lesions: L("Lesioni", "Lesions", "Lesiones"), malShare: L("Quota maligne", "Malignant share", "Proporción malignas"),
+  figuresLink: L("I grafici completi sono in docs/figures/ e in docs/11_eda_ham10000.md", "Full charts are in docs/figures/ and docs/11_eda_ham10000.md", "Los gráficos completos están en docs/figures/ y docs/11_eda_ham10000.md"),
+  findingsLead: L("Cosa abbiamo imparato guardando i dati, e cosa abbiamo deciso. I numeri vengono dal registro e dai file dei punteggi.", "What we learned by looking at the data, and what we decided. Numbers come from the registry and the score files.", "Lo que aprendimos mirando los datos y lo que decidimos. Los números vienen del registro y de los archivos de puntuaciones."),
+  f1t: L("Classi molto sbilanciate", "Strongly unbalanced classes", "Clases muy desequilibradas"),
+  f1x: L("sono nevi: un modello che dicesse sempre \"nevo\" sbaglierebbe ogni tumore. Si misura l'accuratezza bilanciata.", "are nevi: a model always saying \"nevus\" would miss every tumour. We measure balanced accuracy.", "son nevos: un modelo que siempre dijera \"nevo\" fallaría todos los tumores. Se mide la exactitud equilibrada."),
+  f2t: L("Lesioni fotografate più volte", "Lesions photographed several times", "Lesiones fotografiadas varias veces"),
+  f2x: L("delle immagini condivide la lesione con un'altra: per questo si divide per lesione.", "of the images share their lesion with another: hence the split by lesion.", "de las imágenes comparte su lesión con otra: por eso se divide por lesión."),
+  f3t: L("Classe e centro sono legati", "Class and centre are linked", "Clase y centro están ligados"),
+  f3x: L("delle akiec viene dall'Australia; una raccolta di Vienna è quasi solo nevi. Il modello potrebbe riconoscere il centro.", "of akiec come from Australia; one Vienna collection is almost only nevi. The model could learn the centre.", "de las akiec vienen de Australia; una colección de Viena es casi solo nevos. El modelo podría aprender el centro."),
+  f4t: L("Nessuna fuga tra lesioni", "No leak across lesions", "Ninguna fuga entre lesiones"),
+  f4x: L("coppie di duplicati tra lesioni diverse (su {p} coppie trovate, tutte dentro la stessa lesione).", "duplicate pairs across different lesions (out of {p} pairs found, all inside one lesion).", "pares de duplicados entre lesiones distintas (de {p} pares encontrados, todos dentro de la misma lesión)."),
+  f5t: L("Il bordo nero, possibile scorciatoia", "The dark border, a possible shortcut", "El borde negro, posible atajo"),
+  f5x: L("delle immagini maligne ha il bordo nero, contro {b} delle benigne. Viene quasi tutto da vidir_modern ({v}).", "of malignant images have the dark border, against {b} of benign ones. It comes almost entirely from vidir_modern ({v}).", "de las imágenes malignas tienen borde negro, frente al {b} de las benignas. Viene casi todo de vidir_modern ({v})."),
+  f6t: L("MONET sulle dermoscopie", "MONET on dermoscopic images", "MONET en dermatoscopias"),
+  f6x: L("Confonde il colore della lesione con l'artefatto. Controllo a occhio delle 24 immagini con il punteggio più alto:", "It confuses the colour of the lesion with the artifact. Check by eye of the 24 top-scoring images:", "Confunde el color de la lesión con el artefacto. Control a ojo de las 24 imágenes con mayor puntuación:"),
+  vYes: L("usabile", "usable", "utilizable"), vNo: L("non usabile", "not usable", "no utilizable"),
+  decisions: L("Decisioni prese", "Decisions taken", "Decisiones tomadas"), open: L("Punti aperti", "Open points", "Puntos abiertos"),
+  followLead: L("Come controllare da solo quello che c'è qui. Tutti i comandi funzionano da qualunque cartella del progetto.", "How to check what is here yourself. All commands work from any folder of the project.", "Cómo comprobar por tu cuenta lo que hay aquí. Todos los comandos funcionan desde cualquier carpeta del proyecto."),
+  cmds: L("Comandi da provare", "Commands to try", "Comandos para probar"),
+  cmdTests: L("Eseguire tutti i test, uno per riga", "Run all tests, one per line", "Ejecutar todas las pruebas, una por línea"),
+  cmdList: L("Vedere i dataset e cosa c'è su disco", "See the datasets and what is on disk", "Ver los conjuntos y lo que hay en disco"),
+  cmdSplit: L("Ricontrollare la divisione (non la rifà)", "Re-check the split (does not redo it)", "Recomprobar la partición (no la rehace)"),
+  cmdDash: L("Aggiornare questa dashboard dal codice", "Update this dashboard from the code", "Actualizar este panel desde el código"),
+  history: L("Storia su GitHub", "History on GitHub", "Historia en GitHub"),
+  notPushed: L("non ancora su GitHub", "not yet on GitHub", "aún no en GitHub"),
+  copy: L("Copia", "Copy", "Copiar"), copied: L("Copiato", "Copied", "Copiado"),
+  generated: L("Fatti raccolti dal codice il", "Facts collected from the code on", "Hechos recogidos del código el"),
+  footer: L("Neo Helper · prototipo di ricerca, non un dispositivo medico · pagina autonoma, senza dipendenze esterne · i fatti si rigenerano con tools/build_dashboard_m2.py",
+            "Neo Helper · research prototype, not a medical device · self-contained page, no external dependencies · facts are regenerated with tools/build_dashboard_m2.py",
+            "Neo Helper · prototipo de investigación, no un dispositivo médico · página autónoma, sin dependencias externas · los hechos se regeneran con tools/build_dashboard_m2.py"),
+  noFacts: L("Mancano i fatti: esegui tools/build_dashboard_m2.py.", "Facts missing: run tools/build_dashboard_m2.py.", "Faltan los hechos: ejecuta tools/build_dashboard_m2.py.")
+};
+
+const VIEWS = ["overview", "flow", "code", "tests", "data", "findings", "follow"];
+const ENV = 'UV_PROJECT_ENVIRONMENT="$HOME/.venvs/neo-helper-ml" uv run --project ml';
+
+/* ------------------------------------------------------------ helpers */
+let lang = "it", view = "overview", selectedModule = "neo.data.cli", testFilter = "all";
+
+function readStore(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+function writeStore(key, value) { try { localStorage.setItem(key, value); } catch (e) { /* storage may be blocked */ } }
+function tr(v) { if (v == null) return ""; if (typeof v === "string") return v; return v[lang] ?? v.en ?? ""; }
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+function locale() { return lang === "en" ? "en-GB" : lang === "es" ? "es-ES" : "it-IT"; }
+function num(n, dec = 0) { return Number(n).toLocaleString(locale(), { minimumFractionDigits: dec, maximumFractionDigits: dec, useGrouping: true }); }
+function pct(x, dec = 1) { return num(x * 100, dec) + "%"; }
+function size(bytes) {
+  const units = ["B", "kB", "MB", "GB"]; let v = bytes, i = 0;
+  while (v >= 1000 && i < units.length - 1) { v /= 1000; i++; }
+  return num(v, i === 0 ? 0 : (v < 10 ? 2 : 1)) + " " + units[i];
+}
+function fill(text, values) { return text.replace(/\{(\w+)\}/g, (_, k) => values[k] ?? ""); }
+const short = name => name.replace(/^neo\./, "");
+function has(path, ...keys) { return keys.reduce((o, k) => (o && o[k] != null ? o[k] : null), path); }
+
+const F = FACTS || {};
+const MODS = (has(F, "code", "modules") || []).filter(m => m.functions.length || m.imports.length);
+const MOD = Object.fromEntries(MODS.map(m => [m.name, m]));
+const TFILES = has(F, "tests", "files") || {};
+function usedBy(name) { return MODS.filter(m => m.imports.includes(name)).map(m => m.name); }
+function testedBy(name) { return Object.keys(TFILES).filter(f => TFILES[f].imports.includes(name)); }
+function group(name) { return (MODULES[name] && MODULES[name].g) || "base"; }
+function modChip(name) {
+  const g = GROUPS[group(name)];
+  return `<button class="chip" data-mod="${esc(name)}"><span class="sw" style="background:${g.color}"></span>${esc(short(name))}</button>`;
+}
+function testChip(file) {
+  const t = TFILES[file]; const tests = t ? t.tests : [];
+  const bad = tests.some(x => x.status === "failed");
+  return `<button class="chip" data-tfile="${esc(file)}"><span class="${bad ? "s-failed" : "s-passed"}">${bad ? "✗" : "✓"}</span>${esc(file)}</button>`;
+}
+function place(path) { return (has(F, "data", "places") || []).find(p => p.path === path); }
+function cmdBlock(cmd) { return `<div class="cmd-block"><code>${esc(cmd)}</code><button class="copy" data-copy="${esc(cmd)}">${esc(tr(UI.copy))}</button></div>`; }
+
+/* ------------------------------------------------------------ views */
+function renderOverview() {
+  const h = has(F, "data", "ham10000") || {};
+  const t = has(F, "tests", "totals") || { passed: 0, failed: 0, skipped: 0 };
+  const total = t.passed + t.failed + t.skipped;
+  const lines = MODS.reduce((s, m) => s + m.lines, 0);
+  const commits = has(F, "git", "commits") || [];
+  const unpushed = has(F, "git", "unpushed") || [];
+  const kpis = [
+    [num(h.images || 0), UI.kImages], [num(h.lesions || 0), UI.kLesions],
+    [`${num(t.passed)}/${num(total)}`, UI.kTests], [num(MODS.length), UI.kModules],
+    [num(lines), UI.kLines], [size(has(F, "data", "total_bytes") || 0), UI.kData], [num(commits.length), UI.kCommits]
+  ].map(([v, l]) => `<div class="kpi"><b>${esc(v)}</b><span>${esc(tr(l))}</span></div>`).join("");
+  const pkgs = PACKAGES.map(p => `<div class="pkg" style="--st:var(--st-${p.st})"><span class="id">${p.id} · <a href="${esc(has(F, "git", "remote") || "")}/issues/${p.issue}" target="_blank" rel="noopener">#${p.issue}</a></span><span class="name">${esc(tr(p.name))}</span><span class="st">${esc(tr(ST_NAME[p.st]))}</span><div class="small muted">${esc(tr(p.note))}</div></div>`).join("");
+  const story = STORY.map(s => `<li><span class="when">${esc(s.d)}</span><span class="what"><b>${esc(tr(s.t))}</b><span class="muted small">${esc(tr(s.x))}</span></span></li>`).join("");
+  const warn = unpushed.length ? `<p class="note">${num(unpushed.length)} ${esc(tr(UI.unpushed))}: <code>${esc(unpushed.join(", "))}</code></p>` : "";
+  return `<div class="eyebrow">${esc(tr(UI.heroEyebrow))}</div><h1>${esc(tr(UI.heroTitle))}</h1><p class="lead">${esc(tr(UI.heroLead))}</p>
+    <div class="kpis">${kpis}</div>
+    <div class="card"><h2>${esc(tr(UI.packages))}</h2><div class="packages">${pkgs}</div></div>
+    <div class="card" style="margin-top:14px"><h2>${esc(tr(UI.story))}</h2><ul class="timeline">${story}</ul>${warn}</div>`;
+}
+
+function renderFlow() {
+  const stages = STAGES.map((s, i) => {
+    const inputs = s.input.map(x => `<li>${esc(tr(x))}</li>`).join("");
+    const outs = s.out.map(o => { const p = place(o); return `<li><code>${esc(o)}</code>${p ? ` <span class="muted">${esc(size(p.bytes))}</span>` : ""}</li>`; }).join("");
+    const tryIt = s.try ? cmdBlock(`${ENV} ${s.try}`) : "";
+    return `<section class="stage"><div class="stage-head"><span class="stage-n">${i + 1}</span><div><h3>${esc(tr(s.title))}</h3><div class="muted small">${esc(tr(s.lead))}</div></div></div>
+      <div class="stage-row">
+        <div class="box"><span class="lbl">${esc(tr(UI.fIn))}</span><ul>${inputs}</ul></div><div class="arrow" aria-hidden="true">→</div>
+        <div class="box"><span class="lbl">${esc(tr(UI.fDo))}</span><span class="cmd">${esc(s.cmd)}</span><div class="chips">${s.mods.map(modChip).join("")}</div></div><div class="arrow" aria-hidden="true">→</div>
+        <div class="box"><span class="lbl">${esc(tr(UI.fOut))}</span><ul>${outs}</ul></div>
+        <div class="box"><span class="lbl">${esc(tr(UI.fTest))}</span><div class="chips">${s.tfiles.map(testChip).join("")}</div></div>
+      </div>
+      <details><summary>${esc(tr(UI.fMore))}</summary><p>${esc(tr(s.more))}</p>${tryIt}</details></section>`;
+  }).join("");
+  return `<h1>${esc(tr(UI.tabs.flow))}</h1><p class="lead">${esc(tr(UI.flowLead))}</p>${stages}
+    <p class="note info">${esc(tr(UI.base))} <span class="chips" style="display:inline-flex;margin-left:6px">${["neo.paths", "neo.device", "neo.check"].filter(n => MOD[n]).map(modChip).join("")}</span></p>`;
+}
+
+/* Layered layout: a module sits one layer above the deepest module it uses. */
+function layers() {
+  const depth = {};
+  const visit = (n, seen = new Set()) => {
+    if (depth[n] != null) return depth[n];
+    if (seen.has(n)) return 0;
+    seen.add(n);
+    const deps = (MOD[n] ? MOD[n].imports : []).filter(d => MOD[d]);
+    depth[n] = deps.length ? 1 + Math.max(...deps.map(d => visit(d, seen))) : 0;
+    return depth[n];
+  };
+  MODS.forEach(m => visit(m.name));
+  const max = Math.max(0, ...Object.values(depth));
+  const rows = [];
+  for (let d = max; d >= 0; d--) {
+    rows.push(MODS.filter(m => depth[m.name] === d).map(m => m.name)
+      .sort((a, b) => Object.keys(GROUPS).indexOf(group(a)) - Object.keys(GROUPS).indexOf(group(b)) || a.localeCompare(b)));
+  }
+  return rows;
+}
+
+function renderMap() {
+  const rows = layers();
+  const W = 980, nodeW = 152, nodeH = 36, rowGap = 78, top = 18;
+  const pos = {};
+  rows.forEach((row, r) => {
+    const gap = Math.min(18, (W - row.length * nodeW) / Math.max(1, row.length + 1));
+    const total = row.length * nodeW + (row.length - 1) * gap;
+    row.forEach((n, i) => { pos[n] = { x: (W - total) / 2 + i * (nodeW + gap), y: top + r * rowGap }; });
+  });
+  const H = top + rows.length * rowGap - 20;
+  const sel = selectedModule;
+  const related = new Set([sel, ...(MOD[sel] ? MOD[sel].imports : []), ...usedBy(sel)]);
+  const edges = MODS.flatMap(m => m.imports.filter(d => pos[d]).map(d => {
+    const a = pos[m.name], b = pos[d];
+    const x1 = a.x + nodeW / 2, y1 = a.y + nodeH, x2 = b.x + nodeW / 2, y2 = b.y;
+    const hot = m.name === sel || d === sel;
+    const my = (y1 + y2) / 2;
+    return `<path class="edge ${hot ? "hot" : (sel ? "dim" : "")}" d="M${x1},${y1} C${x1},${my} ${x2},${my} ${x2},${y2 - 6}" marker-end="url(#${hot ? "ah" : "a"})"/>`;
+  })).join("");
+  const nodes = Object.entries(pos).map(([n, p]) => {
+    const g = GROUPS[group(n)];
+    const cls = n === sel ? "sel" : (related.has(n) ? "" : "dim");
+    return `<g class="node ${cls}" data-mod="${esc(n)}" tabindex="0" role="button" aria-label="${esc(short(n))}">
+      <rect class="body" x="${p.x}" y="${p.y}" width="${nodeW}" height="${nodeH}" rx="8"/>
+      <rect class="strip" x="${p.x}" y="${p.y}" width="6" height="${nodeH}" rx="3" style="fill:${g.color}"/>
+      <text x="${p.x + 14}" y="${p.y + 23}">${esc(short(n))}</text></g>`;
+  }).join("");
+  const legend = Object.values(GROUPS).map(g => `<span><span class="dot" style="display:inline-block;width:10px;height:10px;border-radius:3px;background:${g.color};margin-right:5px"></span>${esc(tr(g.name))}</span>`).join("");
+  return `<div class="card map"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(tr(UI.tabs.code))}">
+      <defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--muted)"/></marker>
+      <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--accent)"/></marker></defs>
+      ${edges}${nodes}</svg><div class="legend">${legend}</div></div>`;
+}
+
+function renderCode() {
+  if (!MOD[selectedModule]) selectedModule = MODS[0] ? MODS[0].name : "";
+  const m = MOD[selectedModule];
+  if (!m) return `<p class="note">${esc(tr(UI.noFacts))}</p>`;
+  const info = MODULES[m.name];
+  const fns = m.functions.map(f => `<div class="fn ${f.private ? "private" : ""}"><div class="sig">${esc(f.kind === "class" ? "class " + f.signature : f.signature)}</div>${f.doc ? `<div class="doc">${esc(f.doc)}</div>` : ""}</div>`).join("");
+  const list = (arr, fn) => arr.length ? `<div class="chips">${arr.map(fn).join("")}</div>` : `<span class="muted">${esc(tr(UI.none))}</span>`;
+  const cmds = m.commands.length ? `<dt>${esc(tr(UI.dCmds))}</dt><dd>${m.commands.map(c => `<div><code>${esc(c.name)}</code> <span class="muted small">${esc(c.help)}</span></div>`).join("")}</dd>` : "";
+  const all = MODS.map(x => modChip(x.name)).join("");
+  return `<h1>${esc(tr(UI.tabs.code))}</h1><p class="lead">${esc(tr(UI.codeLead))}</p>
+    ${renderMap()}<div class="mod-list">${all}</div>
+    <aside class="card detail" style="margin-top:14px"><div class="eyebrow" style="color:${GROUPS[group(m.name)].color}">${esc(tr(GROUPS[group(m.name)].name))}</div>
+      <h2 class="mono">${esc(m.name)}</h2>
+      <div class="detail-grid"><dl><dt>${esc(tr(UI.dWhat))}</dt><dd>${info ? esc(tr(info.what)) : `<span class="note">${esc(tr(UI.missingText))}</span>`}</dd>
+      <dt>${esc(tr(UI.dFile))}</dt><dd><code>${esc(m.file)}</code> · ${num(m.lines)} ${esc(tr(UI.lines))}</dd>
+      ${m.doc ? `<dt>${esc(tr(UI.dDoc))}</dt><dd class="muted small">${esc(m.doc)}</dd>` : ""}
+      ${cmds}
+      <dt>${esc(tr(UI.dUses))}</dt><dd>${list(m.imports, modChip)}</dd>
+      <dt>${esc(tr(UI.dUsedBy))}</dt><dd>${list(usedBy(m.name), modChip)}</dd>
+      <dt>${esc(tr(UI.dTests))}</dt><dd>${list(testedBy(m.name), testChip)}</dd></dl>
+      <dl><dt>${esc(tr(UI.dFns))}</dt><dd>${fns}<div class="muted small" style="margin-top:6px">${esc(tr(UI.privateNote))}</div></dd></dl></div>
+    </aside>`;
+}
+
+function renderTests() {
+  const t = has(F, "tests") || { totals: { passed: 0, failed: 0, skipped: 0 }, files: {} };
+  const files = Object.keys(TFILES);
+  const shown = testFilter === "all" ? files : files.filter(f => f === testFilter);
+  const icon = { passed: "✓", failed: "✗", skipped: "–" };
+  const summary = ["passed", "failed", "skipped"].map(s => `<span class="badge s-${s}">${icon[s]} ${num(t.totals[s])} ${esc(tr(UI[s]))}</span>`).join("");
+  const filters = [`<button data-tfilter="all" aria-pressed="${testFilter === "all"}">${esc(tr(UI.all))}</button>`]
+    .concat(files.map(f => `<button data-tfilter="${esc(f)}" aria-pressed="${testFilter === f}">${esc(f)} (${TFILES[f].tests.length})</button>`)).join("");
+  const cards = shown.map(f => {
+    const tf = TFILES[f];
+    const rows = tf.tests.map(x => {
+      const base = x.name.replace(/\[.*\]$/, ""), param = (x.name.match(/\[(.*)\]$/) || [])[1];
+      const what = TESTS[base] ? tr(TESTS[base]) + (param ? ` (${param})` : "") : x.name;
+      const msg = x.message ? `<span class="tname s-${x.status}">${esc(x.message)}</span>` : "";
+      return `<div class="test-row"><span class="icon s-${x.status}" title="${esc(tr(UI[x.status]))}">${icon[x.status]}</span><span>${esc(what)}<span class="tname">${esc(x.name)}</span>${msg}</span><span class="t">${num(x.seconds, 2)} s</span></div>`;
+    }).join("");
+    return `<div class="card" id="tf-${esc(f)}"><h3 class="mono">${esc(f)}</h3><p class="muted small" style="margin:0 0 8px">${esc(tr(TESTS[f] || ""))}</p>
+      <div class="small" style="margin-bottom:8px"><b>${esc(tr(UI.checks))}:</b> <span class="chips" style="display:inline-flex">${tf.imports.map(modChip).join("")}</span></div>${rows}</div>`;
+  }).join("");
+  return `<h1>${esc(tr(UI.tabs.tests))}</h1><p class="lead">${esc(tr(UI.testsLead))}</p>
+    <div class="test-summary">${summary}<span class="muted small">${esc(tr(UI.ran))} ${esc(F.generated || "")} · ${num(t.seconds || 0, 1)} ${esc(tr(UI.inSec))}</span></div>
+    <div class="filters">${filters}</div><div class="grid g2">${cards}</div>`;
+}
+
+function bars(entries, total) {
+  const max = Math.max(...entries.map(e => e[1]));
+  return entries.map(([k, v]) => `<div class="bar-row"><span>${esc(k)}</span><div class="bar-track"><div class="bar-fill" style="width:${(v / max) * 100}%"></div></div><span class="bar-val">${num(v)} · ${pct(v / total, 1)}</span></div>`).join("");
+}
+
+function renderData() {
+  const d = F.data || {};
+  const places = (d.places || []).map(p => `<tr><td><code>${esc(p.path)}</code></td><td class="num">${esc(size(p.bytes))}</td><td class="num">${num(p.files)}</td></tr>`).join("");
+  const sets = DATASETS.map(s => { const p = place(s.key); return `<tr><td><b>${esc(tr(s.name))}</b></td><td>${esc(tr(s.how))}</td><td>${esc(tr(s.lic))}</td><td>${esc(s.src)}</td><td>${esc(tr(s.use))}</td><td class="num">${p ? esc(size(p.bytes)) : "–"}</td></tr>`; }).join("");
+  const h = d.ham10000 || {}; const sp = d.split || {};
+  const classes = h.classes ? bars(Object.entries(h.classes), h.images) : "";
+  const parts = ["train", "val", "test"];
+  const splitRows = sp.images ? `<tr><td>${esc(tr(UI.images))}</td>${parts.map(p => `<td class="num">${num(sp.images[p])}</td>`).join("")}</tr>
+      <tr><td>${esc(tr(UI.lesions))}</td>${parts.map(p => `<td class="num">${num(sp.lesions[p])}</td>`).join("")}</tr>
+      <tr><td>${esc(tr(UI.malShare))}</td>${parts.map(p => `<td class="num">${pct(sp.malignant_share[p])}</td>`).join("")}</tr>
+      ${Object.entries(sp.by_class || {}).map(([c, v]) => `<tr><td class="mono">${esc(c)}</td>${parts.map(p => `<td class="num">${num(v[p])}</td>`).join("")}</tr>`).join("")}` : "";
+  return `<h1>${esc(tr(UI.tabs.data))}</h1><p class="lead">${esc(tr(UI.dataLead))}</p>
+    <div class="grid g2"><div class="card"><h2>${esc(tr(UI.onDisk))} · ${esc(size(d.total_bytes || 0))}</h2><div class="table-wrap"><table><thead><tr><th>${esc(tr(UI.cPath))}</th><th class="num">${esc(tr(UI.cSize))}</th><th class="num">${esc(tr(UI.cFiles))}</th></tr></thead><tbody>${places}</tbody></table></div></div>
+    <div class="card"><h2>${esc(tr(UI.classes))}</h2>${classes}<p class="muted small">${esc(tr(UI.figuresLink))}</p></div></div>
+    <div class="card" style="margin-top:14px"><h2>${esc(tr(UI.datasets))}</h2><div class="table-wrap"><table><thead><tr><th>${esc(tr(UI.cName))}</th><th>${esc(tr(UI.cHow))}</th><th>${esc(tr(UI.cLic))}</th><th>${esc(tr(UI.cSrc))}</th><th>${esc(tr(UI.cUse))}</th><th class="num">${esc(tr(UI.cSize))}</th></tr></thead><tbody>${sets}</tbody></table></div></div>
+    <div class="card" style="margin-top:14px"><h2>${esc(tr(UI.splitT))}</h2><p class="muted small"><code>${esc(sp.file || "")}</code></p><div class="table-wrap"><table><thead><tr><th></th>${parts.map(p => `<th class="num">${esc(tr(UI[p]))}</th>`).join("")}</tr></thead><tbody>${splitRows}</tbody></table></div></div>`;
+}
+
+function renderFindings() {
+  const d = F.data || {}; const h = d.ham10000 || {}; const a = d.artifacts || {}; const dup = d.duplicates || {};
+  const nvShare = h.classes ? h.classes.nv / h.images : 0;
+  const multi = h.images_per_lesion ? Object.entries(h.images_per_lesion).filter(([k]) => k !== "1").reduce((s, [k, v]) => s + Number(k) * v, 0) / h.images : 0;
+  const darkM = a.dark_by_malignant ? a.dark_by_malignant["True"] : 0, darkB = a.dark_by_malignant ? a.dark_by_malignant["False"] : 0;
+  const cards = [
+    [UI.f1t, pct(nvShare, 0), tr(UI.f1x), "var(--g-data)"],
+    [UI.f2t, pct(multi, 0), tr(UI.f2x), "var(--g-data)"],
+    [UI.f3t, "90%", tr(UI.f3x), "var(--warn)"],
+    [UI.f4t, num(dup.across_lesions ?? 0), fill(tr(UI.f4x), { p: num(dup.pairs ?? 0) }), "var(--ok)"],
+    [UI.f5t, pct(darkM), fill(tr(UI.f5x), { b: pct(darkB), v: pct(a.dark_by_centre ? a.dark_by_centre.vidir_modern : 0) }), "var(--bad)"]
+  ].map(([t, big, x, c]) => `<div class="card finding" style="--fc:${c}"><h3>${esc(tr(t))}</h3><span class="big">${esc(big)}</span><div class="small">${esc(x)}</div></div>`).join("");
+  const monet = MONET_CHECK.map(r => `<tr><td><b>${esc(tr(r.c))}</b></td><td class="verdict ${r.v}">${r.v === "yes" ? "✓ " + esc(tr(UI.vYes)) : "✗ " + esc(tr(UI.vNo))}</td><td class="muted">${esc(tr(r.s))}</td></tr>`).join("");
+  const dec = DECISIONS.map(([dt, x]) => `<li><span class="date">${esc(dt)}</span>${esc(tr(x))}</li>`).join("");
+  const open = OPEN.map(x => `<li>${esc(tr(x))}</li>`).join("");
+  return `<h1>${esc(tr(UI.tabs.findings))}</h1><p class="lead">${esc(tr(UI.findingsLead))}</p>
+    <div class="grid g3">${cards}</div>
+    <div class="card finding" style="--fc:var(--warn);margin-top:14px"><h3>${esc(tr(UI.f6t))}</h3><p class="small" style="margin:4px 0 8px">${esc(tr(UI.f6x))}</p><div class="table-wrap"><table><tbody>${monet}</tbody></table></div></div>
+    <div class="grid g2" style="margin-top:14px"><div class="card"><h2>${esc(tr(UI.decisions))}</h2><ul class="decisions">${dec}</ul></div><div class="card"><h2>${esc(tr(UI.open))}</h2><ul class="decisions">${open}</ul></div></div>`;
+}
+
+function renderFollow() {
+  const g = F.git || { commits: [], unpushed: [], remote: "" };
+  const commits = g.commits.map(c => {
+    const pending = g.unpushed.includes(c.hash);
+    const link = pending ? `<code>${esc(c.hash)}</code>` : `<a class="mono" href="${esc(g.remote)}/commit/${esc(c.hash)}" target="_blank" rel="noopener">${esc(c.hash)}</a>`;
+    return `<div class="commit"><span>${link}</span><span class="d muted">${esc(c.date)}</span><span>${esc(c.subject)}${pending ? ` <span class="badge s-skipped">${esc(tr(UI.notPushed))}</span>` : ""}</span></div>`;
+  }).join("");
+  return `<h1>${esc(tr(UI.tabs.follow))}</h1><p class="lead">${esc(tr(UI.followLead))}</p>
+    <div class="grid g2"><div class="card"><h2>${esc(tr(UI.cmds))}</h2>
+      <h3>${esc(tr(UI.cmdTests))}</h3>${cmdBlock(`${ENV} pytest ml/tests`)}
+      <h3>${esc(tr(UI.cmdList))}</h3>${cmdBlock(`${ENV} neo-data list`)}
+      <h3>${esc(tr(UI.cmdSplit))}</h3>${cmdBlock(`${ENV} neo-data split ham10000`)}
+      <h3>${esc(tr(UI.cmdDash))}</h3>${cmdBlock(`${ENV} python tools/build_dashboard_m2.py`)}</div>
+    <div class="card"><h2>${esc(tr(UI.history))}</h2>${commits}</div></div>`;
+}
+
+const RENDER = { overview: renderOverview, flow: renderFlow, code: renderCode, tests: renderTests, data: renderData, findings: renderFindings, follow: renderFollow };
+
+/* ------------------------------------------------------------ shell */
+function render() {
+  document.documentElement.lang = lang;
+  document.getElementById("brand-sub").textContent = tr(UI.brandSub);
+  document.querySelectorAll("#lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+  document.getElementById("tabs").innerHTML = VIEWS.map(v => `<button role="tab" data-view="${v}" aria-selected="${v === view}">${esc(tr(UI.tabs[v]))}</button>`).join("");
+  const main = document.getElementById("main");
+  main.innerHTML = FACTS && FACTS.code ? `<section class="view">${RENDER[view]()}</section>` : `<p class="note">${esc(tr(UI.noFacts))}</p>`;
+  document.getElementById("footer").textContent = `${tr(UI.generated)} ${F.generated || "–"} · ${tr(UI.footer)}`;
+}
+function go(v, keepScroll) {
+  if (!VIEWS.includes(v)) return;
+  view = v;
+  try { history.replaceState(null, "", "#" + v); } catch (e) { /* sandboxed viewers may block URL changes */ }
+  render();
+  if (!keepScroll) window.scrollTo({ top: 0, behavior: "smooth" });
+}
+function selectModule(name) {
+  selectedModule = name;
+  if (view !== "code") return go("code");
+  render();
+  const d = document.querySelector(".detail"); if (d) d.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+document.addEventListener("click", e => {
+  const node = e.target.closest("[data-mod]");
+  if (node) return selectModule(node.dataset.mod);
+  const t = e.target.closest("button");
+  if (!t) return;
+  if (t.dataset.view) return go(t.dataset.view);
+  if (t.dataset.lang) { lang = t.dataset.lang; writeStore("neoHelperLang", lang); return render(); }
+  if (t.id === "theme") {
+    const root = document.documentElement;
+    const dark = root.dataset.theme ? root.dataset.theme === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.theme = dark ? "light" : "dark"; writeStore("neoHelperTheme", root.dataset.theme); return;
+  }
+  if (t.dataset.tfile) { testFilter = t.dataset.tfile; return go("tests"); }
+  if (t.dataset.tfilter) { testFilter = t.dataset.tfilter; return go("tests", true); }
+  if (t.dataset.copy) {
+    const done = () => { t.textContent = tr(UI.copied); setTimeout(() => { t.textContent = tr(UI.copy); }, 1400); };
+    try { navigator.clipboard.writeText(t.dataset.copy).then(done, () => {}); } catch (err) { /* clipboard may be blocked */ }
+  }
+});
+document.addEventListener("keydown", e => {
+  if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches("g[data-mod]")) { e.preventDefault(); selectModule(e.target.dataset.mod); }
+});
+
+(function init() {
+  const params = new URLSearchParams(location.search);
+  const stored = readStore("neoHelperLang");
+  const nav = (navigator.language || "it").slice(0, 2);
+  lang = ["it", "en", "es"].find(l => l === params.get("lang")) || ["it", "en", "es"].find(l => l === stored) || (["it", "en", "es"].includes(nav) ? nav : "it");
+  const theme = readStore("neoHelperTheme");
+  if (theme === "dark" || theme === "light") document.documentElement.dataset.theme = theme;
+  const hash = location.hash.replace("#", "");
+  if (VIEWS.includes(hash)) view = hash;
+  render();
+})();
+</script>
+</body>
+</html>

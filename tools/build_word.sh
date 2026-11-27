@@ -105,3 +105,6 @@ P=docs
 build "M2_parte1_ambiente_dati_EDA.docx" "Milestone 2, prima parte — ambiente, dati ed EDA" \
   docs/12_riassunto_M2_parte1.md \
   docs/11_eda_ham10000.md
+
+build "M2_schede_del_codice.docx" "Milestone 2 — schede del codice" \
+  docs/14_schede_codice_M2.md
