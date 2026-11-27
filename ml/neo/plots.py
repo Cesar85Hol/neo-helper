@@ -11,10 +11,14 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
+
+# Same input, same SVG file: fixed ids instead of random ones (see save()).
+mpl.rcParams["svg.hashsalt"] = "neo-helper"
 
 SURFACE = "#fcfcfb"
 TEXT = "#0b0b0b"
@@ -167,7 +171,8 @@ def save(fig: Figure, folder: Path, name: str) -> list[Path]:
     """Save ``fig`` as SVG (source) and PNG (2x) in ``folder``."""
     folder.mkdir(parents=True, exist_ok=True)
     written = []
-    for suffix, options in ((".svg", {}), (".png", {"dpi": 200})):
+    # No creation date in the files, so re-running a notebook does not change them.
+    for suffix, options in ((".svg", {"metadata": {"Date": None}}), (".png", {"dpi": 200})):
         path = folder / f"{name}{suffix}"
         fig.savefig(path, facecolor=SURFACE, bbox_inches="tight", **options)
         written.append(path)

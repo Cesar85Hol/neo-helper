@@ -172,3 +172,11 @@ def test_share_chart_is_drawn(tmp_path):
     sizes = pd.Series({"mel": 1113, "nv": 6705})
     plots.save(plots.bar_shares(shares, sizes, "Dark corners"), tmp_path, "shares")
     assert (tmp_path / "shares.png").stat().st_size > 1000
+
+
+def test_saved_svg_is_identical_when_drawn_twice(tmp_path):
+    counts = pd.Series({"nv": 6705, "mel": 1113})
+    for folder in ("first", "second"):
+        plots.save(plots.bar_counts(counts, "Same chart"), tmp_path / folder, "chart")
+    first = (tmp_path / "first" / "chart.svg").read_bytes()
+    assert first == (tmp_path / "second" / "chart.svg").read_bytes()
